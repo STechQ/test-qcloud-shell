@@ -631,7 +631,7 @@ let RouterImpl = class RouterImpl {
         this.executor = executor;
         this.logger = logger;
         const url = new URL(window.location.href);
-        const hostingOptions = ["dist/client/index.html", "dist/client", "dist", "qcloud-shell"];
+        const hostingOptions = ["dist/client/index.html", "dist/client", "dist", "qcloud-shell", "test-qcloud-shell"];
         const option = hostingOptions.find(option => url.pathname.startsWith("/" + option));
         this.router = vue_router__WEBPACK_IMPORTED_MODULE_6__.createRouter({
             history: vue_router__WEBPACK_IMPORTED_MODULE_6__.createWebHistory(option),
