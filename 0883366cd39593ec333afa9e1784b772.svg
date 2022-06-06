@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276.004" height="48.501" viewBox="0 0 276.004 48.501">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3619" data-name="Rectangle 3619" width="276.004" height="48.501" fill="#ef484f"/>
+    </clipPath>
+  </defs>
+  <g id="plateau_logo-red" transform="translate(0 0)">
+    <g id="Group_2390" data-name="Group 2390" transform="translate(0 0)" clip-path="url(#clip-path)">
+      <path id="Path_9327" data-name="Path 9327" d="M38.28,0C30.207,0,31,.061,22.928.061v18.1h17.86V36.087C63.357,33.762,62.5,0,38.28,0" transform="translate(-10.45 0)" fill="#ef484f"/>
+      <path id="Path_9328" data-name="Path 9328" d="M0,33.377V63.714H30.337V51.3H12.478V33.377Z" transform="translate(0 -15.213)" fill="#ef484f"/>
+      <path id="Path_9329" data-name="Path 9329" d="M129.229,27.825c6.232,0,10.084,3.362,10.084,8.719,0,5.567-4.061,9.033-10.539,9.033h-3.221v6.058h-5.917V27.825Zm-.105,12.57c2.591,0,4.307-1.505,4.307-3.851,0-2.136-1.716-3.5-4.307-3.5h-3.572V40.4Z" transform="translate(-54.528 -12.682)" fill="#ef484f"/>
+      <path id="Path_9330" data-name="Path 9330" d="M194.71,51.635H177.028V27.825h5.917V46.418H194.71Z" transform="translate(-80.688 -12.682)" fill="#ef484f"/>
+      <path id="Path_9331" data-name="Path 9331" d="M236.187,47.421l-1.575,4.1h-6.3l10.12-23.95H244.1l10.085,23.95h-6.3l-1.611-4.1Zm5.043-12.955-3.081,7.913h6.162Z" transform="translate(-104.061 -12.565)" fill="#ef484f"/>
+      <path id="Path_9332" data-name="Path 9332" d="M301.241,33.113V51.635h-5.883V33.113h-7.6V27.826h21.078v5.287Z" transform="translate(-131.158 -12.683)" fill="#ef484f"/>
+      <path id="Path_9333" data-name="Path 9333" d="M354.032,37.314h10.574v5.042H354.032v4.132h12.08v5.147h-18V27.825h18v5.147h-12.08Z" transform="translate(-158.667 -12.683)" fill="#ef484f"/>
+      <path id="Path_9334" data-name="Path 9334" d="M408.88,47.421l-1.576,4.1H401l10.12-23.95h5.672l10.084,23.95h-6.3l-1.61-4.1Zm5.042-12.955-3.081,7.913H417Z" transform="translate(-182.772 -12.565)" fill="#ef484f"/>
+      <path id="Path_9335" data-name="Path 9335" d="M488.6,40.536c0,7.388-4.272,11.624-11.1,11.624-6.793,0-11.064-4.237-11.064-11.624V27.826h5.952V40.641c0,3.641,2,5.987,5.112,5.987s5.147-2.346,5.147-5.987V27.826H488.6Z" transform="translate(-212.596 -12.683)" fill="#ef484f"/>
+    </g>
+  </g>
+</svg>
