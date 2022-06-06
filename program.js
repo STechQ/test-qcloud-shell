@@ -10806,7 +10806,7 @@ const appSettings = appSettingsDict = {
         },
     },
     production: {
-        qcloudApiUrl: "qcloud prod adress",
+        qcloudApiUrl: "https://studio.onplateau.com/sym/",
         networkTimeout: 60000,
         studio: {
             commentMaxLength: 50,
@@ -14647,9 +14647,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "startupEnvironment": () => (/* binding */ startupEnvironment),
 /* harmony export */   "version": () => (/* binding */ version)
 /* harmony export */ });
-const startupEnvironment = "default";
+const startupEnvironment = "production"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.3"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.4"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 
 
 /***/ }),
