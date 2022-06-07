@@ -75,7 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_styles_IDE3_css__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nheader[data-v-17bbea20] {\n  height: 20px;\n  background: #3c3c3c;\n  color: gray;\n  display: flex;\n  justify-content: space-between;\n}\n.logout[data-v-17bbea20] {\n  cursor: pointer;\n  border: 1px solid #3c3c3c;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/header.vue"],"names":[],"mappings":";AA6CA;EACE,YAAY;EACZ,mBAAmB;EACnB,WAAW;EACX,aAAa;EACb,8BAA8B;AAChC;AACA;EACE,eAAe;EACf,yBAAyB;AAC3B","sourcesContent":["<script setup lang=\"ts\">\nimport { container } from '../../../../domain/core/diContainer';\nimport { IRouter } from '../../../../domain/presentation/IRouter';\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nfunction logout() {\n  executor.execute(async () => {\n    await executor.executeUseCase<ILogout>(ILogout);\n    router.push(\"/login\");\n  }, { loading: true });\n}\n</script>\n<template>\n    <div class=\"page-content\">\n        <nav>\n            <div class=\"container-fluid nav-container\">\n                <img src=\"../../../../images/plateau_logo-navy.svg\" alt=\"\" width=\"205\" height=\"36\" class=\"logo\">\n                <div class=\"navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-alpha-a-circle-outline user logout-icon\" @click=\"logout()\"></i>\n                    </div>\n                </div>\n                <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-bell bell\"></i>\n                    </div>\n                </div>\n\n                <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-forum forum\"></i>\n                    </div>\n                </div>\n            </div>\n        </nav>\n    </div>\n  <!-- <header>\n    <div>Header</div>\n    <div class=\"logout\" @click=\"logout()\">Logout</div>\n  </header> -->\n</template>\n<style scoped>\n@import url(\"../../../../styles/IDE3.css\");\nheader {\n  height: 20px;\n  background: #3c3c3c;\n  color: gray;\n  display: flex;\n  justify-content: space-between;\n}\n.logout {\n  cursor: pointer;\n  border: 1px solid #3c3c3c;\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nheader[data-v-17bbea20] {\n  height: 20px;\n  background: #3c3c3c;\n  color: gray;\n  display: flex;\n  justify-content: space-between;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/header.vue"],"names":[],"mappings":";AAuCA;EACE,YAAY;EACZ,mBAAmB;EACnB,WAAW;EACX,aAAa;EACb,8BAA8B;AAChC","sourcesContent":["<script setup lang=\"ts\">\nimport { container } from '../../../../domain/core/diContainer';\nimport { IRouter } from '../../../../domain/presentation/IRouter';\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\n</script>\n<template>\n    <div class=\"page-content\">\n        <nav>\n            <div class=\"container-fluid nav-container\">\n                <img src=\"../../../../images/plateau_logo-navy.svg\" alt=\"\" width=\"205\" height=\"36\" class=\"logo\">\n                <div class=\"navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-alpha-a-circle-outline user logout-icon\"></i>\n                  </div>\n                </div>\n                <!-- <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-bell bell\"></i>\n                    </div>\n                </div>\n\n                <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-forum forum\"></i>\n                    </div>\n                </div> -->\n            </div>\n        </nav>\n    </div>\n  <!-- <header>\n    <div>Header</div>\n    <div class=\"logout\" @click=\"logout()\">Logout</div>\n  </header> -->\n</template>\n<style scoped>\n@import url(\"../../../../styles/IDE3.css\");\nheader {\n  height: 20px;\n  background: #3c3c3c;\n  color: gray;\n  display: flex;\n  justify-content: space-between;\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nnav[data-v-71a1caf3] {\n  width: 40px;\n  background: #333333;\n  color: white;\n  text-align: center;\n}\n.logo[data-v-71a1caf3] {\n  width: 30px;\n}\n.navItem[data-v-71a1caf3] {\n  border: 1px solid gray;\n}\n.navSelected[data-v-71a1caf3] {\n  border-color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/navbar.vue"],"names":[],"mappings":";AAuHA;EACE,WAAW;EACX,mBAAmB;EACnB,YAAY;EACZ,kBAAkB;AACpB;AAEA;EACE,WAAW;AACb;AAEA;EACE,sBAAsB;AACxB;AAEA;EACE,mBAAmB;AACrB","sourcesContent":["<script setup lang=\"ts\">\nimport { onMounted } from \"vue\";\nimport { container } from \"../../../../domain/core/diContainer\";\nimport { IRouter } from \"../../../../domain/presentation/IRouter\";\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\n\n\n\n\n\n\nfunction onMain() {\n  router.push(\"/main/applicationList\");\n}\nfunction onSettings() {\n  router.push(\"/main/settings\");\n}\n\nfunction onDeneme() {\n  router.push(\"/deneme\");\n}\nfunction logout() {\n  executor.execute(async () => {\n    await executor.executeUseCase<ILogout>(ILogout);\n    router.push(\"/login\");\n  }, { loading: true });\n}\nfunction gridIcon() {\n  var verticalNavTexts = document.getElementsByClassName(\"vertical-icons-text\");\n  var verticalNav = document.getElementsByClassName(\"vertical-nav\")[0];\n  var insideLogo = document.getElementById(\"inside-logo\");\n  for (let icon of (<any>verticalNavTexts)) {\n    if (icon.style.display === \"none\") {\n      (<any>verticalNav).style.width = \"321px\";\n      icon.style.display = \"block\";\n      (<any>insideLogo).style.display = \"block\";\n    } else {\n      (<any>verticalNav).style.width = \"56px\";\n      icon.style.display = \"none\";\n      (<any>insideLogo).style.display = \"none\";\n    }\n  }\n\n}\nonMounted(() => {\n  let insideLogo = document.getElementById(\"inside-logo\");\n  var verticalNavTexts = document.getElementsByClassName(\"vertical-icons-text\");\n  insideLogo!.setAttribute('style', 'display:none')\n  document.getElementsByClassName(\"grid-icon\")[0]?.addEventListener(\"click\", gridIcon);\n  for (let icon of (<any>verticalNavTexts)) {\n    icon.style.display = \"none\";\n  }\n\n});\n</script>\n<template>\n  <div class=\"vertical-nav\" id=\"sidebar\">\n    <div class=\"grid-icon\">\n      <div class=\"nav-icons sideNavCursor\">\n        <div class=\"vertical-dot-icon\">\n          <i class=\"mdi mdi-dots-grid mdi-24px vertical-icons\"></i>\n        </div>\n        <img src=\"../../../../images/plateau_logo-red.svg\" alt=\"\" width=\"205\" height=\"36\" id=\"inside-logo\">\n      </div>\n    </div>\n    <div class=\"py-1\">\n      <div class=\"nav-icons\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-account-lock-outline mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Plateau Authorization</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"py-1\">\n      <div class=\"nav-icons\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-file-document-multiple-outline mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Plateau Documentation</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"bottom-icons position-absolute bottom-0\">\n      <div class=\"nav-icons\" style=\"width: 100%;\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-help-circle mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Help</p>\n        </div>\n      </div>\n\n      <div class=\"nav-icons\">\n        <div class=\"wrapper logout-icon\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-logout mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text \" @click=\"logout()\">Logout</p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <nav>\n    <div>\n      <img class=\"logo\" src=\"https://www.onplateau.com/img/logo.svg\" />\n    </div>\n    <div class=\"navItem\" @click=\"onMain\">Main</div>\n    <div class=\"navItem\" @click=\"onSettings\">Settings</div>\n    <div class=\"navItem\" @click=\"onDeneme\">Deneme</div>\n  </nav> -->\n</template>\n<style scoped>\nnav {\n  width: 40px;\n  background: #333333;\n  color: white;\n  text-align: center;\n}\n\n.logo {\n  width: 30px;\n}\n\n.navItem {\n  border: 1px solid gray;\n}\n\n.navSelected {\n  border-color: white;\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nnav[data-v-71a1caf3] {\n  width: 40px;\n  background: #333333;\n  color: white;\n  text-align: center;\n}\n.logo[data-v-71a1caf3] {\n  width: 30px;\n}\n.navItem[data-v-71a1caf3] {\n  border: 1px solid gray;\n}\n.navSelected[data-v-71a1caf3] {\n  border-color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/navbar.vue"],"names":[],"mappings":";AAmHA;EACE,WAAW;EACX,mBAAmB;EACnB,YAAY;EACZ,kBAAkB;AACpB;AAEA;EACE,WAAW;AACb;AAEA;EACE,sBAAsB;AACxB;AAEA;EACE,mBAAmB;AACrB","sourcesContent":["<script setup lang=\"ts\">\nimport { onMounted } from \"vue\";\nimport { container } from \"../../../../domain/core/diContainer\";\nimport { IRouter } from \"../../../../domain/presentation/IRouter\";\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\n\n\n\n\n\n\nfunction onMain() {\n  router.push(\"/main/applicationList\");\n}\nfunction onSettings() {\n  router.push(\"/main/settings\");\n}\nfunction logout() {\n  executor.execute(async () => {\n    await executor.executeUseCase<ILogout>(ILogout);\n    router.push(\"/login\");\n  }, { loading: true });\n}\nfunction gridIcon() {\n  var verticalNavTexts = document.getElementsByClassName(\"vertical-icons-text\");\n  var verticalNav = document.getElementsByClassName(\"vertical-nav\")[0];\n  var insideLogo = document.getElementById(\"inside-logo\");\n  for (let icon of (<any>verticalNavTexts)) {\n    if (icon.style.display === \"none\") {\n      (<any>verticalNav).style.width = \"321px\";\n      icon.style.display = \"block\";\n      (<any>insideLogo).style.display = \"block\";\n    } else {\n      (<any>verticalNav).style.width = \"56px\";\n      icon.style.display = \"none\";\n      (<any>insideLogo).style.display = \"none\";\n    }\n  }\n\n}\nonMounted(() => {\n  let insideLogo = document.getElementById(\"inside-logo\");\n  var verticalNavTexts = document.getElementsByClassName(\"vertical-icons-text\");\n  insideLogo!.setAttribute('style', 'display:none')\n  document.getElementsByClassName(\"grid-icon\")[0]?.addEventListener(\"click\", gridIcon);\n  for (let icon of (<any>verticalNavTexts)) {\n    icon.style.display = \"none\";\n  }\n\n});\n</script>\n<template>\n  <div class=\"vertical-nav\" id=\"sidebar\">\n    <div class=\"grid-icon\">\n      <div class=\"nav-icons sideNavCursor\">\n        <div class=\"vertical-dot-icon\">\n          <i class=\"mdi mdi-dots-grid mdi-24px vertical-icons\"></i>\n        </div>\n        <img src=\"../../../../images/plateau_logo-red.svg\" alt=\"\" width=\"205\" height=\"36\" id=\"inside-logo\">\n      </div>\n    </div>\n    <div class=\"py-1\">\n      <div class=\"nav-icons\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-account-lock-outline mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Plateau Authorization</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"py-1\">\n      <div class=\"nav-icons\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-file-document-multiple-outline mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Plateau Documentation</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"bottom-icons position-absolute bottom-0\">\n      <div class=\"nav-icons\" style=\"width: 100%;\">\n        <div class=\"wrapper sideNavCursor\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-help-circle mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text\">Help</p>\n        </div>\n      </div>\n\n      <div class=\"nav-icons\">\n        <div class=\"wrapper logout-icon\" @click=\"logout()\">\n          <div class=\"vertical-icons-containers\">\n            <i class=\"mdi mdi-logout mdi-24px vertical-icons\"></i>\n          </div>\n          <p class=\"vertical-icons-text \" >Logout</p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <nav>\n    <div>\n      <img class=\"logo\" src=\"https://www.onplateau.com/img/logo.svg\" />\n    </div>\n    <div class=\"navItem\" @click=\"onMain\">Main</div>\n    <div class=\"navItem\" @click=\"onSettings\">Settings</div>\n    <div class=\"navItem\" @click=\"onDeneme\">Deneme</div>\n  </nav> -->\n</template>\n<style scoped>\nnav {\n  width: 40px;\n  background: #333333;\n  color: white;\n  text-align: center;\n}\n\n.logo {\n  width: 30px;\n}\n\n.navItem {\n  border: 1px solid gray;\n}\n\n.navSelected {\n  border-color: white;\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -445,9 +445,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../domain/presentation/IRouter */ "./src/domain/presentation/IRouter.ts");
-/* harmony import */ var _domain_useCase_ILogout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/ILogout */ "./src/domain/useCase/ILogout.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
 
 
 
@@ -457,14 +455,8 @@ __webpack_require__.r(__webpack_exports__);
     setup(__props, { expose }) {
         expose();
         const router = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_2__.IRouter);
-        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__.IUseCaseExecutor);
-        function logout() {
-            executor.execute(async () => {
-                await executor.executeUseCase(_domain_useCase_ILogout__WEBPACK_IMPORTED_MODULE_3__.ILogout);
-                router.push("/login");
-            }, { loading: true });
-        }
-        const __returned__ = { router, executor, logout };
+        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__.IUseCaseExecutor);
+        const __returned__ = { router, executor };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -506,9 +498,6 @@ __webpack_require__.r(__webpack_exports__);
         function onSettings() {
             router.push("/main/settings");
         }
-        function onDeneme() {
-            router.push("/deneme");
-        }
         function logout() {
             executor.execute(async () => {
                 await executor.executeUseCase(_domain_useCase_ILogout__WEBPACK_IMPORTED_MODULE_3__.ILogout);
@@ -542,7 +531,7 @@ __webpack_require__.r(__webpack_exports__);
                 icon.style.display = "none";
             }
         });
-        const __returned__ = { router, executor, onMain, onSettings, onDeneme, logout, gridIcon };
+        const __returned__ = { router, executor, onMain, onSettings, logout, gridIcon };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -601,36 +590,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-17bbea20"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
-const _hoisted_1 = { class: "page-content" };
-const _hoisted_2 = { class: "container-fluid nav-container" };
-const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: _images_plateau_logo_navy_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alt: "",
-    width: "205",
-    height: "36",
-    class: "logo"
-}, null, -1 /* HOISTED */));
-const _hoisted_4 = { class: "navbar-icons" };
-const _hoisted_5 = { class: "media d-flex align-items-center" };
-const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"py-1 navbar-icons\" data-v-17bbea20><div class=\"media d-flex align-items-center\" data-v-17bbea20><i class=\"mdi mdi-bell bell\" data-v-17bbea20></i></div></div><div class=\"py-1 navbar-icons\" data-v-17bbea20><div class=\"media d-flex align-items-center\" data-v-17bbea20><i class=\"mdi mdi-forum forum\" data-v-17bbea20></i></div></div>", 2);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"page-content\" data-v-17bbea20><nav data-v-17bbea20><div class=\"container-fluid nav-container\" data-v-17bbea20><img src=\"" + _images_plateau_logo_navy_svg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" width=\"205\" height=\"36\" class=\"logo\" data-v-17bbea20><div class=\"navbar-icons\" data-v-17bbea20><div class=\"media d-flex align-items-center\" data-v-17bbea20><i class=\"mdi mdi-alpha-a-circle-outline user logout-icon\" data-v-17bbea20></i></div></div><!-- &lt;div class=&quot;py-1 navbar-icons&quot;&gt;\n                    &lt;div class=&quot;media d-flex align-items-center&quot;&gt;\n                        &lt;i class=&quot;mdi mdi-bell bell&quot;&gt;&lt;/i&gt;\n                    &lt;/div&gt;\n                &lt;/div&gt;\n\n                &lt;div class=&quot;py-1 navbar-icons&quot;&gt;\n                    &lt;div class=&quot;media d-flex align-items-center&quot;&gt;\n                        &lt;i class=&quot;mdi mdi-forum forum&quot;&gt;&lt;/i&gt;\n                    &lt;/div&gt;\n                &lt;/div&gt; --></div></nav></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", null, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [
-                    _hoisted_3,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-                                class: "mdi mdi-alpha-a-circle-outline user logout-icon",
-                                onClick: _cache[0] || (_cache[0] = ($event) => ($setup.logout()))
-                            })
-                        ])
-                    ]),
-                    _hoisted_6
-                ])
-            ])
-        ]),
+        _hoisted_1,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <header>\n    <div>Header</div>\n    <div class=\"logout\" @click=\"logout()\">Logout</div>\n  </header> ")
     ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */));
 }
@@ -661,10 +624,14 @@ const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStati
 const _hoisted_5 = { class: "bottom-icons position-absolute bottom-0" };
 const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nav-icons\" style=\"width:100%;\" data-v-71a1caf3><div class=\"wrapper sideNavCursor\" data-v-71a1caf3><div class=\"vertical-icons-containers\" data-v-71a1caf3><i class=\"mdi mdi-help-circle mdi-24px vertical-icons\" data-v-71a1caf3></i></div><p class=\"vertical-icons-text\" data-v-71a1caf3>Help</p></div></div>", 1);
 const _hoisted_7 = { class: "nav-icons" };
-const _hoisted_8 = { class: "wrapper logout-icon" };
-const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "vertical-icons-containers" }, [
+const _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "vertical-icons-containers" }, [
     /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", { class: "mdi mdi-logout mdi-24px vertical-icons" })
 ], -1 /* HOISTED */));
+const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", { class: "vertical-icons-text" }, "Logout", -1 /* HOISTED */));
+const _hoisted_10 = [
+    _hoisted_8,
+    _hoisted_9
+];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
@@ -672,13 +639,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
                 _hoisted_6,
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [
-                        _hoisted_9,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-                            class: "vertical-icons-text",
-                            onClick: _cache[0] || (_cache[0] = ($event) => ($setup.logout()))
-                        }, "Logout")
-                    ])
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+                        class: "wrapper logout-icon",
+                        onClick: _cache[0] || (_cache[0] = ($event) => ($setup.logout()))
+                    }, _hoisted_10)
                 ])
             ])
         ]),

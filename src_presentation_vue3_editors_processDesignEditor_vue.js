@@ -12,6 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
+/* harmony import */ var _stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @stechquick/plateau-process-designer */ "./node_modules/@stechquick/plateau-process-designer/dist/PlateauBpmnModeler.js");
+/* harmony import */ var _stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
@@ -25,15 +28,18 @@ __webpack_require__.r(__webpack_exports__);
         const props = __props;
         let bpmnModeler;
         props.functions.getModel = async () => {
-            return { model: { bpmn: await bpmnModeler.getDiagramXML() }, state: "stateValue" };
+            let xml = await bpmnModeler.getDiagramXML();
+            return { model: { bpmn: xml }, state: "stateValue" };
         };
         props.functions.setModel = async (model, state) => {
             console.log("incomming model", model);
+            //model.bpmn.then((xml: string) => bpmnModeler.importDiagramXML(xml));
             bpmnModeler.importDiagramXML(model.bpmn);
-            setInterval(() => props.callbacks.modified(), 5000);
+            setInterval(() => { if (bpmnModeler.isModified())
+                props.callbacks.modified(); }, 5000);
         };
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(() => {
-            bpmnModeler = new Modeler({ lang: 'tr', container: "#processEditorCanvas" });
+            bpmnModeler = new (_stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_1___default())({ lang: 'tr', container: "#processEditorCanvas" });
         });
         const __returned__ = { props, bpmnModeler };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });

@@ -7425,7 +7425,6 @@ let SessionManager = class SessionManager {
         this.domHelper.unSubscribeInteraction(this.interraction);
     }
     async OnResumeInteract() {
-        console.log("devam diyorrrr");
         this.stop();
         await this.executor.execute(async () => {
             await this.qcloudApi.getUserInfobyToken();
@@ -7433,7 +7432,6 @@ let SessionManager = class SessionManager {
         }, { loading: false });
     }
     OnLogoutInteract() {
-        console.log("yokum diyorrrr");
         this.stop();
         this.executor.execute(async () => {
             await this.executor.executeUseCase(_domain_useCase_ILogout__WEBPACK_IMPORTED_MODULE_6__.ILogout);
@@ -7580,67 +7578,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _objects_editorManager__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./objects/editorManager */ "./src/application/objects/editorManager.ts");
 /* harmony import */ var _domain_useCase_ICreateApplication__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../domain/useCase/ICreateApplication */ "./src/domain/useCase/ICreateApplication.ts");
 /* harmony import */ var _useCases_createApplicationImpl__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./useCases/createApplicationImpl */ "./src/application/useCases/createApplicationImpl.ts");
-/* harmony import */ var _domain_useCase_IDeleteApplication__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../domain/useCase/IDeleteApplication */ "./src/domain/useCase/IDeleteApplication.ts");
-/* harmony import */ var _useCases_deleteApplicationImpl__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./useCases/deleteApplicationImpl */ "./src/application/useCases/deleteApplicationImpl.ts");
-/* harmony import */ var _domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../domain/useCase/IUpdateApplication */ "./src/domain/useCase/IUpdateApplication.ts");
-/* harmony import */ var _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./useCases/updateApplicationImpl */ "./src/application/useCases/updateApplicationImpl.ts");
-/* harmony import */ var _domain_useCase_IDeleteModule__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../domain/useCase/IDeleteModule */ "./src/domain/useCase/IDeleteModule.ts");
-/* harmony import */ var _useCases_deleteModuleImpl__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./useCases/deleteModuleImpl */ "./src/application/useCases/deleteModuleImpl.ts");
-/* harmony import */ var _domain_useCase_IDeleteModel__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../domain/useCase/IDeleteModel */ "./src/domain/useCase/IDeleteModel.ts");
-/* harmony import */ var _useCases_deleteModelImpl__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./useCases/deleteModelImpl */ "./src/application/useCases/deleteModelImpl.ts");
-/* harmony import */ var _domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../domain/useCase/IUpdateModule */ "./src/domain/useCase/IUpdateModule.ts");
-/* harmony import */ var _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./useCases/updateModuleImpl */ "./src/application/useCases/updateModuleImpl.ts");
-/* harmony import */ var _domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../domain/useCase/IGetExportTypes */ "./src/domain/useCase/IGetExportTypes.ts");
-/* harmony import */ var _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./useCases/getExportTypesImpl */ "./src/application/useCases/getExportTypesImpl.ts");
-/* harmony import */ var _domain_useCase_IGetExportSelectionData__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../domain/useCase/IGetExportSelectionData */ "./src/domain/useCase/IGetExportSelectionData.ts");
-/* harmony import */ var _useCases_getExportSelectionDataImpl__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./useCases/getExportSelectionDataImpl */ "./src/application/useCases/getExportSelectionDataImpl.ts");
-/* harmony import */ var _domain_useCase_ICreateExportJob__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../domain/useCase/ICreateExportJob */ "./src/domain/useCase/ICreateExportJob.ts");
-/* harmony import */ var _useCases_createExportJobImpl__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./useCases/createExportJobImpl */ "./src/application/useCases/createExportJobImpl.ts");
-/* harmony import */ var _domain_useCase_IListModelVersions__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ../domain/useCase/IListModelVersions */ "./src/domain/useCase/IListModelVersions.ts");
-/* harmony import */ var _useCases_listModelVersionsImpl__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./useCases/listModelVersionsImpl */ "./src/application/useCases/listModelVersionsImpl.ts");
-/* harmony import */ var _domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ../domain/objects/ISidebarManager */ "./src/domain/objects/ISidebarManager.ts");
-/* harmony import */ var _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./objects/sidebarManager */ "./src/application/objects/sidebarManager.ts");
-/* harmony import */ var _domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ../domain/presentation/IViewModelProxifier */ "./src/domain/presentation/IViewModelProxifier.ts");
-/* harmony import */ var _domain_useCase_IListExportJobs__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ../domain/useCase/IListExportJobs */ "./src/domain/useCase/IListExportJobs.ts");
-/* harmony import */ var _useCases_listExportJobsImpl__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./useCases/listExportJobsImpl */ "./src/application/useCases/listExportJobsImpl.ts");
-/* harmony import */ var _domain_useCase_IListExportJobSteps__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../domain/useCase/IListExportJobSteps */ "./src/domain/useCase/IListExportJobSteps.ts");
-/* harmony import */ var _useCases_listExportJobStepsImpl__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./useCases/listExportJobStepsImpl */ "./src/application/useCases/listExportJobStepsImpl.ts");
-/* harmony import */ var _domain_useCase_IListExportJobStepLogs__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../domain/useCase/IListExportJobStepLogs */ "./src/domain/useCase/IListExportJobStepLogs.ts");
-/* harmony import */ var _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./useCases/listExportJobStepLogsImpl */ "./src/application/useCases/listExportJobStepLogsImpl.ts");
-/* harmony import */ var _domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../domain/useCase/IListExportJobArtifacts */ "./src/domain/useCase/IListExportJobArtifacts.ts");
-/* harmony import */ var _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./useCases/listExportJobArtifactsImpl */ "./src/application/useCases/listExportJobArtifactsImpl.ts");
-/* harmony import */ var _domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ../domain/useCase/IGetExportJobArtifact */ "./src/domain/useCase/IGetExportJobArtifact.ts");
-/* harmony import */ var _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./useCases/getExportJobArtifactImpl */ "./src/application/useCases/getExportJobArtifactImpl.ts");
-/* harmony import */ var _domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ../domain/useCase/IFileExplorer */ "./src/domain/useCase/IFileExplorer.ts");
-/* harmony import */ var _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./useCases/fileExplorer */ "./src/application/useCases/fileExplorer.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _useCases_studio__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./useCases/studio */ "./src/application/useCases/studio.ts");
-/* harmony import */ var tsyringe__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! tsyringe */ "./node_modules/tsyringe/dist/esm5/index.js");
-/* harmony import */ var _domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ../domain/objects/ISesionManager */ "./src/domain/objects/ISesionManager.ts");
-/* harmony import */ var _objects_sessionManager__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./objects/sessionManager */ "./src/application/objects/sessionManager.ts");
-/* harmony import */ var _domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ../domain/useCase/IListModelHistories */ "./src/domain/useCase/IListModelHistories.ts");
-/* harmony import */ var _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./useCases/listModelHistoriesImpl */ "./src/application/useCases/listModelHistoriesImpl.ts");
-/* harmony import */ var _domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ../domain/objects/editors/IQuickEditor */ "./src/domain/objects/editors/IQuickEditor.ts");
-/* harmony import */ var _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./objects/editors/quickEditorImpl */ "./src/application/objects/editors/quickEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ../domain/objects/editors/processEditor/IProcessEditor */ "./src/domain/objects/editors/processEditor/IProcessEditor.ts");
-/* harmony import */ var _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./objects/editors/processEditorImpl */ "./src/application/objects/editors/processEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ../domain/objects/editors/IEditor */ "./src/domain/objects/editors/IEditor.ts");
-/* harmony import */ var _domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ../domain/useCase/IAutoLogin */ "./src/domain/useCase/IAutoLogin.ts");
-/* harmony import */ var _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./useCases/autoLogin */ "./src/application/useCases/autoLogin.ts");
-/* harmony import */ var _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ./objects/editors/processDesignEditorImpl */ "./src/application/objects/editors/processDesignEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ../domain/objects/editors/IProcessDesignEditor */ "./src/domain/objects/editors/IProcessDesignEditor.ts");
-/* harmony import */ var _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ./objects/editors/entityDesignerEditorImpl */ "./src/application/objects/editors/entityDesignerEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ../domain/objects/editors/IEntityDesignerEditor */ "./src/domain/objects/editors/IEntityDesignerEditor.ts");
-/* harmony import */ var _domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ../domain/useCase/IProcessEditorUtil */ "./src/domain/useCase/IProcessEditorUtil.ts");
-/* harmony import */ var _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./useCases/processEditorUtilImpl */ "./src/application/useCases/processEditorUtilImpl.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
-
-
-
-
-
-
+/* harmony import */ var _domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../domain/useCase/IUpdateApplication */ "./src/domain/useCase/IUpdateApplication.ts");
+/* harmony import */ var _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./useCases/updateApplicationImpl */ "./src/application/useCases/updateApplicationImpl.ts");
+/* harmony import */ var _domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../domain/useCase/IUpdateModule */ "./src/domain/useCase/IUpdateModule.ts");
+/* harmony import */ var _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./useCases/updateModuleImpl */ "./src/application/useCases/updateModuleImpl.ts");
+/* harmony import */ var _domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../domain/useCase/IGetExportTypes */ "./src/domain/useCase/IGetExportTypes.ts");
+/* harmony import */ var _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./useCases/getExportTypesImpl */ "./src/application/useCases/getExportTypesImpl.ts");
+/* harmony import */ var _domain_useCase_IGetExportSelectionData__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../domain/useCase/IGetExportSelectionData */ "./src/domain/useCase/IGetExportSelectionData.ts");
+/* harmony import */ var _useCases_getExportSelectionDataImpl__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./useCases/getExportSelectionDataImpl */ "./src/application/useCases/getExportSelectionDataImpl.ts");
+/* harmony import */ var _domain_useCase_ICreateExportJob__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../domain/useCase/ICreateExportJob */ "./src/domain/useCase/ICreateExportJob.ts");
+/* harmony import */ var _useCases_createExportJobImpl__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./useCases/createExportJobImpl */ "./src/application/useCases/createExportJobImpl.ts");
+/* harmony import */ var _domain_useCase_IListModelVersions__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../domain/useCase/IListModelVersions */ "./src/domain/useCase/IListModelVersions.ts");
+/* harmony import */ var _useCases_listModelVersionsImpl__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./useCases/listModelVersionsImpl */ "./src/application/useCases/listModelVersionsImpl.ts");
+/* harmony import */ var _domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../domain/objects/ISidebarManager */ "./src/domain/objects/ISidebarManager.ts");
+/* harmony import */ var _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./objects/sidebarManager */ "./src/application/objects/sidebarManager.ts");
+/* harmony import */ var _domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../domain/presentation/IViewModelProxifier */ "./src/domain/presentation/IViewModelProxifier.ts");
+/* harmony import */ var _domain_useCase_IListExportJobs__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ../domain/useCase/IListExportJobs */ "./src/domain/useCase/IListExportJobs.ts");
+/* harmony import */ var _useCases_listExportJobsImpl__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./useCases/listExportJobsImpl */ "./src/application/useCases/listExportJobsImpl.ts");
+/* harmony import */ var _domain_useCase_IListExportJobSteps__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ../domain/useCase/IListExportJobSteps */ "./src/domain/useCase/IListExportJobSteps.ts");
+/* harmony import */ var _useCases_listExportJobStepsImpl__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./useCases/listExportJobStepsImpl */ "./src/application/useCases/listExportJobStepsImpl.ts");
+/* harmony import */ var _domain_useCase_IListExportJobStepLogs__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ../domain/useCase/IListExportJobStepLogs */ "./src/domain/useCase/IListExportJobStepLogs.ts");
+/* harmony import */ var _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./useCases/listExportJobStepLogsImpl */ "./src/application/useCases/listExportJobStepLogsImpl.ts");
+/* harmony import */ var _domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ../domain/useCase/IListExportJobArtifacts */ "./src/domain/useCase/IListExportJobArtifacts.ts");
+/* harmony import */ var _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./useCases/listExportJobArtifactsImpl */ "./src/application/useCases/listExportJobArtifactsImpl.ts");
+/* harmony import */ var _domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../domain/useCase/IGetExportJobArtifact */ "./src/domain/useCase/IGetExportJobArtifact.ts");
+/* harmony import */ var _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./useCases/getExportJobArtifactImpl */ "./src/application/useCases/getExportJobArtifactImpl.ts");
+/* harmony import */ var _domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../domain/useCase/IFileExplorer */ "./src/domain/useCase/IFileExplorer.ts");
+/* harmony import */ var _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./useCases/fileExplorer */ "./src/application/useCases/fileExplorer.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _useCases_studio__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./useCases/studio */ "./src/application/useCases/studio.ts");
+/* harmony import */ var tsyringe__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! tsyringe */ "./node_modules/tsyringe/dist/esm5/index.js");
+/* harmony import */ var _domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../domain/objects/ISesionManager */ "./src/domain/objects/ISesionManager.ts");
+/* harmony import */ var _objects_sessionManager__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./objects/sessionManager */ "./src/application/objects/sessionManager.ts");
+/* harmony import */ var _domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ../domain/useCase/IListModelHistories */ "./src/domain/useCase/IListModelHistories.ts");
+/* harmony import */ var _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./useCases/listModelHistoriesImpl */ "./src/application/useCases/listModelHistoriesImpl.ts");
+/* harmony import */ var _domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ../domain/objects/editors/IQuickEditor */ "./src/domain/objects/editors/IQuickEditor.ts");
+/* harmony import */ var _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./objects/editors/quickEditorImpl */ "./src/application/objects/editors/quickEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ../domain/objects/editors/processEditor/IProcessEditor */ "./src/domain/objects/editors/processEditor/IProcessEditor.ts");
+/* harmony import */ var _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./objects/editors/processEditorImpl */ "./src/application/objects/editors/processEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ../domain/objects/editors/IEditor */ "./src/domain/objects/editors/IEditor.ts");
+/* harmony import */ var _domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ../domain/useCase/IAutoLogin */ "./src/domain/useCase/IAutoLogin.ts");
+/* harmony import */ var _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./useCases/autoLogin */ "./src/application/useCases/autoLogin.ts");
+/* harmony import */ var _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./objects/editors/processDesignEditorImpl */ "./src/application/objects/editors/processDesignEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ../domain/objects/editors/IProcessDesignEditor */ "./src/domain/objects/editors/IProcessDesignEditor.ts");
+/* harmony import */ var _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./objects/editors/entityDesignerEditorImpl */ "./src/application/objects/editors/entityDesignerEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ../domain/objects/editors/IEntityDesignerEditor */ "./src/domain/objects/editors/IEntityDesignerEditor.ts");
+/* harmony import */ var _domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ../domain/useCase/IProcessEditorUtil */ "./src/domain/useCase/IProcessEditorUtil.ts");
+/* harmony import */ var _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./useCases/processEditorUtilImpl */ "./src/application/useCases/processEditorUtilImpl.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
 
 
 
@@ -7738,55 +7724,52 @@ const appStartUp = {
         container.register(_domain_useCase_IInitStudio__WEBPACK_IMPORTED_MODULE_24__.IInitStudio, _useCases_initStudioImpl__WEBPACK_IMPORTED_MODULE_25__.InitStudioImpl);
         container.register(_domain_useCase_IRestoreUser__WEBPACK_IMPORTED_MODULE_26__.IRestoreUser, _useCases_restoreUserImpl__WEBPACK_IMPORTED_MODULE_27__.RestoreUserImpl);
         container.register(_domain_useCase_ICreateApplication__WEBPACK_IMPORTED_MODULE_30__.ICreateApplication, _useCases_createApplicationImpl__WEBPACK_IMPORTED_MODULE_31__.CreateApplicationImpl);
-        container.register(_domain_useCase_IDeleteApplication__WEBPACK_IMPORTED_MODULE_32__.IDeleteApplication, _useCases_deleteApplicationImpl__WEBPACK_IMPORTED_MODULE_33__.DeleteApplicationImpl);
-        container.register(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_34__.IUpdateApplication, _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_35__.UpdateApplicationImpl);
-        container.register(_domain_useCase_IDeleteModule__WEBPACK_IMPORTED_MODULE_36__.IDeleteModule, _useCases_deleteModuleImpl__WEBPACK_IMPORTED_MODULE_37__.DeleteModuleImpl);
-        container.register(_domain_useCase_IDeleteModel__WEBPACK_IMPORTED_MODULE_38__.IDeleteModel, _useCases_deleteModelImpl__WEBPACK_IMPORTED_MODULE_39__.DeleteModelImpl);
-        container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_85__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_86__.ObjectUseCaseImpl);
-        container.register(_domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_40__.IUpdateModule, _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_41__.UpdateModuleImpl);
-        container.register(_domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_42__.IGetExportTypes, _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_43__.GetExportTypesImpl);
-        container.register(_domain_useCase_IGetExportSelectionData__WEBPACK_IMPORTED_MODULE_44__.IGetExportSelectionData, _useCases_getExportSelectionDataImpl__WEBPACK_IMPORTED_MODULE_45__.GetExportSelectionDataImpl);
-        container.register(_domain_useCase_ICreateExportJob__WEBPACK_IMPORTED_MODULE_46__.ICreateExportJob, _useCases_createExportJobImpl__WEBPACK_IMPORTED_MODULE_47__.CreateExportJobImpl);
-        container.register(_domain_useCase_IListModelVersions__WEBPACK_IMPORTED_MODULE_48__.IListModelVersions, _useCases_listModelVersionsImpl__WEBPACK_IMPORTED_MODULE_49__.ListModelVersionsImpl);
-        container.register(_domain_useCase_IListExportJobs__WEBPACK_IMPORTED_MODULE_53__.IListExportJobs, _useCases_listExportJobsImpl__WEBPACK_IMPORTED_MODULE_54__.ListExportJobsImpl);
-        container.register(_domain_useCase_IListExportJobSteps__WEBPACK_IMPORTED_MODULE_55__.IListExportJobSteps, _useCases_listExportJobStepsImpl__WEBPACK_IMPORTED_MODULE_56__.ListExportJobStepsImpl);
-        container.register(_domain_useCase_IListExportJobStepLogs__WEBPACK_IMPORTED_MODULE_57__.IListExportJobStepLogs, _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_58__.ListExportJobStepLogsImpl);
-        container.register(_domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_59__.IListExportJobArtifacts, _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_60__.ListExportJobArtifactsImpl);
-        container.register(_domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_61__.IGetExportJobArtifact, _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_62__.GetExportJobArtifactImpl);
-        container.register(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_63__.IFileExplorer, { useToken: (0,tsyringe__WEBPACK_IMPORTED_MODULE_67__.delay)(() => _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_64__.FileExplorer) });
-        container.register(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_65__.IStudio, _useCases_studio__WEBPACK_IMPORTED_MODULE_66__.Studio);
-        container.register(_domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_70__.IListModelHistories, _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_71__.ListModelHistoriesImpl);
-        container.register(_domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_77__.IAutoLogin, _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_78__.AutoLogin);
+        container.register(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_32__.IUpdateApplication, _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_33__.UpdateApplicationImpl);
+        container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__.ObjectUseCaseImpl);
+        container.register(_domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_34__.IUpdateModule, _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_35__.UpdateModuleImpl);
+        container.register(_domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_36__.IGetExportTypes, _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_37__.GetExportTypesImpl);
+        container.register(_domain_useCase_IGetExportSelectionData__WEBPACK_IMPORTED_MODULE_38__.IGetExportSelectionData, _useCases_getExportSelectionDataImpl__WEBPACK_IMPORTED_MODULE_39__.GetExportSelectionDataImpl);
+        container.register(_domain_useCase_ICreateExportJob__WEBPACK_IMPORTED_MODULE_40__.ICreateExportJob, _useCases_createExportJobImpl__WEBPACK_IMPORTED_MODULE_41__.CreateExportJobImpl);
+        container.register(_domain_useCase_IListModelVersions__WEBPACK_IMPORTED_MODULE_42__.IListModelVersions, _useCases_listModelVersionsImpl__WEBPACK_IMPORTED_MODULE_43__.ListModelVersionsImpl);
+        container.register(_domain_useCase_IListExportJobs__WEBPACK_IMPORTED_MODULE_47__.IListExportJobs, _useCases_listExportJobsImpl__WEBPACK_IMPORTED_MODULE_48__.ListExportJobsImpl);
+        container.register(_domain_useCase_IListExportJobSteps__WEBPACK_IMPORTED_MODULE_49__.IListExportJobSteps, _useCases_listExportJobStepsImpl__WEBPACK_IMPORTED_MODULE_50__.ListExportJobStepsImpl);
+        container.register(_domain_useCase_IListExportJobStepLogs__WEBPACK_IMPORTED_MODULE_51__.IListExportJobStepLogs, _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_52__.ListExportJobStepLogsImpl);
+        container.register(_domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_53__.IListExportJobArtifacts, _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_54__.ListExportJobArtifactsImpl);
+        container.register(_domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_55__.IGetExportJobArtifact, _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_56__.GetExportJobArtifactImpl);
+        container.register(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_57__.IFileExplorer, { useToken: (0,tsyringe__WEBPACK_IMPORTED_MODULE_61__.delay)(() => _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_58__.FileExplorer) });
+        container.register(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_59__.IStudio, _useCases_studio__WEBPACK_IMPORTED_MODULE_60__.Studio);
+        container.register(_domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_64__.IListModelHistories, _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_65__.ListModelHistoriesImpl);
+        container.register(_domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_71__.IAutoLogin, _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_72__.AutoLogin);
         //!!!DO_NOT_DELETE:THIS_LINE_FOR_AUTO_GENERATION:ADD_USECASE!!!
         //UseCase Executor
         container.register(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__.IUseCaseExecutor, _useCases_useCaseExecutorImpl__WEBPACK_IMPORTED_MODULE_4__.UseCaseExecutorImpl);
         //Objects
-        await (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_8__.delayTillResolve)([_domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_52__.IViewModelProxifier], () => {
+        await (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_8__.delayTillResolve)([_domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_46__.IViewModelProxifier], () => {
             _viewModel_viewModelManager__WEBPACK_IMPORTED_MODULE_1__.ViewModelManager.reset();
-            const quickEditor = new _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_73__.QuickEditorImpl();
-            const processEditor = new _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_75__.ProcessEditorImpl();
-            const processDesignEditor = new _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_79__.ProcessDesignEditorImpl();
-            const entityDesignerEditor = new _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_81__.EntityDesignerEditorImpl();
-            container.registerInstance(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_72__.IQuickEditor, quickEditor);
-            container.registerInstance(_domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_74__.IProcessEditor, processEditor);
-            container.registerInstance(_domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_80__.IProcessDesignEditor, processDesignEditor);
-            container.registerInstance(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_82__.IEntityDesignerEditor, entityDesignerEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_76__.IEditor, quickEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_76__.IEditor, processEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_76__.IEditor, processDesignEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_76__.IEditor, entityDesignerEditor);
+            const quickEditor = new _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_67__.QuickEditorImpl();
+            const processEditor = new _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_69__.ProcessEditorImpl();
+            const processDesignEditor = new _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_73__.ProcessDesignEditorImpl();
+            const entityDesignerEditor = new _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_75__.EntityDesignerEditorImpl();
+            container.registerInstance(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_66__.IQuickEditor, quickEditor);
+            container.registerInstance(_domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_68__.IProcessEditor, processEditor);
+            container.registerInstance(_domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_74__.IProcessDesignEditor, processDesignEditor);
+            container.registerInstance(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_76__.IEntityDesignerEditor, entityDesignerEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, quickEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processDesignEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, entityDesignerEditor);
             container.registerInstance(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_28__.IEditorManager, new _objects_editorManager__WEBPACK_IMPORTED_MODULE_29__.EditorManager());
-            container.registerInstance(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_50__.ISidebarManager, new _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_51__.SidebarManager());
-            container.registerInstance(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_68__.ISessionManager, new _objects_sessionManager__WEBPACK_IMPORTED_MODULE_69__.SessionManager());
-            container.registerInstance(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_83__.IProcessEditorUtil, new _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_84__.ProcessEditorUtil());
+            container.registerInstance(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager, new _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_45__.SidebarManager());
+            container.registerInstance(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager, new _objects_sessionManager__WEBPACK_IMPORTED_MODULE_63__.SessionManager());
+            container.registerInstance(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_77__.IProcessEditorUtil, new _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_78__.ProcessEditorUtil());
         });
         await (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_8__.delayWithResolve)(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_17__.IConfig, config => {
             if (config.getValue("debugging")) {
                 const vmm = container.resolve(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_0__.IViewModelManager);
                 const managers = {
                     mm: container.resolve(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_28__.IEditorManager),
-                    sbm: container.resolve(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_50__.ISidebarManager),
-                    sm: container.resolve(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_68__.ISessionManager),
+                    sbm: container.resolve(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager),
+                    sm: container.resolve(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager),
                 };
                 window._dev_22_0_22_0_22 = { container, vmm, managers }; // 18.02.2022 -> 22.02.2022 -> 22 0 22 0 22 :)
             }
@@ -8049,6 +8032,8 @@ let CreateApplicationImpl = class CreateApplicationImpl {
         const createdApplication = await this.qcloudApi.createApplication(appToCreate);
         this.notification.showNotification({ text: `Application '${name}' created successfully`, type: "success" });
         this.application.ID = createdApplication.ID;
+        this.application.createDate = createdApplication.createDate;
+        this.application.createdBy = createdApplication.createdBy;
         this.application.synced = true;
         return this.application;
     }
@@ -8277,183 +8262,6 @@ CreateModuleImpl = __decorate([
     __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification)),
     __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_3__.IFileExplorer))
 ], CreateModuleImpl);
-
-
-
-/***/ }),
-
-/***/ "./src/application/useCases/deleteApplicationImpl.ts":
-/*!***********************************************************!*\
-  !*** ./src/application/useCases/deleteApplicationImpl.ts ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DeleteApplicationImpl": () => (/* binding */ DeleteApplicationImpl)
-/* harmony export */ });
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-let DeleteApplicationImpl = class DeleteApplicationImpl {
-    constructor(qcloudApi, viewModelManager, notification) {
-        this.qcloudApi = qcloudApi;
-        this.viewModelManager = viewModelManager;
-        this.notification = notification;
-    }
-    async execute(param) {
-        const confirm = await this.notification.showConfirm({
-            title: "Are you sure?", text: `The app '${param.name}' will be deleted permanently!`,
-            type: "warning", approveText: "Delete", rejectText: "Cancel"
-        });
-        if (!confirm.approved) {
-            return;
-        }
-        await this.qcloudApi.deleteApplication(param.ID, true);
-        const application = this.viewModelManager.findObject(param.ID);
-        this.viewModelManager.removeApplication(application);
-        this.notification.showNotification({ text: `Application '${application.name}' deleted successfully`, type: "success" });
-    }
-};
-DeleteApplicationImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__.IViewModelManager)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification))
-], DeleteApplicationImpl);
-
-
-
-/***/ }),
-
-/***/ "./src/application/useCases/deleteModelImpl.ts":
-/*!*****************************************************!*\
-  !*** ./src/application/useCases/deleteModelImpl.ts ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DeleteModelImpl": () => (/* binding */ DeleteModelImpl)
-/* harmony export */ });
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-let DeleteModelImpl = class DeleteModelImpl {
-    constructor(qcloudApi, viewModelManager, notification) {
-        this.qcloudApi = qcloudApi;
-        this.viewModelManager = viewModelManager;
-        this.notification = notification;
-    }
-    async execute(param) {
-        const confirm = await this.notification.showConfirm({
-            title: "Are you sure?", text: `'${param.name}' will be deleted permanently!`,
-            type: "warning", approveText: "Delete", rejectText: "Cancel"
-        });
-        if (!confirm.approved) {
-            return;
-        }
-        await this.qcloudApi.deleteModel(param.ID, true);
-        const model = this.viewModelManager.findObject(param.ID);
-        this.viewModelManager.removeModel(model);
-        this.notification.showNotification({ text: `'${model.name}' deleted successfully`, type: "success" });
-    }
-};
-DeleteModelImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__.IViewModelManager)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification))
-], DeleteModelImpl);
-
-
-
-/***/ }),
-
-/***/ "./src/application/useCases/deleteModuleImpl.ts":
-/*!******************************************************!*\
-  !*** ./src/application/useCases/deleteModuleImpl.ts ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DeleteModuleImpl": () => (/* binding */ DeleteModuleImpl)
-/* harmony export */ });
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-let DeleteModuleImpl = class DeleteModuleImpl {
-    constructor(qcloudApi, viewModelManager, notification) {
-        this.qcloudApi = qcloudApi;
-        this.viewModelManager = viewModelManager;
-        this.notification = notification;
-    }
-    async execute(param) {
-        const confirm = await this.notification.showConfirm({
-            title: "Are you sure?", text: `The module '${param.name}' will be deleted permanently!`,
-            type: "warning", approveText: "Delete", rejectText: "Cancel"
-        });
-        if (!confirm.approved) {
-            return;
-        }
-        await this.qcloudApi.deleteModule(param.ID, true);
-        const module = this.viewModelManager.findObject(param.ID);
-        this.viewModelManager.removeModule(module);
-        this.notification.showNotification({ text: `Module '${module.name}' deleted successfully`, type: "success" });
-    }
-};
-DeleteModuleImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__.IViewModelManager)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification))
-], DeleteModuleImpl);
 
 
 
@@ -9494,8 +9302,10 @@ let ObjectUseCaseImpl = class ObjectUseCaseImpl {
             application: this.qcloudApi.deleteApplication,
         };
         await targetDict[item.objectType].call(this.qcloudApi, item.ID, true);
-        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_4__.ITreeViewInstances.FileExplorer);
-        feTreeview.removeItem(item.ID);
+        if (_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.isRegistered(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_4__.ITreeViewInstances.FileExplorer)) {
+            const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_4__.ITreeViewInstances.FileExplorer);
+            feTreeview.removeItem(item.ID);
+        }
         this.viewModelManager.removeObject(item);
         this.notification.showNotification({ text: `'${item.name}' deleted successfully`, type: "success" });
     }
@@ -9554,17 +9364,35 @@ let ProcessEditorUtil = class ProcessEditorUtil {
                 processFileName: "",
             },
             processMakerDefinition: {
-                makerScreen: "",
+                makerScreen: {
+                    ID: "",
+                    name: "",
+                },
                 useHierarchicalProcess: false,
                 instUnitHierarchy: "SAME",
                 ignoreLevelForDiffInstUnit: false,
             },
             processCheckerDefinition: {
-                firstApproverScreen: "",
-                secondApproverScreen: "",
-                thirdApproverScreen: "",
-                fourthApproverScreen: "",
-                fifthApproverScreen: "",
+                firstApproverScreen: {
+                    ID: "",
+                    name: "",
+                },
+                secondApproverScreen: {
+                    ID: "",
+                    name: "",
+                },
+                thirdApproverScreen: {
+                    ID: "",
+                    name: "",
+                },
+                fourthApproverScreen: {
+                    ID: "",
+                    name: "",
+                },
+                fifthApproverScreen: {
+                    ID: "",
+                    name: "",
+                },
             },
             runAfterApprovalDefinition: {
                 isRunAfterApprovalEnable: false,
@@ -9581,7 +9409,10 @@ let ProcessEditorUtil = class ProcessEditorUtil {
                 runAfterChangeAdvisedApi: `http://${moduleName}/api/runAfterChangeAdvisedApi`,
                 runAfterChangeAdvisedMethod: "POST",
             },
-            reviewScreen: "",
+            reviewScreen: {
+                ID: "",
+                name: "",
+            },
         };
     }
     getEmptyProcessEditorState() {
@@ -9619,7 +9450,7 @@ let ProcessEditorUtil = class ProcessEditorUtil {
                 processMetadata.processName = processFileName;
                 processMetadata.resourceCode = processFileName;
                 processVariables.map((variable) => (variable.value = this.handleProcessVariables(processModel, variable.key)));
-                approvalConfigFileVariables.map((variable) => (variable.value = this.handleSupportingFormAndSysRoleNames(processModel, variable.key)));
+                approvalConfigFileVariables.map((variable) => (variable.value = this.handleProcessVariables(processModel, variable.key)));
                 configFile.rally.process["auto-deploy"].metadata.processMetadata[0].variables =
                     processVariables.concat(approvalConfigFileVariables);
                 configFile.rally.process["auto-deploy"].metadata.makerCheckerRoles =
@@ -9645,7 +9476,9 @@ let ProcessEditorUtil = class ProcessEditorUtil {
                     value: variable.type === "STRING"
                         ? `${variable.value}`
                         : variable.type === "BOOLEAN"
-                            ? (variable.value === "true" ? true : false)
+                            ? variable.value === "true"
+                                ? true
+                                : false
                             : variable.type === "SCREEN"
                                 ? `${this.pathPrefix}${variable.value}${this.screenFileExtension}`
                                 : `${variable.value}`,
@@ -9701,7 +9534,10 @@ let ProcessEditorUtil = class ProcessEditorUtil {
         return variables;
     }
     handleProcessVariables(processModel, key) {
+        const processCheckerDefinition = processModel.processCheckerDefinition;
         switch (key) {
+            case "resourceCode":
+                return processModel.processDefinition.processFileName;
             case "runAfterApprovalApi":
                 return processModel.runAfterApprovalDefinition.runAfterApprovalApi;
             case "runAfterApprovalMethod":
@@ -9721,45 +9557,38 @@ let ProcessEditorUtil = class ProcessEditorUtil {
             case "isRunAfterChangeAdvisedEnable":
                 return processModel.runAfterChangeAdvisedDefinition.isRunAfterChangeAdvisedEnable;
             case "detailedForm":
-                return processModel.processMakerDefinition.makerScreen;
+                return processModel.processMakerDefinition.makerScreen.name;
             case "startForm":
                 return (this.pathPrefix +
-                    processModel.processMakerDefinition.makerScreen +
+                    processModel.processMakerDefinition.makerScreen.name +
                     this.screenFileExtension);
             case "reviewForm":
-                return this.pathPrefix + processModel.reviewScreen + this.screenFileExtension;
+                return this.pathPrefix + processModel.reviewScreen.name + this.screenFileExtension;
             case "useHierarchicalProcess":
                 return processModel.processMakerDefinition.useHierarchicalProcess;
             case "instUnitHierarchy":
                 return processModel.processMakerDefinition.instUnitHierarchy;
             case "ignoreLevelForDiffInstUnit":
                 return processModel.processMakerDefinition.ignoreLevelForDiffInstUnit;
-            default:
-                break;
-        }
-    }
-    handleSupportingFormAndSysRoleNames(processModel, key) {
-        const processCheckerDefinition = processModel.processCheckerDefinition;
-        switch (key) {
             case "supportingForm":
                 return (this.pathPrefix +
-                    processCheckerDefinition.firstApproverScreen +
+                    processCheckerDefinition.firstApproverScreen.name +
                     this.screenFileExtension);
             case "supportingForm2":
                 return (this.pathPrefix +
-                    processCheckerDefinition.secondApproverScreen +
+                    processCheckerDefinition.secondApproverScreen.name +
                     this.screenFileExtension);
             case "supportingForm3":
                 return (this.pathPrefix +
-                    processCheckerDefinition.thirdApproverScreen +
+                    processCheckerDefinition.thirdApproverScreen.name +
                     this.screenFileExtension);
             case "supportingForm4":
                 return (this.pathPrefix +
-                    processCheckerDefinition.fourthApproverScreen +
+                    processCheckerDefinition.fourthApproverScreen.name +
                     this.screenFileExtension);
             case "supportingForm5":
                 return (this.pathPrefix +
-                    processCheckerDefinition.fifthApproverScreen +
+                    processCheckerDefinition.fifthApproverScreen.name +
                     this.screenFileExtension);
             case "checkerRoles2":
                 return processModel.processDefinition.processName + ".secondChecker";
@@ -9770,7 +9599,7 @@ let ProcessEditorUtil = class ProcessEditorUtil {
             case "checkerRoles5":
                 return processModel.processDefinition.processName + ".fifthChecker";
             default:
-                return "undefined";
+                return "";
         }
     }
     getMakerCheckerRoles(processModel) {
@@ -11370,13 +11199,6 @@ const processTypes = [
     QUINTUPLE_APPROVAL,
 ];
 const extraProcessConfigVariables = [
-    {
-        key: "isAutoAssign",
-        type: "BOOLEAN",
-        value: true,
-        valueType: "BOOLEAN",
-        isAddedVariable: true,
-    },
     {
         key: "businessKey",
         type: "STRING",
@@ -14170,54 +13992,6 @@ const ICreateModule = Symbol.for("ICreateModule");
 
 /***/ }),
 
-/***/ "./src/domain/useCase/IDeleteApplication.ts":
-/*!**************************************************!*\
-  !*** ./src/domain/useCase/IDeleteApplication.ts ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IDeleteApplication": () => (/* binding */ IDeleteApplication)
-/* harmony export */ });
-const IDeleteApplication = Symbol.for("IDeleteApplication");
-
-
-/***/ }),
-
-/***/ "./src/domain/useCase/IDeleteModel.ts":
-/*!********************************************!*\
-  !*** ./src/domain/useCase/IDeleteModel.ts ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IDeleteModel": () => (/* binding */ IDeleteModel)
-/* harmony export */ });
-const IDeleteModel = Symbol.for("IDeleteModel");
-
-
-/***/ }),
-
-/***/ "./src/domain/useCase/IDeleteModule.ts":
-/*!*********************************************!*\
-  !*** ./src/domain/useCase/IDeleteModule.ts ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IDeleteModule": () => (/* binding */ IDeleteModule)
-/* harmony export */ });
-const IDeleteModule = Symbol.for("IDeleteModule");
-
-
-/***/ }),
-
 /***/ "./src/domain/useCase/IFileExplorer.ts":
 /*!*********************************************!*\
   !*** ./src/domain/useCase/IFileExplorer.ts ***!
@@ -14649,7 +14423,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const startupEnvironment = "production"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.5"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.6"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 
 
 /***/ }),
@@ -15361,6 +15135,8 @@ let QCloudApiImpl = class QCloudApiImpl {
             logo: params.logo,
             color: params.color,
             deployParameters: params.deployParameters,
+            createDate: app.createDate,
+            createdBy: app.createdBy,
         };
         return retVal;
     }

@@ -262,20 +262,24 @@ __webpack_require__.r(__webpack_exports__);
             props.modified();
         });
         const processCheckerDefinition = props.model.processCheckerDefinition;
-        const firstApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.firstApproverScreen);
-        const secondApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.secondApproverScreen);
+        const firstApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.firstApproverScreen.name);
+        const secondApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.secondApproverScreen.name);
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
         const validation = {
             isFirstApproverScreenValid: false,
             isSecondApproverScreenValid: false,
         };
-        function handleFirstApproverScreen() {
-            processCheckerDefinition.firstApproverScreen = firstApproverScreen.value;
+        function handleFirstApproverScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processCheckerDefinition.firstApproverScreen.ID = selectedScreen.id;
+            processCheckerDefinition.firstApproverScreen.name = selectedScreen.value;
             validation.isFirstApproverScreenValid = !!firstApproverScreen.value.length;
             setTabValidation();
         }
-        function handleSecondApproverScreen() {
-            processCheckerDefinition.secondApproverScreen = secondApproverScreen.value;
+        function handleSecondApproverScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processCheckerDefinition.secondApproverScreen.ID = selectedScreen.id;
+            processCheckerDefinition.secondApproverScreen.name = selectedScreen.value;
             validation.isSecondApproverScreenValid = !!secondApproverScreen.value.length;
             setTabValidation();
         }
@@ -335,19 +339,23 @@ __webpack_require__.r(__webpack_exports__);
         });
         const processCheckerDefinition = props.model.processCheckerDefinition;
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
-        const thirdApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.thirdApproverScreen);
-        const fourthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fourthApproverScreen);
+        const thirdApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.thirdApproverScreen.name);
+        const fourthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fourthApproverScreen.name);
         const validation = {
             isThirdApproverScreenValid: false,
             isFourthApproverScreenValid: false,
         };
-        function handleThirdApproverScreen() {
-            processCheckerDefinition.thirdApproverScreen = thirdApproverScreen.value;
+        function handleThirdApproverScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processCheckerDefinition.thirdApproverScreen.ID = selectedScreen.id;
+            processCheckerDefinition.thirdApproverScreen.name = selectedScreen.value;
             validation.isThirdApproverScreenValid = !!thirdApproverScreen.value.length;
             setTabValidation();
         }
-        function handleFourthApproverScreen() {
-            processCheckerDefinition.fourthApproverScreen = fourthApproverScreen.value;
+        function handleFourthApproverScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processCheckerDefinition.fourthApproverScreen.ID = selectedScreen.id;
+            processCheckerDefinition.fourthApproverScreen.name = selectedScreen.value;
             validation.isFourthApproverScreenValid = !!fourthApproverScreen.value.length;
             setTabValidation();
         }
@@ -406,12 +414,14 @@ __webpack_require__.r(__webpack_exports__);
         });
         const processCheckerDefinition = props.model.processCheckerDefinition;
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
-        const fifthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fifthApproverScreen);
+        const fifthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fifthApproverScreen.name);
         const validation = {
             isFifthApproverScreenValid: false,
         };
-        function handleFifthApproverScreen() {
-            processCheckerDefinition.fifthApproverScreen = fifthApproverScreen.value;
+        function handleFifthApproverScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processCheckerDefinition.fifthApproverScreen.ID = selectedScreen.id;
+            processCheckerDefinition.fifthApproverScreen.name = selectedScreen.value;
             validation.isFifthApproverScreenValid = !!fifthApproverScreen.value.length;
             setTabValidation();
         }
@@ -612,10 +622,10 @@ __webpack_require__.r(__webpack_exports__);
             props.modified();
             setTabValidation();
         }
-        async function handleSelectedExistingBpmnFile() {
-            const selectedBpmnFile = props.moduleModels.bpmns.find((bpmn) => bpmn.name === selectedExistingBpmn.value);
-            props.model.selectedExistingBpmnFile.name = selectedBpmnFile.name;
-            props.model.selectedExistingBpmnFile.ID = selectedBpmnFile.ID;
+        function handleSelectedExistingBpmnFile($event) {
+            let selectedBpmn = $event.target[$event.target.selectedIndex];
+            props.model.selectedExistingBpmnFile.ID = selectedBpmn.id;
+            props.model.selectedExistingBpmnFile.name = selectedBpmn.value;
             validation.isExistingBpmnSelected = !!selectedExistingBpmn.value.length;
             props.modified();
             setTabValidation();
@@ -701,15 +711,17 @@ __webpack_require__.r(__webpack_exports__);
         });
         const processMakerDefinition = props.model.processMakerDefinition;
         const stepper = props.state.stepper;
-        const makerScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.makerScreen);
+        const makerScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.makerScreen.name);
         const useHierarchicalProcess = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.useHierarchicalProcess);
         const instUnitHierarchy = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.instUnitHierarchy);
         const ignoreLevelForDiffInstUnit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.ignoreLevelForDiffInstUnit);
         const validation = {
             isMakerScreenValid: false,
         };
-        function handleMakerScreen() {
-            processMakerDefinition.makerScreen = makerScreen.value;
+        function handleMakerScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            processMakerDefinition.makerScreen.ID = selectedScreen.id;
+            processMakerDefinition.makerScreen.name = selectedScreen.value;
             validation.isMakerScreenValid = !!makerScreen.value.length;
             setTabValidation();
         }
@@ -792,7 +804,7 @@ __webpack_require__.r(__webpack_exports__);
             runAfterChangeAdvisedApi: false,
         });
         const runAfterChangeAdvisedDefinition = props.model.runAfterChangeAdvisedDefinition;
-        const reviewScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.reviewScreen);
+        const reviewScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.reviewScreen.name);
         const isRunAfterChangeAdvisedEnable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(runAfterChangeAdvisedDefinition.isRunAfterChangeAdvisedEnable);
         const runAfterChangeAdvisedApi = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(runAfterChangeAdvisedDefinition.runAfterChangeAdvisedApi);
         const runAfterChangeAdvisedApiValidationLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
@@ -801,8 +813,10 @@ __webpack_require__.r(__webpack_exports__);
             isReviewScreenValid: false,
             isRunAfterChangedAdvisedApiValid: false,
         };
-        function handleReviewScreen() {
-            props.model.reviewScreen = reviewScreen.value;
+        function handleReviewScreen($event) {
+            let selectedScreen = $event.target[$event.target.selectedIndex];
+            props.model.reviewScreen.ID = selectedScreen.id;
+            props.model.reviewScreen.name = selectedScreen.value;
             validation.isReviewScreenValid = !!reviewScreen.value.length;
             setTabValidation();
         }
@@ -1120,7 +1134,7 @@ __webpack_require__.r(__webpack_exports__);
                             .map((variable) => ({
                             key: variable.source,
                             type: "STRING",
-                            value: "",
+                            value: processEditorUtil.handleProcessVariables(processModel.value, variable.source),
                             valueType: "STRING",
                         }));
                         _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.extraProcessConfigVariables.forEach((variable) => processModel.value.selectedExistingBpmnFile.variables.push(variable));
@@ -1478,23 +1492,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "first-approver-screen" }, "First Approver Screen*", -1 /* HOISTED */);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "first-approver-screen" }, "Select First Approver Screen*", -1 /* HOISTED */);
 const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select First Approver Screen", -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_5 = { key: 0 };
-const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "second-approver-screen" }, "Second Approver Screen*", -1 /* HOISTED */);
-const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+const _hoisted_4 = ["id"];
+const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = { key: 0 };
+const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "second-approver-screen" }, "Select Second Approver Screen*", -1 /* HOISTED */);
+const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select Second Approver Screen", -1 /* HOISTED */);
-const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_10 = ["id"];
+const _hoisted_11 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         _hoisted_1,
@@ -1507,30 +1523,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
             _hoisted_3,
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                    id: screen.ID
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
             }), 256 /* UNKEYED_FRAGMENT */))
         ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.firstApproverScreen]
         ]),
-        _hoisted_4,
+        _hoisted_5,
         ($setup.props.secondApproveEnabled)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [
-                _hoisted_6,
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [
                 _hoisted_7,
+                _hoisted_8,
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
                     name: "second-approver-screen",
                     id: "second-approver-screen",
                     "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.secondApproverScreen) = $event)),
                     onChange: $setup.handleSecondApproverScreen
                 }, [
-                    _hoisted_8,
+                    _hoisted_9,
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                            id: screen.ID
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_10));
                     }), 256 /* UNKEYED_FRAGMENT */))
                 ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.secondApproverScreen]
                 ]),
-                _hoisted_9
+                _hoisted_11
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
@@ -1551,23 +1571,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "third-approver-screen" }, "Third Approver Screen*", -1 /* HOISTED */);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "third-approver-screen" }, "Select Third Approver Screen*", -1 /* HOISTED */);
 const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select Third Approver Screen", -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_5 = { key: 0 };
-const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "fourth-approver-screen" }, "Fourth Approver Screen*", -1 /* HOISTED */);
-const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+const _hoisted_4 = ["id"];
+const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = { key: 0 };
+const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "fourth-approver-screen" }, "Select Fourth Approver Screen*", -1 /* HOISTED */);
+const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select Fourth Approver Screen", -1 /* HOISTED */);
-const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_10 = ["id"];
+const _hoisted_11 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         _hoisted_1,
@@ -1580,30 +1602,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
             _hoisted_3,
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                    id: screen.ID
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
             }), 256 /* UNKEYED_FRAGMENT */))
         ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.thirdApproverScreen]
         ]),
-        _hoisted_4,
+        _hoisted_5,
         ($setup.props.fourthApproveEnabled)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [
-                _hoisted_6,
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [
                 _hoisted_7,
+                _hoisted_8,
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
                     name: "fourth-approver-screen",
                     id: "fourth-approver-screen",
                     "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.fourthApproverScreen) = $event)),
                     onChange: $setup.handleFourthApproverScreen
                 }, [
-                    _hoisted_8,
+                    _hoisted_9,
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                            id: screen.ID
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_10));
                     }), 256 /* UNKEYED_FRAGMENT */))
                 ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.fourthApproverScreen]
                 ]),
-                _hoisted_9
+                _hoisted_11
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
@@ -1624,14 +1650,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "fifth-approver-screen" }, "Fifth Approver Screen*", -1 /* HOISTED */);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "fifth-approver-screen" }, "Select Fifth Approver Screen*", -1 /* HOISTED */);
 const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select Fifth Approver Screen", -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_4 = ["id"];
+const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         _hoisted_1,
@@ -1644,12 +1671,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
             _hoisted_3,
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                    id: screen.ID
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
             }), 256 /* UNKEYED_FRAGMENT */))
         ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.fifthApproverScreen]
         ]),
-        _hoisted_4
+        _hoisted_5
     ], 64 /* STABLE_FRAGMENT */));
 }
 
@@ -1697,30 +1726,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = ["for"];
-const _hoisted_2 = ["onUpdate:modelValue", "onChange"];
-const _hoisted_3 = ["selected"];
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_5 = ["type", "id", "name", "onUpdate:modelValue"];
-const _hoisted_6 = ["onUpdate:modelValue"];
-const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { selected: "" }, "false", -1 /* HOISTED */);
-const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "true", -1 /* HOISTED */);
-const _hoisted_9 = [
-    _hoisted_7,
-    _hoisted_8
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Edit Process Variables", -1 /* HOISTED */);
+const _hoisted_2 = ["for"];
+const _hoisted_3 = ["onUpdate:modelValue", "onChange"];
+const _hoisted_4 = ["selected"];
+const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = ["type", "id", "name", "onUpdate:modelValue"];
+const _hoisted_7 = ["onUpdate:modelValue"];
+const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { selected: "" }, "false", -1 /* HOISTED */);
+const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "true", -1 /* HOISTED */);
+const _hoisted_10 = [
+    _hoisted_8,
+    _hoisted_9
 ];
-const _hoisted_10 = ["onUpdate:modelValue"];
 const _hoisted_11 = ["onUpdate:modelValue"];
-const _hoisted_12 = ["onClick"];
-const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-const _hoisted_14 = ["disabled"];
+const _hoisted_12 = ["id"];
+const _hoisted_13 = ["onUpdate:modelValue"];
+const _hoisted_14 = ["onClick"];
+const _hoisted_15 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+const _hoisted_16 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+        _hoisted_1,
         ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.variableValues, (variable) => {
             return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
                     for: variable.key
-                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variable.key), 9 /* TEXT, PROPS */, _hoisted_1),
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variable.key), 9 /* TEXT, PROPS */, _hoisted_2),
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
                     "onUpdate:modelValue": ($event) => ((variable.valueType) = $event),
                     onChange: ($event) => ($setup.handleChangeVariableType(variable))
@@ -1728,12 +1760,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.variableTypes, (variableType) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                             selected: variable.valueType === variableType
-                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variableType), 9 /* TEXT, PROPS */, _hoisted_3));
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variableType), 9 /* TEXT, PROPS */, _hoisted_4));
                     }), 256 /* UNKEYED_FRAGMENT */))
-                ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_2), [
+                ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_3), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.valueType]
                 ]),
-                _hoisted_4,
+                _hoisted_5,
                 (variable.valueType === 'STRING' || variable.valueType === 'NUMBER')
                     ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
                         key: 0,
@@ -1741,7 +1773,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         id: variable.key,
                         name: variable.key,
                         "onUpdate:modelValue": ($event) => ((variable.value) = $event)
-                    }, null, 8 /* PROPS */, _hoisted_5)), [
+                    }, null, 8 /* PROPS */, _hoisted_6)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -1749,7 +1781,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
                         key: 1,
                         "onUpdate:modelValue": ($event) => ((variable.value) = $event)
-                    }, _hoisted_9, 8 /* PROPS */, _hoisted_6)), [
+                    }, _hoisted_10, 8 /* PROPS */, _hoisted_7)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -1759,9 +1791,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         "onUpdate:modelValue": ($event) => ((variable.value) = $event)
                     }, [
                         ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                            return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                            return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                                id: screen.ID
+                            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_12));
                         }), 256 /* UNKEYED_FRAGMENT */))
-                    ], 8 /* PROPS */, _hoisted_10)), [
+                    ], 8 /* PROPS */, _hoisted_11)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -1773,7 +1807,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.restMethods, (restMethod) => {
                             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(restMethod), 1 /* TEXT */);
                         }), 64 /* STABLE_FRAGMENT */))
-                    ], 8 /* PROPS */, _hoisted_11)), [
+                    ], 8 /* PROPS */, _hoisted_13)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -1781,11 +1815,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
                         key: 4,
                         onClick: ($event) => ($setup.handleDelete(variable.key))
-                    }, "Delete", 8 /* PROPS */, _hoisted_12))
+                    }, "Delete", 8 /* PROPS */, _hoisted_14))
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
             ]));
         }), 256 /* UNKEYED_FRAGMENT */)),
-        _hoisted_13,
+        _hoisted_15,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.newVariableName) = $event)),
             onInput: $setup.handleNewVariableName
@@ -1795,7 +1829,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
             onClick: $setup.addNewVariable,
             disabled: $setup.isAddButtonDisable
-        }, "Add New Variable", 8 /* PROPS */, _hoisted_14),
+        }, "Add New Variable", 8 /* PROPS */, _hoisted_16),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
             onClick: _cache[1] || (_cache[1] = ($event) => ($setup.util.generateProcessConfigFile($setup.props.model)))
         }, "ProcessConfigPrint")
@@ -1826,7 +1860,7 @@ const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createEleme
     disabled: "",
     selected: ""
 }, "Select Existing Bpmn", -1 /* HOISTED */);
-const _hoisted_6 = ["selected"];
+const _hoisted_6 = ["selected", "id"];
 const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 const _hoisted_8 = { key: 1 };
 const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
@@ -1872,7 +1906,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     _hoisted_5,
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.bpmns, (bpmn) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-                            selected: bpmn.name === $setup.props.model.selectedExistingBpmnFile.name
+                            selected: bpmn.name === $setup.props.model.selectedExistingBpmnFile.name,
+                            id: bpmn.ID
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(bpmn.name), 9 /* TEXT, PROPS */, _hoisted_6));
                     }), 256 /* UNKEYED_FRAGMENT */))
                 ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
@@ -1941,27 +1976,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "send-to-approve-screen" }, "Send to Approve Screen*", -1 /* HOISTED */);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "send-to-approve-screen" }, "Select Send to Approve Screen*", -1 /* HOISTED */);
 const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     selected: ""
 }, "Select Send to Approve Screen", -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "hierarchical-process" }, "Hierarchical Process", -1 /* HOISTED */);
-const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Who can Approve/Reject the Process?", -1 /* HOISTED */);
-const _hoisted_8 = ["disabled"];
-const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "inst-unit-hiearachy-same" }, "Only One Upper Role (SAME)", -1 /* HOISTED */);
-const _hoisted_10 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_11 = ["disabled"];
-const _hoisted_12 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "inst-unit-hiearachy-parent" }, "All Upper Roles (PARENT) ", -1 /* HOISTED */);
-const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_14 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "ignore-level-for-fiff-inst-unit" }, "Ignore Level for Different Institution Unit", -1 /* HOISTED */);
-const _hoisted_15 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_16 = ["disabled"];
-const _hoisted_17 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_4 = ["id"];
+const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "hierarchical-process" }, "Hierarchical Process", -1 /* HOISTED */);
+const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Who can Approve/Reject the Process?", -1 /* HOISTED */);
+const _hoisted_9 = ["disabled"];
+const _hoisted_10 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "inst-unit-hiearachy-same" }, "Only One Upper Role (SAME)", -1 /* HOISTED */);
+const _hoisted_11 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_12 = ["disabled"];
+const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "inst-unit-hiearachy-parent" }, "All Upper Roles (PARENT) ", -1 /* HOISTED */);
+const _hoisted_14 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_15 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "ignore-level-for-fiff-inst-unit" }, "Ignore Level for Different Institution Unit", -1 /* HOISTED */);
+const _hoisted_16 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_17 = ["disabled"];
+const _hoisted_18 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         _hoisted_1,
@@ -1975,14 +2011,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
             _hoisted_3,
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                    id: screen.ID
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
             }), 256 /* UNKEYED_FRAGMENT */))
         ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.makerScreen]
         ]),
-        _hoisted_4,
         _hoisted_5,
         _hoisted_6,
+        _hoisted_7,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "checkbox",
             id: "hierarchical-process",
@@ -1992,7 +2030,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.useHierarchicalProcess]
         ]),
-        _hoisted_7,
+        _hoisted_8,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "radio",
             id: "inst-unit-hiearachy-same",
@@ -2001,11 +2039,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.instUnitHierarchy) = $event)),
             disabled: !$setup.useHierarchicalProcess,
             onChange: $setup.handleInstUnitHierarchy
-        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_8), [
+        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_9), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.instUnitHierarchy]
         ]),
-        _hoisted_9,
         _hoisted_10,
+        _hoisted_11,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "radio",
             id: "inst-unit-hiearachy-parent",
@@ -2014,13 +2052,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.instUnitHierarchy) = $event)),
             disabled: !$setup.useHierarchicalProcess,
             onChange: $setup.handleInstUnitHierarchy
-        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_11), [
+        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_12), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.instUnitHierarchy]
         ]),
-        _hoisted_12,
         _hoisted_13,
         _hoisted_14,
         _hoisted_15,
+        _hoisted_16,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "checkbox",
             id: "ignore-level-for-fiff-inst-unit",
@@ -2028,10 +2066,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => (($setup.ignoreLevelForDiffInstUnit) = $event)),
             disabled: !$setup.useHierarchicalProcess,
             onChange: $setup.handleIgnoreLevelForDiffInstUnit
-        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_16), [
+        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_17), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.ignoreLevelForDiffInstUnit]
         ]),
-        _hoisted_17
+        _hoisted_18
     ], 64 /* STABLE_FRAGMENT */));
 }
 
@@ -2057,20 +2095,21 @@ const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createEleme
     disabled: "",
     selected: ""
 }, "Select Review Screen", -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_4 = ["id"];
 const _hoisted_5 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-change-advised" }, " Do you want to make service call after change advised? ", -1 /* HOISTED */);
-const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-change-advised" }, " Do you want to make service call after change advised? ", -1 /* HOISTED */);
 const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-change-advised-api" }, " runAfterChangeAdvisedApi (Service path to call after change advised) ", -1 /* HOISTED */);
-const _hoisted_10 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_11 = ["disabled"];
-const _hoisted_12 = { key: 0 };
-const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_14 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-approval-method" }, " runAfterApprovalMethod (Request method GET, POST, PUT, etc.) ", -1 /* HOISTED */);
-const _hoisted_15 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_16 = ["disabled"];
-const _hoisted_17 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_10 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-change-advised-api" }, " runAfterChangeAdvisedApi (Service path to call after change advised) ", -1 /* HOISTED */);
+const _hoisted_11 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_12 = ["disabled"];
+const _hoisted_13 = { key: 0 };
+const _hoisted_14 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_15 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", { for: "run-after-approval-method" }, " runAfterApprovalMethod (Request method GET, POST, PUT, etc.) ", -1 /* HOISTED */);
+const _hoisted_16 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_17 = ["disabled"];
+const _hoisted_18 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         _hoisted_1,
@@ -2083,15 +2122,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
             _hoisted_3,
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
-                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 1 /* TEXT */));
+                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                    id: screen.ID
+                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
             }), 256 /* UNKEYED_FRAGMENT */))
         ], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.reviewScreen]
         ]),
-        _hoisted_4,
         _hoisted_5,
         _hoisted_6,
         _hoisted_7,
+        _hoisted_8,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "checkbox",
             id: "run-after-change-advised",
@@ -2101,9 +2142,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.isRunAfterChangeAdvisedEnable]
         ]),
-        _hoisted_8,
         _hoisted_9,
         _hoisted_10,
+        _hoisted_11,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "text",
             id: "run-after-change-advised-api",
@@ -2111,15 +2152,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.runAfterChangeAdvisedApi) = $event)),
             disabled: !$setup.isRunAfterChangeAdvisedEnable,
             onInput: $setup.handleRunAfterChangeAdvisedApi
-        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_11), [
+        }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_12), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.runAfterChangeAdvisedApi]
         ]),
         ($setup.fieldsUpdated.runAfterChangeAdvisedApi && $setup.runAfterChangeAdvisedApiValidationLabel)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.runAfterChangeAdvisedApiValidationLabel), 1 /* TEXT */))
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.runAfterChangeAdvisedApiValidationLabel), 1 /* TEXT */))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        _hoisted_13,
         _hoisted_14,
         _hoisted_15,
+        _hoisted_16,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
             name: "run-after-change-advised-method",
             id: "run-after-change-advised-method",
@@ -2130,10 +2171,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.restMethods, (restMethod) => {
                 return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(restMethod), 1 /* TEXT */);
             }), 64 /* STABLE_FRAGMENT */))
-        ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_16), [
+        ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_17), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.runAfterChangeAdvisedMethod]
         ]),
-        _hoisted_17
+        _hoisted_18
     ], 64 /* STABLE_FRAGMENT */));
 }
 
@@ -2591,7 +2632,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -2660,7 +2701,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -2729,7 +2770,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -2798,7 +2839,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -2826,8 +2867,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -3003,7 +3044,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -3130,7 +3171,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -3257,7 +3298,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -3384,7 +3425,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -3617,7 +3658,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -3686,7 +3727,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -3755,7 +3796,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -3824,7 +3865,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -3852,8 +3893,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -4029,7 +4070,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -4156,7 +4197,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -4283,7 +4324,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -4410,7 +4451,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -4643,7 +4684,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -4712,7 +4753,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -4781,7 +4822,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -4850,7 +4891,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -4983,7 +5024,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -5052,7 +5093,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -5121,7 +5162,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -5190,7 +5231,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -5218,8 +5259,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -5395,7 +5436,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -5522,7 +5563,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -5649,7 +5690,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -5776,7 +5817,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -6009,7 +6050,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -6078,7 +6119,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -6147,7 +6188,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -6216,7 +6257,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -6244,8 +6285,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -6421,7 +6462,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -6548,7 +6589,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -6675,7 +6716,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -6802,7 +6843,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -7035,7 +7076,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -7104,7 +7145,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -7173,7 +7214,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -7242,7 +7283,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -7270,8 +7311,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -7447,7 +7488,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -7574,7 +7615,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -7701,7 +7742,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -7828,7 +7869,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -8061,7 +8102,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -8130,7 +8171,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -8199,7 +8240,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -8268,7 +8309,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -8296,8 +8337,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -8473,7 +8514,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -8600,7 +8641,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -8727,7 +8768,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -8854,7 +8895,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -9087,7 +9128,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -9156,7 +9197,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -9225,7 +9266,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -9294,7 +9335,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -9322,8 +9363,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -9499,7 +9540,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -9626,7 +9667,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -9753,7 +9794,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -9880,7 +9921,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -10113,7 +10154,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -10182,7 +10223,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -10251,7 +10292,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -10320,7 +10361,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -10348,8 +10389,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -10525,7 +10566,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -10652,7 +10693,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -10779,7 +10820,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -10906,7 +10947,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -11139,7 +11180,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -11208,7 +11249,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -11277,7 +11318,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -11346,7 +11387,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -11374,8 +11415,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -11551,7 +11592,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -11678,7 +11719,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -11805,7 +11846,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -11932,7 +11973,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -12165,7 +12206,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -12234,7 +12275,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -12303,7 +12344,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -12372,7 +12413,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -12400,8 +12441,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -12577,7 +12618,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -12704,7 +12745,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -12831,7 +12872,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -12958,7 +12999,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -13191,7 +13232,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -13260,7 +13301,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -13329,7 +13370,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -13398,7 +13439,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -13426,8 +13467,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -13603,7 +13644,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -13730,7 +13771,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -13857,7 +13898,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -13984,7 +14025,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -14217,7 +14258,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -14286,7 +14327,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -14355,7 +14396,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -14424,7 +14465,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -14452,8 +14493,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -14629,7 +14670,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -14756,7 +14797,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -14883,7 +14924,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -15010,7 +15051,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -15243,7 +15284,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -15312,7 +15353,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -15381,7 +15422,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -15450,7 +15491,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -15478,8 +15519,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -15655,7 +15696,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -15782,7 +15823,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -15909,7 +15950,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -16036,7 +16077,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -16269,7 +16310,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -16338,7 +16379,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -16407,7 +16448,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -16476,7 +16517,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -16504,8 +16545,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -16681,7 +16722,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -16808,7 +16849,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -16935,7 +16976,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -17062,7 +17103,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -17231,7 +17272,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -17300,7 +17341,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -17369,7 +17410,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -17438,7 +17479,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -17466,8 +17507,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -17643,7 +17684,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -17770,7 +17811,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -17897,7 +17938,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -18024,7 +18065,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -18257,7 +18298,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -18326,7 +18367,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -18395,7 +18436,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -18464,7 +18505,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -18492,8 +18533,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -18669,7 +18710,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -18796,7 +18837,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -18923,7 +18964,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -19050,7 +19091,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -19283,7 +19324,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -19352,7 +19393,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -19421,7 +19462,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -19490,7 +19531,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -19518,8 +19559,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -19695,7 +19736,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -19822,7 +19863,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -19949,7 +19990,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -20076,7 +20117,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -20309,7 +20350,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -20378,7 +20419,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -20447,7 +20488,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -20516,7 +20557,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -20544,8 +20585,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -20721,7 +20762,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -20848,7 +20889,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -20975,7 +21016,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -21102,7 +21143,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
@@ -21335,7 +21376,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames2", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles2", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -21404,7 +21445,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames3", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles3", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -21473,7 +21514,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames4", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles4", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -21542,7 +21583,7 @@ const processVariables = [
                             sourceExpression: '["APPROVED","REJECTED","CHANGES_ADVISED"]',
                             target: "evaluationResultList",
                         },
-                        { $type: "camunda:In", source: "sys_roleNames5", target: "sys_roleNames" },
+                        { $type: "camunda:In", source: "checkerRoles5", target: "sys_roleNames" },
                         {
                             $type: "camunda:Out",
                             source: "identifierFilterName",
@@ -21570,8 +21611,8 @@ const processVariables = [
         ],
         scope: {
             $type: "bpmn:Process",
-            id: "Quin",
-            name: "Quin",
+            id: "NewProcess2",
+            name: "NewProcess2",
             isExecutable: true,
             flowElements: [
                 { $type: "bpmn:StartEvent", id: "StartEvent_1" },
@@ -21747,7 +21788,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames2",
+                                source: "checkerRoles2",
                                 target: "sys_roleNames",
                             },
                             {
@@ -21874,7 +21915,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames3",
+                                source: "checkerRoles3",
                                 target: "sys_roleNames",
                             },
                             {
@@ -22001,7 +22042,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames4",
+                                source: "checkerRoles4",
                                 target: "sys_roleNames",
                             },
                             {
@@ -22128,7 +22169,7 @@ const processVariables = [
                             },
                             {
                                 $type: "camunda:In",
-                                source: "sys_roleNames5",
+                                source: "checkerRoles5",
                                 target: "sys_roleNames",
                             },
                             {
