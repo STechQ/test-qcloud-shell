@@ -269,23 +269,20 @@ const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextV
 const _hoisted_8 = { key: 0 };
 const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create New Module ");
 const _hoisted_10 = { key: 1 };
-const _hoisted_11 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(".dm ");
-const _hoisted_12 = { key: 2 };
-const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(".process ");
-const _hoisted_14 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_15 = { key: 0 };
-const _hoisted_16 = { key: 3 };
-const _hoisted_17 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Empty Page ");
-const _hoisted_18 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Quick Component ");
-const _hoisted_19 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Quick Template ");
-const _hoisted_20 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Import From File ");
-const _hoisted_21 = { key: 0 };
-const _hoisted_22 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(".qjson ");
-const _hoisted_23 = { key: 1 };
-const _hoisted_24 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(".qjson ");
-const _hoisted_25 = { key: 4 };
-const _hoisted_26 = { key: 5 };
-const _hoisted_27 = ["disabled"];
+const _hoisted_11 = { key: 2 };
+const _hoisted_12 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+const _hoisted_13 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_14 = { key: 0 };
+const _hoisted_15 = { key: 3 };
+const _hoisted_16 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Empty Page ");
+const _hoisted_17 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Quick Component ");
+const _hoisted_18 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Quick Template ");
+const _hoisted_19 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Import From File ");
+const _hoisted_20 = { key: 0 };
+const _hoisted_21 = { key: 1 };
+const _hoisted_22 = { key: 4 };
+const _hoisted_23 = { key: 5 };
+const _hoisted_24 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Selections "),
@@ -353,13 +350,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     placeholder: "Entity Name"
                 }, null, 512 /* NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
-                ]),
-                _hoisted_11
+                ])
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" New Process "),
         ($setup.isProcess)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                     "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => (($setup.name) = $event)),
                     placeholder: "Process Name",
@@ -367,15 +363,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
                 ]),
+                _hoisted_12,
                 _hoisted_13,
-                _hoisted_14,
                 (!!$setup.processNameErrorLabel.length)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.processNameErrorLabel), 1 /* TEXT */))
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.processNameErrorLabel), 1 /* TEXT */))
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.isScreen)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -384,7 +380,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             value: "emptyPage",
                             onChange: _cache[7] || (_cache[7] = ($event) => ($setup.onTypeSelect('emptyPage')))
                         }, null, 32 /* HYDRATE_EVENTS */),
-                        _hoisted_17
+                        _hoisted_16
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -393,7 +389,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             value: "quickComponent",
                             onChange: _cache[8] || (_cache[8] = ($event) => ($setup.onTypeSelect('quickComponent')))
                         }, null, 32 /* HYDRATE_EVENTS */),
-                        _hoisted_18
+                        _hoisted_17
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -402,7 +398,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             value: "quickTemplate",
                             onChange: _cache[9] || (_cache[9] = ($event) => ($setup.onTypeSelect('quickTemplate')))
                         }, null, 32 /* HYDRATE_EVENTS */),
-                        _hoisted_19
+                        _hoisted_18
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -411,30 +407,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             value: "importFromFile",
                             onChange: _cache[10] || (_cache[10] = ($event) => ($setup.onTypeSelect('importFromFile')))
                         }, null, 32 /* HYDRATE_EVENTS */),
-                        _hoisted_20
+                        _hoisted_19
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <label> \n                    <input type=\"radio\" name=\"radio\" value=\"generateFromEntity\" @change=\"onTypeSelect('generateFromEntity')\" /> \n                    Generate From Entity \n                </label> \n                ")
                 ]),
                 ($setup.isEmptyPage || $setup.isQuickComponent || $setup.isQuickTemplate)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                             "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => (($setup.name) = $event)),
                             placeholder: "Screen Name"
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
-                        ]),
-                        _hoisted_22
+                        ])
                     ]))
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
                 ($setup.isImportFromFile)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                             "onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => (($setup.name) = $event)),
                             placeholder: "Screen Name"
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
                         ]),
-                        _hoisted_24,
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                                 type: "file",
@@ -449,14 +443,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" New Folder "),
         ($setup.isFolder)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25))
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.createButtonVisibility)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     onClick: _cache[14] || (_cache[14] = ($event) => ($setup.create())),
                     disabled: $setup.isProcess ? !!$setup.processNameErrorLabel.length || !$setup.name.length : false
-                }, "Create", 8 /* PROPS */, _hoisted_27)
+                }, "Create", 8 /* PROPS */, _hoisted_24)
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ]));

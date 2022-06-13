@@ -31,7 +31,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".qcloud-tree-root{\n    height: 100%;\n    overflow: hidden;\n    user-select: none;\n}\n.qcloud-tree-items-root{\n    overflow-x: hidden;\n    height: calc(100% - 23px);\n}\n\n  .qcloud-tree-items-root::-webkit-scrollbar {\n    width: 12px;               /* width of the entire scrollbar */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-track {\n    background: transparent;        /* color of the tracking area */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-thumb {\n    background-color: blue;    /* color of the scroll thumb */\n    border-radius: 20px;       /* roundness of the scroll thumb */\n    border: 2px solid orange;  /* creates padding around scroll thumb */\n  }\n\n.qcloud-tree-row-container{\n    border: 1px solid transparent;\n    cursor: pointer;\n}\n.qcloud-tree-row-container:hover{\n    background-color: #D5D5D5;\n}\n\n.qcloud-tree-row-container.selected{\n    background-color: #094771;\n    border-color: #007FD4;\n    color:white\n}\n.qcloud-tree-row{\n    position: relative;\n}\n.qcloud-tree-content{\n    font-family: Segoe WPC,Segoe UI,sans-serif;\n    font-size: 14px;\n}\n.qcloud-tree-header-text{\n    min-width: 10px;\n    text-overflow: ellipsis;\n    overflow: hidden;\n}\n.qcloud-tree-indent{\n    display: flex;\n    position: absolute;\n    margin-left: 2px;\n}\n.qcloud-tree-indent-guide{\n    width: 5px;\n    border-left: 1px dotted green;\n    height: 19px;\n}\n.qcloud-tree-actions{\n    display: flex;\n    font-size: 13px;\n}\n.qcloud-tree-action{\n    padding: 0px 2px;\n}\n.qcloud-tree-action:hover{\n    background-color: #50505a;\n}\n.qcloud-tree-action:active{\n    background-color: blue;\n}\n.qcloud-tree-dropdown-item {\n    display: block;\n    width: 100%;\n    padding-left: 14px;\n    padding-right: 14px;\n    clear: both;\n    font-weight: 400;\n    color: black;\n    text-align: inherit;\n    text-decoration: none;\n    white-space: nowrap;\n    background-color: transparent;\n    border: 0;\n}\n.qcloud-tree-dropdown-item-div {\n    display: flex;\n\n   }\n\n.qcloud-tree-dropdown-item-div:hover {\n background-color: #D5D5D5!important;\n}\n\n.qcloud-tree-dropdown-item-icon {\n    padding-top: 5px;\n   }\n.qcloud-tree-dropdown-menu {\n    position: absolute;\n    inset: 0px auto auto 0px;\n    margin: 0px;\n    background-color: #FFFFFF;\n    border: 0.5px solid var(--grey);\n    box-shadow: 2px 2px 4px #00000029;\n    border-radius: 2px;\n    padding: .5rem 0;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/all/impls/treeview.css"],"names":[],"mappings":"AAAA;IACI,YAAY;IACZ,gBAAgB;IAChB,iBAAiB;AACrB;AACA;IACI,kBAAkB;IAClB,yBAAyB;AAC7B;;EAEE;IACE,WAAW,gBAAgB,kCAAkC;EAC/D;EACA;IACE,uBAAuB,SAAS,+BAA+B;EACjE;EACA;IACE,sBAAsB,KAAK,8BAA8B;IACzD,mBAAmB,QAAQ,kCAAkC;IAC7D,wBAAwB,GAAG,wCAAwC;EACrE;;AAEF;IACI,6BAA6B;IAC7B,eAAe;AACnB;AACA;IACI,yBAAyB;AAC7B;;AAEA;IACI,yBAAyB;IACzB,qBAAqB;IACrB;AACJ;AACA;IACI,kBAAkB;AACtB;AACA;IACI,0CAA0C;IAC1C,eAAe;AACnB;AACA;IACI,eAAe;IACf,uBAAuB;IACvB,gBAAgB;AACpB;AACA;IACI,aAAa;IACb,kBAAkB;IAClB,gBAAgB;AACpB;AACA;IACI,UAAU;IACV,6BAA6B;IAC7B,YAAY;AAChB;AACA;IACI,aAAa;IACb,eAAe;AACnB;AACA;IACI,gBAAgB;AACpB;AACA;IACI,yBAAyB;AAC7B;AACA;IACI,sBAAsB;AAC1B;AACA;IACI,cAAc;IACd,WAAW;IACX,kBAAkB;IAClB,mBAAmB;IACnB,WAAW;IACX,gBAAgB;IAChB,YAAY;IACZ,mBAAmB;IACnB,qBAAqB;IACrB,mBAAmB;IACnB,6BAA6B;IAC7B,SAAS;AACb;AACA;IACI,aAAa;;GAEd;;AAEH;CACC,mCAAmC;AACpC;;AAEA;IACI,gBAAgB;GACjB;AACH;IACI,kBAAkB;IAClB,wBAAwB;IACxB,WAAW;IACX,yBAAyB;IACzB,+BAA+B;IAC/B,iCAAiC;IACjC,kBAAkB;IAClB,gBAAgB;AACpB","sourcesContent":[".qcloud-tree-root{\n    height: 100%;\n    overflow: hidden;\n    user-select: none;\n}\n.qcloud-tree-items-root{\n    overflow-x: hidden;\n    height: calc(100% - 23px);\n}\n\n  .qcloud-tree-items-root::-webkit-scrollbar {\n    width: 12px;               /* width of the entire scrollbar */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-track {\n    background: transparent;        /* color of the tracking area */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-thumb {\n    background-color: blue;    /* color of the scroll thumb */\n    border-radius: 20px;       /* roundness of the scroll thumb */\n    border: 2px solid orange;  /* creates padding around scroll thumb */\n  }\n\n.qcloud-tree-row-container{\n    border: 1px solid transparent;\n    cursor: pointer;\n}\n.qcloud-tree-row-container:hover{\n    background-color: #D5D5D5;\n}\n\n.qcloud-tree-row-container.selected{\n    background-color: #094771;\n    border-color: #007FD4;\n    color:white\n}\n.qcloud-tree-row{\n    position: relative;\n}\n.qcloud-tree-content{\n    font-family: Segoe WPC,Segoe UI,sans-serif;\n    font-size: 14px;\n}\n.qcloud-tree-header-text{\n    min-width: 10px;\n    text-overflow: ellipsis;\n    overflow: hidden;\n}\n.qcloud-tree-indent{\n    display: flex;\n    position: absolute;\n    margin-left: 2px;\n}\n.qcloud-tree-indent-guide{\n    width: 5px;\n    border-left: 1px dotted green;\n    height: 19px;\n}\n.qcloud-tree-actions{\n    display: flex;\n    font-size: 13px;\n}\n.qcloud-tree-action{\n    padding: 0px 2px;\n}\n.qcloud-tree-action:hover{\n    background-color: #50505a;\n}\n.qcloud-tree-action:active{\n    background-color: blue;\n}\n.qcloud-tree-dropdown-item {\n    display: block;\n    width: 100%;\n    padding-left: 14px;\n    padding-right: 14px;\n    clear: both;\n    font-weight: 400;\n    color: black;\n    text-align: inherit;\n    text-decoration: none;\n    white-space: nowrap;\n    background-color: transparent;\n    border: 0;\n}\n.qcloud-tree-dropdown-item-div {\n    display: flex;\n\n   }\n\n.qcloud-tree-dropdown-item-div:hover {\n background-color: #D5D5D5!important;\n}\n\n.qcloud-tree-dropdown-item-icon {\n    padding-top: 5px;\n   }\n.qcloud-tree-dropdown-menu {\n    position: absolute;\n    inset: 0px auto auto 0px;\n    margin: 0px;\n    background-color: #FFFFFF;\n    border: 0.5px solid var(--grey);\n    box-shadow: 2px 2px 4px #00000029;\n    border-radius: 2px;\n    padding: .5rem 0;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".qcloud-tree-root{\n    height: 100%;\n    overflow: hidden;\n    user-select: none;\n}\n.qcloud-tree-items-root{\n    overflow-x: hidden;\n    height: calc(100% - 23px);\n}\n\n  .qcloud-tree-items-root::-webkit-scrollbar {\n    width: 12px;               /* width of the entire scrollbar */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-track {\n    background: transparent;        /* color of the tracking area */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-thumb {\n    background-color: blue;    /* color of the scroll thumb */\n    border-radius: 20px;       /* roundness of the scroll thumb */\n    border: 2px solid orange;  /* creates padding around scroll thumb */\n  }\n\n.qcloud-tree-row-container{\n    border: 1px solid transparent;\n    cursor: pointer;\n}\n.qcloud-tree-row-container:hover{\n    background-color: #D5D5D5;\n}\n\n.qcloud-tree-row-container.selected{\n    background-color: #094771;\n    border-color: #007FD4;\n    color:white\n}\n.qcloud-tree-row{\n    position: relative;\n}\n.qcloud-tree-content{\n    font-family: Segoe WPC,Segoe UI,sans-serif;\n    font-size: 14px;\n}\n.qcloud-tree-header-text{\n    min-width: 10px;\n    text-overflow: ellipsis;\n    overflow: hidden;\n}\n.qcloud-tree-indent{\n    display: flex;\n    position: absolute;\n    margin-left: 2px;\n}\n.qcloud-tree-indent-guide{\n    width: 5px;\n    border-left: 1px dotted green;\n    height: 19px;\n}\n.qcloud-tree-actions{\n    display: flex;\n    font-size: 13px;\n}\n.qcloud-tree-action{\n    padding: 0px 2px;\n}\n.qcloud-tree-action:hover{\n    background-color: #50505a;\n    color: #FFFFFF;\n}\n.qcloud-tree-action:active{\n    background-color: blue;\n}\n.qcloud-tree-dropdown-item {\n    display: block;\n    width: 100%;\n    padding-left: 14px;\n    padding-right: 14px;\n    clear: both;\n    font-weight: 400;\n    color: black;\n    text-align: inherit;\n    text-decoration: none;\n    white-space: nowrap;\n    background-color: transparent;\n    border: 0;\n}\n.qcloud-tree-dropdown-item-div {\n    display: flex;\n\n   }\n\n.qcloud-tree-dropdown-item-div:hover {\n background-color: #D5D5D5!important;\n}\n\n.qcloud-tree-dropdown-item-icon {\n    padding-top: 5px;\n   }\n.qcloud-tree-dropdown-menu {\n    position: absolute;\n    inset: 0px auto auto 0px;\n    margin: 0px;\n    background-color: #FFFFFF;\n    border: 0.5px solid var(--grey);\n    box-shadow: 2px 2px 4px #00000029;\n    border-radius: 2px;\n    padding: .5rem 0;\n}\n.qcloud-tree-dropdown-menu > li{\n    list-style-type: none;\n}", "",{"version":3,"sources":["webpack://./src/presentation/all/impls/treeview.css"],"names":[],"mappings":"AAAA;IACI,YAAY;IACZ,gBAAgB;IAChB,iBAAiB;AACrB;AACA;IACI,kBAAkB;IAClB,yBAAyB;AAC7B;;EAEE;IACE,WAAW,gBAAgB,kCAAkC;EAC/D;EACA;IACE,uBAAuB,SAAS,+BAA+B;EACjE;EACA;IACE,sBAAsB,KAAK,8BAA8B;IACzD,mBAAmB,QAAQ,kCAAkC;IAC7D,wBAAwB,GAAG,wCAAwC;EACrE;;AAEF;IACI,6BAA6B;IAC7B,eAAe;AACnB;AACA;IACI,yBAAyB;AAC7B;;AAEA;IACI,yBAAyB;IACzB,qBAAqB;IACrB;AACJ;AACA;IACI,kBAAkB;AACtB;AACA;IACI,0CAA0C;IAC1C,eAAe;AACnB;AACA;IACI,eAAe;IACf,uBAAuB;IACvB,gBAAgB;AACpB;AACA;IACI,aAAa;IACb,kBAAkB;IAClB,gBAAgB;AACpB;AACA;IACI,UAAU;IACV,6BAA6B;IAC7B,YAAY;AAChB;AACA;IACI,aAAa;IACb,eAAe;AACnB;AACA;IACI,gBAAgB;AACpB;AACA;IACI,yBAAyB;IACzB,cAAc;AAClB;AACA;IACI,sBAAsB;AAC1B;AACA;IACI,cAAc;IACd,WAAW;IACX,kBAAkB;IAClB,mBAAmB;IACnB,WAAW;IACX,gBAAgB;IAChB,YAAY;IACZ,mBAAmB;IACnB,qBAAqB;IACrB,mBAAmB;IACnB,6BAA6B;IAC7B,SAAS;AACb;AACA;IACI,aAAa;;GAEd;;AAEH;CACC,mCAAmC;AACpC;;AAEA;IACI,gBAAgB;GACjB;AACH;IACI,kBAAkB;IAClB,wBAAwB;IACxB,WAAW;IACX,yBAAyB;IACzB,+BAA+B;IAC/B,iCAAiC;IACjC,kBAAkB;IAClB,gBAAgB;AACpB;AACA;IACI,qBAAqB;AACzB","sourcesContent":[".qcloud-tree-root{\n    height: 100%;\n    overflow: hidden;\n    user-select: none;\n}\n.qcloud-tree-items-root{\n    overflow-x: hidden;\n    height: calc(100% - 23px);\n}\n\n  .qcloud-tree-items-root::-webkit-scrollbar {\n    width: 12px;               /* width of the entire scrollbar */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-track {\n    background: transparent;        /* color of the tracking area */\n  }\n  .qcloud-tree-items-root::-webkit-scrollbar-thumb {\n    background-color: blue;    /* color of the scroll thumb */\n    border-radius: 20px;       /* roundness of the scroll thumb */\n    border: 2px solid orange;  /* creates padding around scroll thumb */\n  }\n\n.qcloud-tree-row-container{\n    border: 1px solid transparent;\n    cursor: pointer;\n}\n.qcloud-tree-row-container:hover{\n    background-color: #D5D5D5;\n}\n\n.qcloud-tree-row-container.selected{\n    background-color: #094771;\n    border-color: #007FD4;\n    color:white\n}\n.qcloud-tree-row{\n    position: relative;\n}\n.qcloud-tree-content{\n    font-family: Segoe WPC,Segoe UI,sans-serif;\n    font-size: 14px;\n}\n.qcloud-tree-header-text{\n    min-width: 10px;\n    text-overflow: ellipsis;\n    overflow: hidden;\n}\n.qcloud-tree-indent{\n    display: flex;\n    position: absolute;\n    margin-left: 2px;\n}\n.qcloud-tree-indent-guide{\n    width: 5px;\n    border-left: 1px dotted green;\n    height: 19px;\n}\n.qcloud-tree-actions{\n    display: flex;\n    font-size: 13px;\n}\n.qcloud-tree-action{\n    padding: 0px 2px;\n}\n.qcloud-tree-action:hover{\n    background-color: #50505a;\n    color: #FFFFFF;\n}\n.qcloud-tree-action:active{\n    background-color: blue;\n}\n.qcloud-tree-dropdown-item {\n    display: block;\n    width: 100%;\n    padding-left: 14px;\n    padding-right: 14px;\n    clear: both;\n    font-weight: 400;\n    color: black;\n    text-align: inherit;\n    text-decoration: none;\n    white-space: nowrap;\n    background-color: transparent;\n    border: 0;\n}\n.qcloud-tree-dropdown-item-div {\n    display: flex;\n\n   }\n\n.qcloud-tree-dropdown-item-div:hover {\n background-color: #D5D5D5!important;\n}\n\n.qcloud-tree-dropdown-item-icon {\n    padding-top: 5px;\n   }\n.qcloud-tree-dropdown-menu {\n    position: absolute;\n    inset: 0px auto auto 0px;\n    margin: 0px;\n    background-color: #FFFFFF;\n    border: 0.5px solid var(--grey);\n    box-shadow: 2px 2px 4px #00000029;\n    border-radius: 2px;\n    padding: .5rem 0;\n}\n.qcloud-tree-dropdown-menu > li{\n    list-style-type: none;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -19507,6 +19507,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./useCases/processEditorUtilImpl */ "./src/application/useCases/processEditorUtilImpl.ts");
 /* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
 /* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
+/* harmony import */ var _domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ../domain/useCase/IApplicationSettings */ "./src/domain/useCase/IApplicationSettings.ts");
+/* harmony import */ var _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./useCases/applicationSettingsImpl */ "./src/application/useCases/applicationSettingsImpl.ts");
+
+
 
 
 
@@ -19605,6 +19609,7 @@ const appStartUp = {
         container.register(_domain_useCase_IRestoreUser__WEBPACK_IMPORTED_MODULE_26__.IRestoreUser, _useCases_restoreUserImpl__WEBPACK_IMPORTED_MODULE_27__.RestoreUserImpl);
         container.register(_domain_useCase_ICreateApplication__WEBPACK_IMPORTED_MODULE_30__.ICreateApplication, _useCases_createApplicationImpl__WEBPACK_IMPORTED_MODULE_31__.CreateApplicationImpl);
         container.register(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_32__.IUpdateApplication, _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_33__.UpdateApplicationImpl);
+        container.register(_domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__.IApplicationSettings, _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__.ApplicationSettingsImpl);
         container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__.ObjectUseCaseImpl);
         container.register(_domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_34__.IUpdateModule, _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_35__.UpdateModuleImpl);
         container.register(_domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_36__.IGetExportTypes, _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_37__.GetExportTypesImpl);
@@ -19749,6 +19754,96 @@ ListApplicationsImpl = __decorate([
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
     __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_2__.IViewModelManager))
 ], ListApplicationsImpl);
+
+
+
+/***/ }),
+
+/***/ "./src/application/useCases/applicationSettingsImpl.ts":
+/*!*************************************************************!*\
+  !*** ./src/application/useCases/applicationSettingsImpl.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ApplicationSettingsImpl": () => (/* binding */ ApplicationSettingsImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+let ApplicationSettingsImpl = class ApplicationSettingsImpl {
+    constructor(qcloudApi, providerApi, viewModelManager, notification) {
+        this.qcloudApi = qcloudApi;
+        this.providerApi = providerApi;
+        this.viewModelManager = viewModelManager;
+        this.notification = notification;
+    }
+    async update(settings) {
+        const { applicationSettings, modulesSettings } = settings;
+        if (!applicationSettings && !(modulesSettings === null || modulesSettings === void 0 ? void 0 : modulesSettings.length)) {
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({
+                message: `At least one setting must be provided.`,
+                type: "business",
+            });
+        }
+        this.qcloudApi.updateApplicationSettings({ applicationSettings, modulesSettings });
+        if (applicationSettings) {
+            const app = this.viewModelManager.findObject(applicationSettings.applicationID);
+            app.deployParameters = applicationSettings.deployParameters;
+            this.viewModelManager.objectUpdated(app);
+        }
+        if (modulesSettings) {
+            modulesSettings.forEach((newModuleSettings) => {
+                const module = this.viewModelManager.findObject(newModuleSettings.moduleID);
+                module.deployParameters = newModuleSettings.deployParameters;
+                this.viewModelManager.objectUpdated(module);
+            });
+        }
+        this.notification.showNotification({
+            text: "Settings updated successfully",
+            type: "success",
+        });
+    }
+    getProjectsByGroupId(groupId) {
+        const projects = this.providerApi.getProjectsByGroupId(groupId);
+        return projects;
+    }
+    getProjectsOfProduct() {
+        const products = this.providerApi.getProjectsOfProduct();
+        return products;
+    }
+    getGroupNamesWithId() {
+        const products = this.providerApi.getGroupNamesWithId();
+        return products;
+    }
+};
+ApplicationSettingsImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_5__.IProviderApi)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_4__.IViewModelManager)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__.INotification))
+], ApplicationSettingsImpl);
 
 
 
@@ -20044,7 +20139,7 @@ let CreateModelImpl = class CreateModelImpl {
         }
         this.model = {
             name: param.name, ID: "", parent: parentObject, objectType: "model", synced: false,
-            modelType: param.modelType, modelBody: param.modelBody, additionals: param.modelAdditionals,
+            modelType: param.modelType, modelBody: param.modelBody, additionals: param.modelAdditionals, modified: {},
         };
         this.viewModelManager.modelCreated(this.model);
         const executeRetval = await this.qcloudApi.createModel({
@@ -20160,17 +20255,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FileExplorer": () => (/* binding */ FileExplorer)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
-/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _common_watcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/watcher */ "./src/common/watcher.ts");
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20180,6 +20276,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -20206,47 +20303,71 @@ let FileExplorer = class FileExplorer {
     }
     get feTreeview() {
         if (!this._feTreeview) {
-            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
+            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
         }
         return this._feTreeview;
     }
     convertToTreeItems(items, namedCompTreeItem, settingsTreeItem) {
         const converter = (items) => items.map(item => {
             // const delAction: IActionItem = { type: "IActionSingleItem", name: "Del", selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) };
-            const treeItem = {
-                id: item.ID, name: item.name, typeIcon: '', typeIconColor: '',
-                actions: [],
-            };
+            const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [], };
             switch (item.objectType) {
                 case "folder":
                 case "module":
-                    treeItem.typeIcon = 'mdi mdi-puzzle',
-                        treeItem.children = converter(item.children);
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "+Add", icon: 'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
+                    treeItem.typeIcon.icon = 'mdi mdi-puzzle';
+                    treeItem.children = converter(item.children);
+                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "Add", icon: 'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
                     treeItem.actions.unshift({ type: "IActionSingleItem", name: "Edit", icon: 'mdi mdi-pencil', selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) });
                     return treeItem;
                 case "model":
                     if (item.modelType == 'qjson' || item.modelType == 'js' || item.modelType == 'yaml') {
-                        treeItem.typeIcon = 'mdi mdi-application-brackets-outline ';
-                        treeItem.typeIconColor = '#449DD1';
+                        treeItem.typeIcon.icon = 'mdi mdi-application-brackets-outline ';
+                        treeItem.typeIcon.color = '#449DD1';
                     }
                     if (item.modelType == 'entityDesigner') {
-                        treeItem.typeIcon = 'mdi mdi-database ';
-                        treeItem.typeIconColor = '#E9724C';
+                        treeItem.typeIcon.icon = 'mdi mdi-database ';
+                        treeItem.typeIcon.color = '#E9724C';
                     }
                     if (item.modelType == 'bpmn') {
-                        treeItem.typeIcon = 'mdi mdi-codepen ';
-                        treeItem.typeIconColor = '#BF63E9';
+                        treeItem.typeIcon.icon = 'mdi mdi-codepen ';
+                        treeItem.typeIcon.color = '#BF63E9';
                     }
                     if (item.modelType == 'process') {
-                        treeItem.typeIcon = 'mdi mdi-source-branch';
-                        treeItem.typeIconColor = '#007C77';
+                        treeItem.typeIcon.icon = 'mdi mdi-source-branch';
+                        treeItem.typeIcon.color = '#007C77';
                     }
-                    // debugger
-                    // if(item.checkedOut==true){
-                    //     treeItem.typeIcon='mdi mdi-home'
-                    //     treeItem.typeIconColor='#007C77'
-                    // }
+                    const checkoutIcon = { icon: "mdi mdi-arrow-bottom-right-bold-outline" };
+                    const modifiedIcon = { icon: "", text: "⚫" };
+                    if (item.checkedOut) {
+                        treeItem.itemIcons = treeItem.itemIcons || [];
+                        treeItem.itemIcons.push(checkoutIcon);
+                    }
+                    if (item.modified.model) {
+                        treeItem.itemIcons = treeItem.itemIcons || [];
+                        treeItem.itemIcons.push(modifiedIcon);
+                    }
+                    new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item, "checkedOut", { preventSameInstance: true }).onChange(newValue => {
+                        const target = newValue ? "addItemIcon" : "removeItemIcon";
+                        this.feTreeview[target](item.ID, checkoutIcon);
+                    });
+                    let modelWatcher;
+                    const watchModifiedModel = () => {
+                        modelWatcher === null || modelWatcher === void 0 ? void 0 : modelWatcher.unwatch();
+                        modelWatcher = new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item.modified, "model", { preventSameInstance: true });
+                        modelWatcher.onChange(newValue => {
+                            const target = newValue ? "addItemIcon" : "removeItemIcon";
+                            this.feTreeview[target](item.ID, modifiedIcon);
+                        });
+                    };
+                    watchModifiedModel();
+                    new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item, "modified", { preventSameInstance: true }).onChange((newValue, oldValue) => {
+                        watchModifiedModel();
+                        if (Boolean(oldValue.model) == Boolean(newValue.model)) {
+                            return;
+                        }
+                        const target = newValue.model ? "addItemIcon" : "removeItemIcon";
+                        this.feTreeview[target](item.ID, modifiedIcon);
+                    });
                     if (item.modelType == "namedComponent") {
                         namedCompTreeItem.children.push(treeItem);
                         return undefined;
@@ -20264,9 +20385,9 @@ let FileExplorer = class FileExplorer {
                         type: "IActionMenuItem", name: "...", children: [
                             { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) },
                             { name: "History", icon: "mdi mdi-history", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) },
-                            { name: "Check in", icon: "mdi mdi-arrow-top-left", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) },
-                            { name: "Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => this.studio.checkout(item), { loading: true }) },
-                            { name: "Undo Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => console.log('Undo Checkout'), { loading: true }) },
+                            { name: "Check in", icon: "mdi mdi mdi-arrow-top-left-bold-outline", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) },
+                            { name: "Check out", icon: "mdi mdi mdi-arrow-bottom-right-bold-outline", selectCb: this.executor.wrap(async () => this.studio.checkout(item), { loading: true }) },
+                            { name: "Undo Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => this.studio.release(item), { loading: true }) },
                             { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
                         ]
                     });
@@ -20284,15 +20405,15 @@ let FileExplorer = class FileExplorer {
     }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
-        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeView);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
+        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeView);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
         feTreeview.setup(rootDiv);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer, feTreeview);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer, feTreeview);
     }
     loadFileExplorer(rootDiv) {
         this.createFileExplorerTreeView(rootDiv);
-        const namedCompTreeItem = { id: "001", name: "Named Components", typeIcon: '', typeIconColor: '', children: [] };
-        const settingsTreeItem = { id: "002", name: "Settings", typeIcon: '', typeIconColor: '', children: [] };
+        const namedCompTreeItem = { id: "001", name: "Named Components", typeIcon: { icon: "" }, children: [], };
+        const settingsTreeItem = { id: "002", name: "Settings", typeIcon: { icon: "" }, children: [], };
         const frontItems = this.convertToTreeItems(this.viewModel.studio.items, namedCompTreeItem, settingsTreeItem);
         frontItems.unshift(namedCompTreeItem);
         frontItems.unshift(settingsTreeItem);
@@ -20334,16 +20455,16 @@ let FileExplorer = class FileExplorer {
     }
 };
 FileExplorer = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_11__.IViewModelManager)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_10__.IViewModel)),
-    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_9__.IUseCaseExecutor)),
-    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_8__.IStudio)),
-    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_4__.IDialog)),
-    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_3__.IAsyncComponentCreator)),
-    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_7__.IObjectUseCase))
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_6__.INotification)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_12__.IViewModelManager)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_11__.IViewModel)),
+    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_10__.IUseCaseExecutor)),
+    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_9__.IStudio)),
+    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog)),
+    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__.IAsyncComponentCreator)),
+    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_8__.IObjectUseCase))
 ], FileExplorer);
 
 
@@ -21696,6 +21817,7 @@ let Studio = class Studio {
             parent: this.viewModelManager.findObject(historyItem.ownerItem),
             synced: true,
             additionals: historyItem.modelAdditionals,
+            modified: {},
         };
         await this.openItem(modelItem, { fromHistory: true });
     }
@@ -21725,6 +21847,7 @@ let Studio = class Studio {
         }
         item.modelBody = undefined;
         item.state = undefined;
+        item.modified = {};
         const studio = this.viewModel.studio;
         studio.currentItem = undefined;
         if (studio.openItems) {
@@ -21868,6 +21991,13 @@ let Studio = class Studio {
     defaultUI() {
         return this.viewModel.studio.ui || { sidebar: { left: 293 } };
     }
+    isCheckedOut(item) {
+        if (!item.checkouts) {
+            return false;
+        }
+        const retVal = item.checkouts.some(i => { var _a; return i.user == ((_a = this.viewModel.user) === null || _a === void 0 ? void 0 : _a.email); });
+        return retVal;
+    }
     convertBackendItems(backendItems, app) {
         const converter = (items, itemParent) => items.map((item) => {
             const parent = itemParent;
@@ -21879,6 +22009,7 @@ let Studio = class Studio {
                     synced: true,
                     parent,
                     children: [],
+                    deployParameters: item.deployParameters
                 };
                 this.viewModelManager.moduleCreated(module);
                 module.children = item.children ? converter(item.children, module) : [];
@@ -21909,6 +22040,8 @@ let Studio = class Studio {
                     objectType: "model",
                     synced: true,
                     parent,
+                    checkedOut: this.isCheckedOut(item),
+                    modified: {},
                 };
                 this.viewModelManager.modelCreated(model);
                 return model;
@@ -22468,6 +22601,10 @@ let ViewModelManager = ViewModelManager_1 = class ViewModelManager {
             const appIndex = this.viewModel.apps.findIndex(app => app.ID == newObj.ID);
             this.viewModel.apps[appIndex] = newObj;
         }
+        else if (newObj.objectType == "module") {
+            const moduleIndex = this.viewModel.studio.items.findIndex(app => app.ID == newObj.ID);
+            this.viewModel.studio.items[moduleIndex] = newObj;
+        }
         return newObj;
     }
     removeExportJob(jobID) {
@@ -22656,24 +22793,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Watcher": () => (/* binding */ Watcher)
 /* harmony export */ });
 class Watcher {
-    constructor(obj, field) {
-        let val = obj[field];
+    constructor(obj, field, options = {}) {
+        this.obj = obj;
+        this.field = field;
+        this.val = obj[field];
         Object.defineProperty(obj, field, {
             set: v => {
                 if (!this.changeWatchers) {
-                    val = v;
+                    this.val = v;
                     return;
                 }
-                const old = val;
-                val = v;
-                this.changeWatchers.forEach(watcher => watcher(val, old));
+                const old = this.val;
+                this.val = v;
+                if (options.preventSameInstance && old == this.val) {
+                    return;
+                }
+                this.changeWatchers.forEach(watcher => watcher(this.val, old));
             },
             get: () => {
                 if (!this.getWatchers) {
-                    return val;
+                    return this.val;
                 }
-                this.getWatchers.reduce((prev, curGetter) => curGetter(prev), val);
-            }
+                return this.getWatchers.reduce((prev, curGetter) => curGetter(prev), this.val);
+            },
+            configurable: true,
         });
     }
     onChange(cb) {
@@ -22683,6 +22826,10 @@ class Watcher {
     onGet(cb) {
         this.getWatchers = this.getWatchers || [];
         this.getWatchers.push(cb);
+    }
+    unwatch() {
+        delete this.obj[this.field];
+        this.obj[this.field] = this.val;
     }
 }
 
@@ -22750,6 +22897,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "IConfig": () => (/* binding */ IConfig)
 /* harmony export */ });
 const IConfig = Symbol.for("IConfig");
+
+
+/***/ }),
+
+/***/ "./src/domain/infrastructure/IDebounce.ts":
+/*!************************************************!*\
+  !*** ./src/domain/infrastructure/IDebounce.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IDebounce": () => (/* binding */ IDebounce)
+/* harmony export */ });
+const IDebounce = Symbol.for("IDebounce");
 
 
 /***/ }),
@@ -25860,6 +26023,22 @@ const IZindex = Symbol.for("IZindex");
 
 /***/ }),
 
+/***/ "./src/domain/useCase/IApplicationSettings.ts":
+/*!****************************************************!*\
+  !*** ./src/domain/useCase/IApplicationSettings.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IApplicationSettings": () => (/* binding */ IApplicationSettings)
+/* harmony export */ });
+const IApplicationSettings = Symbol.for("IApplicationSettings");
+
+
+/***/ }),
+
 /***/ "./src/domain/useCase/IAutoLogin.ts":
 /*!******************************************!*\
   !*** ./src/domain/useCase/IAutoLogin.ts ***!
@@ -26391,7 +26570,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.7"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.8"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -26450,6 +26629,42 @@ let ConfigImpl = class ConfigImpl {
 ConfigImpl = __decorate([
     (0,tsyringe__WEBPACK_IMPORTED_MODULE_0__.injectable)()
 ], ConfigImpl);
+
+
+
+/***/ }),
+
+/***/ "./src/infrastructure/debounceImpl.ts":
+/*!********************************************!*\
+  !*** ./src/infrastructure/debounceImpl.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DebounceImpl": () => (/* binding */ DebounceImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+let DebounceImpl = class DebounceImpl {
+    debounce(cb, delayTime, ...args) {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => cb.call(this, ...args), delayTime);
+    }
+    resetTimer() {
+        clearTimeout(this.timer);
+    }
+};
+DebounceImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
+], DebounceImpl);
 
 
 
@@ -27036,11 +27251,11 @@ let ProviderApiImpl = class ProviderApiImpl {
         const projects = await this.request(`/projects/getProjectsByGroupId?groupId=${groupId}`, "GET", {}, { timeout: 50000 });
         return projects;
     }
-    async getProducts() {
+    async getProjectsOfProduct() {
         const products = await this.request(`/projects/getProjectsOfProduct`, "GET", {}, { timeout: 50000 });
         return products;
     }
-    async getGitGroups() {
+    async getGroupNamesWithId() {
         const gitGroups = await this.request(`/groups/getGroupNamesWithId`, "GET", {}, { timeout: 50000 });
         return gitGroups;
     }
@@ -27158,7 +27373,8 @@ let QCloudApiImpl = class QCloudApiImpl {
             parent: params.parentObject,
             synced: true,
             objectType: "model",
-            additionals: params.modelAdditionals
+            additionals: params.modelAdditionals,
+            modified: {},
         };
         return retVal;
     }
@@ -27309,8 +27525,8 @@ let QCloudApiImpl = class QCloudApiImpl {
         const items = await this.request("/listtreeviewitems", { applicationID });
         return items;
     }
-    async updateModulesSettings(items) {
-        await this.request("/updatemodulessettings", { items });
+    async updateApplicationSettings(settings) {
+        await this.request("/updateapplicationsettings", { ...settings });
     }
     async attachModuletoApplication(appID, moduleID) {
         await this.request("/attachmoduletoapplication", { appID, moduleID });
@@ -27343,29 +27559,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "infraStartUp": () => (/* binding */ infraStartUp)
 /* harmony export */ });
 /* harmony import */ var _domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/infrastructure/IConfig */ "./src/domain/infrastructure/IConfig.ts");
-/* harmony import */ var _domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/infrastructure/IDomHelper */ "./src/domain/infrastructure/IDomHelper.ts");
-/* harmony import */ var _domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../domain/infrastructure/IFrameMessanger */ "./src/domain/infrastructure/IFrameMessanger.ts");
-/* harmony import */ var _domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/infrastructure/IHook */ "./src/domain/infrastructure/IHook.ts");
-/* harmony import */ var _domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../domain/infrastructure/IInlineEditor */ "./src/domain/infrastructure/IInlineEditor.ts");
-/* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
-/* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
-/* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
-/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../domain/infrastructure/IThrotler */ "./src/domain/infrastructure/IThrotler.ts");
-/* harmony import */ var _domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../domain/infrastructure/ITimer */ "./src/domain/infrastructure/ITimer.ts");
-/* harmony import */ var _configImpl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./configImpl */ "./src/infrastructure/configImpl.ts");
-/* harmony import */ var _domHelperImpl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./domHelperImpl */ "./src/infrastructure/domHelperImpl.ts");
-/* harmony import */ var _frameMessanger__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./frameMessanger */ "./src/infrastructure/frameMessanger.ts");
-/* harmony import */ var _hookImpl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hookImpl */ "./src/infrastructure/hookImpl.ts");
-/* harmony import */ var _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./inlineEditorImpl */ "./src/infrastructure/inlineEditorImpl.ts");
-/* harmony import */ var _localizationImpl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./localizationImpl */ "./src/infrastructure/localizationImpl.ts");
-/* harmony import */ var _loggerImpl__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./loggerImpl */ "./src/infrastructure/loggerImpl.ts");
-/* harmony import */ var _networkImpl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./networkImpl */ "./src/infrastructure/networkImpl.ts");
-/* harmony import */ var _providerApiImpl__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./providerApiImpl */ "./src/infrastructure/providerApiImpl.ts");
-/* harmony import */ var _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./qCloudApiImpl */ "./src/infrastructure/qCloudApiImpl.ts");
-/* harmony import */ var _throttlerImpl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./throttlerImpl */ "./src/infrastructure/throttlerImpl.ts");
-/* harmony import */ var _timerImpl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./timerImpl */ "./src/infrastructure/timerImpl.ts");
+/* harmony import */ var _domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/infrastructure/IDebounce */ "./src/domain/infrastructure/IDebounce.ts");
+/* harmony import */ var _domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../domain/infrastructure/IDomHelper */ "./src/domain/infrastructure/IDomHelper.ts");
+/* harmony import */ var _domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/infrastructure/IFrameMessanger */ "./src/domain/infrastructure/IFrameMessanger.ts");
+/* harmony import */ var _domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../domain/infrastructure/IHook */ "./src/domain/infrastructure/IHook.ts");
+/* harmony import */ var _domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../domain/infrastructure/IInlineEditor */ "./src/domain/infrastructure/IInlineEditor.ts");
+/* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
+/* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
+/* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
+/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../domain/infrastructure/IThrotler */ "./src/domain/infrastructure/IThrotler.ts");
+/* harmony import */ var _domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../domain/infrastructure/ITimer */ "./src/domain/infrastructure/ITimer.ts");
+/* harmony import */ var _configImpl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./configImpl */ "./src/infrastructure/configImpl.ts");
+/* harmony import */ var _debounceImpl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./debounceImpl */ "./src/infrastructure/debounceImpl.ts");
+/* harmony import */ var _domHelperImpl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./domHelperImpl */ "./src/infrastructure/domHelperImpl.ts");
+/* harmony import */ var _frameMessanger__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./frameMessanger */ "./src/infrastructure/frameMessanger.ts");
+/* harmony import */ var _hookImpl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./hookImpl */ "./src/infrastructure/hookImpl.ts");
+/* harmony import */ var _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./inlineEditorImpl */ "./src/infrastructure/inlineEditorImpl.ts");
+/* harmony import */ var _localizationImpl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./localizationImpl */ "./src/infrastructure/localizationImpl.ts");
+/* harmony import */ var _loggerImpl__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./loggerImpl */ "./src/infrastructure/loggerImpl.ts");
+/* harmony import */ var _networkImpl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./networkImpl */ "./src/infrastructure/networkImpl.ts");
+/* harmony import */ var _providerApiImpl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./providerApiImpl */ "./src/infrastructure/providerApiImpl.ts");
+/* harmony import */ var _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./qCloudApiImpl */ "./src/infrastructure/qCloudApiImpl.ts");
+/* harmony import */ var _throttlerImpl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./throttlerImpl */ "./src/infrastructure/throttlerImpl.ts");
+/* harmony import */ var _timerImpl__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./timerImpl */ "./src/infrastructure/timerImpl.ts");
+
+
 
 
 
@@ -27392,18 +27612,19 @@ __webpack_require__.r(__webpack_exports__);
 
 const infraStartUp = {
     register(container) {
-        container.register(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_6__.ILogger, _loggerImpl__WEBPACK_IMPORTED_MODULE_18__.LoggerImpl);
-        container.register(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__.IConfig, _configImpl__WEBPACK_IMPORTED_MODULE_12__.ConfigImpl);
-        container.register(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_9__.IQCloudApi, _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_21__.QCloudApiImpl);
-        container.register(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_8__.IProviderApi, _providerApiImpl__WEBPACK_IMPORTED_MODULE_20__.ProviderApiImpl);
-        container.register(_domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_3__.IHook, _hookImpl__WEBPACK_IMPORTED_MODULE_15__.HookImpl);
-        container.register(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_7__.INetwork, _networkImpl__WEBPACK_IMPORTED_MODULE_19__.NetworkImpl);
-        container.register(_domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_2__.IFrameMessanger, _frameMessanger__WEBPACK_IMPORTED_MODULE_14__.FrameMessanger);
-        container.register(_domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_11__.ITimer, _timerImpl__WEBPACK_IMPORTED_MODULE_23__.TimerImpl);
-        container.register(_domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_1__.IDomHelper, _domHelperImpl__WEBPACK_IMPORTED_MODULE_13__.DomHelperImpl);
-        container.register(_domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_10__.IThrottler, _throttlerImpl__WEBPACK_IMPORTED_MODULE_22__.ThrottlerImpl);
-        container.register(_domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_4__.IInlineEditor, _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_16__.InlineEditorImpl);
-        container.registerInstance(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_5__.ILocalization, new _localizationImpl__WEBPACK_IMPORTED_MODULE_17__.LocalizationImpl());
+        container.register(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_7__.ILogger, _loggerImpl__WEBPACK_IMPORTED_MODULE_20__.LoggerImpl);
+        container.register(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__.IConfig, _configImpl__WEBPACK_IMPORTED_MODULE_13__.ConfigImpl);
+        container.register(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_10__.IQCloudApi, _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_23__.QCloudApiImpl);
+        container.register(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_9__.IProviderApi, _providerApiImpl__WEBPACK_IMPORTED_MODULE_22__.ProviderApiImpl);
+        container.register(_domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_4__.IHook, _hookImpl__WEBPACK_IMPORTED_MODULE_17__.HookImpl);
+        container.register(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_8__.INetwork, _networkImpl__WEBPACK_IMPORTED_MODULE_21__.NetworkImpl);
+        container.register(_domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_3__.IFrameMessanger, _frameMessanger__WEBPACK_IMPORTED_MODULE_16__.FrameMessanger);
+        container.register(_domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_12__.ITimer, _timerImpl__WEBPACK_IMPORTED_MODULE_25__.TimerImpl);
+        container.register(_domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_2__.IDomHelper, _domHelperImpl__WEBPACK_IMPORTED_MODULE_15__.DomHelperImpl);
+        container.register(_domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_11__.IThrottler, _throttlerImpl__WEBPACK_IMPORTED_MODULE_24__.ThrottlerImpl);
+        container.register(_domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_1__.IDebounce, _debounceImpl__WEBPACK_IMPORTED_MODULE_14__.DebounceImpl);
+        container.register(_domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_5__.IInlineEditor, _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_18__.InlineEditorImpl);
+        container.registerInstance(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_6__.ILocalization, new _localizationImpl__WEBPACK_IMPORTED_MODULE_19__.LocalizationImpl());
     }
 };
 
@@ -27637,6 +27858,27 @@ class TreeView {
         item.name = itemName;
         item.contents.text.textContent = itemName;
     }
+    addItemIcon(itemId, icon) {
+        const item = this.getItem(itemId);
+        item.itemIcons = item.itemIcons || [];
+        item.itemIcons.push(icon);
+        item.contents.text.appendChild(createIconDiv(icon));
+    }
+    removeItemIcon(itemId, icon) {
+        var _a;
+        const item = this.getItem(itemId);
+        if (!item.itemIcons) {
+            return;
+        }
+        const targetIconIndex = item.itemIcons.findIndex(eachIcon => eachIcon == icon);
+        if (targetIconIndex == -1) {
+            return;
+        }
+        item.itemIcons.splice(targetIconIndex, 1);
+        item.itemIcons = item.itemIcons.length == 0 ? undefined : item.itemIcons;
+        const targetIconDiv = item.contents.text.children[targetIconIndex];
+        (_a = targetIconDiv === null || targetIconDiv === void 0 ? void 0 : targetIconDiv.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(targetIconDiv);
+    }
     reset() {
         this.setHeader(undefined);
         this.itemList.forEach(item => this.removeItem(item.id));
@@ -27787,16 +28029,16 @@ class TreeView {
         }
     }
     convertTreeItemToInternal(item, header) {
+        var _a;
         const retVal = {
             id: item.id,
             name: item.name,
-            menu: item.menu,
             cb: item.cb,
             rowContainer: createDiv({ class: "row-container" }),
             row: createDiv({ style: { display: "flex", flexDirection: "row" }, class: "row" }),
             contentDiv: createDiv({ style: { display: "flex", flexDirection: "row", width: "100%" }, class: "content" }),
             contents: {
-                text: createDiv({ text: item.name, style: { flex: "1", whiteSpace: "nowrap", paddingLeft: '5px' }, class: header ? "header-text" : undefined }),
+                text: createDiv({ text: item.name, style: { flex: "1", display: 'flex', whiteSpace: "nowrap", paddingLeft: '5px' }, class: header ? "header-text" : undefined }),
                 collapseIcon: createDiv({ style: { minWidth: "10px" } }),
                 typeIcon: createDiv({ style: { minWidth: "10px" } }),
                 actions: createDiv({ class: "actions" }),
@@ -27806,7 +28048,7 @@ class TreeView {
             level: 0,
             actionsWithRoot: item.actionsWithRoot,
             typeIcon: item.typeIcon,
-            typeIconColor: item.typeIconColor
+            itemIcons: item.itemIcons,
         };
         retVal.rowContainer.appendChild(retVal.row);
         retVal.row.appendChild(retVal.indent);
@@ -27815,6 +28057,7 @@ class TreeView {
         if (item.actions) {
             this.createActions(retVal, item.actions);
         }
+        appendChildren(retVal.contents.text, ((_a = item.itemIcons) === null || _a === void 0 ? void 0 : _a.map(icon => createIconDiv(icon))) || []);
         appendChildren(retVal.contentDiv, [retVal.contents.collapseIcon, retVal.contents.typeIcon, retVal.contents.text, retVal.contents.actions]);
         return retVal;
     }
@@ -27823,7 +28066,8 @@ class TreeView {
         item.actions = item.actions || [];
         actions.forEach(action => {
             var _a, _b;
-            const actionDiv = createDiv({ text: action.name, icon: action.icon, class: "action" });
+            const actionClass = (action.icon ? action.icon + " " : "") + "qcloud-tree-action";
+            const actionDiv = createDiv({ text: action.name, pureClass: true, class: actionClass });
             let clickCB;
             if (action.type == "IActionMenuItem") {
                 const actionUL = createElement("ul", { parent: document.body, class: "dropdown-menu", style: { display: "none" } });
@@ -27873,8 +28117,8 @@ class TreeView {
             name: headerOptions.text,
             actions: headerOptions.actions,
             actionsWithRoot: headerOptions.actionsWithRoot,
-            typeIcon: '',
-            typeIconColor: '',
+            typeIcon: { icon: "" },
+            itemIcons: [],
         }, true);
         header.rowContainer.style.height = "23px";
         return header;
@@ -27884,12 +28128,11 @@ function createIndent(newItem) {
     Array.from(new Array(newItem.level)).forEach(each => newItem.indent.appendChild(createDiv({ class: "indent-guide" })));
 }
 function setIcon(item) {
-    const iconValue = getIconText(item);
-    item.contents.typeIcon.style.color = item.typeIconColor;
-    item.contents.typeIcon.className = item.typeIcon;
-    item.contents.collapseIcon.className = iconValue;
+    item.contents.typeIcon.style.color = item.typeIcon.color || "";
+    item.contents.typeIcon.className = item.typeIcon.icon;
+    item.contents.collapseIcon.className = getCollapseIcon(item);
 }
-function getIconText(item) {
+function getCollapseIcon(item) {
     var _a;
     const hasChildren = ((_a = item.children) === null || _a === void 0 ? void 0 : _a.length) || 0 > 0;
     if (!hasChildren) {
@@ -27903,6 +28146,9 @@ function findLastLeaf(item) {
         return findLastLeaf(children[children.length - 1]);
     }
     return item;
+}
+function createIconDiv(icon) {
+    return createDiv({ style: { minWidth: "10px", color: icon.color }, class: icon.icon, pureClass: true, text: icon.text });
 }
 function findEventTargetWithClass(event, searchClass) {
     const realSearch = "qcloud-tree-" + searchClass;
@@ -27921,22 +28167,18 @@ function appendChildren(parent, elements) {
 function createDiv(options = {}) {
     const div = document.createElement("div");
     if (options.text) {
-        if (!options.icon) {
-            div.textContent = options.text;
-        }
-        if (options.icon) {
-            div.className = options.icon;
-        }
+        div.textContent = options.text;
     }
     if (options.style) {
         Object.keys(options.style).forEach(style => div.style[style] = options.style[style]);
     }
     if (options.class) {
+        const classPrefix = options.pureClass ? "" : "qcloud-tree-";
         if (options.class instanceof Array) {
-            options.class.forEach(eachClass => div.classList.add("qcloud-tree-" + eachClass));
+            options.class.forEach(eachClass => div.classList.add(classPrefix + eachClass));
         }
         else {
-            div.classList.add("qcloud-tree-" + options.class);
+            div.className = classPrefix + options.class;
         }
     }
     return div;

@@ -15,9 +15,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tsyringe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tsyringe */ "./node_modules/tsyringe/dist/esm5/index.js");
 /* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 /* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
-/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../domain/useCase/IUpdateApplication */ "./src/domain/useCase/IUpdateApplication.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../domain/infrastructure/IDebounce */ "./src/domain/infrastructure/IDebounce.ts");
+/* harmony import */ var _domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../domain/useCase/IApplicationSettings */ "./src/domain/useCase/IApplicationSettings.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+
 
 
 
@@ -31,45 +33,22 @@ __webpack_require__.r(__webpack_exports__);
     emits: ["close"],
     setup(__props, { expose, emit }) {
         expose();
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(async () => {
-            var _a;
-            gitProducts.value.products = await providerApi.getProducts();
-            gitProducts.value.loaded = true;
-            selectedProduct.value = {
-                name: ((_a = gitProducts.value.products.find((product) => currentApp.value.deployParameters.gitProductRepoId == product.id)) === null || _a === void 0 ? void 0 : _a.name) || "",
-                ID: currentApp.value.deployParameters.gitProductRepoId || 0,
-            };
-            const fetchedGroups = await providerApi.getGitGroups();
-            fetchedGroups.forEach((fetchedGroup) => gitGroups.value.groups.push({
-                value: fetchedGroup,
-                microservicesCache: [],
-                requrestedBefore: false,
-            }));
-            gitGroups.value.loaded = true;
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
+            fillDatatableRow();
+            getProductsFromProvider();
+            getGitGroupsFromProvider();
         });
         const localization = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_3__.ILocalization);
         const viewModel = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_2__.IViewModel);
-        const providerApi = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_4__.IProviderApi);
-        const executor = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__.IUseCaseExecutor);
+        const executor = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__.IUseCaseExecutor);
+        const notification = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification);
+        const appSettingsUseCase = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_6__.IApplicationSettings);
+        const debouncer = tsyringe__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_5__.IDebounce);
         const gitProducts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ products: [], loaded: false });
         const gitGroups = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ groups: [], loaded: false });
         const currentApp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(viewModel.apps.find((app) => app.ID == viewModel.studio.appId));
         const selectedProduct = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ ID: 0, name: "" });
-        const dataTableRows = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(viewModel.studio.items
-            .filter((item) => item.objectType === "module")
-            .map((item) => {
-            const module = {
-                moduleID: item.ID,
-                moduleName: item.name,
-                gitGroupName: "",
-                gitGroupID: 0,
-                microservices: [],
-                microservicesDisable: true,
-                microserviceName: "",
-                microserviceID: 0,
-            };
-            return module;
-        }));
+        const dataTableRows = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(Array());
         const appDatatableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["moduleName", "gitGroup", "microservice"]);
         const optionsDataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
             filterable: false,
@@ -85,6 +64,88 @@ __webpack_require__.r(__webpack_exports__);
                 count: "",
             },
         });
+        function fillDatatableRow() {
+            dataTableRows.value = viewModel.studio.items
+                .filter((item) => item.objectType === "module")
+                .map((item) => {
+                var _a, _b;
+                const module = {
+                    moduleID: item.ID,
+                    moduleName: item.name,
+                    gitGroupName: "",
+                    gitGroupID: ((_a = item.deployParameters) === null || _a === void 0 ? void 0 : _a.gitGroupId) || 0,
+                    microservices: [],
+                    microservicesDisable: true,
+                    microserviceName: "",
+                    microserviceID: ((_b = item.deployParameters) === null || _b === void 0 ? void 0 : _b.gitServiceRepoId) || 0,
+                };
+                return module;
+            });
+        }
+        function getProductsFromProvider() {
+            appSettingsUseCase
+                .getProjectsOfProduct()
+                .then((data) => {
+                gitProducts.value.products = data;
+                gitProducts.value.loaded = true;
+                setSelectedProduct();
+            })
+                .catch(() => notification.showNotification({ text: "Error while fetching products", type: "error" }));
+        }
+        function setSelectedProduct() {
+            var _a;
+            selectedProduct.value = {
+                name: ((_a = gitProducts.value.products.find((product) => currentApp.value.deployParameters.gitProductRepoId == product.id)) === null || _a === void 0 ? void 0 : _a.name) || "",
+                ID: currentApp.value.deployParameters.gitProductRepoId || 0,
+            };
+        }
+        async function getGitGroupsFromProvider() {
+            appSettingsUseCase
+                .getGroupNamesWithId()
+                .then((data) => {
+                data.forEach((fetchedGroup) => gitGroups.value.groups.push({
+                    value: fetchedGroup,
+                    microservicesCache: [],
+                    requestedBefore: false,
+                }));
+                gitGroups.value.loaded = true;
+                setSelectedGitGroupsAndServices();
+            })
+                .catch(() => notification.showNotification({
+                text: "Error while fetching git groups",
+                type: "error",
+            }));
+        }
+        function setSelectedGitGroupsAndServices() {
+            dataTableRows.value.forEach((row) => {
+                const group = gitGroups.value.groups.find((group) => group.value.id == row.gitGroupID);
+                if (!!row.gitGroupID && group) {
+                    row.gitGroupName = group.value.name;
+                    appSettingsUseCase
+                        .getProjectsByGroupId(row.gitGroupID)
+                        .then((data) => {
+                        row.microservices = data;
+                        const group = gitGroups.value.groups.find((group) => group.value.id == row.gitGroupID);
+                        if (group) {
+                            group.microservicesCache = data;
+                            group.requestedBefore = true;
+                        }
+                        const microservice = row.microservices.find((microservice) => microservice.id === row.microserviceID);
+                        if (microservice) {
+                            row.microserviceName = microservice.name;
+                            row.microservicesDisable = false;
+                        }
+                        else {
+                            row.microserviceID = 0;
+                        }
+                    })
+                        .catch(() => notification.showNotification({
+                        text: "Error while fetching projects",
+                        type: "error",
+                    }));
+                }
+            });
+        }
         function handleProductSelect() {
             const product = gitProducts.value.products.find((product) => product.name === selectedProduct.value.name);
             if (product) {
@@ -96,6 +157,7 @@ __webpack_require__.r(__webpack_exports__);
             }
         }
         async function handleGitGroupInput(selectedRow) {
+            debouncer.resetTimer();
             const selectedGitGroup = gitGroups.value.groups.find((gitGroup) => gitGroup.value.name === selectedRow.gitGroupName);
             const currentRow = dataTableRows.value.find((row) => row.moduleID == selectedRow.moduleID);
             currentRow.microservicesDisable = true;
@@ -105,20 +167,24 @@ __webpack_require__.r(__webpack_exports__);
             if (selectedGitGroup) {
                 currentRow.gitGroupID = selectedGitGroup.value.id;
                 currentRow.gitGroupName = selectedGitGroup.value.name;
-                if (!selectedGitGroup.requrestedBefore) {
-                    currentRow.microservices = await providerApi.getProjectsByGroupId(selectedGitGroup.value.id);
-                    selectedGitGroup.microservicesCache = currentRow.microservices;
-                    selectedGitGroup.requrestedBefore = true;
+                if (!selectedGitGroup.requestedBefore) {
+                    debouncer.debounce(getMicroservicesByGroupID, 500, selectedGitGroup, currentRow);
                 }
                 else {
                     currentRow.microservices = selectedGitGroup.microservicesCache;
+                    currentRow.microservicesDisable = !currentRow.microservices.length;
                 }
-                currentRow.microservicesDisable = !currentRow.microservices.length;
             }
             else {
                 currentRow.gitGroupName = selectedRow.gitGroupName;
                 currentRow.gitGroupID = 0;
             }
+        }
+        async function getMicroservicesByGroupID(selectedGitGroup, currentRow) {
+            currentRow.microservices = await appSettingsUseCase.getProjectsByGroupId(selectedGitGroup.value.id);
+            selectedGitGroup.microservicesCache = currentRow.microservices;
+            selectedGitGroup.requestedBefore = true;
+            currentRow.microservicesDisable = !currentRow.microservices.length;
         }
         async function handleGitGroupChange(selectedRow) {
             var _a, _b;
@@ -139,47 +205,40 @@ __webpack_require__.r(__webpack_exports__);
             currentRow.microserviceName = (selectedMicroservice === null || selectedMicroservice === void 0 ? void 0 : selectedMicroservice.name) || "";
             currentRow.microserviceID = (selectedMicroservice === null || selectedMicroservice === void 0 ? void 0 : selectedMicroservice.id) || 0;
         }
-        function onSave() {
+        async function onSave() {
+            var _a;
             if (currentApp.value) {
-                const moduleSettingsItems = dataTableRows.value.map((row) => ({
+                let settings = {};
+                const modulesSettings = dataTableRows.value
+                    .filter((row) => {
+                    var _a;
+                    return row.microserviceID !=
+                        ((_a = viewModel.studio.items.find((item) => item.ID == row.moduleID)
+                            .deployParameters) === null || _a === void 0 ? void 0 : _a.gitServiceRepoId);
+                })
+                    .map((row) => ({
                     moduleID: row.moduleID,
-                    deployParameters: { gitGroupId: row.gitGroupID, gitServiceRepoId: row.microserviceID },
+                    deployParameters: {
+                        gitGroupId: row.gitGroupID,
+                        gitServiceRepoId: row.microserviceID,
+                    },
                 }));
-                executor.execute(async () => {
-                    await executor.executeUseCase(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_6__.IUpdateApplication, {
-                        ID: currentApp.value.ID,
-                        deployParameters: {
-                            gitProductRepoId: selectedProduct.value.ID,
-                        },
-                    });
+                const applicationSettings = {
+                    applicationID: currentApp.value.ID,
+                    deployParameters: {
+                        gitProductRepoId: selectedProduct.value.ID,
+                    },
+                };
+                settings = { modulesSettings };
+                if (((_a = currentApp.value.deployParameters) === null || _a === void 0 ? void 0 : _a.gitProductRepoId) != selectedProduct.value.ID) {
+                    settings = { ...settings, applicationSettings };
+                }
+                await executor.execute(async () => {
+                    await appSettingsUseCase.update(settings);
                 }, { loading: true });
-                if (currentApp.value.deployParameters) {
-                    currentApp.value.deployParameters.gitProductRepoId = selectedProduct.value.ID;
-                }
-                else {
-                    currentApp.value.deployParameters = { gitProductRepoId: selectedProduct.value.ID };
-                }
-                const items = viewModel.studio.items;
-                items.forEach((item) => {
-                    if (item.objectType == "module") {
-                        const dataTableRow = dataTableRows.value.find((row) => row.moduleID == item.ID);
-                        if (dataTableRow) {
-                            if (item.deployParameters) {
-                                item.deployParameters.gitGroupId = dataTableRow.gitGroupID;
-                                item.deployParameters.gitServiceRepoId = dataTableRow.microserviceID;
-                            }
-                            else {
-                                item.deployParameters = {
-                                    gitGroupId: dataTableRow.gitGroupID,
-                                    gitServiceRepoId: dataTableRow.microserviceID,
-                                };
-                            }
-                        }
-                    }
-                });
             }
         }
-        const __returned__ = { emit, localization, viewModel, providerApi, executor, gitProducts, gitGroups, currentApp, selectedProduct, dataTableRows, appDatatableColumns, optionsDataTable, handleProductSelect, handleGitGroupInput, handleGitGroupChange, handleMicroServiceChange, onSave };
+        const __returned__ = { emit, localization, viewModel, executor, notification, appSettingsUseCase, debouncer, gitProducts, gitGroups, currentApp, selectedProduct, dataTableRows, appDatatableColumns, optionsDataTable, fillDatatableRow, getProductsFromProvider, setSelectedProduct, getGitGroupsFromProvider, setSelectedGitGroupsAndServices, handleProductSelect, handleGitGroupInput, getMicroservicesByGroupID, handleGitGroupChange, handleMicroServiceChange, onSave };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
