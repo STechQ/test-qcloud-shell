@@ -33,10 +33,10 @@ __webpack_require__.r(__webpack_exports__);
         };
         props.functions.setModel = async (model, state) => {
             console.log("incomming model", model);
-            //model.bpmn.then((xml: string) => bpmnModeler.importDiagramXML(xml));
+            // model.bpmn.then((xml: string) => bpmnModeler.importDiagramXML(xml));
             bpmnModeler.importDiagramXML(model.bpmn);
-            setInterval(() => { if (bpmnModeler.isModified())
-                props.callbacks.modified(); }, 5000);
+            // setInterval(() => {if (bpmnModeler.isModified()) props.callbacks.modified({state: false, model: true})}, 5000);
+            bpmnModeler.on('commandStack.changed', () => { props.callbacks.modified({ state: false, model: true }); });
         };
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(() => {
             bpmnModeler = new (_stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_1___default())({ lang: 'tr', container: "#processEditorCanvas" });
@@ -62,9 +62,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<link rel=\"stylesheet\" href=\"../vendor/bpmn-js/assets/diagram-js.css\"><link rel=\"stylesheet\" href=\"../vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css\"><link rel=\"stylesheet\" href=\"../vendor/bpmn-js-properties-panel/assets/bpmn-js-properties-panel.css\"><link rel=\"stylesheet\" href=\"../vendor/bpmn-js-token-simulation/assets/css/normalize.css\"><link rel=\"stylesheet\" href=\"../vendor/bpmn-js-token-simulation/assets/css/bpmn-js-token-simulation.css\"><link rel=\"stylesheet\" href=\"https://unpkg.com/@bpmn-io/form-js@0.5.1/dist/assets/form-js.css\"><div class=\"content with-diagram\"><div class=\"canvas\" style=\"width:100%;height:500px;\" id=\"processEditorCanvas\"></div><div style=\"border:1px solid #aaa;height:500px;overflow-x:hidden;overflow-y:auto;\" class=\"properties-panel-parent\" id=\"js-properties-panel\"></div></div>", 7);
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("link", {
+    rel: "stylesheet",
+    href: "../vendor/bpmn-js/assets/diagram-js.css"
+}, null, -1 /* HOISTED */);
+const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("link", {
+    rel: "stylesheet",
+    href: "../vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css"
+}, null, -1 /* HOISTED */);
+const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("link", {
+    rel: "stylesheet",
+    href: "../vendor/bpmn-js-properties-panel/assets/bpmn-js-properties-panel.css"
+}, null, -1 /* HOISTED */);
+const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<link rel=\"stylesheet\" href=\"../vendor/bpmn-js-token-simulation/assets/css/bpmn-js-token-simulation.css\"><link rel=\"stylesheet\" href=\"https://unpkg.com/@bpmn-io/form-js@0.5.1/dist/assets/form-js.css\"><div class=\"content with-diagram\"><div class=\"canvas\" style=\"width:100%;height:500px;\" id=\"processEditorCanvas\"></div><div style=\"border:1px solid #aaa;height:500px;overflow-x:hidden;overflow-y:auto;\" class=\"properties-panel-parent\" id=\"js-properties-panel\"></div></div>", 3);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    return _hoisted_1;
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+        _hoisted_1,
+        _hoisted_2,
+        _hoisted_3,
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  link rel=\"stylesheet\" href=\"../vendor/bpmn-js-token-simulation/assets/css/normalize.css\" / "),
+        _hoisted_4
+    ], 64 /* STABLE_FRAGMENT */));
 }
 
 

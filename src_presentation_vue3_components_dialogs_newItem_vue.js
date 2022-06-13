@@ -141,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
                         model.processDefinition.processName = name.value;
                         model.processDefinition.processFileName = name.value;
                         createObject = {
-                            name: name.value + ".process",
+                            name: name.value,
                             parentObjectId: props.parentId,
                             modelType: "process",
                             modelBody: [{ key: "process", model }],
