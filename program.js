@@ -20217,7 +20217,10 @@ let CreateModuleImpl = class CreateModuleImpl {
         const name = param.name;
         this.module = { ID: "", synced: false, objectType: "module", name, children: [] };
         this.viewModelManager.moduleCreated(this.module);
-        const createdModule = await this.qcloudApi.createModule(name, param.ownerProjects);
+        const createdModule = await this.qcloudApi.createModule(name, {
+            description: param.description,
+            applicationID: param.applicationID
+        });
         this.module.ID = createdModule.ID;
         this.module.synced = true;
         this.fileExplorer.addNewItem(this.module);
@@ -20321,7 +20324,7 @@ let FileExplorer = class FileExplorer {
                     return treeItem;
                 case "model":
                     if (item.modelType == 'qjson' || item.modelType == 'js' || item.modelType == 'yaml') {
-                        treeItem.typeIcon.icon = 'mdi mdi-application-brackets-outline ';
+                        treeItem.typeIcon.icon = 'mdi mdi-palette';
                         treeItem.typeIcon.color = '#449DD1';
                     }
                     if (item.modelType == 'entityDesigner') {
@@ -20329,11 +20332,11 @@ let FileExplorer = class FileExplorer {
                         treeItem.typeIcon.color = '#E9724C';
                     }
                     if (item.modelType == 'bpmn') {
-                        treeItem.typeIcon.icon = 'mdi mdi-codepen ';
-                        treeItem.typeIcon.color = '#BF63E9';
+                        treeItem.typeIcon.icon = 'mdi mdi-vector-polyline';
+                        treeItem.typeIcon.color = '#007C77';
                     }
                     if (item.modelType == 'process') {
-                        treeItem.typeIcon.icon = 'mdi mdi-source-branch';
+                        treeItem.typeIcon.icon = 'mdi mdi-auto-fix';
                         treeItem.typeIcon.color = '#007C77';
                     }
                     const checkoutIcon = { icon: "mdi mdi-arrow-bottom-right-bold-outline" };
@@ -26570,7 +26573,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.8"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.9"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -27378,8 +27381,8 @@ let QCloudApiImpl = class QCloudApiImpl {
         };
         return retVal;
     }
-    async createModule(name, ownerProjects) {
-        const module = await this.request("/addmodule", { name, ownerProjects });
+    async createModule(name, options) {
+        const module = await this.request("/addmodule", { name, ...options });
         const retVal = { ID: module.ID, name, objectType: "module", children: [], synced: true };
         return retVal;
     }
@@ -28376,9 +28379,10 @@ const langData = {
     applicationListpagesHeader: "Pages",
     applicationListtemplatesHeader: "Templates",
     applicationListactionsHeader: "Actions",
-    exportName: 'Name',
-    exportcreateDate: 'CreateDate',
-    exportcreatedBy: 'CreatedBy',
+    description: "Description",
+    exportName: "Name",
+    exportcreateDate: "CreateDate",
+    exportcreatedBy: "CreatedBy",
     exportupdateDate: "UpdateDate",
     exportupdatedBy: "UpdatedBy",
     exportshortComment: "ShortComment",
@@ -28387,7 +28391,8 @@ const langData = {
     gitGroup: "Git Group",
     microservice: "Microservice",
     close: "Close",
-    save: "Save"
+    save: "Save",
+    deployTip: "You must set deploy settings.",
 };
 
 

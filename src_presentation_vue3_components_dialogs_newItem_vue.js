@@ -56,6 +56,7 @@ __webpack_require__.r(__webpack_exports__);
         const isFolder = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
         const isModel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
         const name = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+        const description = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
         const isEntity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
         const isScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
         const isProcess = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
@@ -78,7 +79,8 @@ __webpack_require__.r(__webpack_exports__);
                 if (isModule.value) {
                     await executor.executeUseCase(_domain_useCase_ICreateModule__WEBPACK_IMPORTED_MODULE_4__.ICreateModule, {
                         name: name.value,
-                        ownerProjects: [props.parentId],
+                        applicationID: props.parentId,
+                        description: description.value
                     });
                     emit("close");
                 }
@@ -238,7 +240,7 @@ __webpack_require__.r(__webpack_exports__);
                 processNameErrorLabel.value = (0,_editors_processEditor_validation_validation__WEBPACK_IMPORTED_MODULE_7__.checkInputStartsWithLetter)(name.value);
             }
         }
-        const __returned__ = { props, viewModel, executor, dialog, studio, processEditorUtil, emit, isModule, isFolder, isModel, name, isEntity, isScreen, isProcess, isEmptyPage, isQuickComponent, isQuickTemplate, isImportFromFile, isGenerateFromEntity, createButtonVisibility, processNameErrorLabel, entities, generateScreenTypes, selectedEntity, selectedGenerateScreenType, create, setAllSubRadiosFalse, onTypeSelect, upload, handleProcessName };
+        const __returned__ = { props, viewModel, executor, dialog, studio, processEditorUtil, emit, isModule, isFolder, isModel, name, description, isEntity, isScreen, isProcess, isEmptyPage, isQuickComponent, isQuickTemplate, isImportFromFile, isGenerateFromEntity, createButtonVisibility, processNameErrorLabel, entities, generateScreenTypes, selectedEntity, selectedGenerateScreenType, create, setAllSubRadiosFalse, onTypeSelect, upload, handleProcessName };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -339,6 +341,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     placeholder: "Name"
                 }, null, 512 /* NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
+                ]),
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                    "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => (($setup.description) = $event)),
+                    placeholder: "Description"
+                }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.description]
                 ])
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -346,7 +354,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ($setup.isEntity)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                    "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => (($setup.name) = $event)),
+                    "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => (($setup.name) = $event)),
                     placeholder: "Entity Name"
                 }, null, 512 /* NEED_PATCH */), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
@@ -357,7 +365,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ($setup.isProcess)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                    "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => (($setup.name) = $event)),
+                    "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => (($setup.name) = $event)),
                     placeholder: "Process Name",
                     onInput: $setup.handleProcessName
                 }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
@@ -378,7 +386,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             type: "radio",
                             name: "radio",
                             value: "emptyPage",
-                            onChange: _cache[7] || (_cache[7] = ($event) => ($setup.onTypeSelect('emptyPage')))
+                            onChange: _cache[8] || (_cache[8] = ($event) => ($setup.onTypeSelect('emptyPage')))
                         }, null, 32 /* HYDRATE_EVENTS */),
                         _hoisted_16
                     ]),
@@ -387,7 +395,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             type: "radio",
                             name: "radio",
                             value: "quickComponent",
-                            onChange: _cache[8] || (_cache[8] = ($event) => ($setup.onTypeSelect('quickComponent')))
+                            onChange: _cache[9] || (_cache[9] = ($event) => ($setup.onTypeSelect('quickComponent')))
                         }, null, 32 /* HYDRATE_EVENTS */),
                         _hoisted_17
                     ]),
@@ -396,7 +404,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             type: "radio",
                             name: "radio",
                             value: "quickTemplate",
-                            onChange: _cache[9] || (_cache[9] = ($event) => ($setup.onTypeSelect('quickTemplate')))
+                            onChange: _cache[10] || (_cache[10] = ($event) => ($setup.onTypeSelect('quickTemplate')))
                         }, null, 32 /* HYDRATE_EVENTS */),
                         _hoisted_18
                     ]),
@@ -405,7 +413,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             type: "radio",
                             name: "radio",
                             value: "importFromFile",
-                            onChange: _cache[10] || (_cache[10] = ($event) => ($setup.onTypeSelect('importFromFile')))
+                            onChange: _cache[11] || (_cache[11] = ($event) => ($setup.onTypeSelect('importFromFile')))
                         }, null, 32 /* HYDRATE_EVENTS */),
                         _hoisted_19
                     ]),
@@ -414,7 +422,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 ($setup.isEmptyPage || $setup.isQuickComponent || $setup.isQuickTemplate)
                     ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                            "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => (($setup.name) = $event)),
+                            "onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => (($setup.name) = $event)),
                             placeholder: "Screen Name"
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
@@ -424,7 +432,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 ($setup.isImportFromFile)
                     ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                            "onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => (($setup.name) = $event)),
+                            "onUpdate:modelValue": _cache[13] || (_cache[13] = ($event) => (($setup.name) = $event)),
                             placeholder: "Screen Name"
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.name]
@@ -432,7 +440,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                                 type: "file",
-                                onChange: _cache[13] || (_cache[13] = ($event) => ($setup.upload($event))),
+                                onChange: _cache[14] || (_cache[14] = ($event) => ($setup.upload($event))),
                                 accept: ".qjson"
                             }, null, 32 /* HYDRATE_EVENTS */)
                         ])
@@ -448,7 +456,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ($setup.createButtonVisibility)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                    onClick: _cache[14] || (_cache[14] = ($event) => ($setup.create())),
+                    onClick: _cache[15] || (_cache[15] = ($event) => ($setup.create())),
                     disabled: $setup.isProcess ? !!$setup.processNameErrorLabel.length || !$setup.name.length : false
                 }, "Create", 8 /* PROPS */, _hoisted_24)
             ]))
