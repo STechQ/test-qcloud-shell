@@ -22709,7 +22709,7 @@ const appSettings = appSettingsDict = {
     },
     cloud: {
         hostnames: ["github.io", "localhost"],
-        qcloudApiUrl: "https://localhost:5006/sym/",
+        qcloudApiUrl: "https://qcloud-sym.herokuapp.com/sym/",
         providerApiUrl: "https://studio.onplateau.com/provider/",
         networkTimeout: 60000,
         debugging: true,
@@ -26592,7 +26592,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.10"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.11"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
