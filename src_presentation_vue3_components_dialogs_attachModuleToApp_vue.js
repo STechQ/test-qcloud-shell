@@ -14,8 +14,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+
+
 
 
 
@@ -27,11 +31,13 @@ __webpack_require__.r(__webpack_exports__);
     emits: ["close"],
     setup(__props, { expose, emit }) {
         expose();
-        const viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_4__.IViewModel);
-        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__.IUseCaseExecutor);
+        const viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_6__.IViewModel);
+        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__.IUseCaseExecutor);
         const localization = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_2__.ILocalization);
-        const tableData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([{ name: "aaaa", description: "bbbbb" }]);
-        const tableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["name", "description"]);
+        const objectUseCase = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_3__.IObjectUseCase);
+        const studio = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_4__.IStudio);
+        const tableData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+        const tableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["name", "description", "createDate", "createdBy", "actions"]);
         const tableOptions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
             filterable: false,
             perPage: 5,
@@ -39,13 +45,25 @@ __webpack_require__.r(__webpack_exports__);
             headings: {
                 name: localization.get("moduleName"),
                 description: localization.get("description"),
+                createDate: localization.get("createDate"),
+                createdBy: localization.get("createdBy"),
+                actions: "",
             },
             sortable: [],
             texts: {
                 count: "",
             },
         });
-        const __returned__ = { viewModel, executor, localization, emit, tableData, tableColumns, tableOptions };
+        executor.execute(async () => {
+            tableData.value = await objectUseCase.listModules();
+        }, { loading: true });
+        function add(moduleItem) {
+            executor.execute(async () => {
+                const applicationID = viewModel.studio.appId;
+                await studio.attachModuletoApplication(moduleItem, applicationID);
+            }, { loading: true });
+        }
+        const __returned__ = { viewModel, executor, localization, objectUseCase, studio, emit, tableData, tableColumns, tableOptions, add };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -66,6 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
+const _hoisted_1 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_v_client_table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("v-client-table");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
@@ -74,7 +93,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             data: $setup.tableData,
             columns: $setup.tableColumns,
             options: $setup.tableOptions
-        }, null, 8 /* PROPS */, ["data", "columns", "options"])
+        }, {
+            actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                    onClick: ($event) => ($setup.add(props.row))
+                }, "Attach", 8 /* PROPS */, _hoisted_1)
+            ]),
+            _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["data", "columns", "options"])
     ]));
 }
 

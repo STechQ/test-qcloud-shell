@@ -19656,8 +19656,11 @@ const appStartUp = {
                     sbm: container.resolve(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager),
                     sm: container.resolve(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager),
                 };
-                const env = config.getEnvironmentName();
-                window._dev_22_0_22_0_22 = { container, vmm, managers, env }; // 18.02.2022 -> 22.02.2022 -> 22 0 22 0 22 :)
+                const conf = {
+                    env: config.getEnvironmentName(),
+                    ver: config.getVersion(),
+                };
+                window._dev_22_0_22_0_22 = { container, vmm, managers, conf }; // 18.02.2022 -> 22.02.2022 -> 22 0 22 0 22 :)
             }
         });
     }
@@ -20310,7 +20313,8 @@ let FileExplorer = class FileExplorer {
         }
         return this._feTreeview;
     }
-    convertToTreeItems(items, namedCompTreeItem, settingsTreeItem) {
+    convertToTreeItems(items) {
+        const settingsItems = [];
         const converter = (items) => items.map(item => {
             // const delAction: IActionItem = { type: "IActionSingleItem", name: "Del", selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) };
             const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [], };
@@ -20319,8 +20323,17 @@ let FileExplorer = class FileExplorer {
                 case "module":
                     treeItem.typeIcon.icon = 'mdi mdi-puzzle';
                     treeItem.children = converter(item.children);
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "Add", icon: 'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
+                    // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "Add",icon:'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
                     treeItem.actions.unshift({ type: "IActionSingleItem", name: "Edit", icon: 'mdi mdi-pencil', selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) });
+                    treeItem.actions.push({
+                        type: "IActionMenuItem", name: "Add", icon: 'mdi mdi-plus', children: [
+                            // { name: "Folder",icon:"mdi mdi-folder", color:'red', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Folder'), { loading: true }) },
+                            { name: "UI Screen", icon: "mdi mdi-palette", color: '#449DD1', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Screen'), { loading: true }) },
+                            { name: "Entity", icon: "mdi mdi-database", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Entity'), { loading: true }) },
+                            { name: "Process Diagram", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Diagram'), { loading: true }) },
+                            // { name: "Process Wizard",icon:"mdi mdi-vector-polyline", color:'red', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) }
+                        ]
+                    });
                     return treeItem;
                 case "model":
                     if (item.modelType == 'qjson' || item.modelType == 'js' || item.modelType == 'yaml') {
@@ -20371,14 +20384,10 @@ let FileExplorer = class FileExplorer {
                         const target = newValue.model ? "addItemIcon" : "removeItemIcon";
                         this.feTreeview[target](item.ID, modifiedIcon);
                     });
-                    if (item.modelType == "namedComponent") {
-                        namedCompTreeItem.children.push(treeItem);
-                        return undefined;
-                    } // until namedComp editor is moved, inside quick -> IDE
                     if (item.usageType == "appSettings") {
-                        settingsTreeItem.children.push(treeItem);
+                        settingsItems.push(treeItem);
                         return undefined;
-                    } // until namedComp editor is moved, inside quick -> IDE
+                    }
                     treeItem.cb = {
                         select: this.executor.wrap(() => this.onItemSelect(item), { loading: true }),
                     };
@@ -20397,14 +20406,13 @@ let FileExplorer = class FileExplorer {
                     return treeItem;
             }
         }).filter((item) => item != undefined);
-        const retVal = converter(items);
-        return retVal;
+        const treeItems = converter(items);
+        return { treeItems, settingsItems };
     }
     addNewItem(item, parentId) {
-        let namedCompTreeItem = this.feTreeview.getItem("001");
-        let settingsTreeItem = this.feTreeview.getItem("002");
-        const convertedItem = this.convertToTreeItems([item], namedCompTreeItem, settingsTreeItem);
-        this.feTreeview.addItem(convertedItem, parentId);
+        const convertedItems = this.convertToTreeItems([item]);
+        this.feTreeview.addItem(convertedItems.treeItems, parentId);
+        this.feTreeview.addItem(convertedItems.settingsItems, "002");
     }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
@@ -20415,12 +20423,10 @@ let FileExplorer = class FileExplorer {
     }
     loadFileExplorer(rootDiv) {
         this.createFileExplorerTreeView(rootDiv);
-        const namedCompTreeItem = { id: "001", name: "Named Components", typeIcon: { icon: "" }, children: [], };
-        const settingsTreeItem = { id: "002", name: "Settings", typeIcon: { icon: "" }, children: [], };
-        const frontItems = this.convertToTreeItems(this.viewModel.studio.items, namedCompTreeItem, settingsTreeItem);
-        frontItems.unshift(namedCompTreeItem);
-        frontItems.unshift(settingsTreeItem);
-        this.feTreeview.addItem(frontItems);
+        const frontItems = this.convertToTreeItems(this.viewModel.studio.items);
+        const settingsTreeItem = { id: "002", name: "Settings", typeIcon: { icon: "" }, children: frontItems.settingsItems, };
+        frontItems.treeItems.unshift(settingsTreeItem);
+        this.feTreeview.addItem(frontItems.treeItems);
         // this.feTreeview.setHeader({
         //     text: this.viewModel.studio.appName, actions: [
         //         { name: "+Add", selectCb: () => this.onNewItemSelect(this.viewModel.studio.appId, "application") },
@@ -20428,8 +20434,8 @@ let FileExplorer = class FileExplorer {
         //     ], actionsWithRoot: true
         // });
     }
-    async onNewItemSelect(parentId, parentName, parentType) {
-        this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New Item", closeOnOutClick: true }, { parentId, parentName, parentType });
+    async onNewItemSelect(parentId, parentName, parentType, createType) {
+        this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New" + '    ' + createType, closeOnOutClick: true }, { parentId, parentName, parentType, createType });
     }
     checkinDailog(item) {
         debugger;
@@ -21347,6 +21353,10 @@ let ObjectUseCaseImpl = class ObjectUseCaseImpl {
         this.viewModelManager.removeObject(item);
         this.notification.showNotification({ text: `'${item.name}' deleted successfully`, type: "success" });
     }
+    async listModules(applicationID) {
+        const modules = await this.qcloudApi.listModules(applicationID);
+        return modules;
+    }
 };
 ObjectUseCaseImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
@@ -21966,6 +21976,15 @@ let Studio = class Studio {
         }
         const targetEditor = this.editorManager.getEditor(item);
         await targetEditor.setModel(item);
+    }
+    async attachModuletoApplication(module, applicationID) {
+        await this.qcloudApi.attachModuletoApplication(applicationID, module.ID);
+        this.fileExplorer.addNewItem(module);
+        this.notification.showNotification({ text: `'${module.name}' attached to current application successfully`, type: "success" });
+    }
+    async detachModuleFromApplication(module, applicationID) {
+        await this.qcloudApi.detachModuleFromApplication(applicationID, module.ID);
+        this.notification.showNotification({ text: `'${module.name}' detached from current application successfully`, type: "success" });
     }
     nav_addNavItems(addItems) {
         this.viewModel.studio.ui = this.defaultUI();
@@ -22690,7 +22709,7 @@ const appSettings = appSettingsDict = {
     },
     cloud: {
         hostnames: ["github.io", "localhost"],
-        qcloudApiUrl: "https://qcloud-sym.herokuapp.com/sym",
+        qcloudApiUrl: "https://localhost:5006/sym/",
         providerApiUrl: "https://studio.onplateau.com/provider/",
         networkTimeout: 60000,
         debugging: true,
@@ -26573,7 +26592,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.9"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.10"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -27458,6 +27477,17 @@ let QCloudApiImpl = class QCloudApiImpl {
         const apps = await this.request("/listapps", { getDetails });
         return apps;
     }
+    async listModules(applicationID) {
+        const modules = await this.request("/listmodules", { applicationID });
+        const retVal = modules.map(i => {
+            return {
+                ID: i.ID, name: i.name, description: i.description, createDate: i.createDate, createdBy: i.createdBy,
+                objectType: "module", children: [], relatedApplications: i.relatedApplications, synced: true,
+                deployParameters: i.deployParameters
+            };
+        });
+        return retVal;
+    }
     async getApplicationDetails(appID) {
         const details = await this.request("/getappdetails", { appID });
         return details;
@@ -28078,7 +28108,7 @@ class TreeView {
                 action.children.forEach(child => {
                     const li = createElement("li", { parent: actionUL });
                     const div = createElement("div", { parent: li, class: "dropdown-item-div", events: { click: () => { var _a; (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this); child.selectCb(); } } });
-                    const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.name == 'Delete' ? child.color : '' } });
+                    const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.color ? child.color : 'black' } });
                     const a = createElement("a", { parent: div, class: "dropdown-item", text: child.name, style: { color: child.name == 'Delete' ? child.color : '' } });
                     a.href = "#";
                     i.className = child.icon;
@@ -28379,6 +28409,8 @@ const langData = {
     applicationListpagesHeader: "Pages",
     applicationListtemplatesHeader: "Templates",
     applicationListactionsHeader: "Actions",
+    createDate: "Create Date",
+    createdBy: "Created By",
     description: "Description",
     exportName: "Name",
     exportcreateDate: "CreateDate",
@@ -28393,6 +28425,7 @@ const langData = {
     close: "Close",
     save: "Save",
     deployTip: "You must set deploy settings.",
+    cancel: "Cancel",
 };
 
 
