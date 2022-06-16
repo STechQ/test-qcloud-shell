@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.margin[data-v-6f76e239] {\n    margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/studio/savePlus.vue"],"names":[],"mappings":";AAiEA;IACI,iBAAiB;AACrB","sourcesContent":["<script setup lang=\"ts\">\nimport { computed } from '@vue/reactivity';\nimport { ref } from 'vue';\nimport { container } from '../../../../../domain/core/diContainer';\nimport { IConfig } from '../../../../../domain/infrastructure/IConfig';\nimport { IModel } from '../../../../../domain/model/models';\nimport { IStudio } from '../../../../../domain/useCase/IStudio';\nimport { IUseCaseExecutor } from '../../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from '../../../../../domain/viewModel/IViewModel';\ninterface ICheckinItem {\n    app: IModel\n}\n\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst studio = container.resolve<IStudio>(IStudio);\nconst config = container.resolve<IConfig>(IConfig);\n\nconst currentItem = viewModel.studio.currentItem!;\nconst props = defineProps<ICheckinItem>();\nconst item= ref(props.app)\nconst checkin = ref(false);\nconst buttonName = computed(() => checkin.value ? \"Check-in\" : \"Save\");\nconst version = ref<\"major\" | \"minor\">(\"minor\");\nconst comment = ref({ short: \"\", long: undefined, hasLong: false });\nconst emit = defineEmits([\"close\"]);\n\nconst commentMaxLength = config.getValue(\"studio\").commentMaxLength;\n\n\nfunction save() {\n    executor.execute(async () => {\n        if (checkin.value) {\n            await studio.checkin(currentItem, { shortComment: comment.value.short, version: version.value, longComment: comment.value.hasLong ? comment.value.long : undefined });\n        } else {\n            await studio.save(currentItem);\n        }\n        emit(\"close\");\n    }, { loading: true });\n}\n\n</script>\n<template>\n    <div>\n        <div>Denemee:{{item}}</div>\n        <div>Saving model {{ currentItem.name }}</div>\n        <div>Checkin: <input type=\"checkbox\" v-model=\"checkin\"></div>\n        <template v-if=\"checkin\">\n            <div>Short Comment: <input type=\"text\" :maxlength=\"commentMaxLength\" v-model=\"comment.short\"></div>\n            <div>Long Comment: <input type=\"checkbox\" v-model=\"comment.hasLong\"> </div>\n            <template v-if=\"comment.hasLong\">\n                <div class=\"margin\">\n                    <textarea v-model=\"comment.long\"></textarea>\n                </div>\n            </template>\n            <div>Version</div>\n            <div class=\"margin\">\n                <div>Major: <input type=\"radio\" value=\"major\" v-model=\"version\"> </div>\n                <div>Minor: <input type=\"radio\" value=\"minor\" v-model=\"version\"> </div>\n            </div>\n        </template>\n        <div><button @click=\"save()\">{{ buttonName }}</button></div>\n    </div>\n</template>\n<style scoped>\n.margin {\n    margin-left: 30px;\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.margin[data-v-6f76e239] {\n    margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/studio/savePlus.vue"],"names":[],"mappings":";AA+DA;IACI,iBAAiB;AACrB","sourcesContent":["<script setup lang=\"ts\">\nimport { computed } from '@vue/reactivity';\nimport { ref } from 'vue';\nimport { container } from '../../../../../domain/core/diContainer';\nimport { IConfig } from '../../../../../domain/infrastructure/IConfig';\nimport { IModel } from '../../../../../domain/model/models';\nimport { IStudio } from '../../../../../domain/useCase/IStudio';\nimport { IUseCaseExecutor } from '../../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from '../../../../../domain/viewModel/IViewModel';\n\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst studio = container.resolve<IStudio>(IStudio);\nconst config = container.resolve<IConfig>(IConfig);\n\n\n\nconst currentItem = viewModel.studio.currentItem!;\n\n\n\nconst checkin = ref(true);\nconst buttonName = computed(() => checkin.value ? \"Check-in\" : \"Save\");\nconst version = ref<\"major\" | \"minor\">(\"minor\");\nconst comment = ref({ short: \"\", long: undefined, hasLong: false });\nconst emit = defineEmits([\"close\"]);\n\nconst commentMaxLength = config.getValue(\"studio\").commentMaxLength;\n\n\nfunction save() {\n    executor.execute(async () => {\n        if (checkin.value) {\n            await studio.checkin(currentItem, { shortComment: comment.value.short, version: version.value, longComment: comment.value.hasLong ? comment.value.long : undefined });\n        } else {\n            await studio.save(currentItem);\n        }\n        emit(\"close\");\n    }, { loading: true });\n}\n\n</script>\n<template>\n    <div>\n        <!-- <div>{{currentItem}}</div> -->\n        <template v-if=\"checkin\">\n            <div>Short Comment: <input type=\"text\" :maxlength=\"commentMaxLength\" v-model=\"comment.short\"></div>\n            <div>Long Comment: <input type=\"checkbox\" v-model=\"comment.hasLong\"> </div>\n            <template v-if=\"comment.hasLong\">\n                <div class=\"margin\">\n                    <textarea v-model=\"comment.long\"></textarea>\n                </div>\n            </template>\n            <div>Version</div>\n            <div class=\"margin\">\n                <div>Major: <input type=\"radio\" value=\"major\" v-model=\"version\"> </div>\n                <div>Minor: <input type=\"radio\" value=\"minor\" v-model=\"version\"> </div>\n            </div>\n        </template>\n        <div><button @click=\"save()\">{{ buttonName }}</button></div>\n    </div>\n</template>\n<style scoped>\n.margin {\n    margin-left: 30px;\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -108,20 +108,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
     __name: 'savePlus',
-    props: {
-        app: { type: null, required: true }
-    },
     emits: ["close"],
     setup(__props, { expose, emit }) {
         expose();
-        const props = __props;
         const viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__.IViewModel);
         const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__.IUseCaseExecutor);
         const studio = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_3__.IStudio);
         const config = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_2__.IConfig);
         const currentItem = viewModel.studio.currentItem;
-        const item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.app);
-        const checkin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+        const checkin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
         const buttonName = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_6__.computed)(() => checkin.value ? "Check-in" : "Save");
         const version = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("minor");
         const comment = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ short: "", long: undefined, hasLong: false });
@@ -137,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
                 emit("close");
             }, { loading: true });
         }
-        const __returned__ = { viewModel, executor, studio, config, currentItem, props, item, checkin, buttonName, version, comment, emit, commentMaxLength, save };
+        const __returned__ = { viewModel, executor, studio, config, currentItem, checkin, buttonName, version, comment, emit, commentMaxLength, save };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -159,79 +154,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
 const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-6f76e239"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
-const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Checkin: ");
-const _hoisted_2 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Short Comment: ");
-const _hoisted_3 = ["maxlength"];
-const _hoisted_4 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Long Comment: ");
-const _hoisted_5 = {
+const _hoisted_1 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Short Comment: ");
+const _hoisted_2 = ["maxlength"];
+const _hoisted_3 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Long Comment: ");
+const _hoisted_4 = {
     key: 0,
     class: "margin"
 };
-const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Version", -1 /* HOISTED */));
-const _hoisted_7 = { class: "margin" };
-const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Major: ");
-const _hoisted_9 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Minor: ");
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Version", -1 /* HOISTED */));
+const _hoisted_6 = { class: "margin" };
+const _hoisted_7 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Major: ");
+const _hoisted_8 = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Minor: ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Denemee:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item), 1 /* TEXT */),
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Saving model " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentItem.name), 1 /* TEXT */),
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-            _hoisted_1,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                type: "checkbox",
-                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.checkin) = $event))
-            }, null, 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.checkin]
-            ])
-        ]),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>{{currentItem}}</div> "),
         ($setup.checkin)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 0 }, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-                    _hoisted_2,
+                    _hoisted_1,
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                         type: "text",
                         maxlength: $setup.commentMaxLength,
-                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.comment.short) = $event))
-                    }, null, 8 /* PROPS */, _hoisted_3), [
+                        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.comment.short) = $event))
+                    }, null, 8 /* PROPS */, _hoisted_2), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.comment.short]
                     ])
                 ]),
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-                    _hoisted_4,
+                    _hoisted_3,
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                         type: "checkbox",
-                        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.comment.hasLong) = $event))
+                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.comment.hasLong) = $event))
                     }, null, 512 /* NEED_PATCH */), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.comment.hasLong]
                     ])
                 ]),
                 ($setup.comment.hasLong)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-                            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.comment.long) = $event))
+                            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.comment.long) = $event))
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.comment.long]
                         ])
                     ]))
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                _hoisted_6,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [
+                _hoisted_5,
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-                        _hoisted_8,
+                        _hoisted_7,
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                             type: "radio",
                             value: "major",
-                            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => (($setup.version) = $event))
+                            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.version) = $event))
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.version]
                         ])
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-                        _hoisted_9,
+                        _hoisted_8,
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
                             type: "radio",
                             value: "minor",
-                            "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => (($setup.version) = $event))
+                            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => (($setup.version) = $event))
                         }, null, 512 /* NEED_PATCH */), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.version]
                         ])
@@ -241,7 +225,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                onClick: _cache[6] || (_cache[6] = ($event) => ($setup.save()))
+                onClick: _cache[5] || (_cache[5] = ($event) => ($setup.save()))
             }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.buttonName), 1 /* TEXT */)
         ])
     ]));

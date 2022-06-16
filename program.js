@@ -18673,6 +18673,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/objects/editors/IProcessDesignEditor */ "./src/domain/objects/editors/IProcessDesignEditor.ts");
 /* harmony import */ var _domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/objects/editors/processEditor/IProcessEditor */ "./src/domain/objects/editors/processEditor/IProcessEditor.ts");
 /* harmony import */ var _domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/objects/editors/IQuickEditor */ "./src/domain/objects/editors/IQuickEditor.ts");
+/* harmony import */ var _domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/objects/editors/IFileEditor */ "./src/domain/objects/editors/IFileEditor.ts");
+
 
 
 
@@ -18706,7 +18708,7 @@ class EditorManager {
             case "entityDesigner":
                 return _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_2__.IEntityDesignerEditor);
             case "js":
-                return undefined;
+                return _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_6__.IFileEditor);
             case "namedComponent":
                 return undefined;
             case "bpmn":
@@ -18716,7 +18718,7 @@ class EditorManager {
             case "qjson":
                 return _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_5__.IQuickEditor);
             case "yaml":
-                return undefined;
+                return _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_6__.IFileEditor);
         }
     }
 }
@@ -18789,7 +18791,6 @@ let EntityDesignerEditorImpl = class EntityDesignerEditorImpl {
     }
     async getModel() {
         const resp = await this.frameMessanger.sendMessage("Quick", "getModel", { type: "getModel" }, { awaitResponse: true });
-        debugger;
         const getModelResponse = resp === null || resp === void 0 ? void 0 : resp.msg;
         console.log(getModelResponse.content);
         return {
@@ -18799,10 +18800,10 @@ let EntityDesignerEditorImpl = class EntityDesignerEditorImpl {
     }
     async setModel(item) {
         var _a;
-        this.frameMessanger.sendMessage("Quick", "setModel", {
+        this.frameMessanger.sendMessage("EntityDesigner", "setModel", {
             content: (_a = item.modelBody) === null || _a === void 0 ? void 0 : _a[0].model,
-            fileName: item.name, type: "setModel", state: item.state,
-        }, {});
+            type: "setModel", state: item.state,
+        }, { awaitResponse: true });
     }
     iamReady(message) {
         console.log("iam ready came from entity designer");
@@ -18823,6 +18824,90 @@ EntityDesignerEditorImpl = __decorate([
     __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_2__.IFrameMessanger)),
     __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_1__.IConfig))
 ], EntityDesignerEditorImpl);
+
+
+
+/***/ }),
+
+/***/ "./src/application/objects/editors/fileEditorImpl.ts":
+/*!***********************************************************!*\
+  !*** ./src/application/objects/editors/fileEditorImpl.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FileEditorImpl": () => (/* binding */ FileEditorImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../domain/infrastructure/IInlineEditor */ "./src/domain/infrastructure/IInlineEditor.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+let FileEditorImpl = class FileEditorImpl {
+    constructor(compCreator = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_2__.IAsyncComponentCreator), inlineEditor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_1__.IInlineEditor), viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__.IViewModel)) {
+        this.compCreator = compCreator;
+        this.inlineEditor = inlineEditor;
+        this.viewModel = viewModel;
+        this.name = "fileEditor";
+    }
+    connect() { }
+    attach(element) {
+        this.inlineEditor.attach(this.name, element);
+        const props = {
+            functions: {},
+            callbacks: {
+                modified: (modifyInfo) => this.inlineEditor.modified(modifyInfo),
+            },
+        };
+        const editor = this.compCreator.instantiateComponent(this.compCreator.createFileEditor(), props, this.inlineEditor.Root);
+        this.editorData = { editor, props };
+    }
+    detach() {
+        if (!this.editorData) {
+            return;
+        }
+        this.compCreator.destroyComponent(this.editorData.editor);
+        delete this.editorData;
+    }
+    show(show) {
+        this.inlineEditor.show(show);
+    }
+    async getModel() {
+        const model = await this.editorData.props.functions.getModel();
+        return {
+            model: [{ key: this.editorData.props.fileType, model: model.model }],
+            state: model.state,
+        };
+    }
+    async setModel(item) {
+        const state = item.state || { scrollTop: 0, selectionEnd: 0, selectionStart: 0 };
+        const model = item.modelBody.reduce((model, curModel) => {
+            switch (curModel.key) {
+                case "yaml":
+                case "js":
+                    this.editorData.props.fileType = curModel.key;
+                    model = curModel.model;
+                    break;
+            }
+            return model;
+        }, "");
+        await this.editorData.props.functions.setModel(model, state);
+    }
+};
+FileEditorImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
+], FileEditorImpl);
 
 
 
@@ -18863,7 +18948,7 @@ let ProcessDesignEditorImpl = class ProcessDesignEditorImpl {
     connect() { }
     attach(element) {
         this.inlineEditor.attach(this.name, element);
-        const props = { name: "", functions: {}, callbacks: { modified: (modifyInfo) => this.modified(modifyInfo) } };
+        const props = { name: "", functions: {}, callbacks: { modified: (modifyInfo) => this.inlineEditor.modified(modifyInfo) } };
         const editor = this.compCreator.instantiateComponent(this.compCreator.createProcessDesignEditor(), props, this.inlineEditor.Root);
         this.editorData = { editor, props };
     }
@@ -18895,13 +18980,6 @@ let ProcessDesignEditorImpl = class ProcessDesignEditorImpl {
             return model;
         }, { bpmn: "" });
         await this.editorData.props.functions.setModel(model, state);
-    }
-    modified(modifyInfo) {
-        const currentItem = this.viewModel.studio.currentItem;
-        if (!currentItem) {
-            return;
-        }
-        currentItem.modified = modifyInfo;
     }
 };
 ProcessDesignEditorImpl = __decorate([
@@ -18954,7 +19032,7 @@ let ProcessEditorImpl = class ProcessEditorImpl {
             name: "",
             functions: {},
             callbacks: {
-                modified: (modifyInfo) => this.modified(modifyInfo),
+                modified: (modifyInfo) => this.inlineEditor.modified(modifyInfo),
                 getBpmnModel: (id) => this.getBpmnModel(id),
             },
         };
@@ -18996,13 +19074,6 @@ let ProcessEditorImpl = class ProcessEditorImpl {
             return model;
         }, {});
         await this.editorData.props.functions.setModel(model, module, state);
-    }
-    modified(modifyInfo) {
-        const currentItem = this.viewModel.studio.currentItem;
-        if (!currentItem) {
-            return;
-        }
-        currentItem.modified = modifyInfo;
     }
     async getBpmnModel(id) {
         const modelBody = await this.qCloudApi.getModelBody(id);
@@ -19509,6 +19580,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
 /* harmony import */ var _domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ../domain/useCase/IApplicationSettings */ "./src/domain/useCase/IApplicationSettings.ts");
 /* harmony import */ var _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./useCases/applicationSettingsImpl */ "./src/application/useCases/applicationSettingsImpl.ts");
+/* harmony import */ var _domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ../domain/objects/editors/IFileEditor */ "./src/domain/objects/editors/IFileEditor.ts");
+/* harmony import */ var _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./objects/editors/fileEditorImpl */ "./src/application/objects/editors/fileEditorImpl.ts");
+
+
 
 
 
@@ -19635,14 +19710,17 @@ const appStartUp = {
             const processEditor = new _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_69__.ProcessEditorImpl();
             const processDesignEditor = new _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_73__.ProcessDesignEditorImpl();
             const entityDesignerEditor = new _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_75__.EntityDesignerEditorImpl();
+            const fileEditor = new _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_84__.FileEditorImpl();
             container.registerInstance(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_66__.IQuickEditor, quickEditor);
             container.registerInstance(_domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_68__.IProcessEditor, processEditor);
             container.registerInstance(_domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_74__.IProcessDesignEditor, processDesignEditor);
             container.registerInstance(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_76__.IEntityDesignerEditor, entityDesignerEditor);
+            container.registerInstance(_domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_83__.IFileEditor, fileEditor);
             container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, quickEditor);
             container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processEditor);
             container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processDesignEditor);
             container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, entityDesignerEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, fileEditor);
             container.registerInstance(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_28__.IEditorManager, new _objects_editorManager__WEBPACK_IMPORTED_MODULE_29__.EditorManager());
             container.registerInstance(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager, new _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_45__.SidebarManager());
             container.registerInstance(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager, new _objects_sessionManager__WEBPACK_IMPORTED_MODULE_63__.SessionManager());
@@ -20141,7 +20219,7 @@ let CreateModelImpl = class CreateModelImpl {
             case "module": break;
         }
         this.model = {
-            name: param.name, ID: "", parent: parentObject, objectType: "model", synced: false,
+            name: param.name, ID: "", parent: parentObject, objectType: "model", synced: false, usageType: param.usageType,
             modelType: param.modelType, modelBody: param.modelBody, additionals: param.modelAdditionals, modified: {},
         };
         this.viewModelManager.modelCreated(this.model);
@@ -20150,7 +20228,8 @@ let CreateModelImpl = class CreateModelImpl {
             parentObject: this.model.parent,
             modelBody: this.model.modelBody,
             modelType: param.modelType,
-            modelAdditionals: param.modelAdditionals
+            modelAdditionals: param.modelAdditionals,
+            usageType: param.usageType,
         });
         this.model.ID = executeRetval.ID;
         this.model.synced = true;
@@ -20264,15 +20343,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_watcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/watcher */ "./src/common/watcher.ts");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
-/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
+/* harmony import */ var _domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/ICreateModel */ "./src/domain/useCase/ICreateModel.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20282,6 +20363,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
+
 
 
 
@@ -20309,7 +20392,7 @@ let FileExplorer = class FileExplorer {
     }
     get feTreeview() {
         if (!this._feTreeview) {
-            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
+            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer);
         }
         return this._feTreeview;
     }
@@ -20324,14 +20407,14 @@ let FileExplorer = class FileExplorer {
                     treeItem.typeIcon.icon = 'mdi mdi-puzzle';
                     treeItem.children = converter(item.children);
                     // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "Add",icon:'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "Edit", icon: 'mdi mdi-pencil', selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) });
+                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: 'mdi mdi-pencil', selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) });
                     treeItem.actions.push({
-                        type: "IActionMenuItem", name: "Add", icon: 'mdi mdi-plus', children: [
+                        type: "IActionMenuItem", name: "", icon: 'mdi mdi-plus', children: () => [
                             // { name: "Folder",icon:"mdi mdi-folder", color:'red', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Folder'), { loading: true }) },
                             { name: "UI Screen", icon: "mdi mdi-palette", color: '#449DD1', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Screen'), { loading: true }) },
                             { name: "Entity", icon: "mdi mdi-database", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Entity'), { loading: true }) },
-                            { name: "Process Diagram", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Diagram'), { loading: true }) },
-                            // { name: "Process Wizard",icon:"mdi mdi-vector-polyline", color:'red', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) }
+                            { name: "Process Diagram", icon: "mdi mdi-vector-polyline", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Diagram'), { loading: true }) },
+                            { name: "Process Wizard", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) }
                         ]
                     });
                     return treeItem;
@@ -20384,17 +20467,13 @@ let FileExplorer = class FileExplorer {
                         const target = newValue.model ? "addItemIcon" : "removeItemIcon";
                         this.feTreeview[target](item.ID, modifiedIcon);
                     });
-                    if (item.usageType == "appSettings") {
-                        settingsItems.push(treeItem);
-                        return undefined;
-                    }
                     treeItem.cb = {
                         select: this.executor.wrap(() => this.onItemSelect(item), { loading: true }),
                     };
                     // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "His", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) });
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "Save", icon: "mdi mdi-content-save", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) });
+                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: "mdi mdi-content-save", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) });
                     treeItem.actions.push({
-                        type: "IActionMenuItem", name: "...", children: [
+                        type: "IActionMenuItem", name: "", icon: 'mdi mdi-dots-horizontal', children: [
                             { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) },
                             { name: "History", icon: "mdi mdi-history", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) },
                             { name: "Check in", icon: "mdi mdi mdi-arrow-top-left-bold-outline", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) },
@@ -20403,6 +20482,10 @@ let FileExplorer = class FileExplorer {
                             { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
                         ]
                     });
+                    if (item.usageType == "appSettings") {
+                        settingsItems.push(treeItem);
+                        return undefined;
+                    }
                     return treeItem;
             }
         }).filter((item) => item != undefined);
@@ -20416,15 +20499,43 @@ let FileExplorer = class FileExplorer {
     }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
-        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeView);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
+        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeView);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer);
         feTreeview.setup(rootDiv);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer, feTreeview);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer, feTreeview);
+    }
+    createSettingsTreeItem(settingsItems) {
+        const settingsTreeItem = { id: "002", name: "ui-settings", orderIndex: 0, typeIcon: { icon: "" }, children: settingsItems };
+        const createSettingsModel = (createObject) => this.executor.execute(async () => {
+            await this.executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_9__.ICreateModel, createObject);
+        }, { loading: true });
+        settingsTreeItem.actions = [{
+                type: "IActionMenuItem", name: "Add", icon: 'mdi mdi-plus', children: () => {
+                    const existingDict = this.viewModel.studio.items.reduce((prev, curItem) => {
+                        if (curItem.objectType != "model" || curItem.usageType != "appSettings") {
+                            return prev;
+                        }
+                        prev[curItem.name] = true;
+                        return prev;
+                    }, {});
+                    const getName = (name) => existingDict[name] ? "exist_" + name : name;
+                    const parentObjectId = this.viewModel.studio.appId;
+                    return [
+                        { name: getName("alert"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "alert", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
+                        { name: getName("pipeline"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "pipeline", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
+                        { name: getName("loading"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "loading", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
+                        { name: getName("settings"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "yaml", name: "settings", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "yaml", model: "" }] }) },
+                        { name: getName("containerServices"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "js", name: "containerServices", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "js", model: "" }] }) },
+                        { name: getName("css"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) },
+                    ];
+                }
+            }];
+        return settingsTreeItem;
     }
     loadFileExplorer(rootDiv) {
         this.createFileExplorerTreeView(rootDiv);
         const frontItems = this.convertToTreeItems(this.viewModel.studio.items);
-        const settingsTreeItem = { id: "002", name: "Settings", typeIcon: { icon: "" }, children: frontItems.settingsItems, };
+        const settingsTreeItem = this.createSettingsTreeItem(frontItems.settingsItems);
         frontItems.treeItems.unshift(settingsTreeItem);
         this.feTreeview.addItem(frontItems.treeItems);
         // this.feTreeview.setHeader({
@@ -20466,14 +20577,14 @@ let FileExplorer = class FileExplorer {
 FileExplorer = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_6__.INotification)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_12__.IViewModelManager)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_11__.IViewModel)),
-    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_10__.IUseCaseExecutor)),
-    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_9__.IStudio)),
-    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog)),
-    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__.IAsyncComponentCreator)),
-    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_8__.IObjectUseCase))
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_14__.IViewModelManager)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__.IViewModel)),
+    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__.IUseCaseExecutor)),
+    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__.IStudio)),
+    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__.IDialog)),
+    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__.IAsyncComponentCreator)),
+    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__.IObjectUseCase))
 ], FileExplorer);
 
 
@@ -21926,10 +22037,21 @@ let Studio = class Studio {
         await targetEditor.setModel(item);
     }
     async save(item) {
+        var _a;
+        if (!item.modified.model) {
+            this.notification.showNotification({ text: "", title: "Nothing to save 🤷‍♂️", type: "info" });
+            return;
+        }
+        if (!item.checkedOut) {
+            this.notification.showNotification({ text: "Must checkout before save", type: "error", timeout: 3 });
+            return;
+        }
         const targetEditor = this.editorManager.getEditor(item);
-        const model = await targetEditor.getModel();
-        item.modelBody = this.proxifier.markRaw(model.model);
-        item.state = this.proxifier.markRaw(model.state);
+        if ((item.modified.model || item.modified.state) && ((_a = this.viewModel.studio.currentItem) === null || _a === void 0 ? void 0 : _a.ID) == item.ID) {
+            const model = await targetEditor.getModel();
+            item.modelBody = this.proxifier.markRaw(model.model);
+            item.state = this.proxifier.markRaw(model.state);
+        }
         await this.qcloudApi.updateModel(item.ID, { model: item.modelBody });
         item.modified = {};
         this.notification.showNotification({ text: `${item.name} saved successfully`, type: "success" });
@@ -23241,6 +23363,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "IEntityDesignerEditor": () => (/* binding */ IEntityDesignerEditor)
 /* harmony export */ });
 const IEntityDesignerEditor = Symbol.for("IEntityDesignerEditor");
+
+
+/***/ }),
+
+/***/ "./src/domain/objects/editors/IFileEditor.ts":
+/*!***************************************************!*\
+  !*** ./src/domain/objects/editors/IFileEditor.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IFileEditor": () => (/* binding */ IFileEditor)
+/* harmony export */ });
+const IFileEditor = Symbol.for("IFileEditor");
 
 
 /***/ }),
@@ -26974,15 +27112,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "InlineEditorImpl": () => (/* binding */ InlineEditorImpl)
 /* harmony export */ });
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 let InlineEditorImpl = class InlineEditorImpl {
-    constructor() {
+    constructor(viewModel) {
+        this.viewModel = viewModel;
         this.root = document.createElement("div");
         this.connected = false;
     }
@@ -27039,9 +27183,22 @@ let InlineEditorImpl = class InlineEditorImpl {
         fStyle.width = rect.width + "px";
         fStyle.height = rect.height + "px";
     }
+    modified(modifyInfo) {
+        const currentItem = this.viewModel.studio.currentItem;
+        if (!currentItem) {
+            return;
+        }
+        if (modifyInfo.model) {
+            currentItem.modified.model = modifyInfo.model;
+        }
+        if (modifyInfo.state) {
+            currentItem.modified.state = modifyInfo.state;
+        }
+    }
 };
 InlineEditorImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_1__.IViewModel))
 ], InlineEditorImpl);
 
 
@@ -27384,7 +27541,8 @@ let QCloudApiImpl = class QCloudApiImpl {
             ownerType: params.parentObject.objectType,
             model: params.modelBody,
             modelType: params.modelType,
-            modelAdditionals: params.modelAdditionals
+            modelAdditionals: params.modelAdditionals,
+            usageType: params.usageType,
         };
         const model = await this.request("/addmodel", reqData);
         const retVal = {
@@ -27938,28 +28096,6 @@ class TreeView {
         }
         delete this.itemDict[itemId];
     }
-    addAction(itemId, actions) {
-        const item = this.itemDict[itemId];
-        if (!item) {
-            return;
-        }
-        actions = actions instanceof Array ? actions : [actions];
-        this.createActions(item, actions);
-    }
-    removeAction(itemId, actionName) {
-        var _a, _b;
-        const item = this.itemDict[itemId];
-        if (!item || !item.actions) {
-            return;
-        }
-        const actionIndex = (_a = item.actions) === null || _a === void 0 ? void 0 : _a.findIndex(action => action.name == actionName);
-        const action = item.actions[actionIndex];
-        if (!action) {
-            return;
-        }
-        (_b = action.actionDiv.parentElement) === null || _b === void 0 ? void 0 : _b.removeChild(action.actionDiv);
-        item.actions.splice(actionIndex, 1);
-    }
     collapseAll() {
         Object.keys(this.itemDict).forEach(itemId => this.toggleCollapse(this.itemDict[itemId], true));
     }
@@ -27995,12 +28131,22 @@ class TreeView {
         this.itemDict[newItem.id] = newItem;
         this.itemDomDict.set(newItem.rowContainer, newItem);
     }
+    findItemIndex(item, parentChildrenList) {
+        let targetIndex;
+        if (item.orderIndex) {
+            targetIndex = parentChildrenList.findIndex(child => child.orderIndex === undefined || child.lowerName > item.lowerName);
+        }
+        else {
+            targetIndex = parentChildrenList.findIndex(child => child.orderIndex === undefined && child.lowerName > item.lowerName);
+        }
+        return targetIndex;
+    }
     attachParent(item) {
         if (item.parent && !item.parent.children) {
             item.parent.children = [];
         }
         const parentChildrenList = item.parent ? item.parent.children : this.itemList;
-        let targetIndex = parentChildrenList.findIndex(child => child.name > item.name);
+        let targetIndex = this.findItemIndex(item, parentChildrenList);
         if (targetIndex == -1) {
             const parentLastChild = parentChildrenList[parentChildrenList.length - 1];
             if (!parentLastChild) {
@@ -28066,6 +28212,8 @@ class TreeView {
         const retVal = {
             id: item.id,
             name: item.name,
+            lowerName: item.name.toLowerCase(),
+            orderIndex: item.orderIndex,
             cb: item.cb,
             rowContainer: createDiv({ class: "row-container" }),
             row: createDiv({ style: { display: "flex", flexDirection: "row" }, class: "row" }),
@@ -28098,33 +28246,22 @@ class TreeView {
         const actionsDiv = item.contents.actions;
         item.actions = item.actions || [];
         actions.forEach(action => {
-            var _a, _b;
             const actionClass = (action.icon ? action.icon + " " : "") + "qcloud-tree-action";
             const actionDiv = createDiv({ text: action.name, pureClass: true, class: actionClass });
             let clickCB;
             if (action.type == "IActionMenuItem") {
-                const actionUL = createElement("ul", { parent: document.body, class: "dropdown-menu", style: { display: "none" } });
-                (_a = item.actions) === null || _a === void 0 ? void 0 : _a.push({ type: "IActionMenuItem", name: action.name, children: action.children, actionDiv: actionDiv, actionUL });
-                action.children.forEach(child => {
-                    const li = createElement("li", { parent: actionUL });
-                    const div = createElement("div", { parent: li, class: "dropdown-item-div", events: { click: () => { var _a; (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this); child.selectCb(); } } });
-                    const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.color ? child.color : 'black' } });
-                    const a = createElement("a", { parent: div, class: "dropdown-item", text: child.name, style: { color: child.name == 'Delete' ? child.color : '' } });
-                    a.href = "#";
-                    i.className = child.icon;
-                });
                 clickCB = () => {
                     var _a;
+                    let actionUL = this.createActionUL(action);
                     (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this);
-                    this.contextMenuCloser = () => { actionUL.style.display = "none"; this.contextMenuCloser = undefined; };
-                    actionUL.style.display = "block";
+                    this.contextMenuCloser = () => { actionUL.parentElement.removeChild(actionUL); this.contextMenuCloser = undefined; };
                     const divRect = actionDiv.getBoundingClientRect();
                     actionUL.style.top = divRect.top + divRect.height + "px";
                     actionUL.style.left = divRect.left + "px";
                 };
             }
             else {
-                (_b = item.actions) === null || _b === void 0 ? void 0 : _b.push({ type: "IActionSingleItem", name: action.name, icon: action.icon, selectCb: action.selectCb, actionDiv: actionDiv });
+                // item.actions?.push({ type: "IActionSingleItem", name: action.name, icon:action.icon, selectCb: action.selectCb, actionDiv: actionDiv });
                 clickCB = () => { var _a; return (_a = action.selectCb) === null || _a === void 0 ? void 0 : _a.call(action); };
             }
             actionDiv.addEventListener("click", mouseEvent => {
@@ -28143,6 +28280,19 @@ class TreeView {
             this.itemsRoot.addEventListener("mouseover", item.actionHandlers.mouseover);
             this.itemsRoot.addEventListener("mouseleave", item.actionHandlers.mouseleave);
         }
+    }
+    createActionUL(action) {
+        const actionULRetval = createElement("ul", { parent: document.body, class: "dropdown-menu" });
+        const actionChildren = action.children instanceof Function ? action.children() : action.children;
+        actionChildren.forEach(child => {
+            const li = createElement("li", { parent: actionULRetval });
+            const div = createElement("div", { parent: li, class: "dropdown-item-div", events: { click: () => { var _a; (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this); child.selectCb(); } } });
+            const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.color ? child.color : 'black' } });
+            const a = createElement("a", { parent: div, class: "dropdown-item", text: child.name, style: { color: child.name == 'Delete' ? child.color : '' } });
+            a.href = "#";
+            i.className = child.icon;
+        });
+        return actionULRetval;
     }
     arangeHeader(headerOptions) {
         const header = this.convertTreeItemToInternal({
