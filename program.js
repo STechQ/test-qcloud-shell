@@ -20408,7 +20408,6 @@ let FileExplorer = class FileExplorer {
                     treeItem.typeIcon.icon = 'mdi mdi-puzzle';
                     treeItem.children = converter(item.children);
                     // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "Add",icon:'mdi mdi-plus', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType), { loading: true }) });
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: 'mdi mdi-pencil', selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) });
                     treeItem.actions.push({
                         type: "IActionMenuItem", name: "", icon: 'mdi mdi-plus', children: () => [
                             // { name: "Folder",icon:"mdi mdi-folder", color:'red', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Folder'), { loading: true }) },
@@ -20416,6 +20415,12 @@ let FileExplorer = class FileExplorer {
                             { name: "Entity", icon: "mdi mdi-database", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Entity'), { loading: true }) },
                             { name: "Process Diagram", icon: "mdi mdi-vector-polyline", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Diagram'), { loading: true }) },
                             { name: "Process Wizard", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) }
+                        ]
+                    });
+                    treeItem.actions.push({
+                        type: "IActionMenuItem", name: "", icon: "mdi mdi-dots-horizontal", children: [
+                            { name: "Edit", icon: "mdi mdi-pencil", selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) },
+                            { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
                         ]
                     });
                     return treeItem;
@@ -26746,7 +26751,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.16"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.17"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
