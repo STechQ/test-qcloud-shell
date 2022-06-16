@@ -22143,6 +22143,7 @@ let Studio = class Studio {
         //these are menu items, max 6-7. No need for indexes, just search.
         this.viewModel.studio.ui.navItems = navItems.filter((navItem) => !removeItems.find((removeItem) => navItem.name == removeItem.name));
     }
+    // private find
     defaultUI() {
         return this.viewModel.studio.ui || { sidebar: { left: 293 } };
     }
@@ -26741,7 +26742,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.14"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.15"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
