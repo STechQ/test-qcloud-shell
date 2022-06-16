@@ -57,13 +57,29 @@ __webpack_require__.r(__webpack_exports__);
         executor.execute(async () => {
             tableData.value = await objectUseCase.listModules();
         }, { loading: true });
-        function add(moduleItem) {
+        function add(module) {
             executor.execute(async () => {
                 const applicationID = viewModel.studio.appId;
-                await studio.attachModuletoApplication(moduleItem, applicationID);
+                await studio.attachModuletoApplication(module, applicationID);
+                const curModule = tableData.value.find(i => i.ID == module.ID);
+                curModule.relatedApplications.push({ applicationID });
             }, { loading: true });
         }
-        const __returned__ = { viewModel, executor, localization, objectUseCase, studio, emit, tableData, tableColumns, tableOptions, add };
+        function remove(module) {
+            executor.execute(async () => {
+                const applicationID = viewModel.studio.appId;
+                await studio.detachModuleFromApplication(module, applicationID);
+                const curModule = tableData.value.find(i => i.ID == module.ID);
+                curModule.relatedApplications = curModule.relatedApplications.filter(i => i.applicationID != applicationID);
+            }, { loading: true });
+        }
+        function isAddedtoCurrentApp(module) {
+            var _a;
+            const appID = viewModel.studio.appId;
+            const isAdded = (_a = module.relatedApplications) === null || _a === void 0 ? void 0 : _a.some(i => i.applicationID == appID);
+            return !!isAdded;
+        }
+        const __returned__ = { viewModel, executor, localization, objectUseCase, studio, emit, tableData, tableColumns, tableOptions, add, remove, isAddedtoCurrentApp };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -85,6 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
 const _hoisted_1 = ["onClick"];
+const _hoisted_2 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_v_client_table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("v-client-table");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
@@ -95,9 +112,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             options: $setup.tableOptions
         }, {
             actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                    onClick: ($event) => ($setup.add(props.row))
-                }, "Add", 8 /* PROPS */, _hoisted_1)
+                ($setup.isAddedtoCurrentApp(props.row))
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+                        key: 0,
+                        onClick: ($event) => ($setup.remove(props.row))
+                    }, "Remove", 8 /* PROPS */, _hoisted_1))
+                    : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+                        key: 1,
+                        onClick: ($event) => ($setup.add(props.row))
+                    }, "Add", 8 /* PROPS */, _hoisted_2))
             ]),
             _: 1 /* STABLE */
         }, 8 /* PROPS */, ["data", "columns", "options"])
