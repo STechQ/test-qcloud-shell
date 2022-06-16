@@ -97,7 +97,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     onClick: ($event) => ($setup.add(props.row))
-                }, "Attach", 8 /* PROPS */, _hoisted_1)
+                }, "Add", 8 /* PROPS */, _hoisted_1)
             ]),
             _: 1 /* STABLE */
         }, 8 /* PROPS */, ["data", "columns", "options"])

@@ -20501,6 +20501,9 @@ let FileExplorer = class FileExplorer {
         this.feTreeview.addItem(convertedItems.treeItems, parentId);
         this.feTreeview.addItem(convertedItems.settingsItems, "002");
     }
+    removeItem(itemID) {
+        this.feTreeview.removeItem(itemID);
+    }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
         const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeView);
@@ -22105,12 +22108,16 @@ let Studio = class Studio {
     }
     async attachModuletoApplication(module, applicationID) {
         await this.qcloudApi.attachModuletoApplication(applicationID, module.ID);
+        module.children = await this.qcloudApi.listModuleChildItems(module);
+        this.viewModelManager.moduleCreated(module);
         this.fileExplorer.addNewItem(module);
-        this.notification.showNotification({ text: `'${module.name}' attached to current application successfully`, type: "success" });
+        this.notification.showNotification({ text: `'${module.name}' added to current application successfully`, type: "success" });
     }
     async detachModuleFromApplication(module, applicationID) {
         await this.qcloudApi.detachModuleFromApplication(applicationID, module.ID);
-        this.notification.showNotification({ text: `'${module.name}' detached from current application successfully`, type: "success" });
+        this.viewModelManager.removeModule(module);
+        this.fileExplorer.removeItem(module.ID);
+        this.notification.showNotification({ text: `'${module.name}' removed from current application successfully`, type: "success" });
     }
     nav_addNavItems(addItems) {
         this.viewModel.studio.ui = this.defaultUI();
@@ -26734,7 +26741,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.13"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.14"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -27643,9 +27650,19 @@ let QCloudApiImpl = class QCloudApiImpl {
         const modules = await this.request("/listmodules", { applicationID });
         const retVal = modules.map(i => {
             return {
-                ID: i.ID, name: i.name, description: i.description, createDate: i.createDate, createdBy: i.createdBy,
-                objectType: "module", children: [], relatedApplications: i.relatedApplications, synced: true,
-                deployParameters: i.deployParameters
+                ID: i.ID, name: i.name, description: i.description, createDate: i.createDate,
+                createdBy: i.createdBy, objectType: "module", children: [], relatedApplications: i.relatedApplications,
+                synced: true, deployParameters: i.deployParameters
+            };
+        });
+        return retVal;
+    }
+    async listModuleChildItems(module) {
+        const models = await this.request("/listchilditems", { ID: module.ID });
+        const retVal = models.map(i => {
+            return {
+                ID: i.ID, name: i.name, modelType: i.modelType, objectType: "model",
+                synced: true, modified: {}, parent: module,
             };
         });
         return retVal;
