@@ -20473,14 +20473,18 @@ let FileExplorer = class FileExplorer {
                     // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "His", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) });
                     treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: "mdi mdi-content-save", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) });
                     treeItem.actions.push({
-                        type: "IActionMenuItem", name: "", icon: 'mdi mdi-dots-horizontal', children: [
-                            { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) },
-                            { name: "History", icon: "mdi mdi-history", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) },
-                            { name: "Check in", icon: "mdi mdi mdi-arrow-top-left-bold-outline", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) },
-                            { name: "Check out", icon: "mdi mdi mdi-arrow-bottom-right-bold-outline", selectCb: this.executor.wrap(async () => this.studio.checkout(item), { loading: true }) },
-                            { name: "Undo Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => this.studio.release(item), { loading: true }) },
-                            { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
-                        ]
+                        type: "IActionMenuItem", name: "", icon: 'mdi mdi-dots-horizontal', children: () => {
+                            const checkin = { name: "Check in", icon: "mdi mdi mdi-arrow-top-left-bold-outline", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) };
+                            const checkout = { name: "Check out", icon: "mdi mdi mdi-arrow-bottom-right-bold-outline", selectCb: this.executor.wrap(async () => this.studio.checkout(item), { loading: true }) };
+                            const undocheckout = { name: "Undo Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => this.studio.release(item), { loading: true }) };
+                            return [
+                                { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) },
+                                { name: "History", icon: "mdi mdi-history", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) },
+                                item.checkedOut ? checkin : checkout,
+                                item.checkedOut ? undocheckout : undefined,
+                                { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
+                            ].filter((item) => item != undefined);
+                        }
                     });
                     if (item.usageType == "appSettings") {
                         settingsItems.push(treeItem);
@@ -20518,16 +20522,16 @@ let FileExplorer = class FileExplorer {
                         prev[curItem.name] = true;
                         return prev;
                     }, {});
-                    const getName = (name) => existingDict[name] ? "exist_" + name : name;
+                    const show = (menuItem) => existingDict[menuItem.name] ? undefined : menuItem;
                     const parentObjectId = this.viewModel.studio.appId;
                     return [
-                        { name: getName("alert"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "alert", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
-                        { name: getName("pipeline"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "pipeline", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
-                        { name: getName("loading"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "loading", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) },
-                        { name: getName("settings"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "yaml", name: "settings", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "yaml", model: "" }] }) },
-                        { name: getName("containerServices"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "js", name: "containerServices", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "js", model: "" }] }) },
-                        { name: getName("css"), icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) },
-                    ];
+                        show({ name: "alert", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "alert", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
+                        show({ name: "pipeline", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "pipeline", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
+                        show({ name: "loading", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "loading", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
+                        show({ name: "settings", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "yaml", name: "settings", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "yaml", model: "" }] }) }),
+                        show({ name: "containerServices", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "js", name: "containerServices", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "js", model: "" }] }) }),
+                        show({ name: "css", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) }),
+                    ].filter((item) => item != undefined);
                 }
             }];
         return settingsTreeItem;
@@ -20550,7 +20554,7 @@ let FileExplorer = class FileExplorer {
     }
     checkinDailog(item) {
         debugger;
-        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true }, { app: 'deneme' });
+        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true }, {});
     }
     selectItem(itemID) {
         this.feTreeview.selectItem(itemID);
@@ -22039,11 +22043,11 @@ let Studio = class Studio {
     async save(item) {
         var _a;
         if (!item.modified.model) {
-            this.notification.showNotification({ text: "", title: "Nothing to save 🤷‍♂️", type: "info" });
+            this.notification.showNotification({ text: "Nothing to save 🤷‍♂️", type: "info", timeout: 2000 });
             return;
         }
         if (!item.checkedOut) {
-            this.notification.showNotification({ text: "Must checkout before save", type: "error", timeout: 3 });
+            this.notification.showNotification({ text: "Must checkout before save", type: "error" });
             return;
         }
         const targetEditor = this.editorManager.getEditor(item);
@@ -26730,7 +26734,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.12"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.13"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));

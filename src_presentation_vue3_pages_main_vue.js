@@ -75,7 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_styles_IDE3_css__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.menuıtem[data-v-17bbea20]:hover{\n     background-color: #D5D5D5!important;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/header.vue"],"names":[],"mappings":";AA0DA;KACK,mCAAmC;AACxC","sourcesContent":["<script setup lang=\"ts\">\nimport { IApplication } from '@stechquick/algae/lib/qCloudTemp/quickCloud';\nimport { container } from '../../../../domain/core/diContainer';\nimport { IRouter } from '../../../../domain/presentation/IRouter';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from \"../../../../domain/viewModel/IViewModel\";\nimport 'bootstrap/js/dist/dropdown'\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst viewModel = container.resolve<IViewModel>(IViewModel);\n\nfunction logout() {\n  executor.execute(async () => {\n    await executor.executeUseCase<ILogout>(ILogout);\n    router.push(\"/login\");\n  }, { loading: true });\n}\n</script>\n<template>\n    <div class=\"page-content\">\n        <nav>\n            <div class=\"container-fluid nav-container\">\n                <img src=\"../../../../images/plateau_logo-navy.svg\" alt=\"\" width=\"205\" height=\"36\" class=\"logo\">\n                <div class=\"navbar-icons\">\n                    <div class=\"col-1 p-0 dot-icon\">\n                        <i class=\"mdi mdi-account-circle profile-icon\" id=\"dropdownMenuButton1\"\n                            data-bs-toggle=\"dropdown\" aria-expanded=\"false\" data-bs-target=\"#dropdown-menu\"></i>\n                        <ul style='width: 246px;' class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton1\">\n                            <li><div class='menuıtem' style='display: flex; margin: 9px;'>\n                                <i class='mdi mdi-account-circle' style='font-size: 25px;'></i>\n                                <a style='margin: 7px;'>{{viewModel.user?.email}}</a>\n                            </div></li>\n                            <li><div class='menuıtem' style='display: flex; margin: 9px;' @click=\"logout()\">\n                                <i class='mdi mdi-logout' style='font-size: 25px;'></i>\n                                <a style='margin: 7px;'>Logout</a>\n                            </div></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-bell bell\"></i>\n                    </div>\n                </div>\n\n                <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-forum forum\"></i>\n                    </div>\n                </div> -->\n            </div>\n        </nav>\n    </div>\n</template>\n<style scoped>\n@import url(\"../../../../styles/IDE3.css\");\n.menuıtem:hover{\n     background-color: #D5D5D5!important;\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.menuıtem[data-v-17bbea20]:hover{\n     background-color: #D5D5D5!important;\n}\n.documantationsText[data-v-17bbea20]{\n    margin-top: 28px;\n    color: #373737;\n    font-family: \"Roboto\";\n    cursor: pointer;\n    text-decoration: none;\n    font-size: 17px;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/main/header.vue"],"names":[],"mappings":";AAiEA;KACK,mCAAmC;AACxC;AACA;IACI,gBAAgB;IAChB,cAAc;IACd,qBAAqB;IACrB,eAAe;IACf,qBAAqB;IACrB,eAAe;AACnB","sourcesContent":["<script setup lang=\"ts\">\nimport { IApplication } from '@stechquick/algae/lib/qCloudTemp/quickCloud';\nimport { container } from '../../../../domain/core/diContainer';\nimport { IRouter } from '../../../../domain/presentation/IRouter';\nimport { IUseCaseExecutor } from '../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from \"../../../../domain/viewModel/IViewModel\";\nimport 'bootstrap/js/dist/dropdown'\nimport { ILogout } from '../../../../domain/useCase/ILogout';\nconst router = container.resolve<IRouter>(IRouter);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst viewModel = container.resolve<IViewModel>(IViewModel);\n\nfunction logout() {\n  executor.execute(async () => {\n    await executor.executeUseCase<ILogout>(ILogout);\n    router.push(\"/login\");\n  }, { loading: true });\n}\n</script>\n<template>\n    <div class=\"page-content\">\n        <nav>\n            <div class=\"container-fluid nav-container\">\n                <div class='col-2'>\n                     <img src=\"../../../../images/plateau_logo-navy.svg\" alt=\"\" width=\"205\" height=\"36\" class=\"logo\">\n                </div>\n                <div class='col-9' style=\"padding-top:24px\">\n                    <a class='documantationsText' href=\"https://discourse.softtech.com.tr/\" target=\"_blank\">Discourse</a>\n                </div>\n               \n\n                <div class=\"navbar-icons col-1\">\n                    <div class=\"col-1 p-0 dot-icon\">\n                        <i class=\"mdi mdi-account-circle profile-icon\" id=\"dropdownMenuButton1\"\n                            data-bs-toggle=\"dropdown\" aria-expanded=\"false\" data-bs-target=\"#dropdown-menu\"></i>\n                        <ul style='width: 246px;' class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton1\">\n                            <li><div class='menuıtem' style='display: flex; margin: 9px;'>\n                                <i class='mdi mdi-account-circle' style='font-size: 25px;'></i>\n                                <a style='margin: 7px;'>{{viewModel.user?.email}}</a>\n                            </div></li>\n                            <li><div class='menuıtem' style='display: flex; margin: 9px;' @click=\"logout()\">\n                                <i class='mdi mdi-logout' style='font-size: 25px;'></i>\n                                <a style='margin: 7px;'>Logout</a>\n                            </div></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-bell bell\"></i>\n                    </div>\n                </div>\n\n                <div class=\"py-1 navbar-icons\">\n                    <div class=\"media d-flex align-items-center\">\n                        <i class=\"mdi mdi-forum forum\"></i>\n                    </div>\n                </div> -->\n            </div>\n        </nav>\n    </div>\n</template>\n<style scoped>\n@import url(\"../../../../styles/IDE3.css\");\n.menuıtem:hover{\n     background-color: #D5D5D5!important;\n}\n.documantationsText{\n    margin-top: 28px;\n    color: #373737;\n    font-family: \"Roboto\";\n    cursor: pointer;\n    text-decoration: none;\n    font-size: 17px;\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -435,44 +435,56 @@ __webpack_require__.r(__webpack_exports__);
 const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-17bbea20"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
 const _hoisted_1 = { class: "page-content" };
 const _hoisted_2 = { class: "container-fluid nav-container" };
-const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: _images_plateau_logo_navy_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alt: "",
-    width: "205",
-    height: "36",
-    class: "logo"
-}, null, -1 /* HOISTED */));
-const _hoisted_4 = { class: "navbar-icons" };
-const _hoisted_5 = { class: "col-1 p-0 dot-icon" };
-const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "col-2" }, [
+    /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: _images_plateau_logo_navy_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
+        alt: "",
+        width: "205",
+        height: "36",
+        class: "logo"
+    })
+], -1 /* HOISTED */));
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    class: "col-9",
+    style: { "padding-top": "24px" }
+}, [
+    /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        class: "documantationsText",
+        href: "https://discourse.softtech.com.tr/",
+        target: "_blank"
+    }, "Discourse")
+], -1 /* HOISTED */));
+const _hoisted_5 = { class: "navbar-icons col-1" };
+const _hoisted_6 = { class: "col-1 p-0 dot-icon" };
+const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     class: "mdi mdi-account-circle profile-icon",
     id: "dropdownMenuButton1",
     "data-bs-toggle": "dropdown",
     "aria-expanded": "false",
     "data-bs-target": "#dropdown-menu"
 }, null, -1 /* HOISTED */));
-const _hoisted_7 = {
+const _hoisted_8 = {
     style: { "width": "246px" },
     class: "dropdown-menu",
     "aria-labelledby": "dropdownMenuButton1"
 };
-const _hoisted_8 = {
+const _hoisted_9 = {
     class: "menuıtem",
     style: { "display": "flex", "margin": "9px" }
 };
-const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+const _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     class: "mdi mdi-account-circle",
     style: { "font-size": "25px" }
 }, null, -1 /* HOISTED */));
-const _hoisted_10 = { style: { "margin": "7px" } };
-const _hoisted_11 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+const _hoisted_11 = { style: { "margin": "7px" } };
+const _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     class: "mdi mdi-logout",
     style: { "font-size": "25px" }
 }, null, -1 /* HOISTED */));
-const _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", { style: { "margin": "7px" } }, "Logout", -1 /* HOISTED */));
-const _hoisted_13 = [
-    _hoisted_11,
-    _hoisted_12
+const _hoisted_13 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", { style: { "margin": "7px" } }, "Logout", -1 /* HOISTED */));
+const _hoisted_14 = [
+    _hoisted_12,
+    _hoisted_13
 ];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     var _a;
@@ -480,14 +492,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", null, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [
                 _hoisted_3,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
-                        _hoisted_6,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [
+                _hoisted_4,
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [
+                        _hoisted_7,
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_8, [
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [
-                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [
-                                    _hoisted_9,
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_a = $setup.viewModel.user) === null || _a === void 0 ? void 0 : _a.email), 1 /* TEXT */)
+                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [
+                                    _hoisted_10,
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_a = $setup.viewModel.user) === null || _a === void 0 ? void 0 : _a.email), 1 /* TEXT */)
                                 ])
                             ]),
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [
@@ -495,7 +508,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                     class: "menuıtem",
                                     style: { "display": "flex", "margin": "9px" },
                                     onClick: _cache[0] || (_cache[0] = ($event) => ($setup.logout()))
-                                }, _hoisted_13)
+                                }, _hoisted_14)
                             ])
                         ])
                     ])
