@@ -37,25 +37,39 @@ __webpack_require__.r(__webpack_exports__);
         const objectUseCase = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_3__.IObjectUseCase);
         const studio = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_4__.IStudio);
         const tableData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-        const tableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["name", "description", "createDate", "createdBy", "actions"]);
+        const tableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["name", "description", "relatedAppNames", "createDate", "createdBy", "actions"]);
         const tableOptions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
-            filterable: false,
+            filterable: true,
             perPage: 5,
             perPageValues: [],
             headings: {
                 name: localization.get("moduleName"),
                 description: localization.get("description"),
+                relatedAppNames: localization.get("relatedApplications"),
                 createDate: localization.get("createDate"),
                 createdBy: localization.get("createdBy"),
                 actions: "",
             },
-            sortable: [],
+            sortIcon: {
+                base: 'mdi',
+                is: 'mdi mdi-unfold-less-horizontal',
+                up: 'mdi mdi-arrow-up',
+                down: 'mdi mdi-arrow-down'
+            },
             texts: {
                 count: "",
             },
         });
+        const dateOptions = { month: '2-digit', day: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
         executor.execute(async () => {
-            tableData.value = await objectUseCase.listModules();
+            const modules = await objectUseCase.listModules();
+            const appsDict = {};
+            viewModel.apps.forEach(app => appsDict[app.ID] = app.name);
+            modules.forEach(module => {
+                const appNamesArr = module.relatedApplications.map(i => appsDict[i.applicationID]);
+                module.relatedAppNames = appNamesArr.join(", ");
+            });
+            tableData.value = modules;
         }, { loading: true });
         function add(module) {
             executor.execute(async () => {
@@ -79,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
             const isAdded = (_a = module.relatedApplications) === null || _a === void 0 ? void 0 : _a.some(i => i.applicationID == appID);
             return !!isAdded;
         }
-        const __returned__ = { viewModel, executor, localization, objectUseCase, studio, emit, tableData, tableColumns, tableOptions, add, remove, isAddedtoCurrentApp };
+        const __returned__ = { viewModel, executor, localization, objectUseCase, studio, emit, tableData, tableColumns, tableOptions, dateOptions, add, remove, isAddedtoCurrentApp };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -111,6 +125,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             columns: $setup.tableColumns,
             options: $setup.tableOptions
         }, {
+            createDate: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Intl.DateTimeFormat("tr-TR", $setup.dateOptions).format(new Date(props.row.createDate))), 1 /* TEXT */)
+            ]),
             actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
                 ($setup.isAddedtoCurrentApp(props.row))
                     ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {

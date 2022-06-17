@@ -26751,7 +26751,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.17"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.18"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -28604,6 +28604,7 @@ const langData = {
     gitGroup: "Git Group",
     microservice: "Microservice",
     close: "Close",
+    relatedApplications: "Related Applications",
     save: "Save",
     deployTip: "You must set deploy settings.",
     cancel: "Cancel",
