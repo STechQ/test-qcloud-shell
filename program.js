@@ -26751,7 +26751,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.18"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.19"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -28065,6 +28065,11 @@ class TreeView {
         }
         items.forEach(item => {
             const newItem = this.convertTreeItemToInternal(item, false);
+            if (parentId) {
+                let parentItem = this.itemDict[parentId];
+                if (parentItem === null || parentItem === void 0 ? void 0 : parentItem.collapsed)
+                    this.toggleCollapse(parentItem);
+            }
             this.importItem(newItem, parentId);
             if (item.children) {
                 item.children.forEach(child => this.addItem(child, item.id));
@@ -28608,6 +28613,10 @@ const langData = {
     save: "Save",
     deployTip: "You must set deploy settings.",
     cancel: "Cancel",
+    appName: "App(UI) Name",
+    deploySettings_appSettings: "App(UI) Settings",
+    deploySettings_moduleSettings: "Module Settings",
+    product: "Product",
 };
 
 

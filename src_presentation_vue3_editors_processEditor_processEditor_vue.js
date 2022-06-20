@@ -1127,7 +1127,7 @@ __webpack_require__.r(__webpack_exports__);
                 }
                 stepper.currentStep++;
                 stepper.isTabValid = false;
-                props.callbacks.modified({ state: true, model: true });
+                props.callbacks.modified({ state: true });
             }
         }
         function handleBack() {
@@ -1145,15 +1145,14 @@ __webpack_require__.r(__webpack_exports__);
                     modelAdditionals: {},
                 });
                 processModel.value.createNewBpmnFile = false;
-                processModel.value.selectedExistingBpmnFile.name =
-                    processModel.value.processDefinition.processFileName + ".bpmn";
+                processModel.value.selectedExistingBpmnFile.name = processModel.value.processDefinition.processFileName;
                 processModel.value.selectedExistingBpmnFile.ID = createdItem.ID;
                 moduleModels.value.bpmns.push(createdItem);
                 processEditorState.value.stepper.currentStep = 0;
                 disableFinishButton.value = true;
                 studio.openItem(createdItem, { fromHistory: false, noFocus: true });
             }, { loading: true });
-            props.callbacks.modified({ state: true, model: false });
+            props.callbacks.modified({ state: true });
         }
         const __returned__ = { executor, studio, processEditorUtil, props, processDefinitionTabKey, disableFinishButton, isNextActive, processModel, processEditorState, currentModule, moduleModels, handleNext, handleBack, handleFinish, SINGLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.SINGLE_APPROVAL, DOUBLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.DOUBLE_APPROVAL, TRIPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.TRIPLE_APPROVAL, QUADRUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUADRUPLE_APPROVAL, QUINTUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUINTUPLE_APPROVAL, ProcessDefinitionTab: _approvalWizards_tabs_processDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], EditProcessVariablesTab: _approvalWizards_tabs_editProcessVariablesTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], SingleApprovalWizard: _approvalWizards_singleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_4__["default"], DoubleApprovalWizard: _approvalWizards_doubleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_5__["default"], TripleApprovalWizard: _approvalWizards_tripleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_6__["default"], QuadrupleApprovalWizard: _approvalWizards_quadrupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_7__["default"], QuintupleApprovalWizard: _approvalWizards_quintupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
@@ -2410,9 +2409,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 modified: $setup.props.callbacks.modified
             }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.SINGLE_APPROVAL.value &&
-            $setup.processEditorState.stepper.currentStep !== 0 &&
-            $setup.processModel.createNewBpmnFile)
+        ($setup.processModel.processType === $setup.SINGLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SingleApprovalWizard"], {
                 key: 2,
                 model: $setup.processModel,
@@ -2421,9 +2418,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 modified: $setup.props.callbacks.modified
             }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.DOUBLE_APPROVAL.value &&
-            $setup.processEditorState.stepper.currentStep !== 0 &&
-            $setup.processModel.createNewBpmnFile)
+        ($setup.processModel.processType === $setup.DOUBLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DoubleApprovalWizard"], {
                 key: 3,
                 model: $setup.processModel,
@@ -2432,9 +2427,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 modified: $setup.props.callbacks.modified
             }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.TRIPLE_APPROVAL.value &&
-            $setup.processEditorState.stepper.currentStep !== 0 &&
-            $setup.processModel.createNewBpmnFile)
+        ($setup.processModel.processType === $setup.TRIPLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TripleApprovalWizard"], {
                 key: 4,
                 model: $setup.processModel,
@@ -2469,10 +2462,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                 disabled: !$setup.processEditorState.stepper.currentStep,
                 onClick: $setup.handleBack
-            }, " Back ", 8 /* PROPS */, _hoisted_1),
-            (!$setup.processEditorState.stepper.isApproveTab &&
-                !(!$setup.processModel.createNewBpmnFile &&
-                    $setup.processEditorState.stepper.currentStep === 1))
+            }, "Back", 8 /* PROPS */, _hoisted_1),
+            (!$setup.processEditorState.stepper.isApproveTab && !(!$setup.processModel.createNewBpmnFile && $setup.processEditorState.stepper.currentStep === 1))
                 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
                     key: 0,
                     onClick: $setup.handleNext,
@@ -2484,7 +2475,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     key: 1,
                     onClick: $setup.handleFinish,
                     disabled: $setup.disableFinishButton
-                }, " Finish ", 8 /* PROPS */, _hoisted_3))
+                }, "Finish", 8 /* PROPS */, _hoisted_3))
                 : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
         ])
     ]));
