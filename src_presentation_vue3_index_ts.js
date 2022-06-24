@@ -275,6 +275,9 @@ let AsyncComponentCreator = class AsyncComponentCreator {
     createProcessDesignEditor() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_stechquick_plateau-process-designer_dist_PlateauBpmnModeler_js"), __webpack_require__.e("src_presentation_vue3_editors_processDesignEditor_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../editors/processDesignEditor.vue */ "./src/presentation/vue3/editors/processDesignEditor.vue")));
     }
+    modelSelectionWizard() {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_modelSelectionWizard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/modelSelectionWizard.vue */ "./src/presentation/vue3/components/dialogs/modelSelectionWizard.vue")));
+    }
 };
 AsyncComponentCreator = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.injectable)()
@@ -306,7 +309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const dialogVue = (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_ui_dialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/ui/dialog.vue */ "./src/presentation/vue3/components/ui/dialog.vue")));
-_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_4__.IZindex).register(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_3__.IDialog, { from: 10 });
+_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_4__.IZindex).register(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_3__.IDialog, { from: 10, step: 2 });
 class DialogImpl {
     constructor(compCreator = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_2__.IAsyncComponentCreator)) {
         this.compCreator = compCreator;
@@ -375,7 +378,7 @@ let LoadingImpl = class LoadingImpl {
     constructor(zindex = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_3__.IZindex), compCreator = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__.IAsyncComponentCreator)) {
         this.zindex = zindex;
         this.compCreator = compCreator;
-        zindex.register(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_2__.ILoading, { from: 50 });
+        zindex.register(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_2__.ILoading, { from: 40 });
         const props = { appear: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false), zindex: this.zindex.getZIndex(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_2__.ILoading), };
         const root = createDiv({ class: "q-loading-root" });
         const loading = this.compCreator.instantiateComponent(_components_ui_loading_vue__WEBPACK_IMPORTED_MODULE_4__["default"], props, root);
@@ -436,6 +439,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_stringType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../common/stringType */ "./src/common/stringType.ts");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../domain/presentation/IZindex */ "./src/domain/presentation/IZindex.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -450,7 +455,11 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 const toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_0__.useToast)();
+const zindex = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_6__.IZindex);
+zindex.register(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification, { from: 70 });
 let NotificationImpl = class NotificationImpl {
     constructor(loading) {
         this.loading = loading;
@@ -458,11 +467,13 @@ let NotificationImpl = class NotificationImpl {
     async showNotification(options) {
         var _a;
         const type = vue_toastification__WEBPACK_IMPORTED_MODULE_0__.TYPE[(0,_common_stringType__WEBPACK_IMPORTED_MODULE_2__.toUpperCase)(options.type)];
-        let opt = { type, closeOnClick: true, timeout: options.timeout, pauseOnFocusLoss: options.pauseOnFocusLoss, pauseOnHover: options.pauseOnHover };
+        const zindexValue = zindex.getZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification);
+        const onClose = () => { debugger; zindex.removeZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification, zindexValue); };
+        let opt = { type, closeOnClick: true, timeout: options.timeout, pauseOnFocusLoss: options.pauseOnFocusLoss, pauseOnHover: options.pauseOnHover, onClose };
         if ((_a = options.interactors) === null || _a === void 0 ? void 0 : _a.find(interactor => interactor.required)) {
             opt = { closeButton: false, closeOnClick: false, draggable: false, timeout: options.timeout || false, position: vue_toastification__WEBPACK_IMPORTED_MODULE_0__.POSITION.TOP_CENTER, type, pauseOnFocusLoss: options.pauseOnFocusLoss, pauseOnHover: options.pauseOnHover };
         }
-        toast({ component: (await Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_vue-toastification_dist_index_css"), __webpack_require__.e("src_presentation_vue3_components_notification_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/notification.vue */ "./src/presentation/vue3/components/notification.vue"))).default, props: { options } }, opt);
+        toast({ component: (await Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_vue-toastification_dist_index_css"), __webpack_require__.e("src_presentation_vue3_components_notification_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/notification.vue */ "./src/presentation/vue3/components/notification.vue"))).default, props: { options, zindex: zindexValue } }, opt);
     }
     async showConfirm(options) {
         const prom = (0,_common_promiseHelper__WEBPACK_IMPORTED_MODULE_1__.createPromiseData)();

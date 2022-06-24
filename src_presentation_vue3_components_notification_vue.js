@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.blockShadow[data-v-0b183e6e] {\nbackground-color: black; top:0px; left:0px; position: fixed; height: 100%; width: 100%;\nopacity: 0.8;\nz-index: 10;\n}\n.center[data-v-0b183e6e] {\n  text-align: center;\n}\nh1[data-v-0b183e6e] {\n  margin: 0px;\n}\n.action[data-v-0b183e6e]:hover {\n  border-color: black;\n}\n.action[data-v-0b183e6e]:active {\n  background-color: white;\n}\n.multi[data-v-0b183e6e]{\n  margin: 3px 5px 0px 5px;\n}\n.action[data-v-0b183e6e] {\n  height: 21px;\n  padding: 0px 6px;\n  border-radius: 5px;\n  color: #fff;\n  cursor: pointer;\n  border: thin solid currentColor;\n  background-color: transparent;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/notification.vue"],"names":[],"mappings":";AA8FA;AACA,uBAAuB,EAAE,OAAO,EAAE,QAAQ,EAAE,eAAe,EAAE,YAAY,EAAE,WAAW;AACtF,YAAY;AACZ,WAAW;AACX;AACA;EACE,kBAAkB;AACpB;AACA;EACE,WAAW;AACb;AACA;EACE,mBAAmB;AACrB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;EAClB,WAAW;EACX,eAAe;EACf,+BAA+B;EAC/B,6BAA6B;AAC/B","sourcesContent":["<script setup lang=\"ts\">\nimport { ref } from \"vue\";\nimport \"vue-toastification/dist/index.css\";\nimport { container } from \"../../../domain/core/diContainer\";\nimport { INotificationInteractor, INotificationOptions } from \"../../../domain/model/INotificationOptions\";\nimport { INotification } from \"../../../domain/presentation/INotification\";\n\nexport interface INot {\n  options: INotificationOptions\n}\nconst emit = defineEmits([\"close-toast\"]);\nconst props = defineProps<INot>();\nlet showDetail = ref(false);\n\nif (props.options?.copy){\n  const options = props.options;\n  options.interactors = options.interactors || [];\n  options.interactors.unshift({customClose: true, text: \"copy\",onInteract:() => {\n      const copyText = (options.title ? options.title + \"\\n\" : \"\") + options.text;\n      navigator.clipboard.writeText(copyText);\n      container.resolve<INotification>(INotification).showNotification({text: \"copied\", type: \"success\", copy: false});\n    }});\n}\nprops.options.interactors?.filter(interactor => interactor.optionsPleaseSelect).forEach(interactor => {\n  interactor.options = interactor.options || [];\n  if (interactor.options.find(option => option.selected)) { return; }\n\n  interactor.options.unshift({id: \"pleaseSelect\",text:\"pleaseSelect\"})\n});\nconst requireds = {\n  interactors: props.options.interactors?.filter(interactor => interactor.required).length || 0,\n  interracted: 0,\n};\nconst showBlockShadow = ref(requireds.interactors > 0);\n\nfunction decideClose(interactor: INotificationInteractor) {\n  if (!interactor.required){return;}\n  if (requireds.interactors > ++requireds.interracted){return;}\n\n  showBlockShadow.value = false;\n  emit(\"close-toast\");\n}\nfunction selected(interactor: INotificationInteractor, event: Event){\n  clickedOption(interactor, (event.target as HTMLSelectElement).selectedIndex, event);\n}\nfunction clickedOption(interactor: INotificationInteractor, index: number, event: Event){\n  const selectedOption = interactor.options![index];\n  const close = () => decideClose(interactor);\n  if (!interactor.customClose){\n    close();\n  }else{\n    event.stopPropagation();\n  }\n  interactor.onInteract({ selectedOption: {text:selectedOption.text,id: selectedOption.id,index}, close });\n}\nfunction clicked(interactor: INotificationInteractor, event: MouseEvent) {\n  const close = () => decideClose(interactor);\n  if (!interactor.customClose){\n    close();\n  }else{\n    event.stopPropagation();\n  }\n  interactor.onInteract({ close });\n}\n</script>\n<template>\n  <div class=\"container\">\n    <template v-if=\"showBlockShadow\">\n      <teleport to=\"body\">\n        <div class=\"blockShadow\"></div>\n      </teleport>\n    </template>\n    <h1 v-if=\"options.title\">{{ options.title }}</h1>\n    <span>{{ options.text }}</span>\n    <template v-for=\"(interactor, index) in options.interactors\" :key=\"index\">\n      <template v-if=\"interactor.options\">\n        <div class=\"center\">\n          <select v-if=\"interactor.optionsType == 'combo'\" @click.stop=\"\" @change=\"selected(interactor, $event)\">\n            <option v-for=\"option in interactor.options\" :selected=\"option.selected\" :key=\"option.id\">{{option.text}}</option>\n          </select>\n          <template v-else>\n              <button class=\"action multi\" v-for=\"(option, index) in interactor.options\" :key=\"option.id\" @click=\"clickedOption(interactor, index, $event)\">{{option.text}}</button>\n          </template>\n        </div>\n      </template>\n      <button class=\"action\" v-else @click=\"clicked(interactor, $event)\">{{interactor.text}}</button>\n    </template>\n    <div v-if=\"options.detail\">\n      <button class=\"action\" @click.stop=\"showDetail = !showDetail\">details</button>\n      <div v-if=\"showDetail\">{{options.detail}}</div>\n    </div>\n  </div>\n</template>\n<style scoped>\n.blockShadow {\nbackground-color: black; top:0px; left:0px; position: fixed; height: 100%; width: 100%;\nopacity: 0.8;\nz-index: 10;\n}\n.center {\n  text-align: center;\n}\nh1 {\n  margin: 0px;\n}\n.action:hover {\n  border-color: black;\n}\n.action:active {\n  background-color: white;\n}\n.multi{\n  margin: 3px 5px 0px 5px;\n}\n.action {\n  height: 21px;\n  padding: 0px 6px;\n  border-radius: 5px;\n  color: #fff;\n  cursor: pointer;\n  border: thin solid currentColor;\n  background-color: transparent;\n}\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.blockShadow[data-v-0b183e6e] {\n  background-color: black; top:0px; left:0px; position: fixed; height: 100%; width: 100%;\n  opacity: 0.7;\n}\n.center[data-v-0b183e6e] {\n  text-align: center;\n}\nh1[data-v-0b183e6e] {\n  margin: 0px;\n}\n.action[data-v-0b183e6e]:hover {\n  border-color: black;\n}\n.action[data-v-0b183e6e]:active {\n  background-color: white;\n}\n.multi[data-v-0b183e6e]{\n  margin: 3px 5px 0px 5px;\n}\n.action[data-v-0b183e6e] {\n  height: 21px;\n  padding: 0px 6px;\n  border-radius: 5px;\n  color: #fff;\n  cursor: pointer;\n  border: thin solid currentColor;\n  background-color: transparent;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/notification.vue"],"names":[],"mappings":";AA+FA;EACE,uBAAuB,EAAE,OAAO,EAAE,QAAQ,EAAE,eAAe,EAAE,YAAY,EAAE,WAAW;EACtF,YAAY;AACd;AACA;EACE,kBAAkB;AACpB;AACA;EACE,WAAW;AACb;AACA;EACE,mBAAmB;AACrB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,uBAAuB;AACzB;AACA;EACE,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;EAClB,WAAW;EACX,eAAe;EACf,+BAA+B;EAC/B,6BAA6B;AAC/B","sourcesContent":["<script setup lang=\"ts\">\nimport { ref } from \"vue\";\nimport \"vue-toastification/dist/index.css\";\nimport { container } from \"../../../domain/core/diContainer\";\nimport { INotificationInteractor, INotificationOptions } from \"../../../domain/model/INotificationOptions\";\nimport { INotification } from \"../../../domain/presentation/INotification\";\n\nexport interface INot {\n  options: INotificationOptions;\n  zindex: number;\n}\nconst emit = defineEmits([\"close-toast\"]);\nconst props = defineProps<INot>();\nlet showDetail = ref(false);\n\nif (props.options?.copy){\n  const options = props.options;\n  options.interactors = options.interactors || [];\n  options.interactors.unshift({customClose: true, text: \"copy\",onInteract:() => {\n      const copyText = (options.title ? options.title + \"\\n\" : \"\") + options.text;\n      navigator.clipboard.writeText(copyText);\n      container.resolve<INotification>(INotification).showNotification({text: \"copied\", type: \"success\", copy: false});\n    }});\n}\nprops.options.interactors?.filter(interactor => interactor.optionsPleaseSelect).forEach(interactor => {\n  interactor.options = interactor.options || [];\n  if (interactor.options.find(option => option.selected)) { return; }\n\n  interactor.options.unshift({id: \"pleaseSelect\",text:\"pleaseSelect\"})\n});\nconst requireds = {\n  interactors: props.options.interactors?.filter(interactor => interactor.required).length || 0,\n  interracted: 0,\n};\nconst showBlockShadow = ref(requireds.interactors > 0);\n\nfunction decideClose(interactor: INotificationInteractor) {\n  if (!interactor.required){return;}\n  if (requireds.interactors > ++requireds.interracted){return;}\n\n  showBlockShadow.value = false;\n  emit(\"close-toast\");\n}\nfunction selected(interactor: INotificationInteractor, event: Event){\n  clickedOption(interactor, (event.target as HTMLSelectElement).selectedIndex, event);\n}\nfunction clickedOption(interactor: INotificationInteractor, index: number, event: Event){\n  const selectedOption = interactor.options![index];\n  const close = () => decideClose(interactor);\n  if (!interactor.customClose){\n    close();\n  }else{\n    event.stopPropagation();\n  }\n  interactor.onInteract({ selectedOption: {text:selectedOption.text,id: selectedOption.id,index}, close });\n}\nfunction clicked(interactor: INotificationInteractor, event: MouseEvent) {\n  const close = () => decideClose(interactor);\n  if (!interactor.customClose){\n    close();\n  }else{\n    event.stopPropagation();\n  }\n  interactor.onInteract({ close });\n}\n</script>\n<template>\n  <div class=\"container\">\n    <template v-if=\"showBlockShadow\">\n      <teleport to=\"body\">\n        <div class=\"blockShadow\" :style=\"{zIndex: props.zindex}\"></div>\n      </teleport>\n    </template>\n    <h1 v-if=\"options.title\">{{ options.title }}</h1>\n    <span>{{ options.text }}</span>\n    <template v-for=\"(interactor, index) in options.interactors\" :key=\"index\">\n      <template v-if=\"interactor.options\">\n        <div class=\"center\">\n          <select v-if=\"interactor.optionsType == 'combo'\" @click.stop=\"\" @change=\"selected(interactor, $event)\">\n            <option v-for=\"option in interactor.options\" :selected=\"option.selected\" :key=\"option.id\">{{option.text}}</option>\n          </select>\n          <template v-else>\n              <button class=\"action multi\" v-for=\"(option, index) in interactor.options\" :key=\"option.id\" @click=\"clickedOption(interactor, index, $event)\">{{option.text}}</button>\n          </template>\n        </div>\n      </template>\n      <button class=\"action\" v-else @click=\"clicked(interactor, $event)\">{{interactor.text}}</button>\n    </template>\n    <div v-if=\"options.detail\">\n      <button class=\"action\" @click.stop=\"showDetail = !showDetail\">details</button>\n      <div v-if=\"showDetail\">{{options.detail}}</div>\n    </div>\n  </div>\n</template>\n<style scoped>\n.blockShadow {\n  background-color: black; top:0px; left:0px; position: fixed; height: 100%; width: 100%;\n  opacity: 0.7;\n}\n.center {\n  text-align: center;\n}\nh1 {\n  margin: 0px;\n}\n.action:hover {\n  border-color: black;\n}\n.action:active {\n  background-color: white;\n}\n.multi{\n  margin: 3px 5px 0px 5px;\n}\n.action {\n  height: 21px;\n  padding: 0px 6px;\n  border-radius: 5px;\n  color: #fff;\n  cursor: pointer;\n  border: thin solid currentColor;\n  background-color: transparent;\n}\n</style>\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -103,7 +103,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
     __name: 'notification',
     props: {
-        options: { type: null, required: true }
+        options: { type: null, required: true },
+        zindex: { type: Number, required: true }
     },
     emits: ["close-toast"],
     setup(__props, { expose, emit }) {
@@ -189,18 +190,17 @@ __webpack_require__.r(__webpack_exports__);
 
 const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-0b183e6e"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
 const _hoisted_1 = { class: "container" };
-const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "blockShadow" }, null, -1 /* HOISTED */));
-const _hoisted_3 = { key: 1 };
-const _hoisted_4 = {
+const _hoisted_2 = { key: 1 };
+const _hoisted_3 = {
     key: 0,
     class: "center"
 };
-const _hoisted_5 = ["onChange"];
-const _hoisted_6 = ["selected"];
+const _hoisted_4 = ["onChange"];
+const _hoisted_5 = ["selected"];
+const _hoisted_6 = ["onClick"];
 const _hoisted_7 = ["onClick"];
-const _hoisted_8 = ["onClick"];
-const _hoisted_9 = { key: 2 };
-const _hoisted_10 = { key: 0 };
+const _hoisted_8 = { key: 2 };
+const _hoisted_9 = { key: 0 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [
         ($setup.showBlockShadow)
@@ -208,17 +208,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 0,
                 to: "body"
             }, [
-                _hoisted_2
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+                    class: "blockShadow",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({ zIndex: $setup.props.zindex })
+                }, null, 4 /* STYLE */)
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($props.options.title)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.options.title), 1 /* TEXT */))
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.options.title), 1 /* TEXT */))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.options.text), 1 /* TEXT */),
         ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options.interactors, (interactor, index) => {
             return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: index }, [
                 (interactor.options)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [
                         (interactor.optionsType == 'combo')
                             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
                                 key: 0,
@@ -229,32 +232,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                                         selected: option.selected,
                                         key: option.id
-                                    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.text), 9 /* TEXT, PROPS */, _hoisted_6));
+                                    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.text), 9 /* TEXT, PROPS */, _hoisted_5));
                                 }), 128 /* KEYED_FRAGMENT */))
-                            ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_5))
+                            ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4))
                             : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(interactor.options, (option, index) => {
                                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
                                     class: "action multi",
                                     key: option.id,
                                     onClick: ($event) => ($setup.clickedOption(interactor, index, $event))
-                                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.text), 9 /* TEXT, PROPS */, _hoisted_7));
+                                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.text), 9 /* TEXT, PROPS */, _hoisted_6));
                             }), 128 /* KEYED_FRAGMENT */))
                     ]))
                     : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
                         key: 1,
                         class: "action",
                         onClick: ($event) => ($setup.clicked(interactor, $event))
-                    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(interactor.text), 9 /* TEXT, PROPS */, _hoisted_8))
+                    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(interactor.text), 9 /* TEXT, PROPS */, _hoisted_7))
             ], 64 /* STABLE_FRAGMENT */));
         }), 128 /* KEYED_FRAGMENT */)),
         ($props.options.detail)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     class: "action",
                     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(($event) => ($setup.showDetail = !$setup.showDetail), ["stop"]))
                 }, "details"),
                 ($setup.showDetail)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.options.detail), 1 /* TEXT */))
+                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.options.detail), 1 /* TEXT */))
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
             ]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)

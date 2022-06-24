@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'doubleApprovalWizard',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -98,8 +98,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tabs_approveDefinitionFirstTab_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs/approveDefinitionFirstTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveDefinitionFirstTab.vue");
 /* harmony import */ var _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs/approveDefinitionSecondTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveDefinitionSecondTab.vue");
 /* harmony import */ var _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tabs/runAfterProcessDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterProcessDefinitionTab.vue");
-/* harmony import */ var _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tabs/runAfterChangeAdvisedDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterChangeAdvisedDefinitionTab.vue");
-/* harmony import */ var _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tabs/approveTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveTab.vue");
+/* harmony import */ var _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tabs/approveTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveTab.vue");
+/* harmony import */ var _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tabs/runAfterChangeAdvisedDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterChangeAdvisedDefinitionTab.vue");
 
 
 
@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'quadrupleApprovalWizard',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             stepper.value.totalStep = 6;
         });
-        const __returned__ = { props, stepper, ProcessMakerDefinitionTab: _tabs_processMakerDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_1__["default"], ApproveDefinitionFirstTab: _tabs_approveDefinitionFirstTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], ApproveDefinitionSecondTab: _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], RunAfterProcessDefinitionTab: _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"], RunAfterChangeAdvisedDefinitionTab: _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_5__["default"], ApproveTab: _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_6__["default"] };
+        const __returned__ = { props, stepper, ProcessMakerDefinitionTab: _tabs_processMakerDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_1__["default"], ApproveDefinitionFirstTab: _tabs_approveDefinitionFirstTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], ApproveDefinitionSecondTab: _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], RunAfterProcessDefinitionTab: _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"], ApproveTab: _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_5__["default"], RunAfterChangeAdvisedDefinitionTab: _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_6__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -148,8 +148,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs/approveDefinitionSecondTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveDefinitionSecondTab.vue");
 /* harmony import */ var _tabs_approveDefinitionThirdTab_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tabs/approveDefinitionThirdTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveDefinitionThirdTab.vue");
 /* harmony import */ var _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tabs/runAfterProcessDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterProcessDefinitionTab.vue");
-/* harmony import */ var _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tabs/runAfterChangeAdvisedDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterChangeAdvisedDefinitionTab.vue");
-/* harmony import */ var _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tabs/approveTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveTab.vue");
+/* harmony import */ var _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tabs/approveTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/approveTab.vue");
+/* harmony import */ var _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tabs/runAfterChangeAdvisedDefinitionTab.vue */ "./src/presentation/vue3/editors/processEditor/approvalWizards/tabs/runAfterChangeAdvisedDefinitionTab.vue");
 
 
 
@@ -163,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'quintupleApprovalWizard',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -174,7 +174,7 @@ __webpack_require__.r(__webpack_exports__);
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             stepper.value.totalStep = 7;
         });
-        const __returned__ = { props, stepper, ProcessMakerDefinitionTab: _tabs_processMakerDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_1__["default"], ApproveDefinitionFirstTab: _tabs_approveDefinitionFirstTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], ApproveDefinitionSecondTab: _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], ApproveDefinitionThirdTab: _tabs_approveDefinitionThirdTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"], RunAfterProcessDefinitionTab: _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_5__["default"], RunAfterChangeAdvisedDefinitionTab: _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_6__["default"], ApproveTab: _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_7__["default"] };
+        const __returned__ = { props, stepper, ProcessMakerDefinitionTab: _tabs_processMakerDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_1__["default"], ApproveDefinitionFirstTab: _tabs_approveDefinitionFirstTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], ApproveDefinitionSecondTab: _tabs_approveDefinitionSecondTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], ApproveDefinitionThirdTab: _tabs_approveDefinitionThirdTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"], RunAfterProcessDefinitionTab: _tabs_runAfterProcessDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_5__["default"], ApproveTab: _tabs_approveTab_vue__WEBPACK_IMPORTED_MODULE_6__["default"], RunAfterChangeAdvisedDefinitionTab: _tabs_runAfterChangeAdvisedDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_7__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'singleApprovalWizard',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -247,23 +247,21 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'approveDefinitionFirstTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         secondApproveEnabled: { type: Boolean, required: true },
         modified: { type: null, required: true }
     },
     setup(__props, { expose }) {
+        var _a, _b;
         expose();
         const props = __props;
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
         });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
-        });
         const processCheckerDefinition = props.model.processCheckerDefinition;
-        const firstApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.firstApproverScreen.name);
-        const secondApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.secondApproverScreen.name);
+        const firstApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processCheckerDefinition.firstApproverScreenID)) === null || _a === void 0 ? void 0 : _a.name) || "");
+        const secondApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_b = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processCheckerDefinition.secondApproverScreenID)) === null || _b === void 0 ? void 0 : _b.name) || "");
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
         const validation = {
             isFirstApproverScreenValid: false,
@@ -271,15 +269,17 @@ __webpack_require__.r(__webpack_exports__);
         };
         function handleFirstApproverScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processCheckerDefinition.firstApproverScreen.ID = selectedScreen.id;
-            processCheckerDefinition.firstApproverScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            console.log("firstworked");
+            processCheckerDefinition.firstApproverScreenID = selectedScreen.id;
             validation.isFirstApproverScreenValid = !!firstApproverScreen.value.length;
             setTabValidation();
         }
         function handleSecondApproverScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processCheckerDefinition.secondApproverScreen.ID = selectedScreen.id;
-            processCheckerDefinition.secondApproverScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            console.log("secondworked");
+            processCheckerDefinition.secondApproverScreenID = selectedScreen.id;
             validation.isSecondApproverScreenValid = !!secondApproverScreen.value.length;
             setTabValidation();
         }
@@ -293,8 +293,7 @@ __webpack_require__.r(__webpack_exports__);
         function setTabValidation() {
             stepper.value.isTabValid = validation.isFirstApproverScreenValid;
             if (props.secondApproveEnabled) {
-                stepper.value.isTabValid =
-                    stepper.value.isTabValid && validation.isSecondApproverScreenValid;
+                stepper.value.isTabValid = stepper.value.isTabValid && validation.isSecondApproverScreenValid;
             }
         }
         const __returned__ = { props, processCheckerDefinition, firstApproverScreen, secondApproverScreen, stepper, validation, handleFirstApproverScreen, handleSecondApproverScreen, checkTabValidation, setTabValidation };
@@ -323,39 +322,39 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'approveDefinitionSecondTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         fourthApproveEnabled: { type: Boolean, required: true },
         modified: { type: null, required: true }
     },
     setup(__props, { expose }) {
+        var _a, _b;
         expose();
         const props = __props;
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
         });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
-        });
         const processCheckerDefinition = props.model.processCheckerDefinition;
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
-        const thirdApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.thirdApproverScreen.name);
-        const fourthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fourthApproverScreen.name);
+        const thirdApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processCheckerDefinition.thirdApproverScreenID)) === null || _a === void 0 ? void 0 : _a.name) || "");
+        const fourthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_b = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processCheckerDefinition.fourthApproverScreenID)) === null || _b === void 0 ? void 0 : _b.name) || "");
         const validation = {
             isThirdApproverScreenValid: false,
             isFourthApproverScreenValid: false,
         };
         function handleThirdApproverScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processCheckerDefinition.thirdApproverScreen.ID = selectedScreen.id;
-            processCheckerDefinition.thirdApproverScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            console.log("thirdworked");
+            processCheckerDefinition.thirdApproverScreenID = selectedScreen.id;
             validation.isThirdApproverScreenValid = !!thirdApproverScreen.value.length;
             setTabValidation();
         }
         function handleFourthApproverScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processCheckerDefinition.fourthApproverScreen.ID = selectedScreen.id;
-            processCheckerDefinition.fourthApproverScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            console.log("thirdworked");
+            processCheckerDefinition.fourthApproverScreenID = selectedScreen.id;
             validation.isFourthApproverScreenValid = !!fourthApproverScreen.value.length;
             setTabValidation();
         }
@@ -369,8 +368,7 @@ __webpack_require__.r(__webpack_exports__);
         function setTabValidation() {
             stepper.value.isTabValid = validation.isThirdApproverScreenValid;
             if (props.fourthApproveEnabled) {
-                stepper.value.isTabValid =
-                    stepper.value.isTabValid && validation.isFourthApproverScreenValid;
+                stepper.value.isTabValid = stepper.value.isTabValid && validation.isFourthApproverScreenValid;
             }
         }
         const __returned__ = { props, processCheckerDefinition, stepper, thirdApproverScreen, fourthApproverScreen, validation, handleThirdApproverScreen, handleFourthApproverScreen, checkTabValidation, setTabValidation };
@@ -399,29 +397,28 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'approveDefinitionThirdTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
     setup(__props, { expose }) {
+        var _a;
         expose();
         const props = __props;
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
         });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
-        });
         const processCheckerDefinition = props.model.processCheckerDefinition;
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
-        const fifthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processCheckerDefinition.fifthApproverScreen.name);
+        const fifthApproverScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processCheckerDefinition.fifthApproverScreenID)) === null || _a === void 0 ? void 0 : _a.name) || "");
         const validation = {
             isFifthApproverScreenValid: false,
         };
         function handleFifthApproverScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processCheckerDefinition.fifthApproverScreen.ID = selectedScreen.id;
-            processCheckerDefinition.fifthApproverScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            console.log("fifthworked");
+            processCheckerDefinition.fifthApproverScreenID = selectedScreen.id;
             validation.isFifthApproverScreenValid = !!fifthApproverScreen.value.length;
             setTabValidation();
         }
@@ -462,7 +459,8 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'approveTab',
     props: {
         model: { type: null, required: true },
-        state: { type: null, required: true }
+        state: { type: null, required: true },
+        modelsOfModule: { type: null, required: true }
     },
     setup(__props, { expose }) {
         expose();
@@ -470,7 +468,7 @@ __webpack_require__.r(__webpack_exports__);
         const util = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_2__.IProcessEditorUtil);
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             props.state.stepper.isApproveTab = true;
-            util.generateProcessConfigFile(props.model);
+            util.generateProcessConfigFile(props.model, props.modelsOfModule);
         });
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeUnmount)(() => {
             props.state.stepper.isApproveTab = false;
@@ -505,7 +503,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'editProcessVariablesTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -517,27 +515,22 @@ __webpack_require__.r(__webpack_exports__);
         const variableTypes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(["STRING", "BOOLEAN", "SCREEN", "NUMBER", "HTTP METHOD"]);
         const newVariableName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
         const isAddButtonDisable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
-        const restMethods = [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH",
-            "DELETE",
-            "HEAD",
-            "CONNECT",
-            "OPTIONS",
-            "TRACE",
-        ];
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
-        });
+        const restMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "CONNECT", "OPTIONS", "TRACE"];
+        function handleVariableTypeChange(variable) {
+            variable.value = "";
+            props.modified({ model: true });
+        }
+        function handleScreen($event, variable) {
+            const selectedScreen = $event.target[$event.target.selectedIndex];
+            variable.id = selectedScreen.id;
+            props.modified({ model: true });
+        }
+        function handleDelete(key) {
+            variableValues.value = variableValues.value.filter((variable) => !(variable.key === key));
+            handleNewVariableName();
+        }
         function handleNewVariableName() {
-            if (!variableValues.value.some((value) => value.key === newVariableName.value)) {
-                isAddButtonDisable.value = false;
-            }
-            else {
-                isAddButtonDisable.value = true;
-            }
+            isAddButtonDisable.value = variableValues.value.some((value) => value.key === newVariableName.value);
         }
         function addNewVariable() {
             const newVariable = {
@@ -548,12 +541,9 @@ __webpack_require__.r(__webpack_exports__);
             };
             variableValues.value.push(newVariable);
             newVariableName.value = "";
+            props.modified({ model: true });
         }
-        function handleDelete(key) {
-            variableValues.value = variableValues.value.filter((variable) => !(variable.key === key));
-            handleNewVariableName();
-        }
-        const __returned__ = { util, props, variableValues, variableTypes, newVariableName, isAddButtonDisable, restMethods, handleNewVariableName, addNewVariable, handleDelete };
+        const __returned__ = { util, props, variableValues, variableTypes, newVariableName, isAddButtonDisable, restMethods, handleVariableTypeChange, handleScreen, handleDelete, handleNewVariableName, addNewVariable };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -583,20 +573,22 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'processDefinitionTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true },
         enableFinishButton: { type: Function, required: true },
         isNextActive: { type: Boolean, required: true }
     },
     setup(__props, { expose }) {
+        var _a;
         expose();
         const props = __props;
+        const bpmnVariableCache = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.existingBpmnVariableCache);
         const createNewBpmnFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.createNewBpmnFile);
-        const processFileName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.processDefinition.processFileName);
         const processFileNameValidationLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
         const processType = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.processType);
-        const selectedExistingBpmn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.selectedExistingBpmnFile.name);
+        const selectedExistingBpmn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)((_a = props.modelsOfModule.bpmns.find((bpmnFile) => bpmnFile.ID === props.model.selectedExistingBpmnFile.ID)) === null || _a === void 0 ? void 0 : _a.name);
+        const processFileName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.creatingProcessFileName || selectedExistingBpmn.value || "");
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
         });
@@ -607,25 +599,27 @@ __webpack_require__.r(__webpack_exports__);
         };
         function handleCreateNewBpmnFile() {
             props.model.createNewBpmnFile = createNewBpmnFile.value;
-            props.modified({ state: false, model: true });
+            props.modified({ model: true });
             setTabValidation();
         }
         function handleSelectedExistingBpmnFile($event) {
+            var _a;
             let selectedBpmn = $event.target[$event.target.selectedIndex];
+            bpmnVariableCache.value[props.model.selectedExistingBpmnFile.ID] = props.model.selectedExistingBpmnFile.variables;
             props.model.selectedExistingBpmnFile.ID = selectedBpmn.id;
-            props.model.selectedExistingBpmnFile.name = selectedBpmn.value;
-            validation.isExistingBpmnSelected = !!selectedExistingBpmn.value.length;
-            props.modified({ state: false, model: true });
+            props.model.selectedExistingBpmnFile.variables = [];
+            validation.isExistingBpmnSelected = !!((_a = selectedExistingBpmn.value) === null || _a === void 0 ? void 0 : _a.length);
+            props.modified({ model: true });
             setTabValidation();
         }
         function handleProcessFileName() {
             checkProcessFileNameValidation();
-            props.model.processDefinition.processFileName = processFileName.value;
+            props.state.creatingProcessFileName = processFileName.value;
             validation.isProcessFileNameValid = !processFileNameValidationLabel.value.length;
             if (validation.isProcessFileNameValid) {
                 props.enableFinishButton();
             }
-            props.modified({ state: false, model: true });
+            props.modified({ model: true });
             setTabValidation();
         }
         function checkProcessFileNameValidation() {
@@ -634,31 +628,30 @@ __webpack_require__.r(__webpack_exports__);
                 processFileNameValidationLabel.value = (0,_validation_validation__WEBPACK_IMPORTED_MODULE_1__.checkInputLength)(processFileName.value, 3);
             }
             if (!processFileNameValidationLabel.value.length &&
-                props.moduleModels.bpmns.find((bpmn) => bpmn.name.replace(".bpmn", "") === processFileName.value)) {
+                props.modelsOfModule.bpmns.find((bpmn) => bpmn.name.replace(".bpmn", "") === processFileName.value)) {
                 processFileNameValidationLabel.value = "This bpmn file name already in use.";
             }
         }
         function handleProcessType() {
             props.model.processType = processType.value;
             props.enableFinishButton();
-            props.modified({ state: false, model: true });
+            props.modified({ model: true });
             checkTabValidation();
         }
         function checkTabValidation() {
+            var _a;
             checkProcessFileNameValidation();
             validation.isProcessFileNameValid = !processFileNameValidationLabel.value.length;
             validation.isProcessTypeValid = !!processType.value.length;
-            validation.isExistingBpmnSelected = !!selectedExistingBpmn.value.length;
+            validation.isExistingBpmnSelected = !!((_a = selectedExistingBpmn.value) === null || _a === void 0 ? void 0 : _a.length);
             setTabValidation();
         }
         function setTabValidation() {
             props.state.stepper.isTabValid =
-                (createNewBpmnFile.value &&
-                    validation.isProcessFileNameValid &&
-                    validation.isProcessTypeValid) ||
+                (createNewBpmnFile.value && validation.isProcessFileNameValid && validation.isProcessTypeValid) ||
                     (!createNewBpmnFile.value && validation.isExistingBpmnSelected);
         }
-        const __returned__ = { props, createNewBpmnFile, processFileName, processFileNameValidationLabel, processType, selectedExistingBpmn, validation, handleCreateNewBpmnFile, handleSelectedExistingBpmnFile, handleProcessFileName, checkProcessFileNameValidation, handleProcessType, checkTabValidation, setTabValidation, processTypes: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_2__.processTypes };
+        const __returned__ = { props, bpmnVariableCache, createNewBpmnFile, processFileNameValidationLabel, processType, selectedExistingBpmn, processFileName, validation, handleCreateNewBpmnFile, handleSelectedExistingBpmnFile, handleProcessFileName, checkProcessFileNameValidation, handleProcessType, checkTabValidation, setTabValidation, processTypes: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_2__.processTypes };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -684,22 +677,20 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'processMakerDefinitionTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
     setup(__props, { expose }) {
+        var _a;
         expose();
         const props = __props;
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
         });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
-        });
         const processMakerDefinition = props.model.processMakerDefinition;
         const stepper = props.state.stepper;
-        const makerScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.makerScreen.name);
+        const makerScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.processMakerDefinition.makerScreenID)) === null || _a === void 0 ? void 0 : _a.name) || "");
         const useHierarchicalProcess = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.useHierarchicalProcess);
         const instUnitHierarchy = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.instUnitHierarchy);
         const ignoreLevelForDiffInstUnit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processMakerDefinition.ignoreLevelForDiffInstUnit);
@@ -708,9 +699,9 @@ __webpack_require__.r(__webpack_exports__);
         };
         function handleMakerScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            processMakerDefinition.makerScreen.ID = selectedScreen.id;
-            processMakerDefinition.makerScreen.name = selectedScreen.value;
+            processMakerDefinition.makerScreenID = selectedScreen.id;
             validation.isMakerScreenValid = !!makerScreen.value.length;
+            props.modified({ model: true });
             setTabValidation();
         }
         function handleHierarchy() {
@@ -721,12 +712,15 @@ __webpack_require__.r(__webpack_exports__);
                 ignoreLevelForDiffInstUnit.value = false;
                 handleIgnoreLevelForDiffInstUnit();
             }
+            props.modified({ model: true });
         }
         function handleInstUnitHierarchy() {
             processMakerDefinition.instUnitHierarchy = instUnitHierarchy.value;
+            props.modified({ model: true });
         }
         function handleIgnoreLevelForDiffInstUnit() {
             processMakerDefinition.ignoreLevelForDiffInstUnit = ignoreLevelForDiffInstUnit.value;
+            props.modified({ model: true });
         }
         function checkTabValidation() {
             validation.isMakerScreenValid = !!makerScreen.value.length;
@@ -763,36 +757,24 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'runAfterChangeAdvisedDefinitionTab',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
     setup(__props, { expose }) {
+        var _a;
         expose();
         const props = __props;
-        const restMethods = [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH",
-            "DELETE",
-            "HEAD",
-            "CONNECT",
-            "OPTIONS",
-            "TRACE",
-        ];
+        const restMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "CONNECT", "OPTIONS", "TRACE"];
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
-        });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
         });
         const stepper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.state.stepper);
         const fieldsUpdated = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
             runAfterChangeAdvisedApi: false,
         });
         const runAfterChangeAdvisedDefinition = props.model.runAfterChangeAdvisedDefinition;
-        const reviewScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.model.reviewScreen.name);
+        const reviewScreen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.modelsOfModule.screens.find((screen) => screen.ID == props.model.reviewScreenID)) === null || _a === void 0 ? void 0 : _a.name) || "");
         const isRunAfterChangeAdvisedEnable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(runAfterChangeAdvisedDefinition.isRunAfterChangeAdvisedEnable);
         const runAfterChangeAdvisedApi = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(runAfterChangeAdvisedDefinition.runAfterChangeAdvisedApi);
         const runAfterChangeAdvisedApiValidationLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
@@ -803,15 +785,14 @@ __webpack_require__.r(__webpack_exports__);
         };
         function handleReviewScreen($event) {
             let selectedScreen = $event.target[$event.target.selectedIndex];
-            props.model.reviewScreen.ID = selectedScreen.id;
-            props.model.reviewScreen.name = selectedScreen.value;
+            props.modified({ model: true });
+            props.model.reviewScreenID = selectedScreen.id;
             validation.isReviewScreenValid = !!reviewScreen.value.length;
             setTabValidation();
         }
         function handleRunAfterChangeAdvised() {
-            runAfterChangeAdvisedDefinition.isRunAfterChangeAdvisedEnable =
-                isRunAfterChangeAdvisedEnable.value;
-            checkReviewScreenValidation();
+            runAfterChangeAdvisedDefinition.isRunAfterChangeAdvisedEnable = isRunAfterChangeAdvisedEnable.value;
+            props.modified({ model: true });
             setTabValidation();
         }
         function handleRunAfterChangeAdvisedApi() {
@@ -820,11 +801,13 @@ __webpack_require__.r(__webpack_exports__);
             }
             runAfterChangeAdvisedApiValidationLabel.value = (0,_validation_validation__WEBPACK_IMPORTED_MODULE_1__.checkURLPattern)(runAfterChangeAdvisedApi.value);
             runAfterChangeAdvisedDefinition.runAfterChangeAdvisedApi = runAfterChangeAdvisedApi.value;
+            props.modified({ model: true });
             checkRunAfterChangeAdvisedApiValidation();
             setTabValidation();
         }
         function handleRunAfterChangeAdvisedMethod() {
             runAfterChangeAdvisedDefinition.runAfterChangeAdvisedMethod = runAfterChangeAdvisedMethod.value;
+            props.modified({ model: true });
         }
         function checkReviewScreenValidation() {
             validation.isReviewScreenValid = !!reviewScreen.value.length;
@@ -838,8 +821,7 @@ __webpack_require__.r(__webpack_exports__);
             setTabValidation();
         }
         function setTabValidation() {
-            stepper.value.isTabValid =
-                validation.isReviewScreenValid && validation.isRunAfterChangedAdvisedApiValid;
+            stepper.value.isTabValid = validation.isReviewScreenValid && validation.isRunAfterChangedAdvisedApiValid;
         }
         const __returned__ = { restMethods, props, stepper, fieldsUpdated, runAfterChangeAdvisedDefinition, reviewScreen, isRunAfterChangeAdvisedEnable, runAfterChangeAdvisedApi, runAfterChangeAdvisedApiValidationLabel, runAfterChangeAdvisedMethod, validation, handleReviewScreen, handleRunAfterChangeAdvised, handleRunAfterChangeAdvisedApi, handleRunAfterChangeAdvisedMethod, checkReviewScreenValidation, checkRunAfterChangeAdvisedApiValidation, checkTabValidation, setTabValidation };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
@@ -875,22 +857,9 @@ __webpack_require__.r(__webpack_exports__);
     setup(__props, { expose }) {
         expose();
         const props = __props;
-        const restMethods = [
-            "GET",
-            "POST",
-            "PUT",
-            "PATCH",
-            "DELETE",
-            "HEAD",
-            "CONNECT",
-            "OPTIONS",
-            "TRACE",
-        ];
+        const restMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "CONNECT", "OPTIONS", "TRACE"];
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             checkTabValidation();
-        });
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUpdated)(() => {
-            props.modified({ state: false, model: true });
         });
         const runAfterApprovalDefinition = props.model.runAfterApprovalDefinition;
         const runAfterRejectedDefinition = props.model.runAfterRejectedDefinition;
@@ -913,6 +882,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         function handleRunAfterApproval() {
             runAfterApprovalDefinition.isRunAfterApprovalEnable = isRunAfterApprovalEnable.value;
+            props.modified({ model: true });
         }
         function handleRunAfterApprovalApi() {
             if (!fieldsUpdated.value.runAfterApprovalApi) {
@@ -920,13 +890,16 @@ __webpack_require__.r(__webpack_exports__);
             }
             runAfterApprovalApiValidationLabel.value = (0,_validation_validation__WEBPACK_IMPORTED_MODULE_1__.checkURLPattern)(runAfterApprovalApi.value);
             runAfterApprovalDefinition.runAfterApprovalApi = runAfterApprovalApi.value;
+            props.modified({ model: true });
             checkRunAfterApprovalApiValidation();
         }
         function handleRunAfterApprovalMethod() {
             runAfterApprovalDefinition.runAfterApprovalMethod = runAfterApprovalMethod.value;
+            props.modified({ model: true });
         }
         function handleRunAfterRejected() {
             runAfterRejectedDefinition.isRunAfterRejectedEnable = isRunAfterRejectedEnable.value;
+            props.modified({ model: true });
         }
         function handleRunAfterRejectedApi() {
             if (!fieldsUpdated.value.runAfterRejectedApi) {
@@ -934,10 +907,12 @@ __webpack_require__.r(__webpack_exports__);
             }
             runAfterRejectedApiValidationLabel.value = (0,_validation_validation__WEBPACK_IMPORTED_MODULE_1__.checkURLPattern)(runAfterRejectedApi.value);
             runAfterRejectedDefinition.runAfterRejectedApi = runAfterRejectedApi.value;
+            props.modified({ model: true });
             checkRunAfterRejectedApiValidation();
         }
         function handleRunAfterRejectedMethod() {
             runAfterRejectedDefinition.runAfterRejectedMethod = runAfterRejectedMethod.value;
+            props.modified({ model: true });
         }
         function checkRunAfterApprovalApiValidation() {
             validation.isRunAfterApprovalApiValid = !runAfterApprovalApiValidationLabel.value;
@@ -952,8 +927,7 @@ __webpack_require__.r(__webpack_exports__);
             checkRunAfterRejectedApiValidation();
         }
         function setTabValidation() {
-            stepper.value.isTabValid =
-                validation.isRunAfterApprovalApiValid && validation.isRunAfterRejectedApiValid;
+            stepper.value.isTabValid = validation.isRunAfterApprovalApiValid && validation.isRunAfterRejectedApiValid;
         }
         const __returned__ = { restMethods, props, runAfterApprovalDefinition, runAfterRejectedDefinition, stepper, fieldsUpdated, isRunAfterApprovalEnable, runAfterApprovalApi, runAfterApprovalApiValidationLabel, runAfterApprovalMethod, isRunAfterRejectedEnable, runAfterRejectedApi, runAfterRejectedApiValidationLabel, runAfterRejectedMethod, validation, handleRunAfterApproval, handleRunAfterApprovalApi, handleRunAfterApprovalMethod, handleRunAfterRejected, handleRunAfterRejectedApi, handleRunAfterRejectedMethod, checkRunAfterApprovalApiValidation, checkRunAfterRejectedApiValidation, checkTabValidation, setTabValidation };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
@@ -993,7 +967,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'tripleApprovalWizard',
     props: {
         model: { type: null, required: true },
-        moduleModels: { type: null, required: true },
+        modelsOfModule: { type: null, required: true },
         state: { type: null, required: true },
         modified: { type: null, required: true }
     },
@@ -1075,7 +1049,7 @@ __webpack_require__.r(__webpack_exports__);
         const processModel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processEditorUtil.getEmptyProcessWizardModel("_"));
         const processEditorState = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(processEditorUtil.getEmptyProcessEditorState());
         const currentModule = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
-        const moduleModels = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+        const modelsOfModule = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
             screens: [],
             bpmns: [],
         });
@@ -1084,17 +1058,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         props.functions.setModel = async (model, module, state) => {
             currentModule.value = module;
-            moduleModels.value = { screens: [], bpmns: [] };
-            module.children.forEach((children) => {
-                if (children.objectType == "model") {
-                    if (children.modelType === "qjson") {
-                        moduleModels.value.screens.push(children);
-                    }
-                    else if (children.modelType === "bpmn") {
-                        moduleModels.value.bpmns.push(children);
-                    }
-                }
-            });
+            modelsOfModule.value = processEditorUtil.getModelsOfModule(module);
             processDefinitionTabKey.value = _stechquick_algae_lib_helpers_cryptoHelper__WEBPACK_IMPORTED_MODULE_13__.CryptoHelper.CreateGuid();
             processModel.value = model;
             processEditorState.value = state;
@@ -1105,9 +1069,14 @@ __webpack_require__.r(__webpack_exports__);
             if (stepper.isTabValid) {
                 if (!processModel.value.createNewBpmnFile) {
                     isNextActive.value = false;
+                    const existingBpmnVariableCache = processEditorState.value.existingBpmnVariableCache;
+                    const bpmnVariableFromCache = existingBpmnVariableCache[processModel.value.selectedExistingBpmnFile.ID];
+                    if (bpmnVariableFromCache) {
+                        processModel.value.selectedExistingBpmnFile.variables = bpmnVariableFromCache;
+                    }
                     const bpmnModel = await props.callbacks.getBpmnModel(selectedExistingBpmnFile.ID);
                     const extractedProcessVariables = await (0,_stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_15__.extractProcessVariables)(bpmnModel);
-                    processModel.value.selectedExistingBpmnFile.variables = processEditorUtil
+                    const editableVariables = processEditorUtil
                         .extractEditableProcessVariables(extractedProcessVariables, [
                         "initiator",
                         "formJson",
@@ -1116,13 +1085,18 @@ __webpack_require__.r(__webpack_exports__);
                         "isChange",
                         "refreshAfterSendToApproval",
                     ])
-                        .map((variable) => ({
-                        key: variable.source,
-                        type: "STRING",
-                        value: processEditorUtil.handleProcessVariables(processModel.value, variable.source),
-                        isDeletable: false,
-                    }));
-                    _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.extraProcessConfigVariables.forEach((variable) => processModel.value.selectedExistingBpmnFile.variables.push(variable));
+                        .concat(_domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.extraProcessConfigVariables);
+                    editableVariables.forEach((editableVariable) => {
+                        if (!processModel.value.selectedExistingBpmnFile.variables.some((variable) => variable.key === editableVariable.source)) {
+                            processModel.value.selectedExistingBpmnFile.variables.push({
+                                key: editableVariable.source,
+                                type: "STRING",
+                                value: processEditorUtil.handleProcessVariables(processModel.value, editableVariable.source, modelsOfModule.value, "process_name"),
+                                isDeletable: false,
+                            });
+                        }
+                    });
+                    processModel.value.selectedExistingBpmnFile.variables = processModel.value.selectedExistingBpmnFile.variables.filter((variable) => editableVariables.some((editableVariable) => editableVariable.source == variable.key));
                     isNextActive.value = true;
                 }
                 stepper.currentStep++;
@@ -1133,28 +1107,28 @@ __webpack_require__.r(__webpack_exports__);
         function handleBack() {
             processEditorState.value.stepper.currentStep--;
             processEditorState.value.stepper.isTabValid = false;
+            props.callbacks.modified({ state: true });
         }
         function handleFinish() {
-            const bpmnFile = processEditorUtil.generateBpmnFile(processModel.value);
+            const bpmnFile = processEditorUtil.generateBpmnFile(processModel.value, processEditorState.value.creatingProcessFileName);
             executor.execute(async () => {
                 const createdItem = await executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_11__.ICreateModel, {
-                    name: processModel.value.processDefinition.processFileName,
+                    name: processEditorState.value.creatingProcessFileName,
                     parentObjectId: currentModule.value.ID,
                     modelType: "bpmn",
                     modelBody: [{ key: "bpmn", model: bpmnFile }],
                     modelAdditionals: {},
                 });
                 processModel.value.createNewBpmnFile = false;
-                processModel.value.selectedExistingBpmnFile.name = processModel.value.processDefinition.processFileName;
                 processModel.value.selectedExistingBpmnFile.ID = createdItem.ID;
-                moduleModels.value.bpmns.push(createdItem);
+                modelsOfModule.value.bpmns.push(createdItem);
                 processEditorState.value.stepper.currentStep = 0;
                 disableFinishButton.value = true;
                 studio.openItem(createdItem, { fromHistory: false, noFocus: true });
             }, { loading: true });
             props.callbacks.modified({ state: true });
         }
-        const __returned__ = { executor, studio, processEditorUtil, props, processDefinitionTabKey, disableFinishButton, isNextActive, processModel, processEditorState, currentModule, moduleModels, handleNext, handleBack, handleFinish, SINGLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.SINGLE_APPROVAL, DOUBLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.DOUBLE_APPROVAL, TRIPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.TRIPLE_APPROVAL, QUADRUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUADRUPLE_APPROVAL, QUINTUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUINTUPLE_APPROVAL, ProcessDefinitionTab: _approvalWizards_tabs_processDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], EditProcessVariablesTab: _approvalWizards_tabs_editProcessVariablesTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], SingleApprovalWizard: _approvalWizards_singleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_4__["default"], DoubleApprovalWizard: _approvalWizards_doubleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_5__["default"], TripleApprovalWizard: _approvalWizards_tripleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_6__["default"], QuadrupleApprovalWizard: _approvalWizards_quadrupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_7__["default"], QuintupleApprovalWizard: _approvalWizards_quintupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
+        const __returned__ = { executor, studio, processEditorUtil, props, processDefinitionTabKey, disableFinishButton, isNextActive, processModel, processEditorState, currentModule, modelsOfModule, handleNext, handleBack, handleFinish, SINGLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.SINGLE_APPROVAL, DOUBLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.DOUBLE_APPROVAL, TRIPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.TRIPLE_APPROVAL, QUADRUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUADRUPLE_APPROVAL, QUINTUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUINTUPLE_APPROVAL, ProcessDefinitionTab: _approvalWizards_tabs_processDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], EditProcessVariablesTab: _approvalWizards_tabs_editProcessVariablesTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], SingleApprovalWizard: _approvalWizards_singleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_4__["default"], DoubleApprovalWizard: _approvalWizards_doubleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_5__["default"], TripleApprovalWizard: _approvalWizards_tripleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_6__["default"], QuadrupleApprovalWizard: _approvalWizards_quadrupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_7__["default"], QuintupleApprovalWizard: _approvalWizards_quintupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -1185,20 +1159,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessMakerDefinitionTab"], {
                 key: 0,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_d = $setup.stepper) === null || _d === void 0 ? void 0 : _d.currentStep) === 2)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionFirstTab"], {
                 key: 1,
                 model: $setup.props.model,
                 state: $setup.props.state,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 "second-approve-enabled": true,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "state", "module-models", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_e = $setup.stepper) === null || _e === void 0 ? void 0 : _e.currentStep) === 3)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterProcessDefinitionTab"], {
@@ -1213,16 +1187,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 3,
                 model: $setup.props.model,
                 state: $setup.props.state,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "state", "module-models", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_g = $setup.stepper) === null || _g === void 0 ? void 0 : _g.currentStep) === 5)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveTab"], {
                 key: 4,
                 model: $setup.props.model,
-                state: $setup.props.state
-            }, null, 8 /* PROPS */, ["model", "state"]))
+                state: $setup.props.state,
+                "models-of-module": $setup.props.modelsOfModule
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -1252,30 +1227,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessMakerDefinitionTab"], {
                 key: 0,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_d = $setup.stepper) === null || _d === void 0 ? void 0 : _d.currentStep) === 2)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionFirstTab"], {
                 key: 1,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified,
                 "second-approve-enabled": true
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_e = $setup.stepper) === null || _e === void 0 ? void 0 : _e.currentStep) === 3)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionSecondTab"], {
                 key: 2,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified,
                 "fourth-approve-enabled": true
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_f = $setup.stepper) === null || _f === void 0 ? void 0 : _f.currentStep) === 4)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterProcessDefinitionTab"], {
@@ -1289,17 +1264,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterChangeAdvisedDefinitionTab"], {
                 key: 4,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_h = $setup.stepper) === null || _h === void 0 ? void 0 : _h.currentStep) === 6)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveTab"], {
                 key: 5,
                 model: $setup.props.model,
-                state: $setup.props.state
-            }, null, 8 /* PROPS */, ["model", "state"]))
+                state: $setup.props.state,
+                "models-of-module": $setup.props.modelsOfModule
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -1329,39 +1305,39 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessMakerDefinitionTab"], {
                 key: 0,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_d = $setup.stepper) === null || _d === void 0 ? void 0 : _d.currentStep) === 2)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionFirstTab"], {
                 key: 1,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 "second-approve-enabled": true,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_e = $setup.stepper) === null || _e === void 0 ? void 0 : _e.currentStep) === 3)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionSecondTab"], {
                 key: 2,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 "fourth-approve-enabled": true,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_f = $setup.stepper) === null || _f === void 0 ? void 0 : _f.currentStep) === 4)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionThirdTab"], {
                 key: 3,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_g = $setup.stepper) === null || _g === void 0 ? void 0 : _g.currentStep) === 5)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterProcessDefinitionTab"], {
@@ -1375,17 +1351,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterChangeAdvisedDefinitionTab"], {
                 key: 5,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_j = $setup.stepper) === null || _j === void 0 ? void 0 : _j.currentStep) === 7)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveTab"], {
                 key: 6,
                 model: $setup.props.model,
-                state: $setup.props.state
-            }, null, 8 /* PROPS */, ["model", "state"]))
+                state: $setup.props.state,
+                "models-of-module": $setup.props.modelsOfModule
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -1415,20 +1392,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessMakerDefinitionTab"], {
                 key: 0,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_d = $setup.stepper) === null || _d === void 0 ? void 0 : _d.currentStep) === 2)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionFirstTab"], {
                 key: 1,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 "second-approve-enabled": false,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_e = $setup.stepper) === null || _e === void 0 ? void 0 : _e.currentStep) === 3)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterProcessDefinitionTab"], {
@@ -1442,17 +1419,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterChangeAdvisedDefinitionTab"], {
                 key: 3,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_g = $setup.stepper) === null || _g === void 0 ? void 0 : _g.currentStep) === 5)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveTab"], {
                 key: 4,
                 model: $setup.props.model,
-                state: $setup.props.state
-            }, null, 8 /* PROPS */, ["model", "state"]))
+                state: $setup.props.state,
+                "models-of-module": $setup.props.modelsOfModule
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -1502,7 +1480,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onChange: $setup.handleFirstApproverScreen
         }, [
             _hoisted_3,
-            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                     id: screen.ID
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
@@ -1522,7 +1500,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     onChange: $setup.handleSecondApproverScreen
                 }, [
                     _hoisted_9,
-                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                             id: screen.ID
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_10));
@@ -1581,7 +1559,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onChange: $setup.handleThirdApproverScreen
         }, [
             _hoisted_3,
-            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                     id: screen.ID
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
@@ -1601,7 +1579,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     onChange: $setup.handleFourthApproverScreen
                 }, [
                     _hoisted_9,
-                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                             id: screen.ID
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_10));
@@ -1650,7 +1628,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onChange: $setup.handleFifthApproverScreen
         }, [
             _hoisted_3,
-            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                     id: screen.ID
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
@@ -1684,7 +1662,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [
             _hoisted_1,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.props.model.processDefinition.processFileName) + ".bpmn", 1 /* TEXT */),
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.props.state.creatingProcessFileName) + ".bpmn", 1 /* TEXT */),
             _hoisted_2
         ]),
         _hoisted_3
@@ -1719,7 +1697,7 @@ const _hoisted_10 = [
     _hoisted_8,
     _hoisted_9
 ];
-const _hoisted_11 = ["onUpdate:modelValue"];
+const _hoisted_11 = ["onUpdate:modelValue", "onChange"];
 const _hoisted_12 = ["id"];
 const _hoisted_13 = ["onUpdate:modelValue"];
 const _hoisted_14 = ["onClick"];
@@ -1735,7 +1713,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variable.key), 9 /* TEXT, PROPS */, _hoisted_2),
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
                     "onUpdate:modelValue": ($event) => ((variable.type) = $event),
-                    onChange: () => (variable.value = '')
+                    onChange: ($event) => ($setup.handleVariableTypeChange(variable))
                 }, [
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.variableTypes, (variableType) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
@@ -1752,42 +1730,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         type: variable.type === 'STRING' ? 'text' : 'number',
                         id: variable.key,
                         name: variable.key,
-                        "onUpdate:modelValue": ($event) => ((variable.value) = $event)
-                    }, null, 8 /* PROPS */, _hoisted_6)), [
+                        "onUpdate:modelValue": ($event) => ((variable.value) = $event),
+                        onInput: _cache[0] || (_cache[0] = ($event) => ($setup.props.modified({ model: true })))
+                    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
                 (variable.type === 'BOOLEAN')
                     ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
                         key: 1,
-                        "onUpdate:modelValue": ($event) => ((variable.value) = $event)
-                    }, _hoisted_10, 8 /* PROPS */, _hoisted_7)), [
+                        "onUpdate:modelValue": ($event) => ((variable.value) = $event),
+                        onChange: _cache[1] || (_cache[1] = ($event) => ($setup.props.modified({ model: true })))
+                    }, _hoisted_10, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_7)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
                 (variable.type === 'SCREEN')
                     ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
                         key: 2,
-                        "onUpdate:modelValue": ($event) => ((variable.value) = $event)
+                        "onUpdate:modelValue": ($event) => ((variable.value) = $event),
+                        onChange: ($event) => ($setup.handleScreen($event, variable))
                     }, [
-                        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+                        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                             return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                                 id: screen.ID
                             }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_12));
                         }), 256 /* UNKEYED_FRAGMENT */))
-                    ], 8 /* PROPS */, _hoisted_11)), [
+                    ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_11)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
                 (variable.type === 'HTTP METHOD')
                     ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
                         key: 3,
-                        "onUpdate:modelValue": ($event) => ((variable.value) = $event)
+                        "onUpdate:modelValue": ($event) => ((variable.value) = $event),
+                        onChange: _cache[2] || (_cache[2] = ($event) => ($setup.props.modified({ model: true })))
                     }, [
                         ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.restMethods, (restMethod) => {
                             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(restMethod), 1 /* TEXT */);
                         }), 64 /* STABLE_FRAGMENT */))
-                    ], 8 /* PROPS */, _hoisted_13)), [
+                    ], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_13)), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, variable.value]
                     ])
                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
@@ -1801,7 +1783,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }), 256 /* UNKEYED_FRAGMENT */)),
         _hoisted_15,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.newVariableName) = $event)),
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.newVariableName) = $event)),
             onInput: $setup.handleNewVariableName
         }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.newVariableName]
@@ -1811,7 +1793,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             disabled: $setup.isAddButtonDisable
         }, "Add New Variable", 8 /* PROPS */, _hoisted_16),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            onClick: _cache[1] || (_cache[1] = ($event) => ($setup.util.generateProcessConfigFile($setup.props.model)))
+            onClick: _cache[4] || (_cache[4] = ($event) => ($setup.util.generateProcessConfigFile($setup.props.model, $setup.props.modelsOfModule)))
         }, "ProcessConfigPrint")
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -1886,9 +1868,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     disabled: !$props.isNextActive
                 }, [
                     _hoisted_6,
-                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.bpmns, (bpmn) => {
+                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.bpmns, (bpmn) => {
                         return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-                            selected: bpmn.name === $setup.props.model.selectedExistingBpmnFile.name,
+                            selected: bpmn.ID === $setup.props.model.selectedExistingBpmnFile.ID,
                             id: bpmn.ID
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(bpmn.name), 9 /* TEXT, PROPS */, _hoisted_7));
                     }), 256 /* UNKEYED_FRAGMENT */))
@@ -1992,7 +1974,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             required: ""
         }, [
             _hoisted_3,
-            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                     id: screen.ID
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
@@ -2103,7 +2085,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onChange: $setup.handleReviewScreen
         }, [
             _hoisted_3,
-            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.moduleModels.screens, (screen) => {
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.modelsOfModule.screens, (screen) => {
                 return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                     id: screen.ID
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(screen.name), 9 /* TEXT, PROPS */, _hoisted_4));
@@ -2317,30 +2299,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessMakerDefinitionTab"], {
                 key: 0,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_d = $setup.stepper) === null || _d === void 0 ? void 0 : _d.currentStep) === 2)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionFirstTab"], {
                 key: 1,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 "second-approve-enabled": true,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_e = $setup.stepper) === null || _e === void 0 ? void 0 : _e.currentStep) === 3)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveDefinitionSecondTab"], {
                 key: 2,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 "fourth-approve-enabled": false,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_f = $setup.stepper) === null || _f === void 0 ? void 0 : _f.currentStep) === 4)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterProcessDefinitionTab"], {
@@ -2354,17 +2336,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["RunAfterChangeAdvisedDefinitionTab"], {
                 key: 4,
                 model: $setup.props.model,
-                "module-models": $setup.props.moduleModels,
+                "models-of-module": $setup.props.modelsOfModule,
                 state: $setup.props.state,
                 modified: $setup.props.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (((_h = $setup.stepper) === null || _h === void 0 ? void 0 : _h.currentStep) === 6)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ApproveTab"], {
                 key: 5,
                 model: $setup.props.model,
-                state: $setup.props.state
-            }, null, 8 /* PROPS */, ["model", "state"]))
+                state: $setup.props.state,
+                "models-of-module": $setup.props.modelsOfModule
+            }, null, 8 /* PROPS */, ["model", "state", "models-of-module"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
     ], 64 /* STABLE_FRAGMENT */));
 }
@@ -2392,49 +2375,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ($setup.processEditorState.stepper.currentStep === 0)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessDefinitionTab"], {
                 model: $setup.processModel,
-                "module-models": $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified,
                 "enable-finish-button": () => ($setup.disableFinishButton = false),
                 "is-next-active": $setup.isNextActive,
                 key: $setup.processDefinitionTabKey
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified", "enable-finish-button", "is-next-active"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified", "enable-finish-button", "is-next-active"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (!$setup.processModel.createNewBpmnFile && $setup.processEditorState.stepper.currentStep === 1)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["EditProcessVariablesTab"], {
                 key: 1,
                 model: $setup.processModel,
-                "module-models": $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "module-models", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.processModel.processType === $setup.SINGLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SingleApprovalWizard"], {
                 key: 2,
                 model: $setup.processModel,
-                moduleModels: $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.processModel.processType === $setup.DOUBLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DoubleApprovalWizard"], {
                 key: 3,
                 model: $setup.processModel,
-                moduleModels: $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.processModel.processType === $setup.TRIPLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TripleApprovalWizard"], {
                 key: 4,
                 model: $setup.processModel,
-                moduleModels: $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.processModel.processType === $setup.QUADRUPLE_APPROVAL.value &&
             $setup.processEditorState.stepper.currentStep !== 0 &&
@@ -2442,10 +2425,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["QuadrupleApprovalWizard"], {
                 key: 5,
                 model: $setup.processModel,
-                moduleModels: $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         ($setup.processModel.processType === $setup.QUINTUPLE_APPROVAL.value &&
             $setup.processEditorState.stepper.currentStep !== 0 &&
@@ -2453,13 +2436,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["QuintupleApprovalWizard"], {
                 key: 6,
                 model: $setup.processModel,
-                moduleModels: $setup.moduleModels,
+                "models-of-module": $setup.modelsOfModule,
                 state: $setup.processEditorState,
                 modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "moduleModels", "state", "modified"]))
+            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                style: { "margin-bottom": "5%" },
                 disabled: !$setup.processEditorState.stepper.currentStep,
                 onClick: $setup.handleBack
             }, "Back", 8 /* PROPS */, _hoisted_1),
