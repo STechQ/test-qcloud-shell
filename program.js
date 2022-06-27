@@ -38,6 +38,42 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".qcloud-tree-root{\n    height: 100%;\
 
 /***/ }),
 
+/***/ "./node_modules/@stechquick/algae/lib/helpers/cryptoHelper.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@stechquick/algae/lib/helpers/cryptoHelper.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CryptoHelper = void 0;
+var CryptoHelper = /** @class */ (function () {
+    function CryptoHelper() {
+    }
+    /**
+     *
+     * @param base number layout (number of distinct digits) (10'luk sayı düzeni, 16'lık sayı düzeni)
+     * @param length length of word. Max value: 16
+     */
+    CryptoHelper.GetRandomWord = function (base, length) {
+        return Math.random().toString(base).substring(2, length + 2);
+    };
+    /**
+     * Ex: be945482-jf10-40d1-a50d-rzxa2c41fdcu
+     */
+    CryptoHelper.CreateGuid = function () {
+        var _this = this;
+        return [8, 4, 4, 4, 6].map(function (length) { return _this.GetRandomWord(36, length); }).join("-") + ((++CryptoHelper.guidCounter) % 2150000000).toString(36);
+    };
+    CryptoHelper.guidCounter = 0;
+    return CryptoHelper;
+}());
+exports.CryptoHelper = CryptoHelper;
+
+
+/***/ }),
+
 /***/ "./node_modules/@stechquick/plateau-comm/dist/PlateauMessaging.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@stechquick/plateau-comm/dist/PlateauMessaging.js ***!
@@ -20957,8 +20993,6 @@ let GetUserDomainsImpl = class GetUserDomainsImpl {
         this.viewModelManager.initSessionUser(param.email, domains);
         return domains;
     }
-    async fail(err) {
-    }
 };
 GetUserDomainsImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
@@ -22575,9 +22609,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
-/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
-/* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+/* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _stechquick_algae_lib_helpers_cryptoHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @stechquick/algae/lib/helpers/cryptoHelper */ "./node_modules/@stechquick/algae/lib/helpers/cryptoHelper.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22587,6 +22623,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
+
 
 
 
@@ -22619,12 +22657,12 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
             let retVal;
             try {
                 retVal = await ((_a = useCase.fail) === null || _a === void 0 ? void 0 : _a.call(useCase, error)) || undefined;
+                this.handleError(error, retVal);
             }
             catch (error) {
                 this.handleError(error, undefined);
             }
-            this.handleError(error, retVal);
-            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createHandledError)();
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__.createHandledError)();
         }
     }
     async resolveUseCase(useCaseInjectionToken) {
@@ -22652,7 +22690,8 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
             return retVal;
         }
         catch (error) {
-            this.handleError(error, undefined);
+            throw error;
+            //this.handleError(error, undefined, undefined);
         }
         finally {
             if (options.loading) {
@@ -22665,9 +22704,9 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
             return await this.execute(cb, options);
         };
     }
-    handleError(error, retVal) {
-        if (error instanceof _domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.ShellError) {
-            const title = error.shellError.title || error.shellError.type + " error";
+    async handleError(error, retVal) {
+        if (error instanceof _domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__.ShellError) {
+            let title = error.shellError.title || error.shellError.type + " error";
             if (!(retVal === null || retVal === void 0 ? void 0 : retVal.preventLog) && !error.shellError.preventLog) {
                 if (error.shellError.type == "business") {
                     this.logger.log({ level: "log", message: error.message });
@@ -22676,9 +22715,17 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
                     this.logger.log({ level: "error", message: error.message, error });
                 }
             }
+            let errorID = undefined;
+            if (error.shellError.type == "technical" && !error.shellError.preventBackendLog) {
+                errorID = _stechquick_algae_lib_helpers_cryptoHelper__WEBPACK_IMPORTED_MODULE_6__.CryptoHelper.CreateGuid();
+                const qcloudApi = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__.IQCloudApi);
+                qcloudApi.createLog({ ID: errorID, detail: error.message, stack: error.stack, level: "error", type: "technical" });
+            }
             if (!(retVal === null || retVal === void 0 ? void 0 : retVal.preventNotification) && !error.shellError.preventNotification) {
+                let text = errorID ? `Error ID: ${errorID}` : error.message;
+                title = errorID ? "Something Went Wrong" : title;
                 this.notification.showNotification({
-                    text: error.message, title, type: error.shellError.type == "business" ? "warning" : "error", copy: true
+                    text, title, type: error.shellError.type == "business" ? "warning" : "error", copy: true
                 });
             }
         }
@@ -22699,8 +22746,8 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
 UseCaseExecutorImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_1__.ILogger)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__.INotification)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_3__.ILoading))
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_4__.ILoading))
 ], UseCaseExecutorImpl);
 
 
@@ -26910,7 +26957,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.21"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.22"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -27709,6 +27756,11 @@ let QCloudApiImpl = class QCloudApiImpl {
         this.executor = executor;
         this.qcloudApiUrl = this.config.getValue("qcloudApiUrl");
     }
+    createServiceUnavailableError() {
+        const message = "Service is unavailable now";
+        this.logger.log({ level: "error", message });
+        return new _domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.ShellError({ message, type: "technical", preventBackendLog: true });
+    }
     async request(path, data, options) {
         var _a, _b;
         const url = this.join(this.qcloudApiUrl, path);
@@ -27719,20 +27771,19 @@ let QCloudApiImpl = class QCloudApiImpl {
         catch (ex) {
             const err = ex;
             const resp = err.response;
-            ;
-            if (!resp || resp.status == 200) {
-                throw ex;
+            if (!resp) {
+                throw this.createServiceUnavailableError();
             }
-            const message = "qcloud returned status: " + resp.status + " " + resp.statusText;
+            const message = err.message || (resp.status + " " + resp.statusText);
             this.logger.log({ level: "error", message });
-            if (resp.status == 401) {
-                this.executor.executeUseCase(_domain_useCase_ITimedOut__WEBPACK_IMPORTED_MODULE_6__.ITimedOut);
-                throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createHandledError)();
+            if (resp.status != 401) {
+                throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: "technical" });
             }
-            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: "technical", title: "QCloud unavailable" });
+            this.executor.executeUseCase(_domain_useCase_ITimedOut__WEBPACK_IMPORTED_MODULE_6__.ITimedOut);
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createHandledError)();
         }
         if (resp.body.status != "success") {
-            const message = "qcloud returned: " + ((_a = resp.body.error) === null || _a === void 0 ? void 0 : _a.message);
+            const message = ((_a = resp.body.error) === null || _a === void 0 ? void 0 : _a.message) || "";
             throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: resp.body.status == "customerror" ? "business" : "technical", title: (_b = resp.body.error) === null || _b === void 0 ? void 0 : _b.title });
         }
         return resp.body.data;
@@ -27802,6 +27853,10 @@ let QCloudApiImpl = class QCloudApiImpl {
             createdBy: app.createdBy,
         };
         return retVal;
+    }
+    async createLog(logItem) {
+        const logID = await this.request("/addlog", { logItem });
+        return logID;
     }
     async getModelInfo(ID, { checkoutControl = false, createCheckout = false } = {}) {
         const info = await this.getModel(ID, { checkoutControl, createCheckout, retrieveBody: false });
@@ -28808,11 +28863,12 @@ const langData = {
     exportshortComment: "ShortComment",
     exportversion: "Version",
     moduleName: "Module Name",
-    gitGroup: "Git Group",
+    gitGroup: "GIT Group",
     microservice: "Microservice",
+    service: "Service",
     close: "Close",
     relatedApplications: "Related Applications",
-    save: "Save",
+    save: "SAVE",
     deployTip: "You must set deploy settings.",
     cancel: "Cancel",
     appName: "App(UI) Name",

@@ -1,41 +1,6 @@
 "use strict";
 (self["webpackChunkqcloud_shell"] = self["webpackChunkqcloud_shell"] || []).push([["src_presentation_vue3_editors_processEditor_processEditor_vue"],{
 
-/***/ "./node_modules/@stechquick/algae/lib/helpers/cryptoHelper.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@stechquick/algae/lib/helpers/cryptoHelper.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CryptoHelper = void 0;
-var CryptoHelper = /** @class */ (function () {
-    function CryptoHelper() {
-    }
-    /**
-     *
-     * @param base number layout (number of distinct digits) (10'luk sayı düzeni, 16'lık sayı düzeni)
-     * @param length length of word. Max value: 16
-     */
-    CryptoHelper.GetRandomWord = function (base, length) {
-        return Math.random().toString(base).substring(2, length + 2);
-    };
-    /**
-     * Ex: be945482-jf10-40d1-a50d-rzxa2c41fdcu
-     */
-    CryptoHelper.CreateGuid = function () {
-        var _this = this;
-        return [8, 4, 4, 4, 6].map(function (length) { return _this.GetRandomWord(36, length); }).join("-") + ((++CryptoHelper.guidCounter) % 2150000000).toString(36);
-    };
-    CryptoHelper.guidCounter = 0;
-    return CryptoHelper;
-}());
-exports.CryptoHelper = CryptoHelper;
-
-
-/***/ }),
-
 /***/ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/approvalWizards/doubleApprovalWizard.vue?vue&type=script&setup=true&lang=ts":
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/approvalWizards/doubleApprovalWizard.vue?vue&type=script&setup=true&lang=ts ***!
