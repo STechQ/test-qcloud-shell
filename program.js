@@ -20599,7 +20599,7 @@ let FileExplorer = class FileExplorer {
     }
     async onShowHistories(modelName, modelID) {
         console.log('Parameters :\n' + modelName + '\n' + modelID);
-        this.dialog.showDialog(this.compCreator.createModelHistoriesComponent(), { closable: true, title: 'History-' + modelName, closeOnOutClick: true, width: '700px', height: '500px' }, { modelID });
+        this.dialog.showDialog(this.compCreator.createModelHistoriesComponent(), { closable: true, title: 'History-' + modelName, closeOnOutClick: true, width: '700px', height: '500px', overflow: 'auto' }, { modelID });
     }
     async onEditModule(moduleName, moduleID) {
         console.log('Edit : ' + moduleID);
@@ -22260,17 +22260,18 @@ let Studio = class Studio {
         addItems.forEach((item) => navItems.push(item));
     }
     async nav_unselect() {
-        var _a;
-        (_a = this.viewModel.studio.ui.navItems) === null || _a === void 0 ? void 0 : _a.forEach((item) => (item.selected = false));
+        var _a, _b;
+        (_b = (_a = this.viewModel.studio.ui) === null || _a === void 0 ? void 0 : _a.navItems) === null || _b === void 0 ? void 0 : _b.forEach((item) => (item.selected = false));
     }
     async nav_selectItem(navItem) {
-        var _a, _b;
-        (_a = this.viewModel.studio.ui.navItems) === null || _a === void 0 ? void 0 : _a.forEach((item) => (item.selected = false));
+        var _a, _b, _c;
+        (_b = (_a = this.viewModel.studio.ui) === null || _a === void 0 ? void 0 : _a.navItems) === null || _b === void 0 ? void 0 : _b.forEach((item) => (item.selected = false));
         navItem.selected = true;
-        await ((_b = navItem.onSelect) === null || _b === void 0 ? void 0 : _b.call(navItem));
+        await ((_c = navItem.onSelect) === null || _c === void 0 ? void 0 : _c.call(navItem));
     }
     nav_removeNavItems(removeItems) {
-        let navItems = this.viewModel.studio.ui.navItems;
+        var _a;
+        let navItems = (_a = this.viewModel.studio.ui) === null || _a === void 0 ? void 0 : _a.navItems;
         if (!navItems) {
             return;
         }
@@ -26909,7 +26910,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.20"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.21"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
