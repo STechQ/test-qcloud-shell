@@ -434,13 +434,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NotificationImpl": () => (/* binding */ NotificationImpl)
 /* harmony export */ });
-/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
-/* harmony import */ var _common_promiseHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../common/promiseHelper */ "./src/common/promiseHelper.ts");
-/* harmony import */ var _common_stringType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../common/stringType */ "./src/common/stringType.ts");
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../domain/presentation/IZindex */ "./src/domain/presentation/IZindex.ts");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
+/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
+/* harmony import */ var _common_promiseHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../common/promiseHelper */ "./src/common/promiseHelper.ts");
+/* harmony import */ var _common_stringType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../common/stringType */ "./src/common/stringType.ts");
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../domain/presentation/IZindex */ "./src/domain/presentation/IZindex.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -457,45 +459,72 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-const toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_0__.useToast)();
-const zindex = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_6__.IZindex);
-zindex.register(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification, { from: 70 });
+
+
+const toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_1__.useToast)();
+const zindex = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_4__.container.resolve(_domain_presentation_IZindex__WEBPACK_IMPORTED_MODULE_8__.IZindex);
+zindex.register(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification, { from: 70 });
 let NotificationImpl = class NotificationImpl {
     constructor(loading) {
         this.loading = loading;
     }
     async showNotification(options) {
         var _a;
-        const type = vue_toastification__WEBPACK_IMPORTED_MODULE_0__.TYPE[(0,_common_stringType__WEBPACK_IMPORTED_MODULE_2__.toUpperCase)(options.type)];
-        const zindexValue = zindex.getZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification);
-        const onClose = () => { debugger; zindex.removeZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_5__.INotification, zindexValue); };
-        let opt = { type, closeOnClick: true, timeout: options.timeout, pauseOnFocusLoss: options.pauseOnFocusLoss, pauseOnHover: options.pauseOnHover, onClose };
-        if ((_a = options.interactors) === null || _a === void 0 ? void 0 : _a.find(interactor => interactor.required)) {
-            opt = { closeButton: false, closeOnClick: false, draggable: false, timeout: options.timeout || false, position: vue_toastification__WEBPACK_IMPORTED_MODULE_0__.POSITION.TOP_CENTER, type, pauseOnFocusLoss: options.pauseOnFocusLoss, pauseOnHover: options.pauseOnHover };
+        const type = vue_toastification__WEBPACK_IMPORTED_MODULE_1__.TYPE[(0,_common_stringType__WEBPACK_IMPORTED_MODULE_3__.toUpperCase)(options.type)];
+        const zindexValue = zindex.getZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification);
+        const onClose = () => {
+            zindex.removeZIndex(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification, zindexValue);
+        };
+        let opt = {
+            type,
+            closeOnClick: true,
+            timeout: options.timeout,
+            pauseOnFocusLoss: options.pauseOnFocusLoss,
+            pauseOnHover: options.pauseOnHover,
+            onClose,
+            icon: false,
+            closeButton: false,
+        };
+        if ((_a = options.interactors) === null || _a === void 0 ? void 0 : _a.find((interactor) => interactor.required)) {
+            opt = {
+                closeButton: false,
+                closeOnClick: false,
+                draggable: false,
+                timeout: options.timeout || false,
+                position: vue_toastification__WEBPACK_IMPORTED_MODULE_1__.POSITION.TOP_CENTER,
+                type,
+                pauseOnFocusLoss: options.pauseOnFocusLoss,
+                pauseOnHover: options.pauseOnHover,
+            };
         }
-        toast({ component: (await Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_vue-toastification_dist_index_css"), __webpack_require__.e("src_presentation_vue3_components_notification_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/notification.vue */ "./src/presentation/vue3/components/notification.vue"))).default, props: { options, zindex: zindexValue } }, opt);
+        toast({ component: (await Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_vue-toastification_dist_index_css"), __webpack_require__.e("node_modules_css-loader_dist_cjs_js_src_styles_IDE3_css"), __webpack_require__.e("src_presentation_vue3_components_notification_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/notification.vue */ "./src/presentation/vue3/components/notification.vue"))).default, props: { options, zindex: zindexValue } }, opt);
     }
     async showConfirm(options) {
-        const prom = (0,_common_promiseHelper__WEBPACK_IMPORTED_MODULE_1__.createPromiseData)();
-        const notifOptions = options;
-        const intOptions = [{ id: "approve", text: options.approveText }];
-        if (options.cancelText) {
-            intOptions.push({ id: "cancel", text: options.cancelText });
-        }
-        if (options.rejectText) {
-            intOptions.push({ id: "reject", text: options.rejectText });
-        }
-        notifOptions.interactors = [{
-                required: true, options: intOptions, optionsType: "button",
-                onInteract: option => prom.resolver({ approved: option.selectedOption.id == "approve", result: option.selectedOption.id }),
-            }];
-        this.loading.stash(async () => { this.showNotification(notifOptions); await prom.promise; });
+        const prom = (0,_common_promiseHelper__WEBPACK_IMPORTED_MODULE_2__.createPromiseData)();
+        const props = {
+            approveText: options.approveText,
+            cancelText: options.cancelText,
+            rejectText: options.rejectText,
+            text: options.text,
+            timeout: options.timeout,
+            callback: (action) => {
+                prom.resolver({
+                    approved: action == "approve",
+                    result: action,
+                });
+            },
+        };
+        await this.loading.stash(async () => {
+            const dialog = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_4__.container.resolve(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog);
+            dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_confirmationDialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/confirmationDialog.vue */ "./src/presentation/vue3/components/dialogs/confirmationDialog.vue"))), { closable: true, title: "Confirmation", width: "420px", height: "220px" }, { ...props });
+            await prom.promise;
+        });
         return prom.promise;
     }
 };
 NotificationImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_4__.ILoading))
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_4__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_4__.inject)(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_6__.ILoading))
 ], NotificationImpl);
 
 
@@ -563,7 +592,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _impls_dialogImpl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./impls/dialogImpl */ "./src/presentation/vue3/impls/dialogImpl.ts");
 /* harmony import */ var _domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domain/presentation/ILoading */ "./src/domain/presentation/ILoading.ts");
 /* harmony import */ var _impls_loadingImpl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./impls/loadingImpl */ "./src/presentation/vue3/impls/loadingImpl.ts");
-/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
+/* harmony import */ var _impls_tooltipImpl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./impls/tooltipImpl */ "./src/presentation/vue3/impls/tooltipImpl.ts");
+/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -590,10 +620,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.register(_domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_5__.IViewModelProxifier, _impls_vue3Proxifier__WEBPACK_IMPORTED_MODULE_11__.Vue3Proxifier);
 _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.register(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification, _impls_notificationImpl__WEBPACK_IMPORTED_MODULE_8__.NotificationImpl);
 _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.register(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_9__.IAsyncComponentCreator, _impls_asyncComponentCreator__WEBPACK_IMPORTED_MODULE_10__.AsyncComponentCreator);
 _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.registerInstance(_domain_presentation_ILoading__WEBPACK_IMPORTED_MODULE_14__.ILoading, new _impls_loadingImpl__WEBPACK_IMPORTED_MODULE_15__.LoadingImpl());
+_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.registerInstance(_impls_tooltipImpl__WEBPACK_IMPORTED_MODULE_16__.TooltipImpl, new _impls_tooltipImpl__WEBPACK_IMPORTED_MODULE_16__.TooltipImpl());
 let Vue3Presentation = class Vue3Presentation {
     constructor(logger, executor, compCreator) {
         this.logger = logger;
@@ -607,7 +639,7 @@ let Vue3Presentation = class Vue3Presentation {
         _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.registerInstance(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_12__.IDialog, new _impls_dialogImpl__WEBPACK_IMPORTED_MODULE_13__.DialogImpl());
         const app = this.compCreator.instantiateComponent(_app_vue__WEBPACK_IMPORTED_MODULE_1__["default"], undefined, undefined);
         app.use(router.getInternalRouter());
-        app.use(vue_toastification__WEBPACK_IMPORTED_MODULE_16__["default"]);
+        app.use(vue_toastification__WEBPACK_IMPORTED_MODULE_17__["default"]);
         app.mount('#app');
         this.logger.log({ message: "Vue 3 application started", level: "log" });
     }
