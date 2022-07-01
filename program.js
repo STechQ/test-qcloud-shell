@@ -27056,7 +27056,7 @@ let EntityDesignerEditorImpl = class EntityDesignerEditorImpl {
         this.frameMessanger.show(show);
     }
     async getModel() {
-        const resp = await this.frameMessanger.sendMessage("Quick", "getModel", { type: "getModel" }, { awaitResponse: true });
+        const resp = await this.frameMessanger.sendMessage("EntityDesigner", "getModel", { type: "getModel" }, { awaitResponse: true });
         const getModelResponse = resp === null || resp === void 0 ? void 0 : resp.msg;
         console.log(getModelResponse.content);
         return {
@@ -35191,7 +35191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.25"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.26"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -35349,25 +35349,29 @@ class FormValidatorImpl {
     }
     validate(value, options) {
         const retVal = [];
-        if (options.maxLength) {
-            const isValid = this.checkMaxLength(value, options.maxLength.length);
-            retVal.push({ key: "maxLength", message: options.maxLength.message, isValid });
-        }
         if (options.minLength) {
-            const isValid = this.checkMinLength(value, options.minLength.length);
-            retVal.push({ key: "minLength", message: options.minLength.message, isValid });
+            const isValid = this.checkMinLength(value, options.minLength);
+            retVal.push({ key: "minLength", message: `Minimum ${options.minLength} ${this.getCharacterMessage(options.minLength)}`, isValid });
+        }
+        if (options.maxLength) {
+            const isValid = this.checkMaxLength(value, options.maxLength);
+            retVal.push({ key: "maxLength", message: `Maximum ${options.maxLength} ${this.getCharacterMessage(options.maxLength)}`, isValid });
+        }
+        if (options.minAndMaxLength) {
+            const isValid = this.checkMinAndMaxLength(value, options.minAndMaxLength.min, options.minAndMaxLength.max);
+            retVal.push({ key: "minLength", message: `Must be between ${options.minAndMaxLength.min}-${options.minAndMaxLength.max} characters`, isValid });
         }
         if (options.availableCharacters) {
             const isValid = this.checkAvailableCharacters(value);
-            retVal.push({ key: "availableCharacters", message: options.availableCharacters.message, isValid });
+            retVal.push({ key: "availableCharacters", message: `Available characters: A-Z, a-z, 1-9`, isValid });
         }
         if (options.email) {
             const isValid = this.checkEmail(value);
-            retVal.push({ key: "email", message: options.email.message, isValid });
+            retVal.push({ key: "email", message: `Invalid email address`, isValid });
         }
         if (options.nonSpaceCharacter) {
             const isValid = this.checkSpaceCharacter(value);
-            retVal.push({ key: "nonSpaceCharacter", message: options.nonSpaceCharacter.message, isValid });
+            retVal.push({ key: "nonSpaceCharacter", message: `Space character not allowed`, isValid });
         }
         if (options.customRegex) {
             const isValid = this.checkRegex(value, options.customRegex.regex);
@@ -35375,23 +35379,30 @@ class FormValidatorImpl {
         }
         return retVal;
     }
+    checkMinLength(value, length) {
+        return value.length >= length;
+    }
     checkMaxLength(value, length) {
         return value.length <= length;
     }
-    checkMinLength(value, length) {
-        return value.length >= length;
+    checkMinAndMaxLength(value, min, max) {
+        return value.length >= min && value.length <= max;
     }
     checkEmail(value) {
         return this.checkRegex(value, this.regexDict["email"]);
     }
     checkAvailableCharacters(value) {
-        return true;
+        return this.checkRegex(value, this.regexDict["availableCharacters"]);
     }
     checkSpaceCharacter(value) {
-        return true;
+        return this.checkRegex(value, this.regexDict["nonSpaceCharacter"]);
     }
     checkRegex(value, regex) {
-        return regex.test(value);
+        return true; //regex.test(value);
+    }
+    getCharacterMessage(charLength) {
+        const charMessage = charLength == 1 ? 'character' : 'characters';
+        return charMessage;
     }
 }
 
