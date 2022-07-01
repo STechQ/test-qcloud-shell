@@ -264,7 +264,7 @@ let AsyncComponentCreator = class AsyncComponentCreator {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_listModelHistories_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/listModelHistories.vue */ "./src/presentation/vue3/components/dialogs/listModelHistories.vue")));
     }
     createEditModuleComponent() {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_editModule_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/editModule.vue */ "./src/presentation/vue3/components/dialogs/editModule.vue")));
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_application_IDEInput_vue"), __webpack_require__.e("src_presentation_vue3_components_dialogs_editModule_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/editModule.vue */ "./src/presentation/vue3/components/dialogs/editModule.vue")));
     }
     createProcessEditor() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_stechquick_plateau-process-designer_dist_PlateauBpmnModeler_js"), __webpack_require__.e("src_presentation_vue3_editors_processEditor_processEditor_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../editors/processEditor/processEditor.vue */ "./src/presentation/vue3/editors/processEditor/processEditor.vue")));
