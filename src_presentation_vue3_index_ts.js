@@ -258,7 +258,7 @@ let AsyncComponentCreator = class AsyncComponentCreator {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_internalLogin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/internalLogin.vue */ "./src/presentation/vue3/components/dialogs/internalLogin.vue")));
     }
     createNewItemComponent() {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_newItem_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/newItem.vue */ "./src/presentation/vue3/components/dialogs/newItem.vue")));
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_application_IDEInput_vue"), __webpack_require__.e("src_presentation_vue3_components_dialogs_newItem_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/newItem.vue */ "./src/presentation/vue3/components/dialogs/newItem.vue")));
     }
     createModelHistoriesComponent() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_listModelHistories_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/dialogs/listModelHistories.vue */ "./src/presentation/vue3/components/dialogs/listModelHistories.vue")));

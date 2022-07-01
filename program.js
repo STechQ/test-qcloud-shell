@@ -27026,6 +27026,9 @@ let EntityDesignerEditorImpl = class EntityDesignerEditorImpl {
         this.connected = false;
         this.connect();
     }
+    get readyProm() {
+        return this.frameMessanger.readyProm;
+    }
     connect() {
         if (this.connected) {
             return;
@@ -27400,6 +27403,9 @@ let QuickEditorImpl = class QuickEditorImpl {
         this.name = "quick";
         this.connected = false;
         this.connect();
+    }
+    get readyProm() {
+        return this.frameMessanger.readyProm;
     }
     connect() {
         if (this.connected) {
@@ -28840,7 +28846,7 @@ let FileExplorer = class FileExplorer {
         // });
     }
     async onNewItemSelect(parentId, parentName, parentType, createType) {
-        this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New" + '    ' + createType, closeOnOutClick: true, height: createType == 'Module' ? '246px' : '186px', width: '420px' }, { parentId, parentName, parentType, createType });
+        this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New" + '    ' + createType, closeOnOutClick: true, height: createType == 'Module' ? '316pxpx' : '186px', width: '420px' }, { parentId, parentName, parentType, createType });
     }
     checkinDailog(item) {
         this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true, title: 'Check in-' + item.name }, {});
@@ -30274,7 +30280,7 @@ let Studio = class Studio {
         this.proxifier = proxifier;
     }
     async openItem(item, options = {}) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         const studio = this.viewModel.studio;
         if (!options.fromHistory && ((_a = studio === null || studio === void 0 ? void 0 : studio.currentItem) === null || _a === void 0 ? void 0 : _a.ID) == item.ID) {
             return;
@@ -30327,6 +30333,7 @@ let Studio = class Studio {
         studio.currentItem = item;
         this.fileExplorer.selectItem(item.ID);
         const targetEditor = this.editorManager.getEditor(item);
+        await ((_g = targetEditor.readyProm) === null || _g === void 0 ? void 0 : _g.promise);
         await targetEditor.setModel(item);
         this.editorManager.show(targetEditor, true);
     }
@@ -35184,7 +35191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.23"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.24"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -35333,17 +35340,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FormValidatorImpl": () => (/* binding */ FormValidatorImpl)
 /* harmony export */ });
 class FormValidatorImpl {
+    constructor() {
+        this.regexDict = {
+            email: /\S+@\S+\.\S+/,
+            avaliableCharacters: /\S+@\S+\.\S+/,
+            nonSpaceCharacter: /\S+@\S+\.\S+/,
+        };
+    }
     validate(value, options) {
         const retVal = [];
         if (options.maxLength) {
-            if (!this.checkMaxLength(value, options.maxLength.length)) {
-                retVal.push({ key: "maxLength", message: options.maxLength.message });
-            }
+            const isValid = this.checkMaxLength(value, options.maxLength.length);
+            retVal.push({ key: "maxLength", message: options.maxLength.message, isValid });
         }
         if (options.minLength) {
-            if (!this.checkMinLength(value, options.minLength.length)) {
-                retVal.push({ key: "maxLength", message: options.minLength.message });
-            }
+            const isValid = this.checkMinLength(value, options.minLength.length);
+            retVal.push({ key: "minLength", message: options.minLength.message, isValid });
+        }
+        if (options.availableCharacters) {
+            const isValid = this.checkAvailableCharacters(value);
+            retVal.push({ key: "availableCharacters", message: options.availableCharacters.message, isValid });
+        }
+        if (options.email) {
+            const isValid = this.checkEmail(value);
+            retVal.push({ key: "email", message: options.email.message, isValid });
+        }
+        if (options.nonSpaceCharacter) {
+            const isValid = this.checkSpaceCharacter(value);
+            retVal.push({ key: "nonSpaceCharacter", message: options.nonSpaceCharacter.message, isValid });
+        }
+        if (options.customRegex) {
+            const isValid = this.checkRegex(value, options.customRegex.regex);
+            retVal.push({ key: "customRegex", message: options.customRegex.message, isValid });
         }
         return retVal;
     }
@@ -35352,6 +35380,18 @@ class FormValidatorImpl {
     }
     checkMinLength(value, length) {
         return value.length >= length;
+    }
+    checkEmail(value) {
+        return this.checkRegex(value, this.regexDict["email"]);
+    }
+    checkAvailableCharacters(value) {
+        return true;
+    }
+    checkSpaceCharacter(value) {
+        return true;
+    }
+    checkRegex(value, regex) {
+        return regex.test(value);
     }
 }
 
@@ -35371,10 +35411,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _stechquick_plateau_comm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @stechquick/plateau-comm */ "./node_modules/@stechquick/plateau-comm/dist/PlateauMessaging.js");
 /* harmony import */ var _stechquick_plateau_comm__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stechquick_plateau_comm__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_promiseHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/promiseHelper */ "./src/common/promiseHelper.ts");
+
 
 class FrameMessanger {
     constructor() {
         this.frame = document.createElement("iframe");
+        this.readyProm = (0,_common_promiseHelper__WEBPACK_IMPORTED_MODULE_1__.createPromiseData)();
     }
     connect(url, messageHandler, options = {}) {
         this.url = url;
@@ -35423,7 +35466,10 @@ class FrameMessanger {
         this.frame.src = this.url;
         this.pm = _stechquick_plateau_comm__WEBPACK_IMPORTED_MODULE_0__.PlateauMessaging.CreatePlateauMessaging(this.frame.contentWindow);
         if (this.messageHandler) {
-            this.pm.SubscribeAll(this.messageHandler);
+            this.pm.SubscribeAll((message => {
+                message.msg.type == "IAmReady" && this.readyProm.resolver();
+                this.messageHandler(message);
+            }));
         }
     }
     resizeTo(element) {
@@ -35879,6 +35925,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/infrastructure/IConfig */ "./src/domain/infrastructure/IConfig.ts");
 /* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -35891,16 +35938,19 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 let counter = 0;
 let ProviderApiImpl = class ProviderApiImpl {
-    constructor(config, network) {
+    constructor(config, network, viewModel) {
         this.config = config;
         this.network = network;
+        this.viewModel = viewModel;
         this.providerApiUrl = this.config.getValue("providerApiUrl");
     }
     async request(path, method, data, options) {
         const url = this.join(this.providerApiUrl, path);
-        const response = await this.network.request({ url, method, body: data, timeout: options === null || options === void 0 ? void 0 : options.timeout, withCredentials: false });
+        const headers = { "provider-auth-cookie": this.viewModel.user.authorization };
+        const response = await this.network.request({ url, method, headers, body: data, timeout: options === null || options === void 0 ? void 0 : options.timeout, withCredentials: true });
         return response.body;
     }
     join(...urlParts) {
@@ -35933,7 +35983,8 @@ let ProviderApiImpl = class ProviderApiImpl {
 ProviderApiImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_1__.IConfig)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_2__.INetwork))
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_2__.INetwork)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__.IViewModel))
 ], ProviderApiImpl);
 
 
@@ -36016,8 +36067,8 @@ let QCloudApiImpl = class QCloudApiImpl {
             const message = ((_a = resp.body.error) === null || _a === void 0 ? void 0 : _a.message) || "";
             throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: resp.body.status == "customerror" ? "business" : "technical", title: (_b = resp.body.error) === null || _b === void 0 ? void 0 : _b.title });
         }
-        if (resp.headers.Authorization) {
-            this.viewModel.user.authorization = resp.headers.Authorization;
+        if (resp.headers.authorization) {
+            this.viewModel.user.authorization = resp.headers.authorization;
         }
         return resp.body.data;
     }
