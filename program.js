@@ -35191,7 +35191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.29"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.30"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -36269,6 +36269,10 @@ let QCloudApiImpl = class QCloudApiImpl {
     async createExportJob(app, exportType, exportItems) {
         const job = await this.request("/addexportjob", { app, exportType, exportItems });
         return job;
+    }
+    async createDeployJobs(deployJobs) {
+        const jobs = await this.request("/adddeployjobs", { deployJobs });
+        return jobs;
     }
     async listExportJobs() {
         const jobs = await this.request("/listexportjobsstatus", undefined);
