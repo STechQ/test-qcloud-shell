@@ -4243,7 +4243,9 @@ var WindowHelper = /** @class */ (function () {
             setInterval: setInterval,
             clearInterval: clearInterval,
             setTimeout: setTimeout,
-            clearTimeout: clearTimeout
+            clearTimeout: clearTimeout,
+            atob: atob,
+            btoa: btoa
         };
     }
     Object.defineProperty(WindowHelper.prototype, "onPopState", {
@@ -4420,13 +4422,13 @@ exports.PromiseAllSettled = PromiseAllSettled;
   !*** ./src/PlateauMessaging.ts ***!
   \*********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __nested_webpack_require_46168__) {
+/***/ (function(module, exports, __nested_webpack_require_46216__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlateauMessaging = exports.FrameCommunicator = void 0;
-var frameCommunicator_1 = __nested_webpack_require_46168__(/*! ../../../common/shrimp/helpers/frameCommunicator */ "../../common/shrimp/helpers/frameCommunicator.ts");
+var frameCommunicator_1 = __nested_webpack_require_46216__(/*! ../../../common/shrimp/helpers/frameCommunicator */ "../../common/shrimp/helpers/frameCommunicator.ts");
 Object.defineProperty(exports, "FrameCommunicator", { enumerable: true, get: function () { return frameCommunicator_1.FrameCommunicator; } });
 var PlateauMessaging = /** @class */ (function () {
     function PlateauMessaging() {
@@ -27055,6 +27057,9 @@ let EntityDesignerEditorImpl = class EntityDesignerEditorImpl {
     show(show) {
         this.frameMessanger.show(show);
     }
+    async modifiedAuthToken(token) {
+        this.frameMessanger.sendMessage("EntityDesigner", "modifiedAuthToken", { type: "modifiedAuthToken", token }, {});
+    }
     async getModel() {
         const resp = await this.frameMessanger.sendMessage("EntityDesigner", "getModel", { type: "getModel" }, { awaitResponse: true });
         const getModelResponse = resp === null || resp === void 0 ? void 0 : resp.msg;
@@ -35191,7 +35196,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.30"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.31"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -36022,6 +36027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
 /* harmony import */ var _domain_useCase_ITimedOut__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../domain/useCase/ITimedOut */ "./src/domain/useCase/ITimedOut.ts");
 /* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../domain/objects/editors/IEditor */ "./src/domain/objects/editors/IEditor.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -36031,6 +36037,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -36080,6 +36087,8 @@ let QCloudApiImpl = class QCloudApiImpl {
             throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: resp.body.status == "customerror" ? "business" : "technical", title: (_b = resp.body.error) === null || _b === void 0 ? void 0 : _b.title });
         }
         if (resp.headers.authorization) {
+            const editors = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolveAll(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_8__.IEditor);
+            editors.forEach(editor => { var _a; return (_a = editor.modifiedAuthToken) === null || _a === void 0 ? void 0 : _a.call(editor, resp.headers.authorization); });
             this.viewModel.user.authorization = resp.headers.authorization;
         }
         return resp.body.data;
