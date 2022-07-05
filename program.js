@@ -29699,8 +29699,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/objects/IEditorManager */ "./src/domain/objects/IEditorManager.ts");
 /* harmony import */ var _domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/objects/ISesionManager */ "./src/domain/objects/ISesionManager.ts");
 /* harmony import */ var _domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/objects/ISidebarManager */ "./src/domain/objects/ISidebarManager.ts");
-/* harmony import */ var _domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IRouter */ "./src/domain/presentation/IRouter.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/IRouter */ "./src/domain/presentation/IRouter.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -29710,6 +29711,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -29732,15 +29734,20 @@ let LogoutImpl = class LogoutImpl {
         this.sessionManager.stop();
         this.sidebarManager.reset();
         this.editorManager.reset();
+        this.closeDialogs();
         this.router.push("/");
+    }
+    closeDialogs() {
+        const dialog = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog);
+        dialog.closeAllDialogs();
     }
 };
 LogoutImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_6__.IViewModelManager)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_7__.IViewModelManager)),
     __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_3__.ISessionManager)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_5__.IRouter)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_6__.IRouter)),
     __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_4__.ISidebarManager)),
     __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_2__.IEditorManager))
 ], LogoutImpl);
@@ -35267,7 +35274,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.33"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.34"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));

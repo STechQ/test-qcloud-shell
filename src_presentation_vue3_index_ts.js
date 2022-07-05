@@ -329,6 +329,10 @@ class DialogImpl {
         document.body.removeChild(dialogData.root);
         delete this.dialogDict[id];
     }
+    closeAllDialogs() {
+        const ids = Object.keys(this.dialogDict);
+        ids.forEach(id => this.closeDialog(id));
+    }
 }
 DialogImpl.idCounter = 0;
 function createDiv(options) {
