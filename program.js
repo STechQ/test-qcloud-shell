@@ -27867,6 +27867,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./objects/editors/fileEditorImpl */ "./src/application/objects/editors/fileEditorImpl.ts");
 /* harmony import */ var _domain_useCase_IModelSelector__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ../domain/useCase/IModelSelector */ "./src/domain/useCase/IModelSelector.ts");
 /* harmony import */ var _useCases_modelSelector__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./useCases/modelSelector */ "./src/application/useCases/modelSelector.ts");
+/* harmony import */ var _domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_87__ = __webpack_require__(/*! ../domain/useCase/IDeployJobs */ "./src/domain/useCase/IDeployJobs.ts");
+/* harmony import */ var _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./useCases/deployJobsImpl */ "./src/application/useCases/deployJobsImpl.ts");
+
+
 
 
 
@@ -27972,6 +27976,7 @@ const appStartUp = {
         container.register(_domain_useCase_ICreateApplication__WEBPACK_IMPORTED_MODULE_30__.ICreateApplication, _useCases_createApplicationImpl__WEBPACK_IMPORTED_MODULE_31__.CreateApplicationImpl);
         container.register(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_32__.IUpdateApplication, _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_33__.UpdateApplicationImpl);
         container.register(_domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__.IApplicationSettings, _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__.ApplicationSettingsImpl);
+        container.register(_domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_87__.IDeployJobs, _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_88__.DeployJobsImpl);
         container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__.ObjectUseCaseImpl);
         container.register(_domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_34__.IUpdateModule, _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_35__.UpdateModuleImpl);
         container.register(_domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_36__.IGetExportTypes, _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_37__.GetExportTypesImpl);
@@ -28612,6 +28617,56 @@ CreateModuleImpl = __decorate([
     __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification)),
     __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_3__.IFileExplorer))
 ], CreateModuleImpl);
+
+
+
+/***/ }),
+
+/***/ "./src/application/useCases/deployJobsImpl.ts":
+/*!****************************************************!*\
+  !*** ./src/application/useCases/deployJobsImpl.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DeployJobsImpl": () => (/* binding */ DeployJobsImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+let DeployJobsImpl = class DeployJobsImpl {
+    constructor(qcloudApi, notification) {
+        this.qcloudApi = qcloudApi;
+        this.notification = notification;
+    }
+    async createDeployJobs(deployJobs) {
+        await this.qcloudApi.createDeployJobs(deployJobs);
+        // TODO: Viewmodel need to be updated.
+        this.notification.showNotification({
+            text: "Deploy jobs started successfuly.",
+            type: "success",
+        });
+    }
+};
+DeployJobsImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_2__.INotification))
+], DeployJobsImpl);
 
 
 
@@ -34745,6 +34800,22 @@ const ICreateModule = Symbol.for("ICreateModule");
 
 /***/ }),
 
+/***/ "./src/domain/useCase/IDeployJobs.ts":
+/*!*******************************************!*\
+  !*** ./src/domain/useCase/IDeployJobs.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IDeployJobs": () => (/* binding */ IDeployJobs)
+/* harmony export */ });
+const IDeployJobs = Symbol.for("IDeployJobs");
+
+
+/***/ }),
+
 /***/ "./src/domain/useCase/IFileExplorer.ts":
 /*!*********************************************!*\
   !*** ./src/domain/useCase/IFileExplorer.ts ***!
@@ -35196,7 +35267,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.32"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.33"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
