@@ -4028,18 +4028,46 @@ exports.Logger = Logger;
 
 /***/ }),
 
+/***/ "../../common/shrimp/helpers/singularizer.ts":
+/*!***************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/singularizer.ts ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Singularizer = void 0;
+var Singularizer = /** @class */ (function () {
+    function Singularizer() {
+    }
+    Singularizer.trySingularize = function (name, targetObject, instance) {
+        var retVal = targetObject[name];
+        if (!retVal) {
+            retVal = targetObject[name] = instance;
+        }
+        return retVal;
+    };
+    return Singularizer;
+}());
+exports.Singularizer = Singularizer;
+
+
+/***/ }),
+
 /***/ "../../common/shrimp/helpers/stringHelper.ts":
 /*!***************************************************************************!*\
   !*** /home/runner/work/quick/quick/common/shrimp/helpers/stringHelper.ts ***!
   \***************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __nested_webpack_require_30404__) {
+/***/ (function(module, exports, __nested_webpack_require_31293__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StringHelper = void 0;
-var arrayHelper_1 = __nested_webpack_require_30404__(/*! ./arrayHelper */ "../../common/shrimp/helpers/arrayHelper.ts");
+var arrayHelper_1 = __nested_webpack_require_31293__(/*! ./arrayHelper */ "../../common/shrimp/helpers/arrayHelper.ts");
 var StringHelper = /** @class */ (function () {
     function StringHelper() {
     }
@@ -4130,15 +4158,15 @@ exports.StringHelper = StringHelper;
   !*** /home/runner/work/quick/quick/common/shrimp/helpers/webSocket/structuredSocket.ts ***!
   \*****************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __nested_webpack_require_33891__) {
+/***/ (function(module, exports, __nested_webpack_require_34780__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StructuredSocket = void 0;
-var IPromiseData_1 = __nested_webpack_require_33891__(/*! ../../interfaces/IPromiseData */ "../../common/shrimp/interfaces/IPromiseData.ts");
-var cryptoHelper_1 = __nested_webpack_require_33891__(/*! ../cryptoHelper */ "../../common/shrimp/helpers/cryptoHelper.ts");
-var eventBus_1 = __nested_webpack_require_33891__(/*! ../eventBus */ "../../common/shrimp/helpers/eventBus.ts");
+var IPromiseData_1 = __nested_webpack_require_34780__(/*! ../../interfaces/IPromiseData */ "../../common/shrimp/interfaces/IPromiseData.ts");
+var cryptoHelper_1 = __nested_webpack_require_34780__(/*! ../cryptoHelper */ "../../common/shrimp/helpers/cryptoHelper.ts");
+var eventBus_1 = __nested_webpack_require_34780__(/*! ../eventBus */ "../../common/shrimp/helpers/eventBus.ts");
 var StructuredSocket = /** @class */ (function () {
     function StructuredSocket(socket) {
         this.socket = socket;
@@ -4212,13 +4240,14 @@ exports.StructuredSocket = StructuredSocket;
   !*** /home/runner/work/quick/quick/common/shrimp/helpers/windowHelper.ts ***!
   \***************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __nested_webpack_require_37187__) {
+/***/ (function(module, exports, __nested_webpack_require_38076__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindowHelper = void 0;
-var logger_1 = __nested_webpack_require_37187__(/*! ./logger */ "../../common/shrimp/helpers/logger.ts");
+var logger_1 = __nested_webpack_require_38076__(/*! ./logger */ "../../common/shrimp/helpers/logger.ts");
+var singularizer_1 = __nested_webpack_require_38076__(/*! ./singularizer */ "../../common/shrimp/helpers/singularizer.ts");
 var undefinedType = "undefined";
 var WindowHelper = /** @class */ (function () {
     function WindowHelper() {
@@ -4247,6 +4276,7 @@ var WindowHelper = /** @class */ (function () {
             atob: atob,
             btoa: btoa
         };
+        // this.eventListeners = this.wrapEventListeners();
     }
     Object.defineProperty(WindowHelper.prototype, "onPopState", {
         set: function (value) {
@@ -4281,7 +4311,54 @@ var WindowHelper = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    WindowHelper.Instance = new WindowHelper();
+    WindowHelper.prototype.wrapEventListeners = function () {
+        var self = this;
+        var eventListeners = {
+            documentEventListeners: {
+                origAddEventListener: self.document.addEventListener,
+                origRemoveEventListener: self.document.removeEventListener,
+                eventTarget: self.document,
+                activeListeners: {}
+            },
+            windowEventListeners: {
+                origAddEventListener: self.Window.addEventListener,
+                origRemoveEventListener: self.Window.removeEventListener,
+                eventTarget: self.Window,
+                activeListeners: {}
+            }
+        };
+        Object.keys(eventListeners).forEach(function (collectionName) {
+            var eventListenerCollection = eventListeners[collectionName];
+            if (!eventListenerCollection) {
+                return;
+            }
+            eventListenerCollection.eventTarget.addEventListener = function (type, listener, options) {
+                eventListenerCollection.eventTarget = this;
+                addEventListener(eventListenerCollection, type, listener, options);
+            };
+            eventListenerCollection.eventTarget.removeEventListener = function (type, listener, options) {
+                eventListenerCollection.eventTarget = this;
+                removeEventListener(eventListenerCollection, type, listener, options);
+            };
+        });
+        var addEventListener = function (eventListenerCollection, type, listener, options) {
+            if (!eventListenerCollection.activeListeners[type]) {
+                eventListenerCollection.activeListeners[type] = [];
+            }
+            eventListenerCollection.activeListeners[type].push(listener);
+            eventListenerCollection.origAddEventListener.apply(eventListenerCollection.eventTarget, [type, listener, options]);
+        };
+        var removeEventListener = function (eventListenerCollection, type, listener, options) {
+            if (!eventListenerCollection.activeListeners[type]) {
+                return;
+            }
+            var listenerIndex = eventListenerCollection.activeListeners[type].findIndex(function (item) { return item == listener; });
+            eventListenerCollection.activeListeners[type].splice(listenerIndex, 1);
+            eventListenerCollection.origRemoveEventListener.apply(eventListenerCollection.eventTarget, [type, listener, options]);
+        };
+        return eventListeners;
+    };
+    WindowHelper.Instance = singularizer_1.Singularizer.trySingularize("theOneWindow", new WindowHelper().Window, new WindowHelper());
     return WindowHelper;
 }());
 exports.WindowHelper = WindowHelper;
@@ -4422,13 +4499,13 @@ exports.PromiseAllSettled = PromiseAllSettled;
   !*** ./src/PlateauMessaging.ts ***!
   \*********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __nested_webpack_require_46216__) {
+/***/ (function(module, exports, __nested_webpack_require_49866__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlateauMessaging = exports.FrameCommunicator = void 0;
-var frameCommunicator_1 = __nested_webpack_require_46216__(/*! ../../../common/shrimp/helpers/frameCommunicator */ "../../common/shrimp/helpers/frameCommunicator.ts");
+var frameCommunicator_1 = __nested_webpack_require_49866__(/*! ../../../common/shrimp/helpers/frameCommunicator */ "../../common/shrimp/helpers/frameCommunicator.ts");
 Object.defineProperty(exports, "FrameCommunicator", { enumerable: true, get: function () { return frameCommunicator_1.FrameCommunicator; } });
 var PlateauMessaging = /** @class */ (function () {
     function PlateauMessaging() {
@@ -27162,7 +27239,7 @@ let FileEditorImpl = class FileEditorImpl {
         };
     }
     async setModel(item) {
-        const state = item.state || { scrollTop: 0, selectionEnd: 0, selectionStart: 0, checkout: item.checkedOut };
+        const state = item.state ? { ...item.state, checkout: item.checkedOut } : { scrollTop: 0, selectionEnd: 0, selectionStart: 0, checkout: item.checkedOut };
         const model = item.modelBody.reduce((model, curModel) => {
             switch (curModel.key) {
                 case "yaml":
@@ -27835,40 +27912,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./useCases/listExportJobStepLogsImpl */ "./src/application/useCases/listExportJobStepLogsImpl.ts");
 /* harmony import */ var _domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ../domain/useCase/IListExportJobArtifacts */ "./src/domain/useCase/IListExportJobArtifacts.ts");
 /* harmony import */ var _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./useCases/listExportJobArtifactsImpl */ "./src/application/useCases/listExportJobArtifactsImpl.ts");
-/* harmony import */ var _domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../domain/useCase/IGetExportJobArtifact */ "./src/domain/useCase/IGetExportJobArtifact.ts");
-/* harmony import */ var _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./useCases/getExportJobArtifactImpl */ "./src/application/useCases/getExportJobArtifactImpl.ts");
-/* harmony import */ var _domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../domain/useCase/IFileExplorer */ "./src/domain/useCase/IFileExplorer.ts");
-/* harmony import */ var _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./useCases/fileExplorer */ "./src/application/useCases/fileExplorer.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _useCases_studio__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./useCases/studio */ "./src/application/useCases/studio.ts");
-/* harmony import */ var tsyringe__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! tsyringe */ "./node_modules/tsyringe/dist/esm5/index.js");
-/* harmony import */ var _domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../domain/objects/ISesionManager */ "./src/domain/objects/ISesionManager.ts");
-/* harmony import */ var _objects_sessionManager__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./objects/sessionManager */ "./src/application/objects/sessionManager.ts");
-/* harmony import */ var _domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ../domain/useCase/IListModelHistories */ "./src/domain/useCase/IListModelHistories.ts");
-/* harmony import */ var _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./useCases/listModelHistoriesImpl */ "./src/application/useCases/listModelHistoriesImpl.ts");
-/* harmony import */ var _domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ../domain/objects/editors/IQuickEditor */ "./src/domain/objects/editors/IQuickEditor.ts");
-/* harmony import */ var _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./objects/editors/quickEditorImpl */ "./src/application/objects/editors/quickEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ../domain/objects/editors/processEditor/IProcessEditor */ "./src/domain/objects/editors/processEditor/IProcessEditor.ts");
-/* harmony import */ var _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./objects/editors/processEditorImpl */ "./src/application/objects/editors/processEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ../domain/objects/editors/IEditor */ "./src/domain/objects/editors/IEditor.ts");
-/* harmony import */ var _domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ../domain/useCase/IAutoLogin */ "./src/domain/useCase/IAutoLogin.ts");
-/* harmony import */ var _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./useCases/autoLogin */ "./src/application/useCases/autoLogin.ts");
-/* harmony import */ var _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./objects/editors/processDesignEditorImpl */ "./src/application/objects/editors/processDesignEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ../domain/objects/editors/IProcessDesignEditor */ "./src/domain/objects/editors/IProcessDesignEditor.ts");
-/* harmony import */ var _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./objects/editors/entityDesignerEditorImpl */ "./src/application/objects/editors/entityDesignerEditorImpl.ts");
-/* harmony import */ var _domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ../domain/objects/editors/IEntityDesignerEditor */ "./src/domain/objects/editors/IEntityDesignerEditor.ts");
-/* harmony import */ var _domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ../domain/useCase/IProcessEditorUtil */ "./src/domain/useCase/IProcessEditorUtil.ts");
-/* harmony import */ var _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./useCases/processEditorUtilImpl */ "./src/application/useCases/processEditorUtilImpl.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
-/* harmony import */ var _domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ../domain/useCase/IApplicationSettings */ "./src/domain/useCase/IApplicationSettings.ts");
-/* harmony import */ var _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./useCases/applicationSettingsImpl */ "./src/application/useCases/applicationSettingsImpl.ts");
-/* harmony import */ var _domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ../domain/objects/editors/IFileEditor */ "./src/domain/objects/editors/IFileEditor.ts");
-/* harmony import */ var _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./objects/editors/fileEditorImpl */ "./src/application/objects/editors/fileEditorImpl.ts");
-/* harmony import */ var _domain_useCase_IModelSelector__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ../domain/useCase/IModelSelector */ "./src/domain/useCase/IModelSelector.ts");
-/* harmony import */ var _useCases_modelSelector__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./useCases/modelSelector */ "./src/application/useCases/modelSelector.ts");
-/* harmony import */ var _domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_87__ = __webpack_require__(/*! ../domain/useCase/IDeployJobs */ "./src/domain/useCase/IDeployJobs.ts");
-/* harmony import */ var _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./useCases/deployJobsImpl */ "./src/application/useCases/deployJobsImpl.ts");
+/* harmony import */ var _domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../domain/useCase/IFileExplorer */ "./src/domain/useCase/IFileExplorer.ts");
+/* harmony import */ var _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./useCases/fileExplorer */ "./src/application/useCases/fileExplorer.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _useCases_studio__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./useCases/studio */ "./src/application/useCases/studio.ts");
+/* harmony import */ var tsyringe__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! tsyringe */ "./node_modules/tsyringe/dist/esm5/index.js");
+/* harmony import */ var _domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ../domain/objects/ISesionManager */ "./src/domain/objects/ISesionManager.ts");
+/* harmony import */ var _objects_sessionManager__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./objects/sessionManager */ "./src/application/objects/sessionManager.ts");
+/* harmony import */ var _domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../domain/useCase/IListModelHistories */ "./src/domain/useCase/IListModelHistories.ts");
+/* harmony import */ var _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./useCases/listModelHistoriesImpl */ "./src/application/useCases/listModelHistoriesImpl.ts");
+/* harmony import */ var _domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ../domain/objects/editors/IQuickEditor */ "./src/domain/objects/editors/IQuickEditor.ts");
+/* harmony import */ var _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./objects/editors/quickEditorImpl */ "./src/application/objects/editors/quickEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ../domain/objects/editors/processEditor/IProcessEditor */ "./src/domain/objects/editors/processEditor/IProcessEditor.ts");
+/* harmony import */ var _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./objects/editors/processEditorImpl */ "./src/application/objects/editors/processEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ../domain/objects/editors/IEditor */ "./src/domain/objects/editors/IEditor.ts");
+/* harmony import */ var _domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ../domain/useCase/IAutoLogin */ "./src/domain/useCase/IAutoLogin.ts");
+/* harmony import */ var _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./useCases/autoLogin */ "./src/application/useCases/autoLogin.ts");
+/* harmony import */ var _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./objects/editors/processDesignEditorImpl */ "./src/application/objects/editors/processDesignEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ../domain/objects/editors/IProcessDesignEditor */ "./src/domain/objects/editors/IProcessDesignEditor.ts");
+/* harmony import */ var _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./objects/editors/entityDesignerEditorImpl */ "./src/application/objects/editors/entityDesignerEditorImpl.ts");
+/* harmony import */ var _domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ../domain/objects/editors/IEntityDesignerEditor */ "./src/domain/objects/editors/IEntityDesignerEditor.ts");
+/* harmony import */ var _domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ../domain/useCase/IProcessEditorUtil */ "./src/domain/useCase/IProcessEditorUtil.ts");
+/* harmony import */ var _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ./useCases/processEditorUtilImpl */ "./src/application/useCases/processEditorUtilImpl.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./useCases/objectUseCaseImpl */ "./src/application/useCases/objectUseCaseImpl.ts");
+/* harmony import */ var _domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ../domain/useCase/IApplicationSettings */ "./src/domain/useCase/IApplicationSettings.ts");
+/* harmony import */ var _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./useCases/applicationSettingsImpl */ "./src/application/useCases/applicationSettingsImpl.ts");
+/* harmony import */ var _domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ../domain/objects/editors/IFileEditor */ "./src/domain/objects/editors/IFileEditor.ts");
+/* harmony import */ var _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./objects/editors/fileEditorImpl */ "./src/application/objects/editors/fileEditorImpl.ts");
+/* harmony import */ var _domain_useCase_IModelSelector__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ../domain/useCase/IModelSelector */ "./src/domain/useCase/IModelSelector.ts");
+/* harmony import */ var _useCases_modelSelector__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./useCases/modelSelector */ "./src/application/useCases/modelSelector.ts");
+/* harmony import */ var _domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ../domain/useCase/IDeployJobs */ "./src/domain/useCase/IDeployJobs.ts");
+/* harmony import */ var _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./useCases/deployJobsImpl */ "./src/application/useCases/deployJobsImpl.ts");
+/* harmony import */ var _domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_87__ = __webpack_require__(/*! ../domain/useCase/IHistoryUseCase */ "./src/domain/useCase/IHistoryUseCase.ts");
+/* harmony import */ var _useCases_historyUseCaseImpl__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./useCases/historyUseCaseImpl */ "./src/application/useCases/historyUseCaseImpl.ts");
 
 
 
@@ -27975,9 +28052,9 @@ const appStartUp = {
         container.register(_domain_useCase_IRestoreUser__WEBPACK_IMPORTED_MODULE_26__.IRestoreUser, _useCases_restoreUserImpl__WEBPACK_IMPORTED_MODULE_27__.RestoreUserImpl);
         container.register(_domain_useCase_ICreateApplication__WEBPACK_IMPORTED_MODULE_30__.ICreateApplication, _useCases_createApplicationImpl__WEBPACK_IMPORTED_MODULE_31__.CreateApplicationImpl);
         container.register(_domain_useCase_IUpdateApplication__WEBPACK_IMPORTED_MODULE_32__.IUpdateApplication, _useCases_updateApplicationImpl__WEBPACK_IMPORTED_MODULE_33__.UpdateApplicationImpl);
-        container.register(_domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_81__.IApplicationSettings, _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_82__.ApplicationSettingsImpl);
-        container.register(_domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_87__.IDeployJobs, _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_88__.DeployJobsImpl);
-        container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_79__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_80__.ObjectUseCaseImpl);
+        container.register(_domain_useCase_IApplicationSettings__WEBPACK_IMPORTED_MODULE_79__.IApplicationSettings, _useCases_applicationSettingsImpl__WEBPACK_IMPORTED_MODULE_80__.ApplicationSettingsImpl);
+        container.register(_domain_useCase_IDeployJobs__WEBPACK_IMPORTED_MODULE_85__.IDeployJobs, _useCases_deployJobsImpl__WEBPACK_IMPORTED_MODULE_86__.DeployJobsImpl);
+        container.register(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_77__.IObjectUseCase, _useCases_objectUseCaseImpl__WEBPACK_IMPORTED_MODULE_78__.ObjectUseCaseImpl);
         container.register(_domain_useCase_IUpdateModule__WEBPACK_IMPORTED_MODULE_34__.IUpdateModule, _useCases_updateModuleImpl__WEBPACK_IMPORTED_MODULE_35__.UpdateModuleImpl);
         container.register(_domain_useCase_IGetExportTypes__WEBPACK_IMPORTED_MODULE_36__.IGetExportTypes, _useCases_getExportTypesImpl__WEBPACK_IMPORTED_MODULE_37__.GetExportTypesImpl);
         container.register(_domain_useCase_IGetExportSelectionData__WEBPACK_IMPORTED_MODULE_38__.IGetExportSelectionData, _useCases_getExportSelectionDataImpl__WEBPACK_IMPORTED_MODULE_39__.GetExportSelectionDataImpl);
@@ -27987,37 +28064,37 @@ const appStartUp = {
         container.register(_domain_useCase_IListExportJobSteps__WEBPACK_IMPORTED_MODULE_49__.IListExportJobSteps, _useCases_listExportJobStepsImpl__WEBPACK_IMPORTED_MODULE_50__.ListExportJobStepsImpl);
         container.register(_domain_useCase_IListExportJobStepLogs__WEBPACK_IMPORTED_MODULE_51__.IListExportJobStepLogs, _useCases_listExportJobStepLogsImpl__WEBPACK_IMPORTED_MODULE_52__.ListExportJobStepLogsImpl);
         container.register(_domain_useCase_IListExportJobArtifacts__WEBPACK_IMPORTED_MODULE_53__.IListExportJobArtifacts, _useCases_listExportJobArtifactsImpl__WEBPACK_IMPORTED_MODULE_54__.ListExportJobArtifactsImpl);
-        container.register(_domain_useCase_IGetExportJobArtifact__WEBPACK_IMPORTED_MODULE_55__.IGetExportJobArtifact, _useCases_getExportJobArtifactImpl__WEBPACK_IMPORTED_MODULE_56__.GetExportJobArtifactImpl);
-        container.register(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_57__.IFileExplorer, { useToken: (0,tsyringe__WEBPACK_IMPORTED_MODULE_61__.delay)(() => _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_58__.FileExplorer) });
-        container.register(_domain_useCase_IModelSelector__WEBPACK_IMPORTED_MODULE_85__.IModelSelector, _useCases_modelSelector__WEBPACK_IMPORTED_MODULE_86__.ModelSelector);
-        container.register(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_59__.IStudio, _useCases_studio__WEBPACK_IMPORTED_MODULE_60__.Studio);
-        container.register(_domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_64__.IListModelHistories, _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_65__.ListModelHistoriesImpl);
-        container.register(_domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_71__.IAutoLogin, _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_72__.AutoLogin);
+        container.register(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_55__.IFileExplorer, { useToken: (0,tsyringe__WEBPACK_IMPORTED_MODULE_59__.delay)(() => _useCases_fileExplorer__WEBPACK_IMPORTED_MODULE_56__.FileExplorer) });
+        container.register(_domain_useCase_IModelSelector__WEBPACK_IMPORTED_MODULE_83__.IModelSelector, _useCases_modelSelector__WEBPACK_IMPORTED_MODULE_84__.ModelSelector);
+        container.register(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_57__.IStudio, _useCases_studio__WEBPACK_IMPORTED_MODULE_58__.Studio);
+        container.register(_domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_62__.IListModelHistories, _useCases_listModelHistoriesImpl__WEBPACK_IMPORTED_MODULE_63__.ListModelHistoriesImpl);
+        container.register(_domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_69__.IAutoLogin, _useCases_autoLogin__WEBPACK_IMPORTED_MODULE_70__.AutoLogin);
+        container.register(_domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_87__.IHistoryUseCase, _useCases_historyUseCaseImpl__WEBPACK_IMPORTED_MODULE_88__.HistoryUseCaseImpl);
         //!!!DO_NOT_DELETE:THIS_LINE_FOR_AUTO_GENERATION:ADD_USECASE!!!
         //UseCase Executor
         container.register(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_5__.IUseCaseExecutor, _useCases_useCaseExecutorImpl__WEBPACK_IMPORTED_MODULE_4__.UseCaseExecutorImpl);
         //Objects
         await (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_8__.delayTillResolve)([_domain_presentation_IViewModelProxifier__WEBPACK_IMPORTED_MODULE_46__.IViewModelProxifier], () => {
             _viewModel_viewModelManager__WEBPACK_IMPORTED_MODULE_1__.ViewModelManager.reset();
-            container.registerInstance(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_77__.IProcessEditorUtil, new _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_78__.ProcessEditorUtil());
-            const quickEditor = new _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_67__.QuickEditorImpl();
-            const processEditor = new _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_69__.ProcessEditorImpl();
-            const processDesignEditor = new _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_73__.ProcessDesignEditorImpl();
-            const entityDesignerEditor = new _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_75__.EntityDesignerEditorImpl();
-            const fileEditor = new _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_84__.FileEditorImpl();
-            container.registerInstance(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_66__.IQuickEditor, quickEditor);
-            container.registerInstance(_domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_68__.IProcessEditor, processEditor);
-            container.registerInstance(_domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_74__.IProcessDesignEditor, processDesignEditor);
-            container.registerInstance(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_76__.IEntityDesignerEditor, entityDesignerEditor);
-            container.registerInstance(_domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_83__.IFileEditor, fileEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, quickEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, processDesignEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, entityDesignerEditor);
-            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_70__.IEditor, fileEditor);
+            container.registerInstance(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_75__.IProcessEditorUtil, new _useCases_processEditorUtilImpl__WEBPACK_IMPORTED_MODULE_76__.ProcessEditorUtil());
+            const quickEditor = new _objects_editors_quickEditorImpl__WEBPACK_IMPORTED_MODULE_65__.QuickEditorImpl();
+            const processEditor = new _objects_editors_processEditorImpl__WEBPACK_IMPORTED_MODULE_67__.ProcessEditorImpl();
+            const processDesignEditor = new _objects_editors_processDesignEditorImpl__WEBPACK_IMPORTED_MODULE_71__.ProcessDesignEditorImpl();
+            const entityDesignerEditor = new _objects_editors_entityDesignerEditorImpl__WEBPACK_IMPORTED_MODULE_73__.EntityDesignerEditorImpl();
+            const fileEditor = new _objects_editors_fileEditorImpl__WEBPACK_IMPORTED_MODULE_82__.FileEditorImpl();
+            container.registerInstance(_domain_objects_editors_IQuickEditor__WEBPACK_IMPORTED_MODULE_64__.IQuickEditor, quickEditor);
+            container.registerInstance(_domain_objects_editors_processEditor_IProcessEditor__WEBPACK_IMPORTED_MODULE_66__.IProcessEditor, processEditor);
+            container.registerInstance(_domain_objects_editors_IProcessDesignEditor__WEBPACK_IMPORTED_MODULE_72__.IProcessDesignEditor, processDesignEditor);
+            container.registerInstance(_domain_objects_editors_IEntityDesignerEditor__WEBPACK_IMPORTED_MODULE_74__.IEntityDesignerEditor, entityDesignerEditor);
+            container.registerInstance(_domain_objects_editors_IFileEditor__WEBPACK_IMPORTED_MODULE_81__.IFileEditor, fileEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__.IEditor, quickEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__.IEditor, processEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__.IEditor, processDesignEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__.IEditor, entityDesignerEditor);
+            container.registerInstance(_domain_objects_editors_IEditor__WEBPACK_IMPORTED_MODULE_68__.IEditor, fileEditor);
             container.registerInstance(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_28__.IEditorManager, new _objects_editorManager__WEBPACK_IMPORTED_MODULE_29__.EditorManager());
             container.registerInstance(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager, new _objects_sidebarManager__WEBPACK_IMPORTED_MODULE_45__.SidebarManager());
-            container.registerInstance(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager, new _objects_sessionManager__WEBPACK_IMPORTED_MODULE_63__.SessionManager());
+            container.registerInstance(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_60__.ISessionManager, new _objects_sessionManager__WEBPACK_IMPORTED_MODULE_61__.SessionManager());
         });
         await (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_8__.delayWithResolve)(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_17__.IConfig, config => {
             if (config.getValue("debugging")) {
@@ -28025,7 +28102,7 @@ const appStartUp = {
                 const managers = {
                     mm: container.resolve(_domain_objects_IEditorManager__WEBPACK_IMPORTED_MODULE_28__.IEditorManager),
                     sbm: container.resolve(_domain_objects_ISidebarManager__WEBPACK_IMPORTED_MODULE_44__.ISidebarManager),
-                    sm: container.resolve(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_62__.ISessionManager),
+                    sm: container.resolve(_domain_objects_ISesionManager__WEBPACK_IMPORTED_MODULE_60__.ISessionManager),
                 };
                 const conf = {
                     env: config.getEnvironmentName(),
@@ -28099,7 +28176,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/useCase/IAutoLogin */ "./src/domain/useCase/IAutoLogin.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28112,21 +28190,25 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 let ListApplicationsImpl = class ListApplicationsImpl {
-    constructor(qcloudApi, viewModelManager) {
+    constructor(qcloudApi, viewModelManager, autoLogin) {
         this.qcloudApi = qcloudApi;
         this.viewModelManager = viewModelManager;
+        this.autoLogin = autoLogin;
     }
     async execute(param) {
         const apps = await this.qcloudApi.listApplications(param.getDetails);
         this.viewModelManager.setApplicationList(apps);
+        this.autoLogin.tryGoApp(apps);
         return apps;
     }
 };
 ListApplicationsImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_2__.IViewModelManager))
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_3__.IViewModelManager)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_useCase_IAutoLogin__WEBPACK_IMPORTED_MODULE_2__.IAutoLogin))
 ], ListApplicationsImpl);
 
 
@@ -28236,7 +28318,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _common_urlHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/urlHelper */ "./src/common/urlHelper.ts");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/IRouter */ "./src/domain/presentation/IRouter.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28249,12 +28332,15 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 let AutoLogin = class AutoLogin {
-    constructor(viewModel) {
+    constructor(viewModel, router) {
         this.viewModel = viewModel;
+        this.router = router;
     }
     gatherAutoLoginData() {
-        return _common_urlHelper__WEBPACK_IMPORTED_MODULE_0__.UrlHelper.gatherQueryString();
+        this.viewModel.autoLogin = _common_urlHelper__WEBPACK_IMPORTED_MODULE_0__.UrlHelper.gatherQueryString();
+        return this.viewModel.autoLogin;
     }
     trySetDomain(autologinData) {
         var _a;
@@ -28267,12 +28353,29 @@ let AutoLogin = class AutoLogin {
         }
     }
     allSystemsGo(autoLoginData) {
-        return autoLoginData.domain && autoLoginData.email && autoLoginData.pass ? true : false;
+        const retVal = autoLoginData.domain && autoLoginData.email && autoLoginData.pass ? true : false;
+        if (retVal) {
+            autoLoginData.domain = autoLoginData.email = autoLoginData.pass = undefined;
+        }
+        return retVal;
+    }
+    tryGoApp(apps) {
+        const autoLoginData = this.viewModel.autoLogin;
+        if (!autoLoginData) {
+            return;
+        }
+        this.viewModel.autoLogin = undefined;
+        const targetApp = apps.find(app => app.name == autoLoginData.app || app.ID == autoLoginData.app);
+        if (!targetApp) {
+            return;
+        }
+        this.router.push(`/studio/${targetApp.ID}`);
     }
 };
 AutoLogin = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_2__.IViewModel))
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_3__.IViewModel)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.inject)(_domain_presentation_IRouter__WEBPACK_IMPORTED_MODULE_2__.IRouter))
 ], AutoLogin);
 
 
@@ -28417,10 +28520,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CreateExportJobImpl": () => (/* binding */ CreateExportJobImpl)
 /* harmony export */ });
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_infrastructure_IExporterApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IExporterApi */ "./src/domain/infrastructure/IExporterApi.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28435,26 +28539,30 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 let CreateExportJobImpl = class CreateExportJobImpl {
-    constructor(qcloudApi, viewModelManager, notification) {
+    constructor(qcloudApi, exporterApi, viewModelManager, notification) {
         this.qcloudApi = qcloudApi;
+        this.exporterApi = exporterApi;
         this.viewModelManager = viewModelManager;
         this.notification = notification;
     }
     async execute(param) {
         if (!(param.app && param.exportType && param.selectionData)) {
-            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({ message: "'app', 'exportType', and 'selectionData' information required!", type: "business" });
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__.createError)({ message: "'app', 'exportType', and 'selectionData' information required!", type: "business" });
         }
         const job = await this.qcloudApi.createExportJob(param.app, param.exportType, param.selectionData);
         this.viewModelManager.exportJobCreated(job);
+        this.exporterApi.go(); // do not await, just notify and go
         this.notification.showNotification({ text: `Export job created successfully. ID: ${job.jobID}`, type: "success" });
     }
 };
 CreateExportJobImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_4__.IViewModelManager)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__.INotification))
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_2__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IExporterApi__WEBPACK_IMPORTED_MODULE_1__.IExporterApi)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_5__.IViewModelManager)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__.INotification))
 ], CreateExportJobImpl);
 
 
@@ -28477,7 +28585,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
 /* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
 /* harmony import */ var _domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/useCase/IFileExplorer */ "./src/domain/useCase/IFileExplorer.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28493,10 +28602,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 let CreateModelImpl = class CreateModelImpl {
-    constructor(qcloudApi, viewModelManager, fileExplorer, notification) {
+    constructor(qcloudApi, viewModelManager, viewModel, fileExplorer, notification) {
         this.qcloudApi = qcloudApi;
         this.viewModelManager = viewModelManager;
+        this.viewModel = viewModel;
         this.fileExplorer = fileExplorer;
         this.notification = notification;
     }
@@ -28516,19 +28627,25 @@ let CreateModelImpl = class CreateModelImpl {
             modelType: param.modelType, modelBody: param.modelBody, additionals: param.modelAdditionals, modified: {},
         };
         this.viewModelManager.modelCreated(this.model);
-        const executeRetval = await this.qcloudApi.createModel({
-            name: this.model.name,
-            parentObject: this.model.parent,
-            modelBody: this.model.modelBody,
-            modelType: param.modelType,
-            modelAdditionals: param.modelAdditionals,
-            usageType: param.usageType,
-        });
-        this.model.ID = executeRetval.ID;
+        if (param.duplicateFrom) {
+            const executeRetval = await this.qcloudApi.duplicateModel(param.duplicateFrom, this.model.name);
+            this.model.ID = executeRetval.ID;
+        }
+        else {
+            const executeRetval = await this.qcloudApi.createModel({
+                name: this.model.name,
+                parentObject: this.model.parent,
+                modelBody: this.model.modelBody,
+                modelType: param.modelType,
+                modelAdditionals: param.modelAdditionals,
+                usageType: param.usageType,
+            });
+            this.model.ID = executeRetval.ID;
+        }
         this.model.synced = true;
         //This line should be here while the "synced" feature doesn't work on "fileExplorer".
         //Then move it before the "this.qcloudApi.createModel" line.
-        this.fileExplorer.addNewItem(this.model, parentObject.ID);
+        this.addToFileExplorer();
         this.notification.showNotification({ text: `${this.model.name} created successfully`, type: "success" });
         return this.model;
     }
@@ -28538,13 +28655,22 @@ let CreateModelImpl = class CreateModelImpl {
         }
         this.viewModelManager.removeModel(this.model);
     }
+    addToFileExplorer() {
+        var _a, _b, _c, _d;
+        const model = this.model;
+        if (this.viewModel.studio.filters.ui && ((_a = this.model) === null || _a === void 0 ? void 0 : _a.modelType) == "qjson" || this.viewModel.studio.filters.entity && ((_b = this.model) === null || _b === void 0 ? void 0 : _b.modelType) == "entityDesigner"
+            || this.viewModel.studio.filters.process && (((_c = this.model) === null || _c === void 0 ? void 0 : _c.modelType) == "process" || ((_d = this.model) === null || _d === void 0 ? void 0 : _d.modelType) == "bpmn")) {
+            this.fileExplorer.addNewItem(model, model.parent.ID);
+        }
+    }
 };
 CreateModelImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
     __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_5__.IViewModelManager)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_4__.IFileExplorer)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__.INotification))
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_6__.IViewModelManager)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__.IViewModel)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_useCase_IFileExplorer__WEBPACK_IMPORTED_MODULE_4__.IFileExplorer)),
+    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_3__.INotification))
 ], CreateModelImpl);
 
 
@@ -28686,18 +28812,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 /* harmony import */ var _common_watcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/watcher */ "./src/common/watcher.ts");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
-/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
-/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
-/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
-/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
-/* harmony import */ var _domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/ICreateModel */ "./src/domain/useCase/ICreateModel.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
-/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
+/* harmony import */ var _domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/useCase/ICreateModel */ "./src/domain/useCase/ICreateModel.ts");
+/* harmony import */ var _domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/IHistoryUseCase */ "./src/domain/useCase/IHistoryUseCase.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28720,23 +28844,19 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
-
 let FileExplorer = class FileExplorer {
-    constructor(qcloudApi, notification, viewModelManager, viewModel, executor, studio, dialog, compCreator, objectUseCase) {
-        this.qcloudApi = qcloudApi;
-        this.notification = notification;
-        this.viewModelManager = viewModelManager;
+    constructor(viewModel, executor, studio, dialog, compCreator, objectUseCase, historyUseCase) {
         this.viewModel = viewModel;
         this.executor = executor;
         this.studio = studio;
         this.dialog = dialog;
         this.compCreator = compCreator;
         this.objectUseCase = objectUseCase;
+        this.historyUseCase = historyUseCase;
     }
     get feTreeview() {
         if (!this._feTreeview) {
-            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer);
+            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
         }
         return this._feTreeview;
     }
@@ -28744,7 +28864,7 @@ let FileExplorer = class FileExplorer {
         const settingsItems = [];
         const converter = (items) => items.map(item => {
             // const delAction: IActionItem = { type: "IActionSingleItem", name: "Del", selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) };
-            const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [], };
+            const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [] };
             switch (item.objectType) {
                 case "folder":
                 case "module":
@@ -28762,7 +28882,7 @@ let FileExplorer = class FileExplorer {
                     });
                     treeItem.actions.push({
                         type: "IActionMenuItem", name: "", icon: "mdi mdi-dots-horizontal", children: [
-                            { name: "Edit", icon: "mdi mdi-pencil", selectCb: this.executor.wrap(() => this.onEditModule(item.name, item.ID), { loading: true }) },
+                            { name: "Edit", icon: "mdi mdi-pencil", selectCb: this.executor.wrap(() => this.onEditItem(item), { loading: true }) },
                             { name: "Remove", icon: "mdi mdi-minus-circle-outline", selectCb: this.executor.wrap(() => this.remove(item), { loading: true }) },
                             { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
                         ]
@@ -28785,8 +28905,12 @@ let FileExplorer = class FileExplorer {
                         treeItem.typeIcon.icon = 'mdi mdi-auto-fix';
                         treeItem.typeIcon.color = '#007C77';
                     }
-                    const checkoutIcon = { icon: "mdi mdi-arrow-bottom-right-bold-outline", tooltip: 'Check out' };
-                    const modifiedIcon = { icon: "", text: "⚫", fontsize: '6px', margin: '7px', tooltip: 'Modified' };
+                    if (item.additionals.qjsonType == 'quickComponent') {
+                        treeItem.typeIcon.icon = 'mdi mdi-palette';
+                        treeItem.typeIcon.color = 'orange';
+                    }
+                    const checkoutIcon = { id: "CHECKOUT_ICON", icon: "mdi mdi-arrow-bottom-right-bold-outline", tooltip: 'Check out' };
+                    const modifiedIcon = { id: "MODIFIED_ICON", icon: "", text: "⚪", fontsize: '6px', margin: '7px 0px 0px 7px', tooltip: 'Modified' };
                     if (item.checkedOut) {
                         treeItem.itemIcons = treeItem.itemIcons || [];
                         treeItem.itemIcons.push(checkoutIcon);
@@ -28804,8 +28928,12 @@ let FileExplorer = class FileExplorer {
                         modelWatcher === null || modelWatcher === void 0 ? void 0 : modelWatcher.unwatch();
                         modelWatcher = new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item.modified, "model", { preventSameInstance: true });
                         modelWatcher.onChange(newValue => {
+                            if (treeItem.actions) {
+                                this.setActions(treeItem.actions, newValue || false);
+                            }
                             const target = newValue ? "addItemIcon" : "removeItemIcon";
                             this.feTreeview[target](item.ID, modifiedIcon);
+                            this.feTreeview.updateActions(item.ID);
                         });
                     };
                     watchModifiedModel();
@@ -28814,24 +28942,31 @@ let FileExplorer = class FileExplorer {
                         if (Boolean(oldValue.model) == Boolean(newValue.model)) {
                             return;
                         }
+                        if (treeItem.actions) {
+                            this.setActions(treeItem.actions, newValue.model || false);
+                        }
                         const target = newValue.model ? "addItemIcon" : "removeItemIcon";
                         this.feTreeview[target](item.ID, modifiedIcon);
+                        this.feTreeview.updateActions(item.ID);
                     });
                     treeItem.cb = {
                         select: this.executor.wrap(() => this.onItemSelect(item), { loading: true }),
+                        unselect: this.executor.wrap(() => this.onItemUnselect(item), { loading: true })
                     };
                     // treeItem.actions!.unshift({ type: "IActionSingleItem", name: "His", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) });
-                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: "mdi mdi-content-save", tooltip: "Save", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) });
+                    treeItem.actions.unshift({ type: "IActionSingleItem", name: "", icon: "mdi mdi-content-save", tooltip: "Save", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }), enabled: false });
                     treeItem.actions.push({
                         type: "IActionMenuItem", name: "", icon: 'mdi mdi-dots-horizontal', children: () => {
                             const checkin = { name: "Check in", icon: "mdi mdi mdi-arrow-top-left-bold-outline", selectCb: this.executor.wrap(async () => this.checkinDailog(item), { loading: true }) };
                             const checkout = { name: "Check out", icon: "mdi mdi mdi-arrow-bottom-right-bold-outline", selectCb: this.executor.wrap(async () => this.studio.checkout(item), { loading: true }) };
                             const undocheckout = { name: "Undo Check out", icon: "mdi mdi-arrow-bottom-left", selectCb: this.executor.wrap(async () => this.studio.release(item), { loading: true }) };
                             return [
-                                { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }) },
+                                { name: "Edit", icon: "mdi mdi-pencil", selectCb: this.executor.wrap(() => this.onEditItem(item), { loading: true }) },
+                                { name: "Save", icon: "mdi mdi-content-save-outline", selectCb: this.executor.wrap(() => this.studio.save(item), { loading: true }), enabled: false, },
                                 { name: "History", icon: "mdi mdi-history", selectCb: this.executor.wrap(() => this.onShowHistories(item.name, item.ID), { loading: true }) },
                                 item.checkedOut ? checkin : checkout,
                                 item.checkedOut ? undocheckout : undefined,
+                                { name: "Duplicate", icon: "mdi mdi-content-duplicate", selectCb: this.executor.wrap(() => this.duplicateDialog(item), { loading: true }) },
                                 { name: "Delete", icon: "mdi mdi-delete-outline", color: 'red', selectCb: this.executor.wrap(() => this.onItemDelete(item), { loading: true }) },
                             ].filter((item) => item != undefined);
                         }
@@ -28851,20 +28986,32 @@ let FileExplorer = class FileExplorer {
         this.feTreeview.addItem(convertedItems.treeItems, parentId);
         this.feTreeview.addItem(convertedItems.settingsItems, "002");
     }
+    async duplicateDialog(model) {
+        const createType = () => {
+            switch (model.modelType) {
+                case "qjson": return 'Screen';
+                case "bpmn": return 'Process Diagram';
+                case "entityDesigner": return 'Entity';
+                case "process": return 'Process Wizard';
+            }
+        };
+        const dialogProps = { createType: createType(), parentId: model.parent.ID, parentName: model.parent.name, parentType: model.parent.objectType, duplicateFrom: model };
+        this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: 'Copy Of: ' + model.name, closeOnOutClick: true }, dialogProps);
+    }
     removeItem(itemID) {
         this.feTreeview.removeItem(itemID);
     }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
-        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeView);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer);
+        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeView);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
         feTreeview.setup(rootDiv);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_8__.ITreeViewInstances.FileExplorer, feTreeview);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer, feTreeview);
     }
     createSettingsTreeItem(settingsItems) {
         const settingsTreeItem = { id: "002", name: "UI Settings", orderIndex: 0, typeIcon: { icon: "" }, children: settingsItems };
         const createSettingsModel = (createObject) => this.executor.execute(async () => {
-            let settingsModel = await this.executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_9__.ICreateModel, createObject);
+            let settingsModel = await this.executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_7__.ICreateModel, createObject);
             await this.studio.checkout(settingsModel);
             this.studio.openItem(settingsModel);
         }, { loading: true });
@@ -28885,8 +29032,8 @@ let FileExplorer = class FileExplorer {
                         show({ name: "Loading Component", icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: "Loading Component", parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
                         show({ name: "Settings File", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "yaml", name: "Settings File", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "yaml", model: "" }] }) }),
                         show({ name: "Container Services File", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "js", name: "Container Services File", parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "js", model: "" }] }) }),
-                        show({ name: "Style File", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) }),
-                        show({ name: "Component List", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) }),
+                        show({ name: "Style File", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__.createError)({ message: "not implemented", type: "technical" }) }),
+                        show({ name: "Component List", icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_3__.createError)({ message: "not implemented", type: "technical" }) }),
                     ].filter((item) => item != undefined);
                 }
             }];
@@ -28924,232 +29071,74 @@ let FileExplorer = class FileExplorer {
         this.feTreeview.unselectItem(itemID);
     }
     async onItemSelect(item) {
+        var _a;
         await this.studio.openItem(item);
+        const treeItem = this.feTreeview.getItem(item.ID);
+        if (treeItem) {
+            const modifiedIcon = (_a = treeItem.itemIcons) === null || _a === void 0 ? void 0 : _a.find((icon) => icon.id == "MODIFIED_ICON");
+            if (modifiedIcon) {
+                this.feTreeview.removeItemIcon(item.ID, modifiedIcon);
+                modifiedIcon.text = "⚪";
+                this.feTreeview.addItemIcon(item.ID, modifiedIcon);
+            }
+        }
+    }
+    async onItemUnselect(item) {
+        var _a;
+        const treeItem = this.feTreeview.getItem(item.ID);
+        if (treeItem) {
+            const modifiedIcon = (_a = treeItem.itemIcons) === null || _a === void 0 ? void 0 : _a.find((icon) => icon.id == "MODIFIED_ICON");
+            if (modifiedIcon) {
+                this.feTreeview.removeItemIcon(item.ID, modifiedIcon);
+                modifiedIcon.text = "⚫";
+                this.feTreeview.addItemIcon(item.ID, modifiedIcon);
+            }
+        }
     }
     async onShowHistories(modelName, modelID) {
         console.log('Parameters :\n' + modelName + '\n' + modelID);
-        this.dialog.showDialog(this.compCreator.createModelHistoriesComponent(), { closable: true, title: 'History-' + modelName, closeOnOutClick: true, width: '700px', height: '500px', overflow: 'auto' }, { modelID });
+        await this.historyUseCase.openHistoryDialog(modelID, modelName);
     }
-    async onEditModule(moduleName, moduleID) {
-        console.log('Edit : ' + moduleID);
-        this.dialog.showDialog(this.compCreator.createEditModuleComponent(), { closable: true, title: moduleName, closeOnOutClick: true }, { moduleID });
+    async onEditItem(item) {
+        console.log('Edit : ' + item.ID);
+        let description = undefined;
+        if (item.objectType == "module") {
+            description = item.description;
+        }
+        this.dialog.showDialog(this.compCreator.createEditItemComponent(), { closable: true, title: item.name, closeOnOutClick: true }, { id: item.ID, name: item.name, description, type: item.objectType });
     }
     //This method has an usacase:DeleteModelImpl and we may need to delete it!..
     async onItemDelete(item) {
         await this.objectUseCase.deleteObject(item.ID);
     }
+    setActions(actions, enabled) {
+        if (actions) {
+            actions.forEach((action) => {
+                if (action.type == "IActionSingleItem") {
+                    action.enabled = enabled;
+                }
+                else if (action.type == "IActionMenuItem") {
+                    action.children = action.children instanceof Function ? action.children() : action.children;
+                    action.children.forEach((child) => {
+                        if (child.name == "Save") {
+                            child.enabled = enabled;
+                        }
+                    });
+                }
+            });
+        }
+    }
 };
 FileExplorer = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__.IQCloudApi)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_7__.INotification)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_14__.IViewModelManager)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__.IViewModel)),
-    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__.IUseCaseExecutor)),
-    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__.IStudio)),
-    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__.IDialog)),
-    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__.IAsyncComponentCreator)),
-    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__.IObjectUseCase))
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_12__.IViewModel)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_11__.IUseCaseExecutor)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_10__.IStudio)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog)),
+    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__.IAsyncComponentCreator)),
+    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_9__.IObjectUseCase)),
+    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_8__.IHistoryUseCase))
 ], FileExplorer);
-
-
-
-/***/ }),
-
-/***/ "./src/application/useCases/getExportJobArtifactImpl.ts":
-/*!**************************************************************!*\
-  !*** ./src/application/useCases/getExportJobArtifactImpl.ts ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GetExportJobArtifactImpl": () => (/* binding */ GetExportJobArtifactImpl)
-/* harmony export */ });
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-let GetExportJobArtifactImpl = class GetExportJobArtifactImpl {
-    constructor(qcloudApi) {
-        this.qcloudApi = qcloudApi;
-    }
-    downloadInner(data, strFileName, strMimeType) {
-        const _self = this;
-        const Blob = window.Blob;
-        const XMLHttpRequest = window.XMLHttpRequest;
-        var self = window; // this script is only for browsers anyway...
-        var defaultMime = 'application/octet-stream'; // this default mime also triggers iframe downloads
-        var mimeType = strMimeType || defaultMime;
-        var payload = data;
-        var url = !strFileName && !strMimeType && payload;
-        var anchor = document.createElement('a');
-        var toString = function (a) {
-            return String(a);
-        };
-        var MyBlob = self.Blob || self.MozBlob || self.WebKitBlob || toString;
-        var fileName = strFileName || 'download';
-        var blob;
-        var reader;
-        MyBlob = MyBlob.call ? MyBlob.bind(self) : Blob;
-        if (String(this) === 'true') {
-            // reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
-            payload = [payload, mimeType];
-            mimeType = payload[0];
-            payload = payload[1];
-        }
-        if (url && url.length < 2048) {
-            // if no filename and no mime, assume a url was passed as the only argument
-            fileName = url
-                .split('/')
-                .pop()
-                .split('?')[0];
-            anchor.href = url; // assign href prop to temp anchor
-            if (anchor.href.indexOf(url) !== -1) {
-                // if the browser determines that it's a potentially valid url path:
-                var ajax = new XMLHttpRequest();
-                ajax.open('GET', url, true);
-                ajax.responseType = 'blob';
-                ajax.onload = function (e) {
-                    _self.downloadInner(e.target.response, fileName, defaultMime);
-                };
-                setTimeout(function () {
-                    ajax.send();
-                }, 0); // allows setting custom ajax headers using the return:
-                return ajax;
-            } // end if valid url?
-        } // end if url?
-        // go ahead and download dataURLs right away
-        if (/^data:([\w+-]+\/[\w+.-]+)?[,;]/.test(payload)) {
-            if (payload.length > 1024 * 1024 * 1.999 && MyBlob !== toString) {
-                payload = dataUrlToBlob(payload);
-                mimeType = payload.type || defaultMime;
-            }
-            else {
-                return navigator.msSaveBlob // IE10 can't do a[download], only Blobs:
-                    ? navigator.msSaveBlob(dataUrlToBlob(payload), fileName)
-                    : saver(payload, null); // everyone else can save dataURLs un-processed
-            }
-        }
-        else {
-            // not data url, is it a string with special needs?
-            if (/([\x80-\xff])/.test(payload)) {
-                var i = 0;
-                var tempUiArr = new Uint8Array(payload.length);
-                var mx = tempUiArr.length;
-                for (i; i < mx; ++i)
-                    tempUiArr[i] = payload.charCodeAt(i);
-                payload = new MyBlob([tempUiArr], { type: mimeType });
-            }
-        }
-        blob = payload instanceof MyBlob ? payload : new MyBlob([payload], { type: mimeType });
-        function dataUrlToBlob(strUrl) {
-            var parts = strUrl.split(/[:;,]/);
-            var type = parts[1];
-            var indexDecoder = strUrl.indexOf('charset') > 0 ? 3 : 2;
-            var decoder = parts[indexDecoder] === 'base64' ? window.atob : decodeURIComponent;
-            var binData = decoder(parts.pop());
-            var mx = binData.length;
-            var i = 0;
-            var uiArr = new Uint8Array(mx);
-            for (i; i < mx; ++i)
-                uiArr[i] = binData.charCodeAt(i);
-            return new MyBlob([uiArr], { type: type });
-        }
-        function saver(url, winMode) {
-            if ('download' in anchor) {
-                // html5 A[download]
-                anchor.href = url;
-                anchor.setAttribute('download', fileName);
-                anchor.className = 'download-js-link';
-                anchor.innerHTML = 'downloading...';
-                anchor.style.display = 'none';
-                var listener = anchor.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    this.removeEventListener('click', listener);
-                });
-                document.body.appendChild(anchor);
-                setTimeout(function () {
-                    anchor.click();
-                    document.body.removeChild(anchor);
-                    if (winMode === true) {
-                        setTimeout(function () {
-                            self.URL.revokeObjectURL(anchor.href);
-                        }, 250);
-                    }
-                }, 66);
-                return true;
-            }
-            // handle non-a[download] safari as best we can:
-            if (/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
-                if (/^data:/.test(url))
-                    url = 'data:' + url.replace(/^data:([\w/\-+]+)/, defaultMime);
-                if (!window.open(url)) {
-                    // popup blocked, offer direct download:
-                    if (window.confirm('Displaying New Document\n\nUse Save As... to download, then click back to return to this page.')) {
-                        window.location.href = url;
-                    }
-                }
-                return true;
-            }
-            // do iframe dataURL download (old ch+FF):
-            var f = document.createElement('iframe');
-            document.body.appendChild(f);
-            if (!winMode && /^data:/.test(url)) {
-                // force a mime that will download:
-                url = 'data:' + url.replace(/^data:([\w/\-+]+)/, defaultMime);
-            }
-            f.src = url;
-            setTimeout(function () {
-                document.body.removeChild(f);
-            }, 333);
-        } // end saver
-        if (navigator.msSaveBlob) {
-            // IE10+ : (has Blob, but not a[download] or URL)
-            return navigator.msSaveBlob(blob, fileName);
-        }
-        if (self.URL) {
-            // simple fast and modern way using Blob and URL:
-            saver(self.URL.createObjectURL(blob), true);
-        }
-        else {
-            // handle non-Blob()+non-URL browsers:
-            if (typeof blob === 'string' || blob.constructor === toString) {
-                try {
-                    return saver('data:' + mimeType + ';base64,' + self.btoa(blob), null);
-                }
-                catch (y) {
-                    return saver('data:' + mimeType + ',' + encodeURIComponent(blob), null);
-                }
-            }
-            // Blob but not URL support:
-            reader = new window.FileReader();
-            reader.onload = function (e) {
-                saver(this.result, null);
-            };
-            reader.readAsDataURL(blob);
-        }
-        return true;
-    }
-    async execute(param) {
-        const data = await this.qcloudApi.getExportJobArtifact(param.artifactID);
-        this.downloadInner(data, param.artifactName, "application/octet-stream");
-    }
-};
-GetExportJobArtifactImpl = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi))
-], GetExportJobArtifactImpl);
 
 
 
@@ -29297,6 +29286,64 @@ GetUserDomainsImpl = __decorate([
 
 /***/ }),
 
+/***/ "./src/application/useCases/historyUseCaseImpl.ts":
+/*!********************************************************!*\
+  !*** ./src/application/useCases/historyUseCaseImpl.ts ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HistoryUseCaseImpl": () => (/* binding */ HistoryUseCaseImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/INotification */ "./src/domain/presentation/INotification.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+let HistoryUseCaseImpl = class HistoryUseCaseImpl {
+    constructor(qcloudApi, notification, dialog, compCreator) {
+        this.qcloudApi = qcloudApi;
+        this.notification = notification;
+        this.dialog = dialog;
+        this.compCreator = compCreator;
+    }
+    async openHistoryDialog(modelID, modelName) {
+        const histories = await this.qcloudApi.listModelHistories(modelID);
+        if (!histories || histories.length == 0) {
+            this.notification.showNotification({ text: "This item has no history yet", type: "info" });
+            return;
+        }
+        this.dialog.showDialog(this.compCreator.createModelHistoriesComponent(), { closable: true, title: `Histories for ${modelName}`, closeOnOutClick: true, width: '700px', height: '500px', overflow: 'auto' }, { histories });
+    }
+};
+HistoryUseCaseImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_1__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_INotification__WEBPACK_IMPORTED_MODULE_4__.INotification)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_3__.IDialog)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_2__.IAsyncComponentCreator))
+], HistoryUseCaseImpl);
+
+
+
+/***/ }),
+
 /***/ "./src/application/useCases/initStudioImpl.ts":
 /*!****************************************************!*\
   !*** ./src/application/useCases/initStudioImpl.ts ***!
@@ -29422,7 +29469,7 @@ let ListExportJobStepLogsImpl = class ListExportJobStepLogsImpl {
             throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({ message: "'stepID' is required", type: "business" });
         }
         const logs = await this.qcloudApi.listExportJobStepLogs(param.stepID);
-        this.viewModelManager.setExportJobStepLogs(param.stepID, logs);
+        this.viewModelManager.setExportJobStepLogs(param.stepID, logs.logs);
     }
 };
 ListExportJobStepLogsImpl = __decorate([
@@ -29818,7 +29865,7 @@ let ModelSelector = class ModelSelector {
     }
     convertToTreeItems(items) {
         const converter = (items) => items.map(item => {
-            const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [], };
+            const treeItem = { id: item.ID, name: item.name, typeIcon: { icon: '' }, actions: [] };
             switch (item.objectType) {
                 case "folder":
                 case "module":
@@ -29945,6 +29992,44 @@ let ObjectUseCaseImpl = class ObjectUseCaseImpl {
         }
         this.viewModelManager.removeObject(item);
         this.notification.showNotification({ text: `'${item.name}' deleted successfully`, type: "success" });
+    }
+    async updateObject(objectID, params) {
+        if (!params.name && !params.description) {
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({
+                message: "Name or Description is required!",
+                type: "technical"
+            });
+        }
+        const object = this.viewModelManager.findObject(objectID);
+        if (!object) {
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({ message: "object not found: " + objectID, type: "technical" });
+        }
+        switch (object.objectType) {
+            case "model":
+                this.qcloudApi.updateModel(objectID, { name: params.name, modelAdditionals: params.modelAdditionals });
+                break;
+            case "module":
+                this.qcloudApi.updateModule(objectID, { name: params.name, description: params.description });
+                object.description = params.description;
+                break;
+            case "application":
+                this.qcloudApi.updateApplication(objectID, { name: params.name, description: params.description });
+                object.description = params.description;
+                break;
+            case "folder":
+                this.qcloudApi.updateFolder(objectID, { name: params.name });
+                break;
+            default: throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_2__.createError)({ message: "can not update " + (object === null || object === void 0 ? void 0 : object.objectType) + " with this use case ", type: "technical" });
+        }
+        if (params.name) {
+            object.name = params.name;
+        }
+        if (_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.isRegistered(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_4__.ITreeViewInstances.FileExplorer)) {
+            const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_4__.ITreeViewInstances.FileExplorer);
+            feTreeview.updateItemName(object.ID, object.name);
+        }
+        this.viewModelManager.objectUpdated(object);
+        this.notification.showNotification({ text: `Updated successfully`, type: "success" });
     }
     async listModules(applicationID) {
         const modules = await this.qcloudApi.listModules(applicationID);
@@ -30485,6 +30570,7 @@ let Studio = class Studio {
             ui: this.defaultUI(),
             items: appItems,
             appName: currentApp.name,
+            filters: { ui: true, process: true, entity: true }
         };
         this.logger.log({ level: "log", message: `App ${appId} opened` });
     }
@@ -30991,8 +31077,7 @@ let UseCaseExecutorImpl = class UseCaseExecutorImpl {
             return retVal;
         }
         catch (error) {
-            throw error;
-            //this.handleError(error, undefined, undefined);
+            this.handleError(error, undefined); // find a solution without commenting this line.
         }
         finally {
             if (options.loading) {
@@ -31098,7 +31183,7 @@ var ViewModelManager_1;
  *      blabla.xyz // this is not!! -->> blabla = proxify(blabla)  \n  this.viewModel.blabla = param  \n  blabla.xyz
  */
 function vmCreator() {
-    return { apps: [], exportJobs: [], studio: { appId: "", appName: "", items: [] } }; // VM 
+    return { apps: [], exportJobs: [], studio: { appId: "", appName: "", items: [], filters: { ui: false, process: false, entity: false } } }; // VM 
     //TODO: studio'nun nullable olması lazım.
 }
 let ViewModelManager = ViewModelManager_1 = class ViewModelManager {
@@ -31311,9 +31396,10 @@ let appSettingsDict;
 const appSettings = appSettingsDict = {
     default: {
         hostnames: [],
-        qcloudApiUrl: "https://localhost:5006/sym/",
-        providerApiUrl: "https://studio.onplateau.com/provider/",
         // qcloudApiUrl: "https://studio.onplateau.com/sym/",
+        qcloudApiUrl: "https://localhost:5006/sym/",
+        providerApiUrl: "http://localhost:3000/",
+        exporterApiUrl: "http://localhost:5009/",
         networkTimeout: 60000,
         debugging: true,
         studio: {
@@ -31329,6 +31415,7 @@ const appSettings = appSettingsDict = {
         hostnames: ["github.io", "localhost"],
         qcloudApiUrl: "https://qcloud-sym.herokuapp.com/sym/",
         providerApiUrl: "https://studio.onplateau.com/provider/",
+        exporterApiUrl: "https://qcloud-exporter.herokuapp.com/",
         networkTimeout: 60000,
         debugging: true,
         studio: {
@@ -31343,6 +31430,7 @@ const appSettings = appSettingsDict = {
         hostnames: [],
         qcloudApiUrl: "https://studio.onplateau.com/sym/",
         providerApiUrl: "https://studio.onplateau.com/provider/",
+        exporterApiUrl: "http://localhost:5009/",
         networkTimeout: 60000,
         studio: {
             commentMaxLength: 50,
@@ -31569,6 +31657,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "IDomHelper": () => (/* binding */ IDomHelper)
 /* harmony export */ });
 const IDomHelper = Symbol.for("IDomHelper");
+
+
+/***/ }),
+
+/***/ "./src/domain/infrastructure/IExporterApi.ts":
+/*!***************************************************!*\
+  !*** ./src/domain/infrastructure/IExporterApi.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IExporterApi": () => (/* binding */ IExporterApi)
+/* harmony export */ });
+const IExporterApi = Symbol.for("IExporterApi");
 
 
 /***/ }),
@@ -34855,22 +34959,6 @@ const IGetApplicationDetails = Symbol.for("IGetApplicationDetails");
 
 /***/ }),
 
-/***/ "./src/domain/useCase/IGetExportJobArtifact.ts":
-/*!*****************************************************!*\
-  !*** ./src/domain/useCase/IGetExportJobArtifact.ts ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IGetExportJobArtifact": () => (/* binding */ IGetExportJobArtifact)
-/* harmony export */ });
-const IGetExportJobArtifact = Symbol.for("IGetExportJobArtifact");
-
-
-/***/ }),
-
 /***/ "./src/domain/useCase/IGetExportSelectionData.ts":
 /*!*******************************************************!*\
   !*** ./src/domain/useCase/IGetExportSelectionData.ts ***!
@@ -34915,6 +35003,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "IGetUserDomains": () => (/* binding */ IGetUserDomains)
 /* harmony export */ });
 const IGetUserDomains = Symbol.for("IGetUserDomains");
+
+
+/***/ }),
+
+/***/ "./src/domain/useCase/IHistoryUseCase.ts":
+/*!***********************************************!*\
+  !*** ./src/domain/useCase/IHistoryUseCase.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IHistoryUseCase": () => (/* binding */ IHistoryUseCase)
+/* harmony export */ });
+const IHistoryUseCase = Symbol.for("IHistoryUseCase");
 
 
 /***/ }),
@@ -35274,7 +35378,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.34"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.35"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -35411,6 +35515,78 @@ DomHelperImpl = __decorate([
 
 /***/ }),
 
+/***/ "./src/infrastructure/exporterApiImpl.ts":
+/*!***********************************************!*\
+  !*** ./src/infrastructure/exporterApiImpl.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "exporterApiImpl": () => (/* binding */ exporterApiImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/infrastructure/IConfig */ "./src/domain/infrastructure/IConfig.ts");
+/* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
+/* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../domain/model/shellError */ "./src/domain/model/shellError.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+let exporterApiImpl = class exporterApiImpl {
+    constructor(config, logger, network) {
+        this.config = config;
+        this.logger = logger;
+        this.network = network;
+        this.exporterApiUrl = this.config.getValue("exporterApiUrl");
+    }
+    async request(method, path, data, options) {
+        const url = this.network.join(this.exporterApiUrl, path);
+        let resp;
+        try {
+            resp = await this.network.request({ url, body: data, withCredentials: true, timeout: options === null || options === void 0 ? void 0 : options.timeout, method });
+        }
+        catch (ex) {
+            const err = ex;
+            const resp = err.response;
+            if (!resp) {
+                const message = "Service is unavailable now";
+                this.logger.log({ level: "error", message });
+                throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: "technical", preventBackendLog: true });
+            }
+            const message = err.message || (resp.status + " " + resp.statusText);
+            this.logger.log({ level: "error", message });
+            throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message, type: "technical" });
+        }
+        return resp.body;
+    }
+    async go() {
+        await this.request("POST", "/go", undefined);
+    }
+};
+exporterApiImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_1__.IConfig)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_2__.ILogger)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.inject)(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_3__.INetwork))
+], exporterApiImpl);
+
+
+
+/***/ }),
+
 /***/ "./src/infrastructure/formValidatorImpl.ts":
 /*!*************************************************!*\
   !*** ./src/infrastructure/formValidatorImpl.ts ***!
@@ -35426,8 +35602,8 @@ class FormValidatorImpl {
     constructor() {
         this.regexDict = {
             email: /\S+@\S+\.\S+/,
-            avaliableCharacters: /\S+@\S+\.\S+/,
-            nonSpaceCharacter: /\S+@\S+\.\S+/,
+            availableCharacters: /^([a-zA-Z0-9 _-]+)$/,
+            nonSpaceCharacter: /^\S*$/,
         };
     }
     validate(value, options) {
@@ -35453,7 +35629,6 @@ class FormValidatorImpl {
             retVal.push({ key: "email", message: `Invalid email address`, isValid });
         }
         if (options.nonSpaceCharacter) {
-            debugger;
             const isValid = this.checkSpaceCharacter(value);
             retVal.push({ key: "nonSpaceCharacter", message: `Space character not allowed`, isValid });
         }
@@ -35482,7 +35657,8 @@ class FormValidatorImpl {
         return this.checkRegex(value, this.regexDict["nonSpaceCharacter"]);
     }
     checkRegex(value, regex) {
-        return true; //regex.test(value);
+        const result = regex.test(value);
+        return result;
     }
     getCharacterMessage(charLength) {
         const charMessage = charLength == 1 ? 'character' : 'characters';
@@ -35995,6 +36171,20 @@ let NetworkImpl = class NetworkImpl {
         };
         return retVal;
     }
+    join(...urlParts) {
+        return urlParts.map(urlPart => {
+            let start = 0, end = urlPart.length, doOp = false;
+            if (urlPart[0] == "/") {
+                start++;
+                doOp = true;
+            }
+            if (urlPart[urlPart.length - 1] == "/") {
+                end--;
+                doOp = true;
+            }
+            return doOp ? urlPart.substring(start, end) : urlPart;
+        }).join("/");
+    }
 };
 NetworkImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)(),
@@ -36141,7 +36331,7 @@ let QCloudApiImpl = class QCloudApiImpl {
     }
     async request(path, data, options) {
         var _a, _b;
-        const url = this.join(this.qcloudApiUrl, path);
+        const url = this.network.join(this.qcloudApiUrl, path);
         let resp;
         try {
             resp = await this.network.post({ url, body: data, withCredentials: true, timeout: options === null || options === void 0 ? void 0 : options.timeout });
@@ -36170,20 +36360,6 @@ let QCloudApiImpl = class QCloudApiImpl {
             this.viewModel.user.authorization = resp.headers.authorization;
         }
         return resp.body.data;
-    }
-    join(...urlParts) {
-        return urlParts.map(urlPart => {
-            let start = 0, end = urlPart.length, doOp = false;
-            if (urlPart[0] == "/") {
-                start++;
-                doOp = true;
-            }
-            if (urlPart[urlPart.length - 1] == "/") {
-                end--;
-                doOp = true;
-            }
-            return doOp ? urlPart.substring(start, end) : urlPart;
-        }).join("/");
     }
     async createModel(params) {
         const reqData = {
@@ -36261,6 +36437,10 @@ let QCloudApiImpl = class QCloudApiImpl {
         var _a;
         await this.request("/updatemodule", { ID, name: params.name, ownerUser: (_a = params.ownerUser) === null || _a === void 0 ? void 0 : _a.email });
     }
+    async updateFolder(ID, params) {
+        //TODO: folder mekanizması yapıldığında implement edilecek
+        return;
+    }
     async updateApplication(ID, params) {
         const ownerUser = params.ownerUser;
         delete params.ownerUser;
@@ -36277,6 +36457,27 @@ let QCloudApiImpl = class QCloudApiImpl {
     }
     async deleteApplication(ID, addHistory) {
         await this.request("/deleteapplication", { ID, addHistory });
+    }
+    async duplicateModel(sourceModel, name) {
+        const response = await this.request("/copymodel", {
+            sourceModelID: sourceModel.ID,
+            ownerItem: sourceModel.parent.ID,
+            modelType: sourceModel.modelType,
+            usageType: sourceModel.usageType,
+            name
+        });
+        const newModel = {
+            ID: response.modelInfo.ID,
+            name,
+            modelBody: response.modelBody,
+            modelType: sourceModel.modelType,
+            parent: sourceModel.parent,
+            synced: true,
+            objectType: "model",
+            additionals: sourceModel.additionals,
+            modified: {},
+        };
+        return newModel;
     }
     async getUserDomains(customerEmail) {
         const response = await this.request("/gettenantuserbytenantid", { customerEmail });
@@ -36377,10 +36578,6 @@ let QCloudApiImpl = class QCloudApiImpl {
         const artifacts = await this.request("/listexportjobartifacts", { jobID });
         return artifacts;
     }
-    async getExportJobArtifact(artifactID) {
-        const artifacts = await this.request("/getexportjobartifact", { ID: artifactID, encoding: "latin1" }, { timeout: 3 * 60 * 1000 });
-        return artifacts;
-    }
     async listTreeviewItems(applicationID) {
         const items = await this.request("/listtreeviewitems", { applicationID });
         return items;
@@ -36422,31 +36619,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domain/infrastructure/IConfig */ "./src/domain/infrastructure/IConfig.ts");
 /* harmony import */ var _domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domain/infrastructure/IDebounce */ "./src/domain/infrastructure/IDebounce.ts");
 /* harmony import */ var _domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../domain/infrastructure/IDomHelper */ "./src/domain/infrastructure/IDomHelper.ts");
-/* harmony import */ var _domain_infrastructure_IFormValidator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/infrastructure/IFormValidator */ "./src/domain/infrastructure/IFormValidator.ts");
-/* harmony import */ var _domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../domain/infrastructure/IFrameMessanger */ "./src/domain/infrastructure/IFrameMessanger.ts");
-/* harmony import */ var _domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../domain/infrastructure/IHook */ "./src/domain/infrastructure/IHook.ts");
-/* harmony import */ var _domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../domain/infrastructure/IInlineEditor */ "./src/domain/infrastructure/IInlineEditor.ts");
-/* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
-/* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
-/* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
-/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
-/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
-/* harmony import */ var _domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../domain/infrastructure/IThrotler */ "./src/domain/infrastructure/IThrotler.ts");
-/* harmony import */ var _domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../domain/infrastructure/ITimer */ "./src/domain/infrastructure/ITimer.ts");
-/* harmony import */ var _configImpl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./configImpl */ "./src/infrastructure/configImpl.ts");
-/* harmony import */ var _debounceImpl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./debounceImpl */ "./src/infrastructure/debounceImpl.ts");
-/* harmony import */ var _domHelperImpl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./domHelperImpl */ "./src/infrastructure/domHelperImpl.ts");
-/* harmony import */ var _formValidatorImpl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./formValidatorImpl */ "./src/infrastructure/formValidatorImpl.ts");
-/* harmony import */ var _frameMessanger__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./frameMessanger */ "./src/infrastructure/frameMessanger.ts");
-/* harmony import */ var _hookImpl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./hookImpl */ "./src/infrastructure/hookImpl.ts");
-/* harmony import */ var _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./inlineEditorImpl */ "./src/infrastructure/inlineEditorImpl.ts");
-/* harmony import */ var _localizationImpl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./localizationImpl */ "./src/infrastructure/localizationImpl.ts");
-/* harmony import */ var _loggerImpl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./loggerImpl */ "./src/infrastructure/loggerImpl.ts");
-/* harmony import */ var _networkImpl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./networkImpl */ "./src/infrastructure/networkImpl.ts");
-/* harmony import */ var _providerApiImpl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./providerApiImpl */ "./src/infrastructure/providerApiImpl.ts");
-/* harmony import */ var _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./qCloudApiImpl */ "./src/infrastructure/qCloudApiImpl.ts");
-/* harmony import */ var _throttlerImpl__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./throttlerImpl */ "./src/infrastructure/throttlerImpl.ts");
-/* harmony import */ var _timerImpl__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./timerImpl */ "./src/infrastructure/timerImpl.ts");
+/* harmony import */ var _domain_infrastructure_IExporterApi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../domain/infrastructure/IExporterApi */ "./src/domain/infrastructure/IExporterApi.ts");
+/* harmony import */ var _domain_infrastructure_IFormValidator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../domain/infrastructure/IFormValidator */ "./src/domain/infrastructure/IFormValidator.ts");
+/* harmony import */ var _domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../domain/infrastructure/IFrameMessanger */ "./src/domain/infrastructure/IFrameMessanger.ts");
+/* harmony import */ var _domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../domain/infrastructure/IHook */ "./src/domain/infrastructure/IHook.ts");
+/* harmony import */ var _domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domain/infrastructure/IInlineEditor */ "./src/domain/infrastructure/IInlineEditor.ts");
+/* harmony import */ var _domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../domain/infrastructure/ILocalization */ "./src/domain/infrastructure/ILocalization.ts");
+/* harmony import */ var _domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../domain/infrastructure/ILogger */ "./src/domain/infrastructure/ILogger.ts");
+/* harmony import */ var _domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../domain/infrastructure/INetwork */ "./src/domain/infrastructure/INetwork.ts");
+/* harmony import */ var _domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../domain/infrastructure/IProviderApi */ "./src/domain/infrastructure/IProviderApi.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../domain/infrastructure/IThrotler */ "./src/domain/infrastructure/IThrotler.ts");
+/* harmony import */ var _domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../domain/infrastructure/ITimer */ "./src/domain/infrastructure/ITimer.ts");
+/* harmony import */ var _configImpl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./configImpl */ "./src/infrastructure/configImpl.ts");
+/* harmony import */ var _debounceImpl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./debounceImpl */ "./src/infrastructure/debounceImpl.ts");
+/* harmony import */ var _domHelperImpl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./domHelperImpl */ "./src/infrastructure/domHelperImpl.ts");
+/* harmony import */ var _exporterApiImpl__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./exporterApiImpl */ "./src/infrastructure/exporterApiImpl.ts");
+/* harmony import */ var _formValidatorImpl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./formValidatorImpl */ "./src/infrastructure/formValidatorImpl.ts");
+/* harmony import */ var _frameMessanger__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./frameMessanger */ "./src/infrastructure/frameMessanger.ts");
+/* harmony import */ var _hookImpl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./hookImpl */ "./src/infrastructure/hookImpl.ts");
+/* harmony import */ var _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./inlineEditorImpl */ "./src/infrastructure/inlineEditorImpl.ts");
+/* harmony import */ var _localizationImpl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./localizationImpl */ "./src/infrastructure/localizationImpl.ts");
+/* harmony import */ var _loggerImpl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./loggerImpl */ "./src/infrastructure/loggerImpl.ts");
+/* harmony import */ var _networkImpl__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./networkImpl */ "./src/infrastructure/networkImpl.ts");
+/* harmony import */ var _providerApiImpl__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./providerApiImpl */ "./src/infrastructure/providerApiImpl.ts");
+/* harmony import */ var _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./qCloudApiImpl */ "./src/infrastructure/qCloudApiImpl.ts");
+/* harmony import */ var _throttlerImpl__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./throttlerImpl */ "./src/infrastructure/throttlerImpl.ts");
+/* harmony import */ var _timerImpl__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./timerImpl */ "./src/infrastructure/timerImpl.ts");
+
+
 
 
 
@@ -36477,20 +36678,21 @@ __webpack_require__.r(__webpack_exports__);
 
 const infraStartUp = {
     register(container) {
-        container.register(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_8__.ILogger, _loggerImpl__WEBPACK_IMPORTED_MODULE_22__.LoggerImpl);
-        container.register(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__.IConfig, _configImpl__WEBPACK_IMPORTED_MODULE_14__.ConfigImpl);
-        container.register(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_11__.IQCloudApi, _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_25__.QCloudApiImpl);
-        container.register(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_10__.IProviderApi, _providerApiImpl__WEBPACK_IMPORTED_MODULE_24__.ProviderApiImpl);
-        container.register(_domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_5__.IHook, _hookImpl__WEBPACK_IMPORTED_MODULE_19__.HookImpl);
-        container.register(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_9__.INetwork, _networkImpl__WEBPACK_IMPORTED_MODULE_23__.NetworkImpl);
-        container.register(_domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_4__.IFrameMessanger, _frameMessanger__WEBPACK_IMPORTED_MODULE_18__.FrameMessanger);
-        container.register(_domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_13__.ITimer, _timerImpl__WEBPACK_IMPORTED_MODULE_27__.TimerImpl);
-        container.register(_domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_2__.IDomHelper, _domHelperImpl__WEBPACK_IMPORTED_MODULE_16__.DomHelperImpl);
-        container.register(_domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_12__.IThrottler, _throttlerImpl__WEBPACK_IMPORTED_MODULE_26__.ThrottlerImpl);
-        container.register(_domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_1__.IDebounce, _debounceImpl__WEBPACK_IMPORTED_MODULE_15__.DebounceImpl);
-        container.register(_domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_6__.IInlineEditor, _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_20__.InlineEditorImpl);
-        container.register(_domain_infrastructure_IFormValidator__WEBPACK_IMPORTED_MODULE_3__.IFormValidator, _formValidatorImpl__WEBPACK_IMPORTED_MODULE_17__.FormValidatorImpl);
-        container.registerInstance(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_7__.ILocalization, new _localizationImpl__WEBPACK_IMPORTED_MODULE_21__.LocalizationImpl());
+        container.register(_domain_infrastructure_ILogger__WEBPACK_IMPORTED_MODULE_9__.ILogger, _loggerImpl__WEBPACK_IMPORTED_MODULE_24__.LoggerImpl);
+        container.register(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_0__.IConfig, _configImpl__WEBPACK_IMPORTED_MODULE_15__.ConfigImpl);
+        container.register(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_12__.IQCloudApi, _qCloudApiImpl__WEBPACK_IMPORTED_MODULE_27__.QCloudApiImpl);
+        container.register(_domain_infrastructure_IProviderApi__WEBPACK_IMPORTED_MODULE_11__.IProviderApi, _providerApiImpl__WEBPACK_IMPORTED_MODULE_26__.ProviderApiImpl);
+        container.register(_domain_infrastructure_IExporterApi__WEBPACK_IMPORTED_MODULE_3__.IExporterApi, _exporterApiImpl__WEBPACK_IMPORTED_MODULE_18__.exporterApiImpl);
+        container.register(_domain_infrastructure_IHook__WEBPACK_IMPORTED_MODULE_6__.IHook, _hookImpl__WEBPACK_IMPORTED_MODULE_21__.HookImpl);
+        container.register(_domain_infrastructure_INetwork__WEBPACK_IMPORTED_MODULE_10__.INetwork, _networkImpl__WEBPACK_IMPORTED_MODULE_25__.NetworkImpl);
+        container.register(_domain_infrastructure_IFrameMessanger__WEBPACK_IMPORTED_MODULE_5__.IFrameMessanger, _frameMessanger__WEBPACK_IMPORTED_MODULE_20__.FrameMessanger);
+        container.register(_domain_infrastructure_ITimer__WEBPACK_IMPORTED_MODULE_14__.ITimer, _timerImpl__WEBPACK_IMPORTED_MODULE_29__.TimerImpl);
+        container.register(_domain_infrastructure_IDomHelper__WEBPACK_IMPORTED_MODULE_2__.IDomHelper, _domHelperImpl__WEBPACK_IMPORTED_MODULE_17__.DomHelperImpl);
+        container.register(_domain_infrastructure_IThrotler__WEBPACK_IMPORTED_MODULE_13__.IThrottler, _throttlerImpl__WEBPACK_IMPORTED_MODULE_28__.ThrottlerImpl);
+        container.register(_domain_infrastructure_IDebounce__WEBPACK_IMPORTED_MODULE_1__.IDebounce, _debounceImpl__WEBPACK_IMPORTED_MODULE_16__.DebounceImpl);
+        container.register(_domain_infrastructure_IInlineEditor__WEBPACK_IMPORTED_MODULE_7__.IInlineEditor, _inlineEditorImpl__WEBPACK_IMPORTED_MODULE_22__.InlineEditorImpl);
+        container.registerInstance(_domain_infrastructure_IFormValidator__WEBPACK_IMPORTED_MODULE_4__.IFormValidator, new _formValidatorImpl__WEBPACK_IMPORTED_MODULE_19__.FormValidatorImpl());
+        container.registerInstance(_domain_infrastructure_ILocalization__WEBPACK_IMPORTED_MODULE_8__.ILocalization, new _localizationImpl__WEBPACK_IMPORTED_MODULE_23__.LocalizationImpl());
     }
 };
 
@@ -36677,7 +36879,7 @@ class TreeView {
         parent.appendChild(this.root);
         this.root.appendChild(this.itemsRoot);
         this.setHeader(options.header);
-        this.itemsRoot.addEventListener("click", mouseEvent => {
+        this.itemsRoot.addEventListener("click", (mouseEvent) => {
             const targetContainer = findEventTargetWithClass(mouseEvent, "row-container");
             if (!targetContainer) {
                 return;
@@ -36712,7 +36914,7 @@ class TreeView {
         if (!(items instanceof Array)) {
             items = [items];
         }
-        items.forEach(item => {
+        items.forEach((item) => {
             const newItem = this.convertTreeItemToInternal(item, false);
             // TODO: When folder feature is applied, should be check all parents includes folder and module.
             if (parentId) {
@@ -36720,7 +36922,7 @@ class TreeView {
             }
             this.importItem(newItem, parentId);
             if (item.children) {
-                item.children.forEach(child => this.addItem(child, item.id));
+                item.children.forEach((child) => this.addItem(child, item.id));
             }
             setIcon(newItem);
             tooltip.startTooltip();
@@ -36747,7 +36949,7 @@ class TreeView {
         if (!item.itemIcons) {
             return;
         }
-        const targetIconIndex = item.itemIcons.findIndex(eachIcon => eachIcon == icon);
+        const targetIconIndex = item.itemIcons.findIndex((eachIcon) => eachIcon == icon);
         if (targetIconIndex == -1) {
             return;
         }
@@ -36756,9 +36958,18 @@ class TreeView {
         const targetIconDiv = item.contents.text.children[targetIconIndex];
         (_a = targetIconDiv === null || targetIconDiv === void 0 ? void 0 : targetIconDiv.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(targetIconDiv);
     }
+    updateActions(itemId) {
+        var _a;
+        const item = this.getItem(itemId);
+        while (item.contents.actions.firstChild) {
+            item.contents.actions.removeChild(item.contents.actions.lastChild);
+        }
+        (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this);
+        this.createActions(item, item.actions || []);
+    }
     reset() {
         this.setHeader(undefined);
-        this.itemList.forEach(item => this.removeItem(item.id));
+        this.itemList.forEach((item) => this.removeItem(item.id));
         if (this.documentClickListener) {
             document.removeEventListener("click", this.documentClickListener);
         }
@@ -36769,10 +36980,10 @@ class TreeView {
             return;
         }
         if (item.children) {
-            item.children.forEach(child => this.removeItem(child.id));
+            item.children.forEach((child) => this.removeItem(child.id));
         }
         if (item.parent) {
-            item.parent.children = item.parent.children.filter(child => child.id != itemId);
+            item.parent.children = item.parent.children.filter((child) => child.id != itemId);
             setIcon(item.parent);
         }
         this.itemsRoot.removeChild(item.rowContainer);
@@ -36783,7 +36994,7 @@ class TreeView {
         delete this.itemDict[itemId];
     }
     collapseAll() {
-        Object.keys(this.itemDict).forEach(itemId => this.toggleCollapse(this.itemDict[itemId], true));
+        Object.keys(this.itemDict).forEach((itemId) => this.toggleCollapse(this.itemDict[itemId], true));
     }
     selectItem(itemId) {
         const targetItem = this.itemDict[itemId];
@@ -36822,10 +37033,10 @@ class TreeView {
     findItemIndex(item, parentChildrenList) {
         let targetIndex;
         if (item.orderIndex) {
-            targetIndex = parentChildrenList.findIndex(child => child.orderIndex === undefined || child.lowerName > item.lowerName);
+            targetIndex = parentChildrenList.findIndex((child) => child.orderIndex === undefined || child.lowerName > item.lowerName);
         }
         else {
-            targetIndex = parentChildrenList.findIndex(child => child.orderIndex === undefined && child.lowerName > item.lowerName);
+            targetIndex = parentChildrenList.findIndex((child) => child.orderIndex === undefined && child.lowerName > item.lowerName);
         }
         return targetIndex;
     }
@@ -36863,7 +37074,7 @@ class TreeView {
         }
         item.collapsed = override === undefined ? !item.collapsed : override;
         setIcon(item);
-        (_a = item.children) === null || _a === void 0 ? void 0 : _a.forEach(child => this.toggleVisibility(child, override));
+        (_a = item.children) === null || _a === void 0 ? void 0 : _a.forEach((child) => this.toggleVisibility(child, override));
     }
     toggleVisibility(item, override) {
         var _a;
@@ -36872,10 +37083,10 @@ class TreeView {
         if (item.collapsed) {
             return;
         }
-        (_a = item.children) === null || _a === void 0 ? void 0 : _a.forEach(child => this.toggleVisibility(child));
+        (_a = item.children) === null || _a === void 0 ? void 0 : _a.forEach((child) => this.toggleVisibility(child));
     }
     itemSelection(item, selected) {
-        var _a, _b;
+        var _a, _b, _c, _d;
         const itemSelected = item.rowContainer.classList.contains("selected");
         if (selected) {
             this.toggleCollapse(item);
@@ -36892,6 +37103,7 @@ class TreeView {
                 return;
             }
             item.rowContainer.classList.remove("selected");
+            (_d = (_c = item.cb) === null || _c === void 0 ? void 0 : _c.unselect) === null || _d === void 0 ? void 0 : _d.call(_c);
             this.curSelected = undefined;
         }
     }
@@ -36907,7 +37119,11 @@ class TreeView {
             row: createDiv({ style: { display: "flex", flexDirection: "row" }, class: "row" }),
             contentDiv: createDiv({ style: { display: "flex", flexDirection: "row", width: "100%" }, class: "content" }),
             contents: {
-                text: createDiv({ text: item.name, style: { flex: "1", display: 'flex', whiteSpace: "nowrap", paddingLeft: '5px' }, class: header ? "header-text" : undefined }),
+                text: createDiv({
+                    text: item.name,
+                    style: { flex: "1", display: "flex", whiteSpace: "nowrap", paddingLeft: "5px" },
+                    class: header ? "header-text" : undefined,
+                }),
                 collapseIcon: createDiv({ style: { minWidth: "10px" } }),
                 typeIcon: createDiv({ style: { minWidth: "10px" } }),
                 actions: createDiv({ class: "actions" }),
@@ -36926,23 +37142,26 @@ class TreeView {
         if (item.actions) {
             this.createActions(retVal, item.actions);
         }
-        appendChildren(retVal.contents.text, ((_a = item.itemIcons) === null || _a === void 0 ? void 0 : _a.map(icon => createIconDiv(icon))) || []);
+        appendChildren(retVal.contents.text, ((_a = item.itemIcons) === null || _a === void 0 ? void 0 : _a.map((icon) => createIconDiv(icon))) || []);
         appendChildren(retVal.contentDiv, [retVal.contents.collapseIcon, retVal.contents.typeIcon, retVal.contents.text, retVal.contents.actions]);
         return retVal;
     }
     createActions(item, actions) {
         const actionsDiv = item.contents.actions;
-        item.actions = item.actions || [];
-        actions.forEach(action => {
+        item.actions = actions || [];
+        actions.forEach((action) => {
             const actionClass = (action.icon ? action.icon + " " : "") + "qcloud-tree-action";
-            const actionDiv = createDiv({ text: action.name, pureClass: true, class: actionClass, "data-toggle": 'tooltip', 'title': action.tooltip });
             let clickCB;
+            const actionDiv = createDiv({ text: action.name, pureClass: true, class: actionClass, "data-toggle": "tooltip", title: action.tooltip });
             if (action.type == "IActionMenuItem") {
                 clickCB = () => {
                     var _a;
                     let actionUL = this.createActionUL(action);
                     (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this);
-                    this.contextMenuCloser = () => { actionUL.parentElement.removeChild(actionUL); this.contextMenuCloser = undefined; };
+                    this.contextMenuCloser = () => {
+                        actionUL.parentElement.removeChild(actionUL);
+                        this.contextMenuCloser = undefined;
+                    };
                     const divRect = actionDiv.getBoundingClientRect();
                     actionUL.style.top = divRect.top + divRect.height + "px";
                     actionUL.style.left = divRect.left + "px";
@@ -36950,9 +37169,12 @@ class TreeView {
             }
             else {
                 // item.actions?.push({ type: "IActionSingleItem", name: action.name, icon:action.icon, selectCb: action.selectCb, actionDiv: actionDiv });
+                actionDiv.style.opacity = action.enabled === false ? "0.5" : "1";
+                actionDiv.style.pointerEvents = action.enabled === false ? "none" : "";
+                actionDiv.style.cursor = action.enabled === false ? "none" : "pointer";
                 clickCB = () => { var _a; return (_a = action.selectCb) === null || _a === void 0 ? void 0 : _a.call(action); };
             }
-            actionDiv.addEventListener("click", mouseEvent => {
+            actionDiv.addEventListener("click", (mouseEvent) => {
                 mouseEvent.stopPropagation();
                 clickCB();
             });
@@ -36961,7 +37183,7 @@ class TreeView {
         actionsDiv.style.display = "none";
         item.actionHandlers = {};
         item.actionHandlers.mouseover = () => actionsDiv.style.removeProperty("display");
-        item.actionHandlers.mouseleave = () => actionsDiv.style.display = "none";
+        item.actionHandlers.mouseleave = () => (actionsDiv.style.display = "none");
         item.rowContainer.addEventListener("mouseover", item.actionHandlers.mouseover);
         item.rowContainer.addEventListener("mouseleave", item.actionHandlers.mouseleave);
         if (item.actionsWithRoot) {
@@ -36972,11 +37194,31 @@ class TreeView {
     createActionUL(action) {
         const actionULRetval = createElement("ul", { parent: document.body, class: "dropdown-menu" });
         const actionChildren = action.children instanceof Function ? action.children() : action.children;
-        actionChildren.forEach(child => {
+        actionChildren.forEach((child) => {
             const li = createElement("li", { parent: actionULRetval });
-            const div = createElement("div", { parent: li, class: "dropdown-item-div", events: { click: () => { var _a; (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this); child.selectCb(); } } });
-            const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.color ? child.color : 'black' } });
-            const a = createElement("a", { parent: div, class: "dropdown-item", text: child.name, style: { color: child.name == 'Delete' ? child.color : '' } });
+            const div = createElement("div", {
+                parent: li,
+                class: "dropdown-item-div",
+                style: {
+                    pointerEvents: child.enabled === false ? "none" : "",
+                    opacity: child.enabled === false ? "0.5" : "1",
+                    cursor: child.enabled === false ? "none" : "pointer",
+                },
+                events: {
+                    click: () => {
+                        var _a;
+                        (_a = this.contextMenuCloser) === null || _a === void 0 ? void 0 : _a.call(this);
+                        child.selectCb();
+                    },
+                },
+            });
+            const i = createElement("i", { parent: div, class: "dropdown-item-icon", style: { color: child.color ? child.color : "black" } });
+            const a = createElement("a", {
+                parent: div,
+                class: "dropdown-item",
+                text: child.name,
+                style: { color: child.name == "Delete" ? child.color : "" },
+            });
             i.className = child.icon;
         });
         return actionULRetval;
@@ -37000,7 +37242,7 @@ class TreeView {
     }
 }
 function createIndent(newItem) {
-    Array.from(new Array(newItem.level)).forEach(each => newItem.indent.appendChild(createDiv({ class: "indent-guide" })));
+    Array.from(new Array(newItem.level)).forEach((each) => newItem.indent.appendChild(createDiv({ class: "indent-guide" })));
 }
 function setIcon(item) {
     item.contents.typeIcon.style.color = item.typeIcon.color || "";
@@ -37023,7 +37265,14 @@ function findLastLeaf(item) {
     return item;
 }
 function createIconDiv(icon) {
-    return createDiv({ style: { minWidth: "10px", color: icon.color, fontSize: icon.fontsize, margin: icon.margin }, class: icon.icon, pureClass: true, text: icon.text, "data-toggle": 'tooltip', 'title': icon.tooltip });
+    return createDiv({
+        style: { minWidth: "10px", color: icon.color, fontSize: icon.fontsize, margin: icon.margin },
+        class: icon.icon,
+        pureClass: true,
+        text: icon.text,
+        "data-toggle": "tooltip",
+        title: icon.tooltip,
+    });
 }
 function findEventTargetWithClass(event, searchClass) {
     const realSearch = "qcloud-tree-" + searchClass;
@@ -37037,7 +37286,7 @@ function findEventTargetWithClass(event, searchClass) {
     return undefined;
 }
 function appendChildren(parent, elements) {
-    elements.forEach(element => element && parent.appendChild(element));
+    elements.forEach((element) => element && parent.appendChild(element));
 }
 function createDiv(options = {}) {
     const div = document.createElement("div");
@@ -37049,12 +37298,12 @@ function createDiv(options = {}) {
         div.setAttribute("title", options.title);
     }
     if (options.style) {
-        Object.keys(options.style).forEach(style => div.style[style] = options.style[style]);
+        Object.keys(options.style).forEach((style) => (div.style[style] = options.style[style]));
     }
     if (options.class) {
         const classPrefix = options.pureClass ? "" : "qcloud-tree-";
         if (options.class instanceof Array) {
-            options.class.forEach(eachClass => div.classList.add(classPrefix + eachClass));
+            options.class.forEach((eachClass) => div.classList.add(classPrefix + eachClass));
         }
         else {
             div.className = classPrefix + options.class;
@@ -37068,7 +37317,7 @@ function createElement(tagName, options = {}) {
         element.textContent = options.text;
     }
     if (options.style) {
-        Object.keys(options.style).forEach(style => element.style[style] = options.style[style]);
+        Object.keys(options.style).forEach((style) => (element.style[style] = options.style[style]));
     }
     if (options.events) {
         if (options.events.click) {
@@ -37077,7 +37326,7 @@ function createElement(tagName, options = {}) {
     }
     if (options.class) {
         if (options.class instanceof Array) {
-            options.class.forEach(eachClass => element.classList.add("qcloud-tree-" + eachClass));
+            options.class.forEach((eachClass) => element.classList.add("qcloud-tree-" + eachClass));
         }
         else {
             element.classList.add("qcloud-tree-" + options.class);
@@ -37253,8 +37502,12 @@ let TooltipImpl = class TooltipImpl {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl, {
-                'delay': { show: 500, hide: 0 },
+                delay: { show: 500, hide: 0 },
             });
+        });
+        Array.from(document.getElementsByClassName("tooltip fade show bs-tooltip-top")).forEach(function (item) {
+            var _a;
+            (_a = item.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(item);
         });
     }
 };

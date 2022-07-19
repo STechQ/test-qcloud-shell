@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7fb719ee] {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\ntd[data-v-7fb719ee],\nth[data-v-7fb719ee] {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\ntr[data-v-7fb719ee]:nth-child(even) {\n    background-color: #dddddd;\n}\n.div-box[data-v-7fb719ee] {\n    margin-left: 10px;\n    margin-top: 5px;\n    width: 50%;\n    border-style: dotted;\n}\n.VueTables__sort-icon[data-v-7fb719ee] {\n    float: right;\n    font-size: 15px;\n    font-weight: 600;\n}\n.descriptionBack[data-v-7fb719ee] {\n    color: #212121;\n    font-style: normal;\n    font-size: 26px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n    margin-left: 20px;\n    margin-top: 20px;\n    margin-right: 5px;\n}\n.longCommentText[data-v-7fb719ee] {\n    word-break: break-all;\n    margin-left: 39px;\n    margin-right: 22px;\n    margin-top: 20px;\n    color: #212121;\n    font-style: normal;\n    font-size: 14px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n}\n.detailText[data-v-7fb719ee] {\n    color: #212121;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 12px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0px;\n    opacity: 1;\n}\n.selectBtn[data-v-7fb719ee] {\n    color: #151233;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.selectedBtn[data-v-7fb719ee] {\n    color: #A1A1A1;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.longCommentDiv[data-v-7fb719ee]{\n    margin-left: 40px;\n    margin-right: 40px;\n    width: 600px;\n    word-break: break-all;\n}\n.longCommnetText[data-v-7fb719ee]{\n    color:#141414;\n    font-style: normal;\n    font-weight: 400;\n    letter-spacing: 0px;\n    opacity: 1;\n    font-family: 'ROBOTO';\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/listModelHistories.vue"],"names":[],"mappings":";AAoHA;IACI,8BAA8B;IAC9B,yBAAyB;IACzB,WAAW;AACf;AAEA;;IAEI,yBAAyB;IACzB,gBAAgB;IAChB,YAAY;AAChB;AAEA;IACI,yBAAyB;AAC7B;AAEA;IACI,iBAAiB;IACjB,eAAe;IACf,UAAU;IACV,oBAAoB;AACxB;AAEA;IACI,YAAY;IACZ,eAAe;IACf,gBAAgB;AACpB;AAEA;IACI,cAAc;IACd,kBAAkB;IAClB,eAAe;IACf,sBAAsB;IACtB,UAAU;IACV,iBAAiB;IACjB,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,qBAAqB;IACrB,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;IAChB,cAAc;IACd,kBAAkB;IAClB,eAAe;IACf,sBAAsB;IACtB,UAAU;AACd;AAEA;IACI,cAAc;IACd,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,mBAAmB;IACnB,UAAU;AACd;AAEA;IACI,cAAc;IACd,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;IACV,YAAY;IACZ;AACJ;AAEA;IACI,cAAc;IACd,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;IACV,YAAY;IACZ;AACJ;AACA;IACI,iBAAiB;IACjB,kBAAkB;IAClB,YAAY;IACZ,qBAAqB;AACzB;AACA;IACI,aAAa;IACb,kBAAkB;IAClB,gBAAgB;IAChB,mBAAmB;IACnB,UAAU;IACV,qBAAqB;AACzB","sourcesContent":["<script setup lang=\"ts\">\nimport { ref } from \"vue\";\nimport { container } from \"../../../../domain/core/diContainer\";\nimport { IModelHistoryInfo } from \"../../../../domain/model/models\";\nimport { IListModelHistories } from \"../../../../domain/useCase/IListModelHistories\";\nimport { IStudio } from \"../../../../domain/useCase/IStudio\";\nimport { IUseCaseExecutor } from \"../../../../domain/useCase/IUseCaseExecutor\";\nimport { IHistoryProps } from '../../../../domain/presentation/dialogs/IHistoryProps';\nimport { IViewModel } from \"../../../../domain/viewModel/IViewModel\";\n\ninterface IHistoryPropsInline extends IHistoryProps {\n    modelID: string;\n    // type: \"process\" | \"model\";\n}\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst props = defineProps<IHistoryPropsInline>();\nconst myTable = ref()\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst HistoryDatatableColumns = ref(['createDate', 'createdBy', 'version', 'shortComment', 'description', 'actions',]);\nconst emit = defineEmits([\"close\"]);\nlet options: any = { month: '2-digit', day: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };\nconst optionsDataTable = ref({\n    filterable: false, // omit the `id` column,\n    headings: {\n        shortComment: 'Summary'\n    },\n     uniqueKey: 'version',\n    texts: {\n        count: '',\n    },\n    showChildRowToggler:false,\n    dateColumns: ['createDate', 'updateDate'],\n    sortIcon: {\n        base: 'mdi',\n        is: 'mdi mdi-unfold-less-horizontal',\n        up: 'mdi mdi-arrow-up',\n        down: 'mdi mdi-arrow-down'\n    }\n});\nconst histories = ref<Array<IModelHistoryInfo>>([]);\nexecutor.execute(async () => {\n    const data = await executor.executeUseCase<IListModelHistories>(IListModelHistories, { modelId: props.modelID });\n    histories.value = data;\n}, { loading: true });\n\nasync function setModel(historyId: string) {\n    const studio = await executor.resolveUseCase<IStudio>(IStudio);\n    await studio.openHistoryItem(historyId);\n    emit(\"close\");\n}\n\nfunction computedClass(tableRowVersion: string) {\n    if (tableRowVersion == viewModel.studio.currentItem?.version) {\n        return 'selectedBtn'\n    }\n    else {\n        return 'selectBtn'\n    }\n}\nfunction toogleDetail(version:string) {\n    debugger\n    myTable.value.toggleChildRow(version)\n}\n\n</script>\n\n<template>\n    <div>\n        <div>\n            <v-client-table  ref=\"myTable\" v-if=\"histories.length > 0\" :data=\"histories\"\n                :columns=\"HistoryDatatableColumns\" :options=\"optionsDataTable\">\n                <template #createDate=\"props\">\n                    <span>{{ new Intl.DateTimeFormat(\"tr-TR\", options).format(new Date(props.row.createDate)) }}</span>\n                </template>\n                <template #actions=\"props\">\n                    <button :class=\"computedClass(props.row.version)\" @click=\"setModel(props.row.ID)\"\n                        :disabled=\"props.row.version == viewModel.studio.currentItem?.version ? true : false\">{{\n                                props.row.version\n                                    == viewModel.studio.currentItem?.version ? 'Selected' : 'Select'\n                        }}</button>\n                </template>\n\n\n                <template #description='props'>\n                    <div class='detailText' @click=\"toogleDetail(props.row.version)\"><span>See Detail <i\n                                class='mdi mdi-chevron-down detailText'></i></span>\n                    </div>\n\n\n                </template>\n\n                <template v-slot:child_row=\"props\">\n                    <div class='longCommentDiv'>\n                        <span class='longCommnetText'>{{props.row.comment}}</span></div>\n                </template>\n\n            </v-client-table>\n\n            <!-- <div v-if=\"longCommentVisible\">\n                <div class='descriptionBack' style='display:flex'>\n                    <i class='mdi mdi-arrow-right' @click=\"backtoTable()\"></i>\n                    <span >{{shortCommentValue}}</span>\n                </div>\n                <div class='longCommentText'>\n                    {{ longCommentValue }}\n\n                </div>\n\n            </div> -->\n\n            <div v-if=\"histories.length == 0\">This model has no history</div>\n        </div>\n    </div>\n</template>\n\n<style scoped>\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n\ntd,\nth {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\n\ntr:nth-child(even) {\n    background-color: #dddddd;\n}\n\n.div-box {\n    margin-left: 10px;\n    margin-top: 5px;\n    width: 50%;\n    border-style: dotted;\n}\n\n.VueTables__sort-icon {\n    float: right;\n    font-size: 15px;\n    font-weight: 600;\n}\n\n.descriptionBack {\n    color: #212121;\n    font-style: normal;\n    font-size: 26px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n    margin-left: 20px;\n    margin-top: 20px;\n    margin-right: 5px;\n}\n\n.longCommentText {\n    word-break: break-all;\n    margin-left: 39px;\n    margin-right: 22px;\n    margin-top: 20px;\n    color: #212121;\n    font-style: normal;\n    font-size: 14px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n}\n\n.detailText {\n    color: #212121;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 12px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0px;\n    opacity: 1;\n}\n\n.selectBtn {\n    color: #151233;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n\n.selectedBtn {\n    color: #A1A1A1;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.longCommentDiv{\n    margin-left: 40px;\n    margin-right: 40px;\n    width: 600px;\n    word-break: break-all;\n}\n.longCommnetText{\n    color:#141414;\n    font-style: normal;\n    font-weight: 400;\n    letter-spacing: 0px;\n    opacity: 1;\n    font-family: 'ROBOTO';\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7fb719ee] {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\ntd[data-v-7fb719ee],\nth[data-v-7fb719ee] {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\ntr[data-v-7fb719ee]:nth-child(even) {\n    background-color: #dddddd;\n}\n.div-box[data-v-7fb719ee] {\n    margin-left: 10px;\n    margin-top: 5px;\n    width: 50%;\n    border-style: dotted;\n}\n.VueTables__sort-icon[data-v-7fb719ee] {\n    float: right;\n    font-size: 15px;\n    font-weight: 600;\n}\n.descriptionBack[data-v-7fb719ee] {\n    color: #212121;\n    font-style: normal;\n    font-size: 26px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n    margin-left: 20px;\n    margin-top: 20px;\n    margin-right: 5px;\n}\n.longCommentText[data-v-7fb719ee] {\n    word-break: break-all;\n    margin-left: 39px;\n    margin-right: 22px;\n    margin-top: 20px;\n    color: #212121;\n    font-style: normal;\n    font-size: 14px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n}\n.detailText[data-v-7fb719ee] {\n    color: #212121;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 12px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0px;\n    opacity: 1;\n}\n.selectBtn[data-v-7fb719ee] {\n    color: #151233;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.selectedBtn[data-v-7fb719ee] {\n    color: #A1A1A1;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.longCommentDiv[data-v-7fb719ee]{\n    margin-left: 40px;\n    margin-right: 40px;\n    width: 600px;\n    word-break: break-all;\n}\n.longCommnetText[data-v-7fb719ee]{\n    color:#141414;\n    font-style: normal;\n    font-weight: 400;\n    letter-spacing: 0px;\n    opacity: 1;\n    font-family: 'ROBOTO';\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/listModelHistories.vue"],"names":[],"mappings":";AAgGA;IACI,8BAA8B;IAC9B,yBAAyB;IACzB,WAAW;AACf;AAEA;;IAEI,yBAAyB;IACzB,gBAAgB;IAChB,YAAY;AAChB;AAEA;IACI,yBAAyB;AAC7B;AAEA;IACI,iBAAiB;IACjB,eAAe;IACf,UAAU;IACV,oBAAoB;AACxB;AAEA;IACI,YAAY;IACZ,eAAe;IACf,gBAAgB;AACpB;AAEA;IACI,cAAc;IACd,kBAAkB;IAClB,eAAe;IACf,sBAAsB;IACtB,UAAU;IACV,iBAAiB;IACjB,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,qBAAqB;IACrB,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;IAChB,cAAc;IACd,kBAAkB;IAClB,eAAe;IACf,sBAAsB;IACtB,UAAU;AACd;AAEA;IACI,cAAc;IACd,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,mBAAmB;IACnB,UAAU;AACd;AAEA;IACI,cAAc;IACd,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;IACV,YAAY;IACZ;AACJ;AAEA;IACI,cAAc;IACd,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,iBAAiB;IACjB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;IACV,YAAY;IACZ;AACJ;AACA;IACI,iBAAiB;IACjB,kBAAkB;IAClB,YAAY;IACZ,qBAAqB;AACzB;AACA;IACI,aAAa;IACb,kBAAkB;IAClB,gBAAgB;IAChB,mBAAmB;IACnB,UAAU;IACV,qBAAqB;AACzB","sourcesContent":["<script setup lang=\"ts\">\nimport { ref } from \"vue\";\nimport { container } from \"../../../../domain/core/diContainer\";\nimport { IModelHistoryInfo } from \"../../../../domain/model/models\";\nimport { IListModelHistories } from \"../../../../domain/useCase/IListModelHistories\";\nimport { IStudio } from \"../../../../domain/useCase/IStudio\";\nimport { IUseCaseExecutor } from \"../../../../domain/useCase/IUseCaseExecutor\";\nimport { IHistoryProps } from '../../../../domain/presentation/dialogs/IHistoryProps';\nimport { IViewModel } from \"../../../../domain/viewModel/IViewModel\";\n\ninterface IHistoryPropsInline extends IHistoryProps {\n    histories: Array<IModelHistoryInfo>;\n}\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst props = defineProps<IHistoryPropsInline>();\nconst myTable = ref()\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst HistoryDatatableColumns = ref(['createDate', 'createdBy', 'version', 'shortComment', 'description', 'actions',]);\nconst emit = defineEmits([\"close\"]);\nlet options: any = { month: '2-digit', day: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };\nconst optionsDataTable = ref({\n    filterable: false, // omit the `id` column,\n    headings: {\n        shortComment: 'Summary'\n    },\n     uniqueKey: 'version',\n    texts: {\n        count: '',\n    },\n    showChildRowToggler:false,\n    dateColumns: ['createDate', 'updateDate'],\n    sortIcon: {\n        base: 'mdi',\n        is: 'mdi mdi-unfold-less-horizontal',\n        up: 'mdi mdi-arrow-up',\n        down: 'mdi mdi-arrow-down'\n    }\n});\n\n\nasync function setModel(historyId: string) {\n    const studio = await executor.resolveUseCase<IStudio>(IStudio);\n    await studio.openHistoryItem(historyId);\n    emit(\"close\");\n}\n\nfunction computedClass(tableRowVersion: string) {\n    if (tableRowVersion == viewModel.studio.currentItem?.version) {\n        return 'selectedBtn'\n    }\n    else {\n        return 'selectBtn'\n    }\n}\nfunction toogleDetail(version:string) {\n    myTable.value.toggleChildRow(version)\n}\n\n</script>\n\n<template>\n    <div>\n        <div>\n            <v-client-table  ref=\"myTable\" :data=\"props.histories\"\n                :columns=\"HistoryDatatableColumns\" :options=\"optionsDataTable\">\n                <template #createDate=\"props\">\n                    <span>{{ new Intl.DateTimeFormat(\"tr-TR\", options).format(new Date(props.row.createDate)) }}</span>\n                </template>\n                <template #actions=\"props\">\n                    <button :class=\"computedClass(props.row.version)\" @click=\"setModel(props.row.ID)\"\n                        :disabled=\"props.row.version == viewModel.studio.currentItem?.version ? true : false\">{{\n                                props.row.version\n                                    == viewModel.studio.currentItem?.version ? 'Selected' : 'Select'\n                        }}</button>\n                </template>\n\n\n                <template #description='props'>\n                    <div class='detailText' @click=\"toogleDetail(props.row.version)\"><span>See Detail <i\n                                class='mdi mdi-chevron-down detailText'></i></span>\n                    </div>\n\n\n                </template>\n\n                <template v-slot:child_row=\"props\">\n                    <div class='longCommentDiv'>\n                        <span class='longCommnetText'>{{props.row.comment}}</span></div>\n                </template>\n\n            </v-client-table>\n        </div>\n    </div>\n</template>\n\n<style scoped>\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n\ntd,\nth {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\n\ntr:nth-child(even) {\n    background-color: #dddddd;\n}\n\n.div-box {\n    margin-left: 10px;\n    margin-top: 5px;\n    width: 50%;\n    border-style: dotted;\n}\n\n.VueTables__sort-icon {\n    float: right;\n    font-size: 15px;\n    font-weight: 600;\n}\n\n.descriptionBack {\n    color: #212121;\n    font-style: normal;\n    font-size: 26px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n    margin-left: 20px;\n    margin-top: 20px;\n    margin-right: 5px;\n}\n\n.longCommentText {\n    word-break: break-all;\n    margin-left: 39px;\n    margin-right: 22px;\n    margin-top: 20px;\n    color: #212121;\n    font-style: normal;\n    font-size: 14px;\n    letter-spacing: 0.47px;\n    opacity: 1;\n}\n\n.detailText {\n    color: #212121;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 12px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0px;\n    opacity: 1;\n}\n\n.selectBtn {\n    color: #151233;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n\n.selectedBtn {\n    color: #A1A1A1;\n    width: 45px;\n    height: 21px;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 16px;\n    font-family: 'ROBOTO';\n    letter-spacing: 0.02px;\n    opacity: 1;\n    border: none;\n    background: none\n}\n.longCommentDiv{\n    margin-left: 40px;\n    margin-right: 40px;\n    width: 600px;\n    word-break: break-all;\n}\n.longCommnetText{\n    color:#141414;\n    font-style: normal;\n    font-weight: 400;\n    letter-spacing: 0px;\n    opacity: 1;\n    font-family: 'ROBOTO';\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -93,11 +93,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../domain/useCase/IListModelHistories */ "./src/domain/useCase/IListModelHistories.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
-
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
 
 
 
@@ -107,15 +105,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
     __name: 'listModelHistories',
     props: {
-        modelID: { type: String, required: true }
+        histories: { type: Array, required: true }
     },
     emits: ["close"],
     setup(__props, { expose, emit }) {
         expose();
         const props = __props;
-        const viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__.IViewModel);
+        const viewModel = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_4__.IViewModel);
         const myTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
-        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__.IUseCaseExecutor);
+        const executor = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_3__.IUseCaseExecutor);
         const HistoryDatatableColumns = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(['createDate', 'createdBy', 'version', 'shortComment', 'description', 'actions',]);
         let options = { month: '2-digit', day: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
         const optionsDataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
@@ -136,13 +134,8 @@ __webpack_require__.r(__webpack_exports__);
                 down: 'mdi mdi-arrow-down'
             }
         });
-        const histories = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-        executor.execute(async () => {
-            const data = await executor.executeUseCase(_domain_useCase_IListModelHistories__WEBPACK_IMPORTED_MODULE_2__.IListModelHistories, { modelId: props.modelID });
-            histories.value = data;
-        }, { loading: true });
         async function setModel(historyId) {
-            const studio = await executor.resolveUseCase(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_3__.IStudio);
+            const studio = await executor.resolveUseCase(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_2__.IStudio);
             await studio.openHistoryItem(historyId);
             emit("close");
         }
@@ -156,10 +149,9 @@ __webpack_require__.r(__webpack_exports__);
             }
         }
         function toogleDetail(version) {
-            debugger;
             myTable.value.toggleChildRow(version);
         }
-        const __returned__ = { viewModel, props, myTable, executor, HistoryDatatableColumns, emit, options, optionsDataTable, histories, setModel, computedClass, toogleDetail };
+        const __returned__ = { viewModel, props, myTable, executor, HistoryDatatableColumns, emit, options, optionsDataTable, setModel, computedClass, toogleDetail };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -192,51 +184,43 @@ const _hoisted_4 = [
 ];
 const _hoisted_5 = { class: "longCommentDiv" };
 const _hoisted_6 = { class: "longCommnetText" };
-const _hoisted_7 = { key: 1 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_v_client_table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("v-client-table");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-            ($setup.histories.length > 0)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_v_client_table, {
-                    key: 0,
-                    ref: "myTable",
-                    data: $setup.histories,
-                    columns: $setup.HistoryDatatableColumns,
-                    options: $setup.optionsDataTable
-                }, {
-                    createDate: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Intl.DateTimeFormat("tr-TR", $setup.options).format(new Date(props.row.createDate))), 1 /* TEXT */)
-                    ]),
-                    actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => {
-                        var _a, _b;
-                        return [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                                class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.computedClass(props.row.version)),
-                                onClick: ($event) => ($setup.setModel(props.row.ID)),
-                                disabled: props.row.version == ((_a = $setup.viewModel.studio.currentItem) === null || _a === void 0 ? void 0 : _a.version) ? true : false
-                            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.row.version
-                                == ((_b = $setup.viewModel.studio.currentItem) === null || _b === void 0 ? void 0 : _b.version) ? 'Selected' : 'Select'), 11 /* TEXT, CLASS, PROPS */, _hoisted_1)
-                        ];
-                    }),
-                    description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-                            class: "detailText",
-                            onClick: ($event) => ($setup.toogleDetail(props.row.version))
-                        }, _hoisted_4, 8 /* PROPS */, _hoisted_2)
-                    ]),
-                    child_row: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.row.comment), 1 /* TEXT */)
-                        ])
-                    ]),
-                    _: 1 /* STABLE */
-                }, 8 /* PROPS */, ["data", "columns", "options"]))
-                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"longCommentVisible\">\n                <div class='descriptionBack' style='display:flex'>\n                    <i class='mdi mdi-arrow-right' @click=\"backtoTable()\"></i>\n                    <span >{{shortCommentValue}}</span>\n                </div>\n                <div class='longCommentText'>\n                    {{ longCommentValue }}\n\n                </div>\n\n            </div> "),
-            ($setup.histories.length == 0)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, "This model has no history"))
-                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_v_client_table, {
+                ref: "myTable",
+                data: $setup.props.histories,
+                columns: $setup.HistoryDatatableColumns,
+                options: $setup.optionsDataTable
+            }, {
+                createDate: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Intl.DateTimeFormat("tr-TR", $setup.options).format(new Date(props.row.createDate))), 1 /* TEXT */)
+                ]),
+                actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => {
+                    var _a, _b;
+                    return [
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                            class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.computedClass(props.row.version)),
+                            onClick: ($event) => ($setup.setModel(props.row.ID)),
+                            disabled: props.row.version == ((_a = $setup.viewModel.studio.currentItem) === null || _a === void 0 ? void 0 : _a.version) ? true : false
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.row.version
+                            == ((_b = $setup.viewModel.studio.currentItem) === null || _b === void 0 ? void 0 : _b.version) ? 'Selected' : 'Select'), 11 /* TEXT, CLASS, PROPS */, _hoisted_1)
+                    ];
+                }),
+                description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+                        class: "detailText",
+                        onClick: ($event) => ($setup.toogleDetail(props.row.version))
+                    }, _hoisted_4, 8 /* PROPS */, _hoisted_2)
+                ]),
+                child_row: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((props) => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.row.comment), 1 /* TEXT */)
+                    ])
+                ]),
+                _: 1 /* STABLE */
+            }, 8 /* PROPS */, ["data", "columns", "options"])
         ])
     ]));
 }
