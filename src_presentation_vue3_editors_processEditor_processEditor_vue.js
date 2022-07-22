@@ -433,7 +433,6 @@ __webpack_require__.r(__webpack_exports__);
         const util = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_2__.IProcessEditorUtil);
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(() => {
             props.state.stepper.isApproveTab = true;
-            util.generateProcessConfigFile(props.model, props.modelsOfModule);
         });
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeUnmount)(() => {
             props.state.stepper.isApproveTab = false;
@@ -1084,6 +1083,9 @@ __webpack_require__.r(__webpack_exports__);
                     modelBody: [{ key: "bpmn", model: bpmnFile }],
                     modelAdditionals: {},
                 });
+                if (processModel.value.createNewBpmnFile) {
+                    processModel.value.selectedExistingBpmnFile.variables = [];
+                }
                 processModel.value.createNewBpmnFile = false;
                 processModel.value.selectedExistingBpmnFile.ID = createdItem.ID;
                 modelsOfModule.value.bpmns.push(createdItem);

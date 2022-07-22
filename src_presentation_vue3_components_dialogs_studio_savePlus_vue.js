@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.margin[data-v-6f76e239] {\n    margin-left: 30px;\n}\n.select[data-v-6f76e239]:invalid{\n        color: gray;\n}\n.option[data-v-6f76e239]{\n        color: black;\n}\n.checkinInputs[data-v-6f76e239] {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n}\n.checkinTextarea[data-v-6f76e239] {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n    height: 120px;\n    resize: none;\n}\n.checkinBtnText[data-v-6f76e239] {\n    font-style: normal;\n    font-weight: 500;\n    font-size: 14px;\n    font-family: 'Roboto';\n    letter-spacing: 0.02px;\n    opacity: 1;\n}\n.checkinBtn[data-v-6f76e239] {\n    background-color: #151233;\n    width: 104px;\n    height: 32px;\n    color: white;\n    border-radius: 4px;\n    opacity: 1;\n    margin-top: 22px;\n}\n.buttonGroupDiv[data-v-6f76e239] {\n    display: flex;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 32px;\n    margin-bottom: 14px;\n    height: 59px;\n    border-top: 1px solid #37373733;\n}\n.dialogContentDivs[data-v-6f76e239] {\n    display: grid;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 22px;\n}\n.checkinLabels[data-v-6f76e239] {\n    font-style: normal;\n    color: #151233;\n    font-weight: 500;\n    font-size: 14px;\n    letter-spacing: 0;\n    opacity: 1;\n    font-family: 'Roboto';\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/studio/savePlus.vue"],"names":[],"mappings":";AA6EA;IACI,iBAAiB;AACrB;AACI;QACI,WAAW;AACf;AACA;QACI,YAAY;AAChB;AACJ;IACI,yBAAyB;IACzB,kBAAkB;IAClB,UAAU;IACV,+CAA+C;AACnD;AAEA;IACI,yBAAyB;IACzB,kBAAkB;IAClB,UAAU;IACV,+CAA+C;IAC/C,aAAa;IACb,YAAY;AAChB;AAEA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;AACd;AAEA;IACI,yBAAyB;IACzB,YAAY;IACZ,YAAY;IACZ,YAAY;IACZ,kBAAkB;IAClB,UAAU;IACV,gBAAgB;AAEpB;AAEA;IACI,aAAa;IACb,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;IAChB,mBAAmB;IACnB,YAAY;IACZ,+BAA+B;AACnC;AAEA;IACI,aAAa;IACb,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;AACpB;AAEA;IACI,kBAAkB;IAClB,cAAc;IACd,gBAAgB;IAChB,eAAe;IACf,iBAAiB;IACjB,UAAU;IACV,qBAAqB;AACzB","sourcesContent":["<script setup lang=\"ts\">\nimport { computed } from '@vue/reactivity';\nimport { ref } from 'vue';\nimport { container } from '../../../../../domain/core/diContainer';\nimport { IConfig } from '../../../../../domain/infrastructure/IConfig';\nimport { IModel } from '../../../../../domain/model/models';\nimport { IStudio } from '../../../../../domain/useCase/IStudio';\nimport { IUseCaseExecutor } from '../../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from '../../../../../domain/viewModel/IViewModel';\n\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst studio = container.resolve<IStudio>(IStudio);\nconst config = container.resolve<IConfig>(IConfig);\n\n\n\nconst currentItem = viewModel.studio.currentItem!;\n\n\n\nconst checkin = ref(true);\nconst buttonName = computed(() => checkin.value ? \"CHECK IN\" : \"SAVE\");\nconst version = ref<\"major\"| \"minor\" | \"\">(\"\");\nconst comment = ref({ short: \"\", long: undefined, hasLong: false });\nconst emit = defineEmits([\"close\"]);\n\nconst commentMaxLength = config.getValue(\"studio\").commentMaxLength;\n\n\nfunction save() {\n    executor.execute(async () => {\n        if (checkin.value) {\n            await studio.checkin(currentItem, { shortComment: comment.value.short, version: version.value, longComment: comment.value.long });\n        } else {\n            await studio.save(currentItem);\n        }\n        emit(\"close\");\n    }, { loading: true });\n}\n\n</script>\n<template>\n    <div>\n\n        <template v-if=\"checkin\">\n            <div class=\"dialogContentDivs\">\n                <span class='checkinLabels'>Summary</span>\n                <input class='checkinInputs' type=\"text\" :maxlength=\"commentMaxLength\"\n                    placeholder='Summarise your new version' v-model=\"comment.short\">\n            </div>\n\n            <div class=\"dialogContentDivs\">\n                <span class='checkinLabels'>Description (Optional)</span>\n                <textarea class='checkinTextarea' id=\"w3review\" name=\"w3review\" rows=\"4\" cols=\"50\"\n                    placeholder='Describe your new version' v-model=\"comment.long\"></textarea>\n            </div>\n\n            <div class=\"dialogContentDivs\">\n                <span class='checkinLabels'>Version</span>\n                <select required class='checkinInputs' name=\"versions\" id=\"versiontype\" v-model=\"version\">\n                    <option value=\"\" disabled hidden>Select Version</option>\n                    <option  value=\"minor\">Minor</option>\n                    <option   value=\"major\">Major</option>\n                </select>\n            </div>\n\n        </template>\n        <div class='buttonGroupDiv'>\n            <div class=\"col-12\" style=\"text-align: end;\">\n                <button class='checkinBtn' @click=\"save()\"><span class='checkinBtnText'>{{ buttonName }}</span></button>\n            </div>\n\n        </div>\n    </div>\n</template>\n<style scoped>\n.margin {\n    margin-left: 30px;\n}\n    .select:invalid{\n        color: gray;\n    }\n    .option{\n        color: black;\n    }\n.checkinInputs {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n}\n\n.checkinTextarea {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n    height: 120px;\n    resize: none;\n}\n\n.checkinBtnText {\n    font-style: normal;\n    font-weight: 500;\n    font-size: 14px;\n    font-family: 'Roboto';\n    letter-spacing: 0.02px;\n    opacity: 1;\n}\n\n.checkinBtn {\n    background-color: #151233;\n    width: 104px;\n    height: 32px;\n    color: white;\n    border-radius: 4px;\n    opacity: 1;\n    margin-top: 22px;\n\n}\n\n.buttonGroupDiv {\n    display: flex;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 32px;\n    margin-bottom: 14px;\n    height: 59px;\n    border-top: 1px solid #37373733;\n}\n\n.dialogContentDivs {\n    display: grid;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 22px;\n}\n\n.checkinLabels {\n    font-style: normal;\n    color: #151233;\n    font-weight: 500;\n    font-size: 14px;\n    letter-spacing: 0;\n    opacity: 1;\n    font-family: 'Roboto';\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.margin[data-v-6f76e239] {\n    margin-left: 30px;\n}\n.select[data-v-6f76e239]:invalid {\n    color: gray;\n}\n.option[data-v-6f76e239] {\n    color: black;\n}\n.checkinInputs[data-v-6f76e239] {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n}\n.checkinTextarea[data-v-6f76e239] {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n    height: 120px;\n    resize: none;\n}\n.checkinBtnText[data-v-6f76e239] {\n    font-style: normal;\n    font-weight: 500;\n    font-size: 14px;\n    font-family: 'Roboto';\n    letter-spacing: 0.02px;\n    opacity: 1;\n}\n.checkinBtn[data-v-6f76e239] {\n    background-color: #151233;\n    width: 104px;\n    height: 32px;\n    color: white;\n    border-radius: 4px;\n    opacity: 1;\n    margin-top: 22px;\n}\n.buttonGroupDiv[data-v-6f76e239] {\n    display: flex;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 32px;\n    margin-bottom: 14px;\n    height: 59px;\n    border-top: 1px solid #37373733;\n}\n.dialogContentDivs[data-v-6f76e239] {\n    display: grid;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 22px;\n}\n.checkinLabels[data-v-6f76e239] {\n    font-style: normal;\n    color: #151233;\n    font-weight: 500;\n    font-size: 14px;\n    letter-spacing: 0;\n    opacity: 1;\n    font-family: 'Roboto';\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/components/dialogs/studio/savePlus.vue"],"names":[],"mappings":";AAqGA;IACI,iBAAiB;AACrB;AAEA;IACI,WAAW;AACf;AAEA;IACI,YAAY;AAChB;AAEA;IACI,yBAAyB;IACzB,kBAAkB;IAClB,UAAU;IACV,+CAA+C;AACnD;AAEA;IACI,yBAAyB;IACzB,kBAAkB;IAClB,UAAU;IACV,+CAA+C;IAC/C,aAAa;IACb,YAAY;AAChB;AAEA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,eAAe;IACf,qBAAqB;IACrB,sBAAsB;IACtB,UAAU;AACd;AAEA;IACI,yBAAyB;IACzB,YAAY;IACZ,YAAY;IACZ,YAAY;IACZ,kBAAkB;IAClB,UAAU;IACV,gBAAgB;AAEpB;AAEA;IACI,aAAa;IACb,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;IAChB,mBAAmB;IACnB,YAAY;IACZ,+BAA+B;AACnC;AAEA;IACI,aAAa;IACb,iBAAiB;IACjB,kBAAkB;IAClB,gBAAgB;AACpB;AAEA;IACI,kBAAkB;IAClB,cAAc;IACd,gBAAgB;IAChB,eAAe;IACf,iBAAiB;IACjB,UAAU;IACV,qBAAqB;AACzB","sourcesContent":["<script setup lang=\"ts\">\nimport { computed } from '@vue/reactivity';\nimport { ref } from 'vue';\nimport { container } from '../../../../../domain/core/diContainer';\nimport { IConfig } from '../../../../../domain/infrastructure/IConfig';\nimport { IModel } from '../../../../../domain/model/models';\nimport { IIDEInputDefinitions } from '../../../../../domain/presentation/IIDEInputDefinitions';\nimport { IStudio } from '../../../../../domain/useCase/IStudio';\nimport { IUseCaseExecutor } from '../../../../../domain/useCase/IUseCaseExecutor';\nimport { IViewModel } from '../../../../../domain/viewModel/IViewModel';\nimport IDEInput from \"../../../components/application/IDEInput.vue\";\nconst viewModel = container.resolve<IViewModel>(IViewModel);\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst studio = container.resolve<IStudio>(IStudio);\nconst config = container.resolve<IConfig>(IConfig);\n\n\n\nconst currentItem = viewModel.studio.currentItem!;\n\nconst isNameValid = ref<boolean>(false);\nconst isDescriptionValid = ref<boolean>(true);\nconst validations = ref<Record<\"name\" | \"description\", IIDEInputDefinitions[\"validations\"]>>({\n    name: { minAndMaxLength: { min: 3, max: 40 }, availableCharacters: true, nonSpaceCharacter: true },\n    description: { minAndMaxLength: { min: 3, max: 100 }, availableCharacters: true, nonSpaceCharacter: false },\n});\n\nconst checkin = ref(true);\nconst buttonName = computed(() => checkin.value ? \"CHECK IN\" : \"SAVE\");\nconst version = ref<\"major\" | \"minor\" | \"\">(\"\");\nconst comment = ref({ short: \"\", long: '', hasLong: false });\nconst emit = defineEmits([\"close\"]);\nconst buttonDisabled = computed(() => !isNameValid.value || !isDescriptionValid.value);\n\nconst commentMaxLength = config.getValue(\"studio\").commentMaxLength;\n\n\nfunction save() {\n    executor.execute(async () => {\n        if (checkin.value) {\n            await studio.checkin(currentItem, { shortComment: comment.value.short, version: version.value, longComment: comment.value.long });\n        } else {\n            await studio.save(currentItem);\n        }\n        emit(\"close\");\n    }, { loading: true });\n}\n\nfunction setNameValue(value: string) {\n    debugger\n    comment.value.short = value\n}\nfunction setNameValidationStatus(isValid: boolean) {\n    isNameValid.value = isValid\n}\n\nfunction setDescriptionValue(value: string) {\n\n    comment.value.long = value\n}\n\nfunction setDescriptionValidationStatus(isValid: boolean) {\n    isDescriptionValid.value = isValid\n}\n\n</script>\n<template>\n    <div>\n\n        <template v-if=\"checkin\">\n            <div class=\"dialogContentDivs\">\n                <IDEInput :isRequired=\"true\" @getValue=\"setNameValue\" @validateStatus=\"setNameValidationStatus\"\n                    :placeholder=\"'Summarise your new version'\" :type=\"'text'\" info-text=\"Summary\"\n                    :validations=\"validations.name\" />\n            </div>\n\n            <div class=\"dialogContentDivs\">\n                <IDEInput :isRequired=\"false\" @getValue=\"setDescriptionValue\"\n                    @validateStatus=\"setDescriptionValidationStatus\" :placeholder=\"'Describe your new version'\"\n                    :type=\"'textarea'\" info-text=\"Description\" :validations=\"validations.name\" />\n            </div>\n\n            <div class=\"dialogContentDivs\">\n                <span class='checkinLabels'>Version</span>\n                <select required class='checkinInputs' name=\"versions\" id=\"versiontype\" v-model=\"version\">\n                    <option value=\"\" disabled hidden>Select Version</option>\n                    <option value=\"minor\">Minor</option>\n                    <option value=\"major\">Major</option>\n                </select>\n            </div>\n\n        </template>\n        <div class='buttonGroupDiv'>\n            <div class=\"col-12\" style=\"text-align: end;\">\n                <button :style=\"{ opacity: buttonDisabled ? '0.5' : '' }\" :disabled=\"buttonDisabled\" class='checkinBtn' @click=\"save()\"><span class='checkinBtnText'>{{ buttonName }}</span></button>\n            </div>\n\n        </div>\n    </div>\n</template>\n<style scoped>\n.margin {\n    margin-left: 30px;\n}\n\n.select:invalid {\n    color: gray;\n}\n\n.option {\n    color: black;\n}\n\n.checkinInputs {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n}\n\n.checkinTextarea {\n    border: 1px solid #A1A1A1;\n    border-radius: 4px;\n    opacity: 1;\n    background: #FFFFFF 0% 0% no-repeat padding-box;\n    height: 120px;\n    resize: none;\n}\n\n.checkinBtnText {\n    font-style: normal;\n    font-weight: 500;\n    font-size: 14px;\n    font-family: 'Roboto';\n    letter-spacing: 0.02px;\n    opacity: 1;\n}\n\n.checkinBtn {\n    background-color: #151233;\n    width: 104px;\n    height: 32px;\n    color: white;\n    border-radius: 4px;\n    opacity: 1;\n    margin-top: 22px;\n\n}\n\n.buttonGroupDiv {\n    display: flex;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 32px;\n    margin-bottom: 14px;\n    height: 59px;\n    border-top: 1px solid #37373733;\n}\n\n.dialogContentDivs {\n    display: grid;\n    margin-left: 34px;\n    margin-right: 32px;\n    margin-top: 22px;\n}\n\n.checkinLabels {\n    font-style: normal;\n    color: #151233;\n    font-weight: 500;\n    font-size: 14px;\n    letter-spacing: 0;\n    opacity: 1;\n    font-family: 'Roboto';\n}\n</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -92,12 +92,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
-/* harmony import */ var _vue_reactivity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vue/reactivity */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
+/* harmony import */ var _vue_reactivity__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vue/reactivity */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
 /* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
 /* harmony import */ var _domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../domain/infrastructure/IConfig */ "./src/domain/infrastructure/IConfig.ts");
 /* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
 /* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
 /* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _components_application_IDEInput_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/application/IDEInput.vue */ "./src/presentation/vue3/components/application/IDEInput.vue");
+
 
 
 
@@ -116,10 +118,17 @@ __webpack_require__.r(__webpack_exports__);
         const studio = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_3__.IStudio);
         const config = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_1__.container.resolve(_domain_infrastructure_IConfig__WEBPACK_IMPORTED_MODULE_2__.IConfig);
         const currentItem = viewModel.studio.currentItem;
+        const isNameValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+        const isDescriptionValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+        const validations = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+            name: { minAndMaxLength: { min: 3, max: 40 }, availableCharacters: true, nonSpaceCharacter: true },
+            description: { minAndMaxLength: { min: 3, max: 100 }, availableCharacters: true, nonSpaceCharacter: false },
+        });
         const checkin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
-        const buttonName = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_6__.computed)(() => checkin.value ? "CHECK IN" : "SAVE");
+        const buttonName = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_7__.computed)(() => checkin.value ? "CHECK IN" : "SAVE");
         const version = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
-        const comment = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ short: "", long: undefined, hasLong: false });
+        const comment = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({ short: "", long: '', hasLong: false });
+        const buttonDisabled = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_7__.computed)(() => !isNameValid.value || !isDescriptionValid.value);
         const commentMaxLength = config.getValue("studio").commentMaxLength;
         function save() {
             executor.execute(async () => {
@@ -132,7 +141,20 @@ __webpack_require__.r(__webpack_exports__);
                 emit("close");
             }, { loading: true });
         }
-        const __returned__ = { viewModel, executor, studio, config, currentItem, checkin, buttonName, version, comment, emit, commentMaxLength, save };
+        function setNameValue(value) {
+            debugger;
+            comment.value.short = value;
+        }
+        function setNameValidationStatus(isValid) {
+            isNameValid.value = isValid;
+        }
+        function setDescriptionValue(value) {
+            comment.value.long = value;
+        }
+        function setDescriptionValidationStatus(isValid) {
+            isDescriptionValid.value = isValid;
+        }
+        const __returned__ = { viewModel, executor, studio, config, currentItem, isNameValid, isDescriptionValid, validations, checkin, buttonName, version, comment, emit, buttonDisabled, commentMaxLength, save, setNameValue, setNameValidationStatus, setDescriptionValue, setDescriptionValidationStatus, IDEInput: _components_application_IDEInput_vue__WEBPACK_IMPORTED_MODULE_6__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -155,82 +177,78 @@ __webpack_require__.r(__webpack_exports__);
 
 const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-6f76e239"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
 const _hoisted_1 = { class: "dialogContentDivs" };
-const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "checkinLabels" }, "Summary", -1 /* HOISTED */));
-const _hoisted_3 = ["maxlength"];
-const _hoisted_4 = { class: "dialogContentDivs" };
-const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "checkinLabels" }, "Description (Optional)", -1 /* HOISTED */));
-const _hoisted_6 = { class: "dialogContentDivs" };
-const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "checkinLabels" }, "Version", -1 /* HOISTED */));
-const _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+const _hoisted_2 = { class: "dialogContentDivs" };
+const _hoisted_3 = { class: "dialogContentDivs" };
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "checkinLabels" }, "Version", -1 /* HOISTED */));
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     disabled: "",
     hidden: ""
 }, "Select Version", -1 /* HOISTED */));
-const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { value: "minor" }, "Minor", -1 /* HOISTED */));
-const _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { value: "major" }, "Major", -1 /* HOISTED */));
-const _hoisted_11 = [
-    _hoisted_8,
-    _hoisted_9,
-    _hoisted_10
+const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { value: "minor" }, "Minor", -1 /* HOISTED */));
+const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", { value: "major" }, "Major", -1 /* HOISTED */));
+const _hoisted_8 = [
+    _hoisted_5,
+    _hoisted_6,
+    _hoisted_7
 ];
-const _hoisted_12 = { class: "buttonGroupDiv" };
-const _hoisted_13 = {
+const _hoisted_9 = { class: "buttonGroupDiv" };
+const _hoisted_10 = {
     class: "col-12",
     style: { "text-align": "end" }
 };
-const _hoisted_14 = { class: "checkinBtnText" };
+const _hoisted_11 = ["disabled"];
+const _hoisted_12 = { class: "checkinBtnText" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
         ($setup.checkin)
             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 0 }, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
-                    _hoisted_2,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                        class: "checkinInputs",
-                        type: "text",
-                        maxlength: $setup.commentMaxLength,
-                        placeholder: "Summarise your new version",
-                        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.comment.short) = $event))
-                    }, null, 8 /* PROPS */, _hoisted_3), [
-                        [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.comment.short]
-                    ])
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["IDEInput"], {
+                        isRequired: true,
+                        onGetValue: $setup.setNameValue,
+                        onValidateStatus: $setup.setNameValidationStatus,
+                        placeholder: 'Summarise your new version',
+                        type: 'text',
+                        "info-text": "Summary",
+                        validations: $setup.validations.name
+                    }, null, 8 /* PROPS */, ["validations"])
                 ]),
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [
-                    _hoisted_5,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-                        class: "checkinTextarea",
-                        id: "w3review",
-                        name: "w3review",
-                        rows: "4",
-                        cols: "50",
-                        placeholder: "Describe your new version",
-                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.comment.long) = $event))
-                    }, null, 512 /* NEED_PATCH */), [
-                        [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.comment.long]
-                    ])
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["IDEInput"], {
+                        isRequired: false,
+                        onGetValue: $setup.setDescriptionValue,
+                        onValidateStatus: $setup.setDescriptionValidationStatus,
+                        placeholder: 'Describe your new version',
+                        type: 'textarea',
+                        "info-text": "Description",
+                        validations: $setup.validations.name
+                    }, null, 8 /* PROPS */, ["validations"])
                 ]),
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [
-                    _hoisted_7,
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [
+                    _hoisted_4,
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
                         required: "",
                         class: "checkinInputs",
                         name: "versions",
                         id: "versiontype",
-                        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.version) = $event))
-                    }, _hoisted_11, 512 /* NEED_PATCH */), [
+                        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (($setup.version) = $event))
+                    }, _hoisted_8, 512 /* NEED_PATCH */), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.version]
                     ])
                 ])
             ], 64 /* STABLE_FRAGMENT */))
             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({ opacity: $setup.buttonDisabled ? '0.5' : '' }),
+                    disabled: $setup.buttonDisabled,
                     class: "checkinBtn",
-                    onClick: _cache[3] || (_cache[3] = ($event) => ($setup.save()))
+                    onClick: _cache[1] || (_cache[1] = ($event) => ($setup.save()))
                 }, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.buttonName), 1 /* TEXT */)
-                ])
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.buttonName), 1 /* TEXT */)
+                ], 12 /* STYLE, PROPS */, _hoisted_11)
             ])
         ])
     ]));
