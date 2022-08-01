@@ -27597,24 +27597,38 @@ let QuickEditorImpl = class QuickEditorImpl {
             content: (_a = item.modelBody) === null || _a === void 0 ? void 0 : _a[0].model,
             fileName: item.name, type: "setModel", state: item.state, settings
         }, { awaitResponse: true });
-        //TODO: cache this.
-        const params = this.viewModel.studio.items.filter((item) => {
-            if (item.objectType != "model" || item.modelType != "qjson" || !item.additionals) {
-                return false;
+        this.setQuickCompList(item);
+        this.setNamedComps();
+        //TODO: setProperties
+    }
+    setQuickCompList(targetModel) {
+        debugger;
+        const recursiveScopedFinder = (item) => {
+            if (item.objectType == "module" || item.objectType == "application") {
+                return item;
+            }
+            const parent = this.viewModelManager.findObject(item.ID);
+            recursiveScopedFinder(parent);
+        };
+        const scopedParentItem = recursiveScopedFinder(targetModel.parent);
+        const params = [];
+        scopedParentItem.children.forEach(item => {
+            if (item.objectType == "folder" || item.objectType == "module") {
+                return;
             }
             const qjsonAdd = item.additionals;
-            if (qjsonAdd.qjsonType != "quickComponent") {
-                return false;
-            }
-            return true;
-        }).map((item) => {
-            const qjsonAdd = item.additionals;
-            const retVal = {
-                name: item.name, id: item.ID, qJsonPath: `'<<qjson:${item.ID}>>'`, qJsonOptions: { qJsonType: qjsonAdd.qjsonType },
-            };
-            return retVal;
+            params.push({
+                name: item.name,
+                id: item.ID,
+                qJsonPath: `'<<qjson:${item.ID}>>'`,
+                qJsonOptions: {
+                    qJsonType: qjsonAdd.qjsonType
+                }
+            });
         });
         this.frameMessanger.sendMessage("Quick", "setQuickComps", { removeOlds: true, type: "setQuickComps", params }, {});
+    }
+    setNamedComps() {
         const namedComps = this.viewModel.studio.items
             .filter((item) => item.objectType == "model" && item.modelType == "namedComponent")
             .map(item => {
@@ -27623,7 +27637,6 @@ let QuickEditorImpl = class QuickEditorImpl {
             return retVal;
         });
         this.frameMessanger.sendMessage("Quick", "setNamedCompList", { type: "setNamedCompList", compModelList: namedComps }, {});
-        //TODO: setProperties
     }
     async addOrUpdateNamedComp(message) {
         const sendReply = (success, replyId, compPath, message) => this.frameMessanger.sendMessage("Quick", "addOrUpdateNamedCompResponse", { type: "addOrUpdateNamedCompResponse", success, compPath, message }, { replyId });
@@ -27666,6 +27679,7 @@ let QuickEditorImpl = class QuickEditorImpl {
         this.frameMessanger.sendMessage("Quick", "getNamedCompResponse", { type: "getNamedCompResponse", compModel }, { replyId: message.id });
     }
     async getQuickComp(message) {
+        debugger;
         let qjsonPath = message.msg.qjsonPath;
         const regExp = new RegExp('<<qjson:(\\w(?![/]).*)>>');
         const id = regExp.exec(qjsonPath)[1];
@@ -30760,7 +30774,10 @@ let Studio = class Studio {
                 return model;
             }
         });
-        return converter(backendItems, app);
+        const items = converter(backendItems, app);
+        app.children = items;
+        this.viewModelManager.objectUpdated(app);
+        return items;
     }
 };
 Studio = __decorate([
@@ -35379,7 +35396,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.37"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.38"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
