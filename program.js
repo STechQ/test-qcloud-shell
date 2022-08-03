@@ -28914,7 +28914,8 @@ let FileExplorer = class FileExplorer {
                             { name: "UI Screen", icon: "mdi mdi-palette", color: '#449DD1', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Screen'), { loading: true }) },
                             { name: "Entity", icon: "mdi mdi-database", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Entity'), { loading: true }) },
                             { name: "Process Diagram", icon: "mdi mdi-vector-polyline", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Diagram'), { loading: true }) },
-                            { name: "Process Wizard", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) }
+                            { name: "Process Wizard", icon: "mdi mdi-auto-fix", color: '#007C77', selectCb: this.executor.wrap(() => this.onNewItemSelect(item.ID, item.name, item.objectType, 'Process Wizard'), { loading: true }) },
+                            { name: "Import Model", icon: "mdi mdi-import", color: '#212121', style: '1px solid black', selectCb: this.executor.wrap(() => this.importModel(item), { loading: true }) }
                         ]
                     });
                     treeItem.actions.push({
@@ -29091,6 +29092,9 @@ let FileExplorer = class FileExplorer {
     }
     async onNewItemSelect(parentId, parentName, parentType, createType) {
         this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New" + '    ' + createType, closeOnOutClick: true, height: createType == 'Module' ? '316pxpx' : '186px', width: '420px' }, { parentId, parentName, parentType, createType });
+    }
+    async importModel(parent) {
+        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_importModelDialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/importModelDialog.vue */ "./src/presentation/vue3/components/dialogs/importModelDialog.vue"))), { closable: true, title: "Import Model", closeOnOutClick: true, height: '430px', width: '600px' }, { parent });
     }
     checkinDailog(item) {
         this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_application_IDEInput_vue"), __webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true, title: 'Check in-' + item.name }, {});
@@ -30683,6 +30687,13 @@ let Studio = class Studio {
         this.notification.showNotification({ text: `'${module.name}' added to current application successfully`, type: "success" });
     }
     async detachModuleFromApplication(module, applicationID) {
+        const confirm = await this.notification.showConfirm({
+            title: "Are you sure?", text: `The  '${module.name}' will be removed from app permanently!`,
+            type: "warning", approveText: "Remove", rejectText: "Cancel"
+        });
+        if (!confirm.approved) {
+            return;
+        }
         await this.qcloudApi.detachModuleFromApplication(applicationID, module.ID);
         this.viewModelManager.removeModule(module);
         this.fileExplorer.removeItem(module.ID);
@@ -35396,7 +35407,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.39"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.40"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -37143,6 +37154,9 @@ class TreeView {
                     pointerEvents: child.enabled === false ? "none" : "",
                     opacity: child.enabled === false ? "0.5" : "1",
                     cursor: child.enabled === false ? "none" : "pointer",
+                    borderTop: child.name == 'Import Model' ? '0.5px solid #00000029' : '',
+                    marginTop: child.name == 'Import Model' ? '5px' : '',
+                    paddingTop: child.name == 'Import Model' ? '2px' : ''
                 },
                 events: {
                     click: () => {
