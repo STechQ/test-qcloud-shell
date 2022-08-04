@@ -1,6 +1,166 @@
 "use strict";
 (self["webpackChunkqcloud_shell"] = self["webpackChunkqcloud_shell"] || []).push([["src_presentation_vue3_editors_processEditor_processEditor_vue"],{
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.wizard-icon[data-v-4b42c377] {\n    /* Layout Properties */\n    top: 32px;\n    left: 36px;\n    /* UI Properties */\n    position: relative;\n    text-align: left;\n    font: normal normal normal 30px/36px Material Design Icons Desktop;\n    color: #007c77;\n}\n.title[data-v-4b42c377] {\n    /* Layout Properties */\n    top: 34px;\n    left: 72px;\n    /* UI Properties */\n    color: #007c77;\n    font-size: 20px;\n    font-family: \"Roboto\";\n    position: absolute;\n    font-weight: 500;\n}\n.step[data-v-4b42c377] {\n    /* Layout Properties */\n    top: 35px;\n    right: 32px;\n    position: absolute;\n    font-family: 'Roboto';\n    font-size: 16px;\n    color: #757575;\n}\n.count[data-v-4b42c377] {\n    text-align: right;\n    font: normal normal bold 18px/24px Roboto;\n    color: #007c77;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue"],"names":[],"mappings":";AASA;IACI,sBAAsB;IACtB,SAAS;IACT,UAAU;IACV,kBAAkB;IAClB,kBAAkB;IAClB,gBAAgB;IAChB,kEAAkE;IAClE,cAAc;AAClB;AAEA;IACI,sBAAsB;IACtB,SAAS;IACT,UAAU;IACV,kBAAkB;IAClB,cAAc;IACd,eAAe;IACf,qBAAqB;IACrB,kBAAkB;IAClB,gBAAgB;AACpB;AAEA;IACI,sBAAsB;IACtB,SAAS;IACT,WAAW;IACX,kBAAkB;IAClB,qBAAqB;IACrB,eAAe;IACf,cAAc;AAClB;AAEA;IACI,iBAAiB;IACjB,yCAAyC;IACzC,cAAc;AAClB","sourcesContent":["<template>\n    <i class=\"mdi mdi-auto-fix wizard-icon\" />\n    <div class=\"title\">Process Wizard</div>\n    <div class=\"step\">Step <span class=\"count\">1</span></div>\n</template>\n\n<script setup lang=\"ts\"></script>\n\n<style scoped>\n.wizard-icon {\n    /* Layout Properties */\n    top: 32px;\n    left: 36px;\n    /* UI Properties */\n    position: relative;\n    text-align: left;\n    font: normal normal normal 30px/36px Material Design Icons Desktop;\n    color: #007c77;\n}\n\n.title {\n    /* Layout Properties */\n    top: 34px;\n    left: 72px;\n    /* UI Properties */\n    color: #007c77;\n    font-size: 20px;\n    font-family: \"Roboto\";\n    position: absolute;\n    font-weight: 500;\n}\n\n.step {\n    /* Layout Properties */\n    top: 35px;\n    right: 32px;\n    position: absolute;\n    font-family: 'Roboto';\n    font-size: 16px;\n    color: #757575;\n}\n\n.count {\n    text-align: right;\n    font: normal normal bold 18px/24px Roboto;\n    color: #007c77;\n}\n</style>\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.process-editor[data-v-f11e7e2c] {\n    width: 1000px;\n    height: 616px;\n    background: white;\n    position: absolute;\n    margin-left: calc((100% - 1000px)/2);\n    margin-top: 26px;\n    border: 1px solid #D5D5D5;\n    border-radius: 4px;\n}\n", "",{"version":3,"sources":["webpack://./src/presentation/vue3/editors/processEditor/processEditor.vue"],"names":[],"mappings":";AA4OA;IACI,aAAa;IACb,aAAa;IACb,iBAAiB;IACjB,kBAAkB;IAClB,oCAAoC;IACpC,gBAAgB;IAChB,yBAAyB;IACzB,kBAAkB;AACtB","sourcesContent":["<script setup lang=\"ts\">\nimport { IProcessEditorProps } from \"../../../../application/objects/editors/processEditorImpl\";\nimport { ref } from \"vue\";\nimport {\n    SINGLE_APPROVAL,\n    DOUBLE_APPROVAL,\n    TRIPLE_APPROVAL,\n    QUADRUPLE_APPROVAL,\n    QUINTUPLE_APPROVAL,\n    extraProcessConfigVariables,\n} from \"../../../../domain/objects/editors/processEditor/constants/processTemplates\";\nimport ProcessDefinitionTab from \"./approvalWizards/tabs/processDefinitionTab.vue\";\nimport EditProcessVariablesTab from \"./approvalWizards/tabs/editProcessVariablesTab.vue\";\nimport SingleApprovalWizard from \"./approvalWizards/singleApprovalWizard.vue\";\nimport DoubleApprovalWizard from \"./approvalWizards/doubleApprovalWizard.vue\";\nimport TripleApprovalWizard from \"./approvalWizards/tripleApprovalWizard.vue\";\nimport QuadrupleApprovalWizard from \"./approvalWizards/quadrupleApprovalWizard.vue\";\nimport QuintupleApprovalWizard from \"./approvalWizards/quintupleApprovalWizard.vue\";\nimport { container } from \"../../../../domain/core/diContainer\";\nimport { IUseCaseExecutor } from \"../../../../domain/useCase/IUseCaseExecutor\";\nimport { ICreateModel } from \"../../../../domain/useCase/ICreateModel\";\nimport { IStudio } from \"../../../../domain/useCase/IStudio\";\n\nimport { IModule } from \"../../../../domain/model/models\";\nimport { CryptoHelper } from \"@stechquick/algae/lib/helpers/cryptoHelper\";\nimport { IProcessEditorUtil } from \"../../../../domain/useCase/IProcessEditorUtil\";\nimport { IModelsOfModule } from \"../../../../domain/presentation/editors/IProcessEditorModel\";\nimport { extractProcessVariables } from \"@stechquick/plateau-process-designer\";\nimport ProcessEditorHeader from \"./ProcessEditorHeader.vue\";\nimport ScreenSelectionTab from \"./tabs/ScreenSelectionTab.vue\";\n\ninterface IProps {\n    functions: IProcessEditorProps[\"functions\"];\n    callbacks: IProcessEditorProps[\"callbacks\"];\n}\n\nconst executor = container.resolve<IUseCaseExecutor>(IUseCaseExecutor);\nconst studio = container.resolve<IStudio>(IStudio);\nconst processEditorUtil = container.resolve<IProcessEditorUtil>(IProcessEditorUtil);\nconst props = defineProps<IProps>();\nconst processDefinitionTabKey = ref(\"\");\nconst disableFinishButton = ref(false);\nconst isNextActive = ref(true);\n\nconst processModel = ref(processEditorUtil.getEmptyProcessWizardModel(\"_\"));\nconst processEditorState = ref(processEditorUtil.getEmptyProcessEditorState());\nconst currentModule = ref({} as IModule);\nconst modelsOfModule = ref({\n    screens: [],\n    bpmns: [],\n} as IModelsOfModule);\n\nprops.functions.getModel = async () => {\n    return { model: processModel.value, state: processEditorState.value };\n};\n\nprops.functions.setModel = async (model, module, state) => {\n    currentModule.value = module;\n    modelsOfModule.value = processEditorUtil.getModelsOfModule(module);\n    processDefinitionTabKey.value = CryptoHelper.CreateGuid();\n    processModel.value = model;\n    processEditorState.value = state;\n};\n\nasync function handleNext() {\n    const stepper = processEditorState.value.stepper;\n    const selectedExistingBpmnFile = processModel.value.selectedExistingBpmnFile;\n    if (stepper.isTabValid) {\n        if (!processModel.value.createNewBpmnFile) {\n            isNextActive.value = false;\n            const existingBpmnVariableCache = processEditorState.value.existingBpmnVariableCache;\n            const bpmnVariableFromCache = existingBpmnVariableCache[processModel.value.selectedExistingBpmnFile.ID];\n            if (bpmnVariableFromCache) {\n                processModel.value.selectedExistingBpmnFile.variables = bpmnVariableFromCache;\n            }\n            const bpmnModel = await props.callbacks.getBpmnModel(selectedExistingBpmnFile.ID);\n            const extractedProcessVariables = await extractProcessVariables(bpmnModel);\n            const editableVariables = processEditorUtil\n                .extractEditableProcessVariables(extractedProcessVariables, [\n                    \"initiator\",\n                    \"formJson\",\n                    \"userId\",\n                    \"tenantId\",\n                    \"isChange\",\n                    \"refreshAfterSendToApproval\",\n                ])\n                .concat(extraProcessConfigVariables);\n\n            editableVariables.forEach((editableVariable: any) => {\n                if (!processModel.value.selectedExistingBpmnFile.variables.some((variable) => variable.key === editableVariable.source)) {\n                    processModel.value.selectedExistingBpmnFile.variables.push({\n                        key: editableVariable.source,\n                        type: \"STRING\",\n                        value: processEditorUtil.handleProcessVariables(\n                            processModel.value,\n                            editableVariable.source,\n                            modelsOfModule.value,\n                            \"process_name\"\n                        ),\n                        isDeletable: false,\n                    });\n                }\n            });\n            processModel.value.selectedExistingBpmnFile.variables = processModel.value.selectedExistingBpmnFile.variables.filter((variable) =>\n                editableVariables.some((editableVariable) => editableVariable.source == variable.key)\n            );\n            isNextActive.value = true;\n        }\n        stepper.currentStep++;\n        stepper.isTabValid = false;\n        props.callbacks.modified({ state: true });\n    }\n}\n\nfunction handleBack() {\n    processEditorState.value.stepper!.currentStep--;\n    processEditorState.value.stepper!.isTabValid = false;\n    props.callbacks.modified({ state: true });\n}\n\nfunction handleFinish() {\n    const bpmnFile = processEditorUtil.generateBpmnFile(processModel.value, processEditorState.value.creatingProcessFileName);\n    executor.execute(\n        async () => {\n            const createdItem = await executor.executeUseCase<ICreateModel>(ICreateModel, {\n                name: processEditorState.value.creatingProcessFileName,\n                parentObjectId: currentModule.value.ID,\n                modelType: \"bpmn\",\n                modelBody: [{ key: \"bpmn\", model: bpmnFile }],\n                modelAdditionals: {},\n            });\n\n            if (processModel.value.createNewBpmnFile) {\n                processModel.value.selectedExistingBpmnFile.variables = [];\n            }\n            \n            processModel.value.createNewBpmnFile = false;\n\n            processModel.value.selectedExistingBpmnFile.ID = createdItem.ID;\n            modelsOfModule.value.bpmns.push(createdItem);\n            processEditorState.value.stepper.currentStep = 0;\n            disableFinishButton.value = true;\n            studio.openItem(createdItem, { fromHistory: false, noFocus: true });\n        },\n        { loading: true }\n    );\n    props.callbacks.modified({ state: true });\n}\n</script>\n<template>\n    <div class=\"process-editor\">\n        <ProcessEditorHeader/>\n        <ScreenSelectionTab/>\n    </div>\n    <div class=\"process-editor\" v-if=\"false\">\n        <ProcessDefinitionTab\n            v-if=\"processEditorState.stepper.currentStep === 0\"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n            :enable-finish-button=\"() => (disableFinishButton = false)\"\n            :is-next-active=\"isNextActive\"\n            :key=\"processDefinitionTabKey\"\n        />\n        <EditProcessVariablesTab\n            v-if=\"!processModel.createNewBpmnFile && processEditorState.stepper.currentStep === 1\"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <SingleApprovalWizard\n            v-if=\"\n                processModel.processType === SINGLE_APPROVAL.value && processEditorState.stepper.currentStep !== 0 && processModel.createNewBpmnFile\n            \"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <DoubleApprovalWizard\n            v-if=\"\n                processModel.processType === DOUBLE_APPROVAL.value && processEditorState.stepper.currentStep !== 0 && processModel.createNewBpmnFile\n            \"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <TripleApprovalWizard\n            v-if=\"\n                processModel.processType === TRIPLE_APPROVAL.value && processEditorState.stepper.currentStep !== 0 && processModel.createNewBpmnFile\n            \"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <QuadrupleApprovalWizard\n            v-if=\"\n                processModel.processType === QUADRUPLE_APPROVAL.value &&\n                processEditorState.stepper.currentStep !== 0 &&\n                processModel.createNewBpmnFile\n            \"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <QuintupleApprovalWizard\n            v-if=\"\n                processModel.processType === QUINTUPLE_APPROVAL.value &&\n                processEditorState.stepper.currentStep !== 0 &&\n                processModel.createNewBpmnFile\n            \"\n            :model=\"processModel\"\n            :models-of-module=\"modelsOfModule\"\n            :state=\"processEditorState\"\n            :modified=\"props.callbacks.modified\"\n        />\n        <div>\n            <button style=\"margin-bottom: 5%\" :disabled=\"!processEditorState.stepper.currentStep\" @click=\"handleBack\">Back</button>\n            <button\n                v-if=\"!processEditorState.stepper.isApproveTab && !(!processModel.createNewBpmnFile && processEditorState.stepper.currentStep === 1)\"\n                @click=\"handleNext\"\n                :disabled=\"!processEditorState.stepper.isTabValid || !isNextActive\"\n            >\n                Next\n            </button>\n            <button v-if=\"processEditorState.stepper.isApproveTab\" @click=\"handleFinish\" :disabled=\"disableFinishButton\">Finish</button>\n        </div>\n    </div>\n</template>\n<style scoped>\n\n.process-editor {\n    width: 1000px;\n    height: 616px;\n    background: white;\n    position: absolute;\n    margin-left: calc((100% - 1000px)/2);\n    margin-top: 26px;\n    border: 1px solid #D5D5D5;\n    border-radius: 4px;\n}\n</style>"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/approvalWizards/doubleApprovalWizard.vue?vue&type=script&setup=true&lang=ts":
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/approvalWizards/doubleApprovalWizard.vue?vue&type=script&setup=true&lang=ts ***!
@@ -978,6 +1138,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domain_useCase_IProcessEditorUtil__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../domain/useCase/IProcessEditorUtil */ "./src/domain/useCase/IProcessEditorUtil.ts");
 /* harmony import */ var _stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @stechquick/plateau-process-designer */ "./node_modules/@stechquick/plateau-process-designer/dist/PlateauBpmnModeler.js");
 /* harmony import */ var _stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_stechquick_plateau_process_designer__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _ProcessEditorHeader_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./ProcessEditorHeader.vue */ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue");
+/* harmony import */ var _tabs_ScreenSelectionTab_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tabs/ScreenSelectionTab.vue */ "./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue");
+
+
 
 
 
@@ -1095,7 +1259,7 @@ __webpack_require__.r(__webpack_exports__);
             }, { loading: true });
             props.callbacks.modified({ state: true });
         }
-        const __returned__ = { executor, studio, processEditorUtil, props, processDefinitionTabKey, disableFinishButton, isNextActive, processModel, processEditorState, currentModule, modelsOfModule, handleNext, handleBack, handleFinish, SINGLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.SINGLE_APPROVAL, DOUBLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.DOUBLE_APPROVAL, TRIPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.TRIPLE_APPROVAL, QUADRUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUADRUPLE_APPROVAL, QUINTUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUINTUPLE_APPROVAL, ProcessDefinitionTab: _approvalWizards_tabs_processDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], EditProcessVariablesTab: _approvalWizards_tabs_editProcessVariablesTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], SingleApprovalWizard: _approvalWizards_singleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_4__["default"], DoubleApprovalWizard: _approvalWizards_doubleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_5__["default"], TripleApprovalWizard: _approvalWizards_tripleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_6__["default"], QuadrupleApprovalWizard: _approvalWizards_quadrupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_7__["default"], QuintupleApprovalWizard: _approvalWizards_quintupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
+        const __returned__ = { executor, studio, processEditorUtil, props, processDefinitionTabKey, disableFinishButton, isNextActive, processModel, processEditorState, currentModule, modelsOfModule, handleNext, handleBack, handleFinish, SINGLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.SINGLE_APPROVAL, DOUBLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.DOUBLE_APPROVAL, TRIPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.TRIPLE_APPROVAL, QUADRUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUADRUPLE_APPROVAL, QUINTUPLE_APPROVAL: _domain_objects_editors_processEditor_constants_processTemplates__WEBPACK_IMPORTED_MODULE_1__.QUINTUPLE_APPROVAL, ProcessDefinitionTab: _approvalWizards_tabs_processDefinitionTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"], EditProcessVariablesTab: _approvalWizards_tabs_editProcessVariablesTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"], SingleApprovalWizard: _approvalWizards_singleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_4__["default"], DoubleApprovalWizard: _approvalWizards_doubleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_5__["default"], TripleApprovalWizard: _approvalWizards_tripleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_6__["default"], QuadrupleApprovalWizard: _approvalWizards_quadrupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_7__["default"], QuintupleApprovalWizard: _approvalWizards_quintupleApprovalWizard_vue__WEBPACK_IMPORTED_MODULE_8__["default"], ProcessEditorHeader: _ProcessEditorHeader_vue__WEBPACK_IMPORTED_MODULE_16__["default"], ScreenSelectionTab: _tabs_ScreenSelectionTab_vue__WEBPACK_IMPORTED_MODULE_17__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -2322,10 +2486,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2334,102 +2498,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 
-const _hoisted_1 = ["disabled"];
-const _hoisted_2 = ["disabled"];
+const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-f11e7e2c"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n);
+const _hoisted_1 = { class: "process-editor" };
+const _hoisted_2 = {
+    key: 0,
+    class: "process-editor"
+};
 const _hoisted_3 = ["disabled"];
+const _hoisted_4 = ["disabled"];
+const _hoisted_5 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [
-        ($setup.processEditorState.stepper.currentStep === 0)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProcessDefinitionTab"], {
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified,
-                "enable-finish-button": () => ($setup.disableFinishButton = false),
-                "is-next-active": $setup.isNextActive,
-                key: $setup.processDefinitionTabKey
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified", "enable-finish-button", "is-next-active"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        (!$setup.processModel.createNewBpmnFile && $setup.processEditorState.stepper.currentStep === 1)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["EditProcessVariablesTab"], {
-                key: 1,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.SINGLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SingleApprovalWizard"], {
-                key: 2,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.DOUBLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DoubleApprovalWizard"], {
-                key: 3,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.TRIPLE_APPROVAL.value && $setup.processEditorState.stepper.currentStep !== 0 && $setup.processModel.createNewBpmnFile)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TripleApprovalWizard"], {
-                key: 4,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.QUADRUPLE_APPROVAL.value &&
-            $setup.processEditorState.stepper.currentStep !== 0 &&
-            $setup.processModel.createNewBpmnFile)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["QuadrupleApprovalWizard"], {
-                key: 5,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        ($setup.processModel.processType === $setup.QUINTUPLE_APPROVAL.value &&
-            $setup.processEditorState.stepper.currentStep !== 0 &&
-            $setup.processModel.createNewBpmnFile)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["QuintupleApprovalWizard"], {
-                key: 6,
-                model: $setup.processModel,
-                "models-of-module": $setup.modelsOfModule,
-                state: $setup.processEditorState,
-                modified: $setup.props.callbacks.modified
-            }, null, 8 /* PROPS */, ["model", "models-of-module", "state", "modified"]))
-            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                style: { "margin-bottom": "5%" },
-                disabled: !$setup.processEditorState.stepper.currentStep,
-                onClick: $setup.handleBack
-            }, "Back", 8 /* PROPS */, _hoisted_1),
-            (!$setup.processEditorState.stepper.isApproveTab && !(!$setup.processModel.createNewBpmnFile && $setup.processEditorState.stepper.currentStep === 1))
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-                    key: 0,
-                    onClick: $setup.handleNext,
-                    disabled: !$setup.processEditorState.stepper.isTabValid || !$setup.isNextActive
-                }, " Next ", 8 /* PROPS */, _hoisted_2))
-                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-            ($setup.processEditorState.stepper.isApproveTab)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-                    key: 1,
-                    onClick: $setup.handleFinish,
-                    disabled: $setup.disableFinishButton
-                }, "Finish", 8 /* PROPS */, _hoisted_3))
-                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
-        ])
-    ]));
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ProcessEditorHeader"]),
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ScreenSelectionTab"])
+        ]),
+         false
+            ? (0)
+            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+    ], 64 /* STABLE_FRAGMENT */));
 }
 
 
@@ -2461,6 +2548,34 @@ function checkURLPattern(url) {
         : "URL must be valid and start with https:// ";
 }
 
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue":
+/*!*****************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ProcessEditorHeader_vue_vue_type_template_id_4b42c377_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true */ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true");
+/* harmony import */ var _ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css */ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css");
+/* harmony import */ var _home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+const script = {}
+
+;
+
+
+const __exports__ = /*#__PURE__*/(0,_home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_ProcessEditorHeader_vue_vue_type_template_id_4b42c377_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-4b42c377"],['__file',"src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
 
 /***/ }),
 
@@ -2852,20 +2967,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _processEditor_vue_vue_type_template_id_f11e7e2c_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./processEditor.vue?vue&type=template&id=f11e7e2c&ts=true */ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true");
+/* harmony import */ var _processEditor_vue_vue_type_template_id_f11e7e2c_scoped_true_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true */ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true");
 /* harmony import */ var _processEditor_vue_vue_type_script_setup_true_lang_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./processEditor.vue?vue&type=script&setup=true&lang=ts */ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=script&setup=true&lang=ts");
-/* harmony import */ var _home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css */ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css");
+/* harmony import */ var _home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_processEditor_vue_vue_type_script_setup_true_lang_ts__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_processEditor_vue_vue_type_template_id_f11e7e2c_ts_true__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"src/presentation/vue3/editors/processEditor/processEditor.vue"]])
+
+
+const __exports__ = /*#__PURE__*/(0,_home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_processEditor_vue_vue_type_script_setup_true_lang_ts__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_processEditor_vue_vue_type_template_id_f11e7e2c_scoped_true_ts_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-f11e7e2c"],['__file',"src/presentation/vue3/editors/processEditor/processEditor.vue"]])
 /* hot reload */
 if (false) {}
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue":
+/*!*********************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ScreenSelectionTab_vue_vue_type_template_id_a5dc5218__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ScreenSelectionTab.vue?vue&type=template&id=a5dc5218 */ "./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218");
+/* harmony import */ var _home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,_home_runner_work_QCloud_Shell_QCloud_Shell_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_ScreenSelectionTab_vue_vue_type_template_id_a5dc5218__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css":
+/*!*************************************************************************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css ***!
+  \*************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_ProcessEditorHeader_vue_vue_type_style_index_0_id_4b42c377_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=style&index=0&id=4b42c377&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css":
+/*!*******************************************************************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css ***!
+  \*******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_style_index_0_id_f11e7e2c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=style&index=0&id=f11e7e2c&scoped=true&lang=css");
+
 
 /***/ }),
 
@@ -3304,18 +3471,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true":
-/*!*************************************************************************************************************!*\
-  !*** ./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true ***!
-  \*************************************************************************************************************/
+/***/ "./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true":
+/*!*************************************************************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true ***!
+  \*************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_ts_loader_index_js_clonedRuleSet_2_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_template_id_f11e7e2c_ts_true__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_ts_loader_index_js_clonedRuleSet_2_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_template_id_f11e7e2c_scoped_true_ts_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_ts_loader_index_js_clonedRuleSet_2_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_template_id_f11e7e2c_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader/index.js??clonedRuleSet-2!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./processEditor.vue?vue&type=template&id=f11e7e2c&ts=true */ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&ts=true");
+/* harmony import */ var _node_modules_ts_loader_index_js_clonedRuleSet_2_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_processEditor_vue_vue_type_template_id_f11e7e2c_scoped_true_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader/index.js??clonedRuleSet-2!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true */ "./node_modules/ts-loader/index.js??clonedRuleSet-2!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./src/presentation/vue3/editors/processEditor/processEditor.vue?vue&type=template&id=f11e7e2c&scoped=true&ts=true");
 
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true":
+/*!***********************************************************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_node_modules_source_map_loader_dist_cjs_js_ProcessEditorHeader_vue_vue_type_template_id_4b42c377_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_node_modules_source_map_loader_dist_cjs_js_ProcessEditorHeader_vue_vue_type_template_id_4b42c377_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!../../../../../node_modules/source-map-loader/dist/cjs.js!./ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true");
+
+
+/***/ }),
+
+/***/ "./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218":
+/*!***************************************************************************************************************!*\
+  !*** ./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218 ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_node_modules_source_map_loader_dist_cjs_js_ScreenSelectionTab_vue_vue_type_template_id_a5dc5218__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_1_rules_9_use_0_node_modules_source_map_loader_dist_cjs_js_ScreenSelectionTab_vue_vue_type_template_id_a5dc5218__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!../../../../../../node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!../../../../../../node_modules/source-map-loader/dist/cjs.js!./ScreenSelectionTab.vue?vue&type=template&id=a5dc5218 */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/ProcessEditorHeader.vue?vue&type=template&id=4b42c377&scoped=true ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
+
+
+const _withScopeId = n => ((0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-4b42c377"),n=n(),(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(),n)
+const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", { class: "mdi mdi-auto-fix wizard-icon" }, null, -1 /* HOISTED */))
+const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "title" }, "Process Wizard", -1 /* HOISTED */))
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "step" }, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Step "),
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "count" }, "1")
+], -1 /* HOISTED */))
+
+function render(_ctx, _cache) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    _hoisted_1,
+    _hoisted_2,
+    _hoisted_3
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[1].rules[9].use[0]!./node_modules/source-map-loader/dist/cjs.js!./src/presentation/vue3/editors/processEditor/tabs/ScreenSelectionTab.vue?vue&type=template&id=a5dc5218 ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+
+function render(_ctx, _cache) {
+  return null
+}
 
 /***/ })
 

@@ -29492,6 +29492,19 @@ let JobUtilsImpl = class JobUtilsImpl {
         }
         throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_1__.createError)({ message: `There is no type to choose for export!`, type: "business", });
     }
+    getFileFullname(item) {
+        if (item.usageType != "appSettings") {
+            return `${item.name}.qjson`;
+        }
+        switch (item.name) {
+            case "Pipeline": return "pipeline.qjson";
+            case "Alert Component": return "alert.qjson";
+            case "Loading Component": return "loading.qjson";
+            case "Container Services File": return "containerServices.js";
+            case "Settings File": return "settings.yaml";
+            default: throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_1__.createError)({ message: `There is not a type of 'IExportItem.type' map!`, type: "business", });
+        }
+    }
 };
 JobUtilsImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
@@ -35503,7 +35516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.43"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.44"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -36078,7 +36091,6 @@ let InlineEditorImpl = class InlineEditorImpl {
         fStyle.position = "absolute";
         fStyle.margin = "0px";
         fStyle.border = "0px";
-        fStyle.background = "white"; // TODO: Tasarim sirasinda degisebilir.
         fStyle.overflowY = "auto"; // TODO: Tum editor divlerine ekliyor. Ileride degisebilir.
         this.detach();
         this.attachedElement = element;
