@@ -27963,6 +27963,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCases_historyUseCaseImpl__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./useCases/historyUseCaseImpl */ "./src/application/useCases/historyUseCaseImpl.ts");
 /* harmony import */ var _domain_useCase_IModelBodyHelper__WEBPACK_IMPORTED_MODULE_89__ = __webpack_require__(/*! ../domain/useCase/IModelBodyHelper */ "./src/domain/useCase/IModelBodyHelper.ts");
 /* harmony import */ var _useCases_modelBodyHelperImpl__WEBPACK_IMPORTED_MODULE_90__ = __webpack_require__(/*! ./useCases/modelBodyHelperImpl */ "./src/application/useCases/modelBodyHelperImpl.ts");
+/* harmony import */ var _domain_useCase_IJobUtils__WEBPACK_IMPORTED_MODULE_91__ = __webpack_require__(/*! ../domain/useCase/IJobUtils */ "./src/domain/useCase/IJobUtils.ts");
+/* harmony import */ var _useCases_jobUtilsImpl__WEBPACK_IMPORTED_MODULE_92__ = __webpack_require__(/*! ./useCases/jobUtilsImpl */ "./src/application/useCases/jobUtilsImpl.ts");
+
+
 
 
 
@@ -28058,6 +28062,7 @@ const appStartUp = {
     async register(container) {
         container.register(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_0__.IViewModelManager, _viewModel_viewModelManager__WEBPACK_IMPORTED_MODULE_1__.ViewModelManager);
         //useCases
+        container.register(_domain_useCase_IJobUtils__WEBPACK_IMPORTED_MODULE_91__.IJobUtils, _useCases_jobUtilsImpl__WEBPACK_IMPORTED_MODULE_92__.JobUtilsImpl);
         container.register(_domain_useCase_ICreateModule__WEBPACK_IMPORTED_MODULE_2__.ICreateModule, _useCases_createModuleImpl__WEBPACK_IMPORTED_MODULE_3__.CreateModuleImpl);
         container.register(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_7__.ICreateModel, _useCases_createModelImpl__WEBPACK_IMPORTED_MODULE_6__.CreateModelImpl);
         container.register(_domain_useCase_IGetUserDomains__WEBPACK_IMPORTED_MODULE_9__.IGetUserDomains, _useCases_getUserDomainsImpl__WEBPACK_IMPORTED_MODULE_11__.GetUserDomainsImpl);
@@ -28844,20 +28849,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FileExplorer": () => (/* binding */ FileExplorer)
 /* harmony export */ });
-/* harmony import */ var _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @stechquick/algae/lib/qCloudTemp/quickCloud */ "./node_modules/@stechquick/algae/lib/qCloudTemp/quickCloud.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
-/* harmony import */ var _common_watcher__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/watcher */ "./src/common/watcher.ts");
-/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
-/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
-/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
-/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
-/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
-/* harmony import */ var _domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/ICreateModel */ "./src/domain/useCase/ICreateModel.ts");
-/* harmony import */ var _domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IHistoryUseCase */ "./src/domain/useCase/IHistoryUseCase.ts");
-/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
-/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
-/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
-/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
+/* harmony import */ var _common_watcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/watcher */ "./src/common/watcher.ts");
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../domain/infrastructure/IQCloudApi */ "./src/domain/infrastructure/IQCloudApi.ts");
+/* harmony import */ var _domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../domain/presentation/IAsyncComponentCreator */ "./src/domain/presentation/IAsyncComponentCreator.ts");
+/* harmony import */ var _domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../domain/presentation/IDialog */ "./src/domain/presentation/IDialog.ts");
+/* harmony import */ var _domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../domain/presentation/ITreeView */ "./src/domain/presentation/ITreeView.ts");
+/* harmony import */ var _domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domain/useCase/ICreateModel */ "./src/domain/useCase/ICreateModel.ts");
+/* harmony import */ var _domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domain/useCase/IHistoryUseCase */ "./src/domain/useCase/IHistoryUseCase.ts");
+/* harmony import */ var _domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domain/useCase/IObjectUseCase */ "./src/domain/useCase/IObjectUseCase.ts");
+/* harmony import */ var _domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domain/useCase/IStudio */ "./src/domain/useCase/IStudio.ts");
+/* harmony import */ var _domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domain/useCase/IUseCaseExecutor */ "./src/domain/useCase/IUseCaseExecutor.ts");
+/* harmony import */ var _domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domain/viewModel/IViewModel */ "./src/domain/viewModel/IViewModel.ts");
+/* harmony import */ var _domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domain/viewModel/IViewModelManager */ "./src/domain/viewModel/IViewModelManager.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28882,8 +28887,10 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 let FileExplorer = class FileExplorer {
-    constructor(viewModel, executor, studio, dialog, compCreator, objectUseCase, historyUseCase) {
+    constructor(qCloudApi, viewModel, viewModelManager, executor, studio, dialog, compCreator, objectUseCase, historyUseCase) {
+        this.qCloudApi = qCloudApi;
         this.viewModel = viewModel;
+        this.viewModelManager = viewModelManager;
         this.executor = executor;
         this.studio = studio;
         this.dialog = dialog;
@@ -28893,7 +28900,7 @@ let FileExplorer = class FileExplorer {
     }
     get feTreeview() {
         if (!this._feTreeview) {
-            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
+            this._feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
         }
         return this._feTreeview;
     }
@@ -28957,14 +28964,14 @@ let FileExplorer = class FileExplorer {
                         treeItem.itemIcons = treeItem.itemIcons || [];
                         treeItem.itemIcons.push(modifiedIcon);
                     }
-                    new _common_watcher__WEBPACK_IMPORTED_MODULE_2__.Watcher(item, "checkedOut", { preventSameInstance: true }).onChange(newValue => {
+                    new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item, "checkedOut", { preventSameInstance: true }).onChange(newValue => {
                         const target = newValue ? "addItemIcon" : "removeItemIcon";
                         this.feTreeview[target](item.ID, checkoutIcon);
                     });
                     let modelWatcher;
                     const watchModifiedModel = () => {
                         modelWatcher === null || modelWatcher === void 0 ? void 0 : modelWatcher.unwatch();
-                        modelWatcher = new _common_watcher__WEBPACK_IMPORTED_MODULE_2__.Watcher(item.modified, "model", { preventSameInstance: true });
+                        modelWatcher = new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item.modified, "model", { preventSameInstance: true });
                         modelWatcher.onChange(newValue => {
                             if (treeItem.actions) {
                                 this.setActions(treeItem.actions, newValue || false);
@@ -28975,7 +28982,7 @@ let FileExplorer = class FileExplorer {
                         });
                     };
                     watchModifiedModel();
-                    new _common_watcher__WEBPACK_IMPORTED_MODULE_2__.Watcher(item, "modified", { preventSameInstance: true }).onChange((newValue, oldValue) => {
+                    new _common_watcher__WEBPACK_IMPORTED_MODULE_1__.Watcher(item, "modified", { preventSameInstance: true }).onChange((newValue, oldValue) => {
                         watchModifiedModel();
                         if (Boolean(oldValue.model) == Boolean(newValue.model)) {
                             return;
@@ -29041,46 +29048,63 @@ let FileExplorer = class FileExplorer {
     }
     createFileExplorerTreeView(rootDiv) {
         //TODO: Treeview.reset çağrılmalı. instance registration komple değişmeli.
-        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeView);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer);
+        const feTreeview = _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.resolve(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeView);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container._registry._registryMap["delete"](_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer);
         feTreeview.setup(rootDiv);
-        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_7__.ITreeViewInstances.FileExplorer, feTreeview);
+        _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.container.registerInstance(_domain_presentation_ITreeView__WEBPACK_IMPORTED_MODULE_6__.ITreeViewInstances.FileExplorer, feTreeview);
     }
-    createSettingsTreeItem(settingsItems) {
-        const settingsTreeItem = { id: "002", name: "UI Settings", orderIndex: 0, typeIcon: { icon: "" }, children: settingsItems };
-        const createSettingsModel = (createObject) => this.executor.execute(async () => {
-            let settingsModel = await this.executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_8__.ICreateModel, createObject);
+    async createSettingsModel(settingID, parentObjectId) {
+        this.executor.execute(async () => {
+            const setting = await this.qCloudApi.getTenantDefinition(settingID);
+            const modelType = setting.contentType;
+            const createObject = {
+                name: setting.name,
+                modelType,
+                modelBody: [{ key: modelType, model: setting.value }],
+                modelAdditionals: modelType == "qjson" ? { qjsonType: "qjson" } : {},
+                parentObjectId,
+                usageType: "appSettings",
+            };
+            let settingsModel = await this.executor.executeUseCase(_domain_useCase_ICreateModel__WEBPACK_IMPORTED_MODULE_7__.ICreateModel, createObject);
             await this.studio.checkout(settingsModel);
             this.studio.openItem(settingsModel);
         }, { loading: true });
+    }
+    async createSettingsTreeItem(settingsItems) {
+        const settingsTreeItem = { id: "002", name: "UI Settings", orderIndex: 0, typeIcon: { icon: "" }, children: settingsItems };
+        const appID = this.viewModel.studio.appId;
+        const uiSettings = await this.qCloudApi.getApplicationUISettings(appID);
+        const settingsIcons = { qjson: "mdi mdi-palette", yaml: "mdi mdi-cog-outline", css: "mdi mdi-cog-outline", js: "mdi mdi-cog-outline" };
+        const existingDict = this.viewModel.studio.items.reduce((prev, curItem) => {
+            if (curItem.objectType != "model" || curItem.usageType != "appSettings") {
+                return prev;
+            }
+            prev[curItem.name] = true;
+            return prev;
+        }, {});
         settingsTreeItem.actions = [{
                 type: "IActionMenuItem", name: "", icon: 'mdi mdi-plus', children: () => {
-                    const existingDict = this.viewModel.studio.items.reduce((prev, curItem) => {
-                        if (curItem.objectType != "model" || curItem.usageType != "appSettings") {
-                            return prev;
+                    const items = [];
+                    uiSettings.forEach(i => {
+                        if (existingDict[i.name]) {
+                            return;
                         }
-                        prev[curItem.name] = true;
-                        return prev;
-                    }, {});
-                    const show = (menuItem) => existingDict[menuItem.name] ? undefined : menuItem;
-                    const parentObjectId = this.viewModel.studio.appId;
-                    return [
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.alert, icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.alert, parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.pipeline, icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.pipeline, parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.loading, icon: "mdi mdi-palette", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "qjson", name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.loading, parentObjectId, usageType: "appSettings", modelAdditionals: { qjsonType: "qjson" }, modelBody: [{ key: "qjson", model: "" }] }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.settings, icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "yaml", name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.settings, parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "yaml", model: "" }] }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.contSvc, icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => createSettingsModel({ modelType: "js", name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.contSvc, parentObjectId, usageType: "appSettings", modelAdditionals: {}, modelBody: [{ key: "js", model: "" }] }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.css, icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) }),
-                        show({ name: _stechquick_algae_lib_qCloudTemp_quickCloud__WEBPACK_IMPORTED_MODULE_0__.UISettingsType.compList, icon: "mdi mdi-cog-outline", color: '#449DD1', selectCb: () => (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_4__.createError)({ message: "not implemented", type: "technical" }) }),
-                    ].filter((item) => item != undefined);
+                        items.push({
+                            name: i.name,
+                            icon: settingsIcons[i.contentType],
+                            color: '#449DD1',
+                            selectCb: async () => await this.createSettingsModel(i.ID, appID),
+                        });
+                    });
+                    return items;
                 }
             }];
         return settingsTreeItem;
     }
-    loadFileExplorer(rootDiv) {
+    async loadFileExplorer(rootDiv) {
         this.createFileExplorerTreeView(rootDiv);
         const frontItems = this.convertToTreeItems(this.viewModel.studio.items);
-        const settingsTreeItem = this.createSettingsTreeItem(frontItems.settingsItems);
+        const settingsTreeItem = await this.createSettingsTreeItem(frontItems.settingsItems);
         frontItems.treeItems.unshift(settingsTreeItem);
         this.feTreeview.addItem(frontItems.treeItems);
         // this.feTreeview.setHeader({
@@ -29094,10 +29118,10 @@ let FileExplorer = class FileExplorer {
         this.dialog.showDialog(this.compCreator.createNewItemComponent(), { closable: true, title: "Create New" + '    ' + createType, closeOnOutClick: true, height: createType == 'Module' ? '316pxpx' : '186px', width: '420px' }, { parentId, parentName, parentType, createType });
     }
     async importModel(parent) {
-        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_importModelDialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/importModelDialog.vue */ "./src/presentation/vue3/components/dialogs/importModelDialog.vue"))), { closable: true, title: "Import Model", closeOnOutClick: true, height: '430px', width: '600px' }, { parent });
+        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => __webpack_require__.e(/*! import() */ "src_presentation_vue3_components_dialogs_importModelDialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/importModelDialog.vue */ "./src/presentation/vue3/components/dialogs/importModelDialog.vue"))), { closable: true, title: "Import Model", closeOnOutClick: true, height: '430px', width: '600px' }, { parent });
     }
     checkinDailog(item) {
-        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_application_IDEInput_vue"), __webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true, title: 'Check in-' + item.name }, {});
+        this.dialog.showDialog((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(() => Promise.all(/*! import() */[__webpack_require__.e("src_presentation_vue3_components_application_IDEInput_vue"), __webpack_require__.e("src_presentation_vue3_components_dialogs_studio_savePlus_vue"), __webpack_require__.e("node_modules_vue-loader_dist_exportHelper_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../presentation/vue3/components/dialogs/studio/savePlus.vue */ "./src/presentation/vue3/components/dialogs/studio/savePlus.vue"))), { closable: true, title: 'Check in-' + item.name }, {});
     }
     async remove(module) {
         this.executor.execute(async () => {
@@ -29171,14 +29195,16 @@ let FileExplorer = class FileExplorer {
     }
 };
 FileExplorer = __decorate([
-    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.injectable)(),
-    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_13__.IViewModel)),
-    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_12__.IUseCaseExecutor)),
-    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_11__.IStudio)),
-    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_6__.IDialog)),
-    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_5__.IAsyncComponentCreator)),
-    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_10__.IObjectUseCase)),
-    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_3__.inject)(_domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_9__.IHistoryUseCase))
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.injectable)(),
+    __param(0, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_infrastructure_IQCloudApi__WEBPACK_IMPORTED_MODULE_3__.IQCloudApi)),
+    __param(1, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModel__WEBPACK_IMPORTED_MODULE_12__.IViewModel)),
+    __param(2, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_viewModel_IViewModelManager__WEBPACK_IMPORTED_MODULE_13__.IViewModelManager)),
+    __param(3, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IUseCaseExecutor__WEBPACK_IMPORTED_MODULE_11__.IUseCaseExecutor)),
+    __param(4, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IStudio__WEBPACK_IMPORTED_MODULE_10__.IStudio)),
+    __param(5, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IDialog__WEBPACK_IMPORTED_MODULE_5__.IDialog)),
+    __param(6, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_presentation_IAsyncComponentCreator__WEBPACK_IMPORTED_MODULE_4__.IAsyncComponentCreator)),
+    __param(7, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IObjectUseCase__WEBPACK_IMPORTED_MODULE_9__.IObjectUseCase)),
+    __param(8, (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_2__.inject)(_domain_useCase_IHistoryUseCase__WEBPACK_IMPORTED_MODULE_8__.IHistoryUseCase))
 ], FileExplorer);
 
 
@@ -29416,6 +29442,60 @@ let InitStudioImpl = class InitStudioImpl {
 InitStudioImpl = __decorate([
     (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
 ], InitStudioImpl);
+
+
+
+/***/ }),
+
+/***/ "./src/application/useCases/jobUtilsImpl.ts":
+/*!**************************************************!*\
+  !*** ./src/application/useCases/jobUtilsImpl.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JobUtilsImpl": () => (/* binding */ JobUtilsImpl)
+/* harmony export */ });
+/* harmony import */ var _domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domain/core/diContainer */ "./src/domain/core/diContainer.ts");
+/* harmony import */ var _domain_model_shellError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domain/model/shellError */ "./src/domain/model/shellError.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+let JobUtilsImpl = class JobUtilsImpl {
+    settingTypeMapper(fileName) {
+        switch (fileName) {
+            case "Pipeline": return "pipeline_qjson";
+            case "Alert Component": return "alert_qjson";
+            case "Loading Component": return "loading_qjson";
+            case "Container Services File": return "containerServices_js";
+            case "Settings File": return "settings_yaml";
+            default: throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_1__.createError)({ message: `There is not a type of 'IExportItem.type' map!`, type: "business", });
+        }
+    }
+    getExportItemType(item) {
+        if (item.usageType == "appSettings") {
+            return this.settingTypeMapper(item.name);
+        }
+        switch (item.type) {
+            case "bpmn": return "bpmn";
+            case "process": return "process";
+            case "entityDesigner": return "entityDesigner";
+            case "qjson": return "qjsons";
+            case "namedComponent": return "namedComps";
+        }
+        throw (0,_domain_model_shellError__WEBPACK_IMPORTED_MODULE_1__.createError)({ message: `There is no type to choose for export!`, type: "business", });
+    }
+};
+JobUtilsImpl = __decorate([
+    (0,_domain_core_diContainer__WEBPACK_IMPORTED_MODULE_0__.injectable)()
+], JobUtilsImpl);
 
 
 
@@ -35052,6 +35132,22 @@ const IInitStudio = Symbol.for("IInitStudio");
 
 /***/ }),
 
+/***/ "./src/domain/useCase/IJobUtils.ts":
+/*!*****************************************!*\
+  !*** ./src/domain/useCase/IJobUtils.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IJobUtils": () => (/* binding */ IJobUtils)
+/* harmony export */ });
+const IJobUtils = Symbol.for("IJobUtils");
+
+
+/***/ }),
+
 /***/ "./src/domain/useCase/IListApplications.ts":
 /*!*************************************************!*\
   !*** ./src/domain/useCase/IListApplications.ts ***!
@@ -35407,7 +35503,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = _common_urlHelper__WEBPACK_IMPORTED_MODULE_1__.UrlHelper.gatherQueryString().environment || "";
 const presentationLayer /* | "react" | "vue" */ = "vue3";
-const version = "0.0.42"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
+const version = "0.0.43"; //DO NOT MODIFY!! THIS LINE IS AUTOMATED!!!
 const hostName = window.location.hostname;
 const startupEnvironment = environment || Object.keys(_appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings).find(envName => {
     return _appsetting__WEBPACK_IMPORTED_MODULE_0__.appSettings[envName].hostnames.find(name => hostName.endsWith(name));
@@ -36619,6 +36715,14 @@ let QCloudApiImpl = class QCloudApiImpl {
     }
     async detachModuleFromApplication(appID, moduleID) {
         await this.request("/detachmodulefromapplication", { appID, moduleID });
+    }
+    async getApplicationUISettings(applicationID) {
+        const settings = await this.request("/getappsettings", { applicationID });
+        return settings;
+    }
+    async getTenantDefinition(ID) {
+        const definition = await this.request("/gettenantdefinition", { ID });
+        return definition;
     }
 };
 QCloudApiImpl = __decorate([
