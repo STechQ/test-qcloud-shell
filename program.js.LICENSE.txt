@@ -1,0 +1,127 @@
+/*!
+  * Bootstrap v5.1.3 (https://getbootstrap.com/)
+  * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+
+/*! *****************************************************************************
+Copyright (C) Microsoft. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+/*! ../../../common/shrimp/helpers/frameCommunicator */
+
+/*! ../../interfaces/IPromiseData */
+
+/*! ../cryptoHelper */
+
+/*! ../eventBus */
+
+/*! ../interfaces/ComponentInterfaces/ILogger */
+
+/*! ./arrayHelper */
+
+/*! ./bulkManager */
+
+/*! ./catcher */
+
+/*! ./hook */
+
+/*! ./logger */
+
+/*! ./singularizer */
+
+/*! ./stringHelper */
+
+/*! ./webSocket/structuredSocket */
+
+/*! ./windowHelper */
+
+/*! no static exports found */
+
+/*!*********************************!*\
+  !*** ./src/PlateauMessaging.ts ***!
+  \*********************************/
+
+/*!*******************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/hook.ts ***!
+  \*******************************************************************/
+
+/*!*********************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/logger.ts ***!
+  \*********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/catcher.ts ***!
+  \**********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/eventBus.ts ***!
+  \***********************************************************************/
+
+/*!**************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/arrayHelper.ts ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/bulkManager.ts ***!
+  \**************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/cryptoHelper.ts ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/singularizer.ts ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/stringHelper.ts ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/windowHelper.ts ***!
+  \***************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/interfaces/IPromiseData.ts ***!
+  \******************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/frameCommunicator.ts ***!
+  \********************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/helpers/webSocket/structuredSocket.ts ***!
+  \*****************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** /home/runner/work/quick/quick/common/shrimp/interfaces/ComponentInterfaces/ILogger.ts ***!
+  \*********************************************************************************************/
+
+//!!!DO_NOT_DELETE:THIS_LINE_FOR_AUTO_GENERATION:ADD_USECASE!!!
