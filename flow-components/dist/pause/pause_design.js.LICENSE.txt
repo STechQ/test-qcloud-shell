@@ -1,0 +1,1 @@
+/*! For license information please see pause_design.js.LICENSE.txt */
