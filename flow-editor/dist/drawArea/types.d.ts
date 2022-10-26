@@ -1,9 +1,9 @@
 import { IFlowState } from "../flowInterfaces/editor/IFlowEditorState";
-import { IStepStyle } from "../flowInterfaces/editor/IStepOptions";
+import { IInputInfo, IStepStyle } from "../flowInterfaces/editor/IStepOptions";
 import { IPoint } from "../flowInterfaces/editor/shape/IPoint";
 export interface IFlowStepOptions {
     outputs: Array<string>;
-    inputs: Array<string>;
+    inputs: Array<IInputInfo>;
     style?: IStepStyle;
 }
 export interface IFlowStepExport {

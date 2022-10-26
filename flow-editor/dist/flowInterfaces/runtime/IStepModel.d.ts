@@ -1,3 +1,4 @@
+import { IExpressionData } from "./IExpression";
 export interface IStepFrom {
     ID: string;
     outputName: string;
@@ -6,10 +7,6 @@ export interface IStepTo {
     ID: string;
     inputName: string;
     connectionIndex: number;
-}
-export interface IExpressionData {
-    type: "string" | "number" | "boolean" | "msg" | "wholeMsg";
-    value: string;
 }
 export interface IPropObject {
     [key: string]: PropValue;

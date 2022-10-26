@@ -1,9 +1,14 @@
 /// <reference types="react" />
-import { IExpressionData, IPropObject } from "../runtime/IStepModel";
+import { IExpressionData } from "../runtime/IExpression";
+import { IPropObject } from "../runtime/IStepModel";
+export interface IExpressionInputOptions {
+    width?: string;
+}
 export interface IExpressionOptions {
     types: Array<IExpressionData["type"]>;
     expression?: IExpressionData;
-    onChange?: (value: IExpressionData) => void;
+    onChange?: (value: IExpressionData, iValid: boolean) => void;
+    inputOptions?: IExpressionInputOptions;
 }
 export interface IEditSectionInput<PropType = IPropObject> {
     propValues: PropType;
@@ -30,11 +35,15 @@ export interface IStepStyle {
     stroke?: string;
 }
 export declare type ReactEditSection = () => JSX.Element;
+export interface IInputInfo {
+    name: string;
+    color?: string;
+}
 export interface IStepOptions<PropType = IPropObject> {
     name: string;
     version: string;
     outputs: Array<string> | ((props: PropType | undefined) => Array<string>);
-    inputs: Array<string>;
+    inputs: Array<IInputInfo> | (() => Array<IInputInfo>);
     autoStarts?: boolean;
     style?: IStepStyle;
     editSection?: (options: IEditSectionInput<PropType>) => (ReactEditSection | HTMLElement);

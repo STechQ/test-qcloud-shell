@@ -9,6 +9,7 @@ export declare class StepRepoImpl implements IStepRepo {
     constructor(container: DependencyContainer, viewModel?: IViewModel);
     registerStep(step: IStepOptions | string, isDefault: boolean): IStepOptions<import("../../../../flowInterfaces/runtime/IStepModel").IPropObject>;
     getStep(stepName: string, version: string): IStepOptions;
+    resolveStepInput(step: IStepOptions): import("../../../../flowInterfaces/editor/IStepOptions").IInputInfo[];
     resolveStepOutput(step: IStepOptions, props: IStepModel["P"]): string[];
     getDefaultSteps(): IStepOptions<import("../../../../flowInterfaces/runtime/IStepModel").IPropObject>[];
     isAutoStart(stepName: string, version: string): boolean;

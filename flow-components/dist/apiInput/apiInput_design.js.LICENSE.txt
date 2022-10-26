@@ -1,0 +1,1 @@
+/*! For license information please see apiInput_design.js.LICENSE.txt */
