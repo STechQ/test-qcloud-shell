@@ -7,6 +7,9 @@ export interface ICommonState<T> {
     set(key: string, value: T, secret: string): void;
     get(key: string, secret: string): T | undefined;
 }
+export interface IStateBaseType {
+    destruct: () => void;
+}
 export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, StateType = StateValues> {
     entryInfo: {
         /**
@@ -27,10 +30,10 @@ export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, S
     flow: {
         next: (output?: OutputOptions) => void;
         stop: () => void;
-        evalGet: (expression: IExpressionData, getter: ExpressionGetter) => any;
-        evalSet: (expression: ISetExpressionData, value: any, setter: ExpressionSetter) => any;
+        evalGet: (expression: IExpressionData, getter: ExpressionGetter) => ReturnType<ExpressionGetter>;
+        evalSet: (expression: ISetExpressionData, value: any, setter: ExpressionSetter) => void;
         getServer: () => IPlatformServerAdaptor | undefined;
-        getCommonState: <CommonStateType = any>() => ICommonState<CommonStateType>;
+        getCommonState: <CommonStateType extends IStateBaseType = IStateBaseType>() => ICommonState<CommonStateType>;
     };
     state: {
         readonly values: StateType;

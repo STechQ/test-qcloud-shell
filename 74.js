@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkqcloud_shell=self.webpackChunkqcloud_shell||[]).push([[74],{5074:(e,l,s)=>{s.r(l),s.d(l,{default:()=>c});var u=s(2068),a=s(5078);const c=(0,u.aZ)({__name:"livepreview",setup:e=>((0,a.A)({noAuth:!0}),console.log("calisti"),(e,l)=>" Live Preview Page ")})}}]);
-//# sourceMappingURL=74.js.map

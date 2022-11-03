@@ -1,4 +1,5 @@
 import { IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
+import { IEntity } from "../../../../flowInterfaces/runtime/IEntity";
 import { DependencyContainer } from "./diContainer";
 export interface IStepRequireInfo {
     stepName: string;
@@ -19,6 +20,10 @@ export interface IInitOptions {
         paste?: boolean;
     }) => void;
     onModifiedStatus?: (status: IModifiedStatus) => void;
+    entity?: {
+        onListRequire: () => Promise<Array<string>> | Array<string>;
+        onRequire: (name: string) => Promise<IEntity> | IEntity;
+    };
 }
 export interface IStartUp {
     register(container: DependencyContainer, initOptions: IInitOptions): void | Promise<void>;

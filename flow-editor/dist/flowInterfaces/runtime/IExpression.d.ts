@@ -2,13 +2,15 @@ import { RuntimeMessage } from "./StepRuntime";
 export interface IExpressionContext {
     msg: RuntimeMessage;
 }
-export declare type ExpressionGetter = (expression: IExpressionData, context: IExpressionContext) => string | number | boolean | RuntimeMessage;
-export declare type ExpressionSetter = (expression: ISetExpressionData, value: any, context: IExpressionContext) => RuntimeMessage;
+declare type ExpressionGetterReturnType = string | number | boolean | RuntimeMessage | undefined;
+export declare type ExpressionGetter = (expression: IExpressionData, context: IExpressionContext) => Array<ExpressionGetterReturnType> | ExpressionGetterReturnType;
+export declare type ExpressionSetter = (expression: ISetExpressionData, value: any, context: IExpressionContext) => void;
 export interface ISetExpressionData extends IExpressionData {
     type: "msg";
 }
 export interface IExpressionData {
-    type: "string" | "number" | "boolean" | "msg" | "wholeMsg";
+    type: "string" | "number" | "boolean" | "msg" | "wholeMsg" | "notSet";
     value: string;
 }
+export {};
 //# sourceMappingURL=IExpression.d.ts.map

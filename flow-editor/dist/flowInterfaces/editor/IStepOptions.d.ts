@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { IExpressionData } from "../runtime/IExpression";
 import { IPropObject } from "../runtime/IStepModel";
+import { IEntity } from "../runtime/IEntity";
 export interface IExpressionInputOptions {
     width?: string;
 }
@@ -15,6 +16,11 @@ export interface IEditSectionInput<PropType = IPropObject> {
     callbacks: {
         setProp: <TName extends keyof PropType & string>(name: TName, value: PropType[TName]) => void;
         setOutputs: (outputs: Array<string>) => void;
+        entity?: {
+            getList: () => Promise<Array<string>> | Array<string>;
+            get: (name: string) => Promise<IEntity> | IEntity;
+        };
+        loading: (show: boolean) => void;
     };
     react: {
         prop: {
