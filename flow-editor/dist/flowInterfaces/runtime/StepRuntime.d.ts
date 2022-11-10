@@ -1,6 +1,7 @@
 import { ExpressionGetter, ExpressionSetter, IExpressionData, ISetExpressionData } from "./IExpression";
-import { IPlatformServerAdaptor } from "./IPlatformServerAdaptor";
 import { IPropObject } from "./IStepModel";
+import { IPlatformClientAdaptor } from "./platform/IPlatformClientAdaptor";
+import { IPlatformServerAdaptor } from "./platform/IPlatformServerAdaptor";
 export declare type RuntimeMessage = Record<string, any>;
 export declare type StateValues = Record<string, any>;
 export interface ICommonState<T> {
@@ -33,6 +34,7 @@ export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, S
         evalGet: (expression: IExpressionData, getter: ExpressionGetter) => ReturnType<ExpressionGetter>;
         evalSet: (expression: ISetExpressionData, value: any, setter: ExpressionSetter) => void;
         getServer: () => IPlatformServerAdaptor | undefined;
+        getClient: () => IPlatformClientAdaptor | undefined;
         getCommonState: <CommonStateType extends IStateBaseType = IStateBaseType>() => ICommonState<CommonStateType>;
     };
     state: {

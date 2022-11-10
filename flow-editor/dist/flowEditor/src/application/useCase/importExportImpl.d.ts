@@ -24,5 +24,6 @@ export declare class ImportExportImpl implements IImportExport {
     private exportEditorModel;
     private exportDesignModel;
     private exportRuntimeModel;
+    private deproxify;
 }
 //# sourceMappingURL=importExportImpl.d.ts.map

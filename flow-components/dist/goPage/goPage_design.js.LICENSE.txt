@@ -1,0 +1,1 @@
+/*! For license information please see goPage_design.js.LICENSE.txt */

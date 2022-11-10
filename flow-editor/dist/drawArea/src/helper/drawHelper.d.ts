@@ -12,7 +12,7 @@ export declare type DeleteCircleHandle = {
     onMouseDown: () => void;
 };
 export declare class DrawHelper {
-    static GetRenderer(shape: Shape, cb: (renderer: ITwoRenderer) => void): void;
+    static GetRenderer(shape: Shape, cb: (renderer: ITwoRenderer) => void, counter?: number): void;
     static CreateDeleteCircle(point: IPoint, onMouseDown: () => void): DeleteCircleHandle;
     static RemoveDeleteCircle(handle: DeleteCircleHandle): void;
 }

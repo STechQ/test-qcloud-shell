@@ -6,7 +6,7 @@ declare type ExpressionGetterReturnType = string | number | boolean | RuntimeMes
 export declare type ExpressionGetter = (expression: IExpressionData, context: IExpressionContext) => Array<ExpressionGetterReturnType> | ExpressionGetterReturnType;
 export declare type ExpressionSetter = (expression: ISetExpressionData, value: any, context: IExpressionContext) => void;
 export interface ISetExpressionData extends IExpressionData {
-    type: "msg";
+    type: "msg" | "wholeMsg";
 }
 export interface IExpressionData {
     type: "string" | "number" | "boolean" | "msg" | "wholeMsg" | "notSet";
