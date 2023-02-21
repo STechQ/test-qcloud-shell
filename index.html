@@ -24,25 +24,25 @@
 <body>
   <div id="app"></div>
   <script>
+    var msal = false;
+
     var basePaths = {
       "localhost": "/",
       "127.0.0.1": "/",
       "stechq.github.io": "/test-qcloud-shell/",
       "studio.onplateau.com": "/"
-    }
+    };
 
-    function getBasePath() {
-      var url = new URL(window.location.href);
-      const path = basePaths[url.hostname];
-      return path;
-    }
-
-    var basePath = getBasePath();
-    var script = document.createElement("script");
-    script.src = basePath + "program.js";
-    document.body.appendChild(script);
+    var includeJS = (path) => {
+      var script = document.createElement("script");
+      script.src = path;
+      document.body.appendChild(script);
+    };
+    var basePath = basePaths[new URL(window.location.href).hostname];
+    var ssoPath = basePath + "sso.js";
+    var programPath = basePath + "program.js";
+    includeJS(msal ? ssoPath : programPath);
   </script>
-  <!-- <script src="program.js"></script> -->
 </body>
 
 </html>
