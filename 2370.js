@@ -1,2 +1,2 @@
-"use strict";(self.webpackChunkqcloud_shell=self.webpackChunkqcloud_shell||[]).push([[2370],{12370:(e,l,u)=>{u.r(l),u.d(l,{default:()=>c});const s={},c=(0,u(51419).Z)(s,[["render",function(e,l){return" 404 page "}]])}}]);
+"use strict";(this.webpackChunkqcloud_shell=this.webpackChunkqcloud_shell||[]).push([[2370],{12370:(e,u,s)=>{s.r(u),s.d(u,{default:()=>c});const t={},c=(0,s(51419).Z)(t,[["render",function(e,u){return" 404 page "}]])}}]);
 //# sourceMappingURL=2370.js.map
