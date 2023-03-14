@@ -1,2 +1,0 @@
-"use strict";(this.webpackChunkqcloud_shell=this.webpackChunkqcloud_shell||[]).push([[4790],{4790:(e,s,t)=>{t.r(s),t.d(s,{default:()=>l});var u=t(2068),a=t(3734),h=t(5078);const l=(0,u.aZ)({__name:"settings",setup:e=>(a.nC.resolve(h.v5).getRouteParams(),(e,s)=>" hebe ")})}}]);
-//# sourceMappingURL=4790.js.map
