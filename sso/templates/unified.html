@@ -21,7 +21,7 @@
             display: grid;
             width: 772px;
             position: absolute;
-            padding: 146px 146px 0;
+            padding: 80px 146px 0;
             right: 0;
             background: #FFFFFF;
             height: 100vh;
@@ -173,6 +173,28 @@
             width: calc(100% - 772px);
             height: 100%;
             display:none;
+        }
+        #studioauth_errorPass,
+        #studioauth_emailVerification_error,
+        #studioauth_errorEmail,
+        #studioauth_errorVerificationCode,
+        #studioauth_errorPass2,
+        #studioauth_emailVerification_error,
+        #studioauth_claimVerification_error,
+        #studioauth_emailVerificationControl_success_message,
+        #emailVerificationControl_error_message,
+        #claimVerificationServerError,
+        #emailVerificationControl_success_message,
+        #studioauth_errorPage {
+            border: 1px solid #E3E3E3;
+            box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 10px 12px;
+            /* position: absolute; */
+            /* z-index: 2; */
+            margin: 10px auto;
+            color: red;
+            font-weight: 500;
         }
         @media (max-width: 1280px){
             .login-background-1 {
@@ -1005,7 +1027,7 @@
                         </div>
                     </div>
                 </form>
-                <div style="margin-top: 102px">
+                <div style="margin-top: 50px">
                     <div style="color:#A1A1A1; font-size:18px; text-align: center;">Don't have an account?</div>
                     <div style="margin: 20px 0">
                       <div>
@@ -1025,7 +1047,7 @@
       const divs = {
         error: {
           page: get("studioauth_errorPage"),
-          email: get("studioauth_errorEmail"),
+          // email: get("studioauth_errorEmail"),
           pass: get("studioauth_errorPass"),
         },
         form: {

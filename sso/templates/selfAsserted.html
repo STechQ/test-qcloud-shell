@@ -21,7 +21,7 @@
             display: grid;
             width: 772px;
             position: absolute;
-            padding: 146px 146px 0;
+            padding: 80px 146px 0;
             right: 0;
             background: #FFFFFF;
             height: 100vh;
@@ -194,6 +194,27 @@
         }
         button:focus-visible {
           outline: none;
+        }
+        #studioauth_errorPass,
+        #studioauth_emailVerification_error,
+        #studioauth_errorEmail,
+        #studioauth_errorVerificationCode,
+        #studioauth_errorPass2,
+        #studioauth_emailVerification_error,
+        #studioauth_claimVerification_error,
+        #studioauth_emailVerificationControl_success_message,
+        #emailVerificationControl_error_message,
+        #claimVerificationServerError,
+        #emailVerificationControl_success_message {
+            /* border: 1px solid #E3E3E3; */
+            /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2); */
+            border-radius: 4px;
+            /* padding: 10px 12px; */
+            /* position: absolute; */
+            /* z-index: 2; */
+            margin: 10px auto;
+            color: red;
+            font-weight: 500;
         }
         @media (max-width: 1280px){
             .login-background-1 {
@@ -1018,7 +1039,7 @@
                             <button onclick="sendVerificationCode()" class="next-step-button">NEXT</button>
                         </div>
                     </form>
-                    <div class="bottom-content" style="margin-top: 200px">
+                    <div class="bottom-content" style="margin-top: 148px">
                         <div style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">Already have an account?</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
@@ -1032,12 +1053,12 @@
                         <div id="studioauth_emailVerification_error" style="display: none;"></div>
                         <div id="studioauth_errorVerificationCode"></div>
                         <div class="input-group">
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
-                            <input class="sent-code" type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)" style="margin-right: 0"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)"/>
+                            <input class="sent-code" required type="number" maxlength="1" min="0" max="9" oninput="changeInputFocus(event)" onkeydown="handleBackspace(event)" style="margin-right: 0"/>
                         </div>
                         <div class="step-bars">
                             <div class="step-bar"></div>           
@@ -1049,7 +1070,7 @@
                             <button onclick="verifyCode()" class="next-step-button" style="width: 48%;">NEXT</button>
                         </div>
                     </form>
-                    <div class="bottom-content" style="margin-top: 162px"> 
+                    <div class="bottom-content" style="margin-top: 110px"> 
                         <div style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">Already have an account?</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
@@ -1087,7 +1108,7 @@
                             <button onclick="finish()" class="next-step-button" style="width: 48%;">FINISH</button>
                         </div>
                     </form> 
-                    <div class="bottom-content" style="margin-top: 106px">
+                    <div class="bottom-content" style="margin-top: 54px">
                         <div style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">Already have an account?</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
@@ -1182,8 +1203,8 @@
         const divs = {
           error: {
             
-            email: get("studioauth_errorEmail"),
-            emailVerificationCode: get("studioauth_errorVerificationCode"),
+            // email: get("studioauth_errorEmail"),
+            // emailVerificationCode: get("studioauth_errorVerificationCode"),
             pass: get("studioauth_errorPass"),
             pass2: get("studioauth_errorPass2"),
 
@@ -1245,6 +1266,14 @@
         observe(divs.form.ms.button_changeMail, undefined, (visible) => visible ? goStep(2) : undefined);
 
         function observeErrors(){
+          let errorIDs = ["studioauth_emailVerification_error", "studioauth_errorEmail", "studioauth_errorVerificationCode", "studioauth_emailVerification_error", "studioauth_claimVerification_error", "studioauth_emailVerificationControl_success_message", "emailVerificationControl_error_message", "claimVerificationServerError", "emailVerificationControl_success_message", "studioauth_requiredFieldMissing"]
+          errorIDs.forEach(element => {
+            if(document.getElementById(element) && document.getElementById(element).innerHTML != '') {
+              document.getElementById(element).style.border = "1px solid #E3E3E3";
+              document.getElementById(element).style.boxShadow = "1px 2px 4px rgba(0, 0, 0, 0.2)";
+              document.getElementById(element).style.padding = "10px 12px";
+            } 
+          })
           const errorObserver = new MutationObserver((mutations) => {
             mutations.forEach(mutationRecord => {
               const target = mutationRecord.target;
