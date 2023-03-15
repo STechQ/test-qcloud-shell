@@ -132,6 +132,9 @@
             border: 2px solid #151233;
             border-radius: 10px;
             padding: 15px;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
         }
         .previous-step-button:hover{
             color:#2F3160;
@@ -1059,7 +1062,7 @@
                             <div class="step-bar" style="background-color: #D5D5D5"></div>           
                         </div>
                         <div style="display:flex">
-                            <button onclick="goStep(0)" class="previous-step-button" style="width: 48%;margin-right: 19px;">PREVIOUS</button>
+                            <div onclick="goStep(0)" class="previous-step-button" style="width: 48%;margin-right: 19px;">PREVIOUS</div>
                             <button onclick="verifyCode()" class="next-step-button" style="width: 48%;">NEXT</button>
                         </div>
                     </form>
@@ -1081,13 +1084,13 @@
                           <div class="input-group mb-4">
                             <span class="input-style" id="basic-addon1"><i class="mdi mdi-lock-outline mdi-24px"></i></span>
                             <input  type="password" placeholder="Password" class='form-control' id='studioauth_loginPassword' />
-                            <button class="input-style eyeButton" onclick="passwordVisible('studioauth_loginPassword')" style="color: #757575"><i class="mdi mdi-eye mdi-24px eye"></i></button>
+                            <div class="input-style eyeButton" style="color: #757575; cursor: pointer;"><i class="mdi mdi-eye mdi-24px eye" onclick="passwordVisible('studioauth_loginPassword', event)"></i></div>
                           </div>
                           <div id="studioauth_errorPass2"></div>
                           <div class="input-group">
                             <span class="input-style" id="basic-addon1"><i class="mdi mdi-lock-outline mdi-24px"></i></span>
                             <input  type="password" placeholder="Password again" class='form-control' id='studioauth_loginPassword2' />
-                            <button class="input-style eyeButton" onclick="passwordVisible('studioauth_loginPassword2')" style="color: #757575"><i class="mdi mdi-eye mdi-24px eye"></i></button>
+                            <div class="input-style eyeButton" style="color: #757575; cursor: pointer;"><i class="mdi mdi-eye mdi-24px eye" onclick="passwordVisible('studioauth_loginPassword2',event)"></i></div>
                           </div>
                         </div>
                         
@@ -1097,7 +1100,7 @@
                             <div class="step-bar"></div>           
                         </div>
                         <div style="display:flex">
-                            <button onclick="goStep(0)" class="previous-step-button" style="width: 48%;margin-right: 19px;">PREVIOUS</button>
+                            <div onclick="goStep(0)" class="previous-step-button" style="width: 48%;margin-right: 19px;">PREVIOUS</div>
                             <button onclick="finish()" class="next-step-button" style="width: 48%;">FINISH</button>
                         </div>
                     </form> 
@@ -1144,12 +1147,20 @@
             input.value = paste[index];
           })
         }
-        function passwordVisible (elementId) {
+        function passwordVisible (elementId, event) {
           if(document.getElementById(elementId).type == "password") {
             document.getElementById(elementId).type = "text";
           }
           else {
             document.getElementById(elementId).type = "password";
+          }
+          if(event.srcElement.classList.contains("mdi-eye")) {
+            event.srcElement.classList.remove("mdi-eye");
+            event.srcElement.classList.add("mdi-eye-off");
+          }
+          else if(event.srcElement.classList.contains("mdi-eye-off")) {
+            event.srcElement.classList.remove("mdi-eye-off");
+            event.srcElement.classList.add("mdi-eye");
           }
         }
 
@@ -1259,14 +1270,6 @@
         observe(divs.form.ms.button_changeMail, undefined, (visible) => visible ? goStep(2) : undefined);
 
         function observeErrors(){
-          let errorIDs = ["studioauth_emailVerification_error", "studioauth_errorEmail", "studioauth_errorVerificationCode", "studioauth_emailVerification_error", "studioauth_claimVerification_error", "studioauth_emailVerificationControl_success_message", "emailVerificationControl_error_message", "claimVerificationServerError", "emailVerificationControl_success_message", "studioauth_requiredFieldMissing"]
-          errorIDs.forEach(element => {
-            if(document.getElementById(element) && document.getElementById(element).innerHTML != '') {
-              document.getElementById(element).style.border = "1px solid #E3E3E3";
-              document.getElementById(element).style.boxShadow = "1px 2px 4px rgba(0, 0, 0, 0.2)";
-              document.getElementById(element).style.padding = "10px 12px";
-            } 
-          })
           const errorObserver = new MutationObserver((mutations) => {
             mutations.forEach(mutationRecord => {
               const target = mutationRecord.target;

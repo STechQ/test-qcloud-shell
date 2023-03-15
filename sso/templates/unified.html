@@ -1009,7 +1009,7 @@
                     <div class="input-group mb-4">
                         <span class="input-style" id="studioauth_basic-addon2"><i class="mdi mdi-lock-outline mdi-24px"></i></span>
                         <input v-model="password" type="password" placeholder="Password" class='form-control' id='studioauth_loginPassword' />
-                        <button class="input-style eyeButton" onclick="passwordVisible('studioauth_loginPassword')" style="color: #757575"><i class="mdi mdi-eye mdi-24px eye"></i></button>
+                        <div class="input-style eyeButton" style="color: #757575; cursor: pointer;"><i class="mdi mdi-eye mdi-24px eye" onclick="passwordVisible('studioauth_loginPassword', event)"></i></div>
                     </div>
                     <div class="forgot-password">
                         <a class="forgot-password-text" href="#" onclick="forgotPassword()">Forgot Password?</a>
@@ -1059,12 +1059,20 @@
           forgotPassword: get("forgotPassword"),
         }
       }
-      function passwordVisible (elementId) {
+      function passwordVisible (elementId, event) {
         if(document.getElementById(elementId).type == "password") {
           document.getElementById(elementId).type = "text";
         }
         else {
           document.getElementById(elementId).type = "password";
+        }
+        if(event.srcElement.classList.contains("mdi-eye")) {
+          event.srcElement.classList.remove("mdi-eye");
+          event.srcElement.classList.add("mdi-eye-off");
+        }
+        else if(event.srcElement.classList.contains("mdi-eye-off")) {
+          event.srcElement.classList.remove("mdi-eye-off");
+          event.srcElement.classList.add("mdi-eye");
         }
       }
       function init(){
