@@ -357,7 +357,7 @@
         <path d="M661.065 338.369C661.1 345.13 662.098 351.852 664.029 358.332C664.626 360.338 667.76 359.447 667.161 357.435C665.31 351.236 664.355 344.804 664.325 338.335C664.304 337.915 664.121 337.519 663.814 337.23C663.507 336.941 663.101 336.783 662.68 336.787C662.258 336.791 661.855 336.958 661.554 337.253C661.253 337.548 661.078 337.947 661.066 338.368L661.065 338.369Z" fill="black"/>
         </svg>
         <div class="form-wrap">
-            <div class="form-content">
+            <div class="form-content studioauth-translate-children">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276.004" height="48.501" viewBox="0 0 276.004 48.501" class="form-logo">
                   <defs>
                     <clipPath id="clip-path">
@@ -394,12 +394,21 @@
                             <div class="step-bar" style="background-color: #D5D5D5;margin: 0 10px"></div>           
                             <div class="step-bar" style="background-color: #D5D5D5"></div>           
                         </div>
+                        <div class="mb-4" style="display: none;">
+                          <div>
+                            Language:
+                            <select id="studioauth_langSelection" onchange="langChange(this.value)">
+                              <option value="en">English</option>
+                              <option value="tr">Turkish</option>
+                            </select>
+                          </div>
+                        </div>
                         <div>
                             <button onclick="sendVerificationCode()" class="next-step-button">NEXT</button>
                         </div>
                     </form>
                     <div class="bottom-content" style="margin-top: 148px">
-                        <div style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">Already have an account?</div>
+                        <div class="template-section-text" style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">${section-info-backtologin}</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
                 </div>
@@ -430,7 +439,7 @@
                         </div>
                     </form>
                     <div class="bottom-content" style="margin-top: 110px"> 
-                        <div style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">Already have an account?</div>
+                        <div class="template-section-text" style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">${section-info-backtologin}</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
                 </div>
@@ -490,12 +499,56 @@
 
 
 
-                <div id="api" role="main" style="display: none;">
-                </div>
             </div>
+            <div id="api" role="main" style="display: none;"></div>
         </div>
      </div>
-     <script language="javascript">
+     <script>
+        //our events
+        var baseObject = {
+          "studioauth.b2clogin.com": {envName: "local"},
+          "authstudio.b2clogin.com": {envName: "prod"},
+        } [new URL(window.location.href).hostname];
+        let currentStep = -1;
+        const queryString = gatherQueryString();
+        const isForgotPassword = queryString.claimsexchange == "ForgotPassword";
+        const email = queryString.email;
+        const get = name => document.getElementById(name);
+        const query = query => document.querySelector(query);
+        const queryAll = query => document.querySelectorAll(query);
+        function goStep(step) {
+            if (currentStep == step){return;}
+            templates();
+            switch(step){
+              case 0:
+                email && (divs.form.studio.text_email.value = email);
+                document.getElementById("email-step").style.display = "block";
+                document.getElementById("code-step").style.display = "none";
+                document.getElementById("password-step").style.display = "none";
+                break;
+              case 1:
+                Array.from(divs.form.studio.text_emailVerificationCodes).map(node => node.value = "");
+                Object.keys(divs.error).forEach(key => divs.error[key].textContent = "");
+                document.getElementById("email-step").style.display = "none";
+                document.getElementById("code-step").style.display = "block";
+                document.getElementById("password-step").style.display = "none";
+                document.getElementsByClassName("sent-code")[0].focus();
+                break;
+              case 2: 
+                Object.keys(divs.error).forEach(key => divs.error[key].textContent = "");
+                document.getElementById("email-step").style.display = "none";
+                document.getElementById("code-step").style.display = "none";
+                document.getElementById("password-step").style.display = "block";
+                if (isForgotPassword){
+                  divs.form.studio.passwordFields.style.display = "none";
+                  document.getElementById("password-step").style.display = "none";
+                  finish();
+                }
+                break;
+            }
+            currentStep = step;
+        }
+
         function gatherQueryString() {
             const { search } = window.location;
             if (!search) { return {}; }
@@ -545,51 +598,64 @@
           }
         }
 
-        let currentStep = -1;
-        const queryString = gatherQueryString();
-        const isForgotPassword = queryString.claimsexchange == "ForgotPassword";
-        const email = queryString.email;
-        function goStep(step) {
-            if (currentStep == step){return;}
-            templates();
-            switch(step){
-              case 0:
-                email && (divs.form.studio.text_email.value = email);
-                document.getElementById("email-step").style.display = "block";
-                document.getElementById("code-step").style.display = "none";
-                document.getElementById("password-step").style.display = "none";
-                break;
-              case 1:
-                Array.from(divs.form.studio.text_emailVerificationCodes).map(node => node.value = "");
-                Object.keys(divs.error).forEach(key => divs.error[key].textContent = "");
-                document.getElementById("email-step").style.display = "none";
-                document.getElementById("code-step").style.display = "block";
-                document.getElementById("password-step").style.display = "none";
-                document.getElementsByClassName("sent-code")[0].focus();
-                break;
-              case 2: 
-                Object.keys(divs.error).forEach(key => divs.error[key].textContent = "");
-                document.getElementById("email-step").style.display = "none";
-                document.getElementById("code-step").style.display = "none";
-                document.getElementById("password-step").style.display = "block";
-                if (isForgotPassword){
-                  divs.form.studio.passwordFields.style.display = "none";
-                  document.getElementById("password-step").style.display = "none";
-                  finish();
-                }
-                break;
-            }
-            currentStep = step;
+
+
+        function sendVerificationCode(){
+          divs.form.ms.text_email.value = divs.form.studio.text_email.value;
+          divs.form.ms.button_sendCode.click();
         }
-        
-        const get = name => document.getElementById(name);
-        const query = query => document.querySelector(query);
-        const queryAll = query => document.querySelectorAll(query);
+        function verifyCode(){
+          const code = Array.from(divs.form.studio.text_emailVerificationCodes).map(node => node.value).join("");
+          divs.form.ms.text_emailVerificationCode.value = code;
+          divs.form.ms.button_verifyCode.click();
+        }
+        function finish(){
+          if (!isForgotPassword){
+            divs.form.ms.text_newPassword.value = divs.form.studio.password.value;
+            divs.form.ms.text_newPassword2.value = divs.form.studio.password2.value;
+          }
+          divs.form.ms.button_continue.click();
+        }
+        function backToLogin(){
+          divs.form.ms.button_cancel.click();
+        }
+
+
+
+        function processTemplates(type, search, replace){
+          const templateElems = divs.textTemplates;
+          Object.keys(templateElems).forEach(key => {
+            const elems = templateElems[key] instanceof Array ? templateElems[key] : templateElems[key] instanceof NodeList ? Array.from(templateElems[key]) : [templateElems[key]];
+            elems.forEach(curElem => {
+              if (type == "reset"){
+                curElem.innerHTML = curElem.studio_template;
+              }else if (type == "set"){
+                curElem.studio_template = curElem.innerHTML;
+              }else{
+                curElem.innerHTML = curElem.innerHTML.replace(search, replace);
+              }
+            });
+          });
+        }
+        function templates(){
+          const mail = divs.form.studio.text_email.value;
+          processTemplates("reset");
+          mail && processTemplates(undefined, /\${mail}/g, mail);
+          processTemplates(undefined, /\${section-text}/g, translate(isForgotPassword ? "Forgot Password" : "Create New Account"));
+          processTemplates(undefined, /\${section-info-text-email}/g, translate(isForgotPassword ? "Enter your e-mail to create new password." : "Enter your e-mail to create new account."));
+          processTemplates(undefined, /\${section-info-backtologin}/g, translate(isForgotPassword ? "Remember your password?" : "Already have an account?"));
+        }
+     </script>
+
+
+
+     <script language="javascript">
+        //observers
         const divs = {
           error: {
             
-            // email: get("studioauth_errorEmail"),
-            // emailVerificationCode: get("studioauth_errorVerificationCode"),
+            email: get("studioauth_errorEmail"),
+            emailVerificationCode: get("studioauth_errorVerificationCode"),
             pass: get("studioauth_errorPass"),
             pass2: get("studioauth_errorPass2"),
 
@@ -622,6 +688,7 @@
               password: get("studioauth_loginPassword"),
               password2: get("studioauth_loginPassword2"),
               passwordFields: get("studio_password-fields"),
+              langSelection: get("studioauth_langSelection"),
             }
           },
           textTemplates: {
@@ -634,6 +701,7 @@
         function observeAttrs(element, attributeFilter, cb){
           const observer = new MutationObserver((mutations) => {
             cb(element);
+            translateDom();
           });
           observer.observe(element, {attributes: true, attributeFilter});
         }
@@ -644,6 +712,7 @@
               bind2Element.textContent = element.textContent;
             }
             cb?.(element.style.display != "none" && element.textContent != "");
+            translateDom();
           });
           observer.observe(element, {attributes: true, attributeFilter: ["style"]});
         }
@@ -666,6 +735,8 @@
               }
               console.log(mutationRecord);
             });
+            debugger;
+            translateDom();
           });
           queryAll(".error.itemLevel").forEach(item => errorObserver.observe(item, {childList: true, characterData: true, subtree: true}));
 
@@ -679,55 +750,137 @@
             observe(divs.error_ms.emailVerificationControl_success_message, divs.error.emailVerificationControl_success_message);
           }
         }
-        observeErrors();
-
-
-        function processTemplates(search, replace, type){
-          const templateElems = divs.textTemplates;
-          Object.keys(templateElems).forEach(key => {
-            const elems = templateElems[key] instanceof Array ? templateElems[key] : templateElems[key] instanceof NodeList ? Array.from(templateElems[key]) : [templateElems[key]];
-            elems.forEach(curElem => {
-              if (type == "reset"){
-                curElem.innerHTML = curElem.studio_template;
-              }else if (type == "set"){
-                curElem.studio_template = curElem.innerHTML;
-              }else{
-                curElem.innerHTML = curElem.innerHTML.replace(search, replace);
-              }
-            });
+        function observeDisableds(){
+          var m = new MutationObserver(mutations => {
+            mutations.forEach(mutation => mutation.target.removeAttribute(mutation.attributeName));
           });
+          queryAll(".studioauth-translate-children select").forEach(item => m.observe(item, {attributes: true, attributeFilter: ["disabled", "aria-disabled"]}));
         }
-        function templates(){
-          const mail = divs.form.studio.text_email.value;
-          processTemplates(undefined, undefined, "reset");
-          mail && processTemplates(/\${mail}/g, mail);
-          processTemplates(/\${section-text}/g, isForgotPassword ? "Forgot Password" : "Create New Account");
-          processTemplates(/\${section-info-text-email}/g, isForgotPassword ? "Enter your e-mail to create new password." : "Enter your e-mail to create new account.");
-          processTemplates(/\${section-info-backtologin}/g, isForgotPassword ? "Remember your password?" : "Already have an account?");
-        }
-        processTemplates(undefined, undefined, "set");
 
+        observeErrors();
+        observeDisableds()
 
-
-        function sendVerificationCode(){
-          divs.form.ms.text_email.value = divs.form.studio.text_email.value;
-          divs.form.ms.button_sendCode.click();
-        }
-        function verifyCode(){
-          const code = Array.from(divs.form.studio.text_emailVerificationCodes).map(node => node.value).join("");
-          divs.form.ms.text_emailVerificationCode.value = code;
-          divs.form.ms.button_verifyCode.click();
-        }
-        function finish(){
-          if (!isForgotPassword){
-            divs.form.ms.text_newPassword.value = divs.form.studio.password.value;
-            divs.form.ms.text_newPassword2.value = divs.form.studio.password2.value;
-          }
-          divs.form.ms.button_continue.click();
-        }
-        function backToLogin(){
-          divs.form.ms.button_cancel.click();
-        }
      </script>
+
+<script>
+  //translations
+  const nbsp = length => Array(length + 1).join(String.fromCharCode(160));
+
+  let translations = {
+    //html
+    "E-Mail": {tr: "E-Posta", en: undefined},
+    "Language:": {tr: "Dil seçimi"},
+    "English": {tr: "İngilizce"},
+    "Turkish": {tr: "Türkçe"},
+    "NEXT": {tr: "DEVAM"},
+    "Already have an account?": {tr: "Zaten bir hesabınız mı var?"},
+    "Back to Login Page": {tr: "Giriş Sayfasına geri dön"},
+    "Confirm your email by entering the 6-digit code we sent to ${mail}": {tr: "${mail} E-Posta adresinize gönderilen 6 haneli kodu yazınız."},
+    "PREVIOUS": {tr: "ÖNCEKİ"},
+    "Confirm your password": {tr: "Şifrenizi teyit ediniz"},
+    "Password": {tr: "Şifre"},
+    "Password again": {tr: "Tekrar Şifre"},
+    "FINISH": {tr: "BİTİR"},
+    "${section-text}": {tr: "${section-text}"},
+    "${section-info-text-email}": {tr: "${section-info-text-email}"},
+    "${section-info-backtologin}": {tr: "${section-info-backtologin}"},
+    "Create New Account": {tr: "Yeni hesap yaratma"},
+    "Enter your e-mail to create new account.": {tr: "Lütfen E-Posta adresinizi yazınız."},
+
+
+    "Forgot Password": {tr: "Şifremi unuttum"},
+    "Enter your e-mail to create new password.": {tr: "Yeni bir şifre belirlemek için lütfen E-Posta adresinizi yazınız"},
+    "Remember your password?": {tr: "Şifrenizi hazırladınız mı?"},
+    
+    //server
+    "email is required.": {tr: "Lütfen E-Posta adresinizi yazınız"},
+    "Please enter a valid email address.": {tr: "Lütfen geçerli bir E-Posta adresinizi yazınız"},
+    "text is required.": {tr: "Giriş yapmanız gerekmektedir."},
+    "That code is incorrect. Please try again.": {tr: "Hatalı bir kod girdiniz. Lütfen tekrar deneyin."},
+    "The verification has failed, please try again.": {tr: "Doğrulama hatalı. Lütfen tekrar deneyin."},
+    "password is required.": {tr: "Lütfen şifrenizi giriniz."},
+    "The password entry fields do not match. Please enter the same password in both fields and try again.": {tr: "Girdiğiniz şifreler birbirinden farklıdır. Lütfen girdiğiniz şifreyi kontrol ediniz."},
+    "The password must be between 8 and 64 characters.": {tr: "Şifre 8 ile 64 karakter uzunluğunda olmalıdır."},
+    "The password must have at least 3 of the following:": {tr: "Şifrenizde aşağıdakilerden en az 3 tanesi olmalıdır."},
+    "Your password must have at least 3 of the following:": {tr: "Şifrenizde aşağıdakilerden en az 3 tanesi olmalıdır."},
+    "- a lowercase letter": {tr: nbsp(2) + "- küçük bir harf"},
+    "- an uppercase letter": {tr: nbsp(2) + "- büyük bir harf"},
+    "- a digit": {tr: nbsp(2) + "- bir rakam"},
+    "- a number": {tr: nbsp(2) + "- bir rakam"},
+    "- a symbol": {tr: nbsp(2) + "- bir sembol"},
+    "A user with the specified credential could not be found.": {tr: "Verdiğiniz bilgiler ile bir kullanıcı bulunamadı."},
+    "A user with the specified ID already exists. Please choose a different one.": {tr: "Belirttiğiniz kullanıcı zaten mevcut. Lütfen farklı bir kullanıcı ile deneyiniz."}
+
+  };
+  </script>
+
+
+<script>
+  // TÜM TEMPLATELER İÇİN AYNI BLOK
+  //language
+  Object.keys(translations).forEach(key => {
+    const curItem = translations[key];
+    curItem["en"] = curItem["en"] || key;
+    if (!curItem.maps){return;}
+    curItem.maps.forEach(map => translations[map] = curItem);
+  });
+  let langCode = window.SETTINGS.locale.lang;
+  const translate = (textOrKey) => {
+    const record = translations[textOrKey];
+    if (!record) { console.log(`missing translation: ${textOrKey}`); return textOrKey; }
+    const translation = record[langCode];
+    return translation ? translation : textOrKey;
+  }
+  function translateRecursively(element, result = []) {
+    if (element.nodeType === Node.TEXT_NODE && element.textContent.trim()) {
+      const parent = element.parentElement;
+      // if (parent.id == "studioauth_errorEmail"){debugger;}
+      let text = element.textContent.trim();
+      const textOrKey = translations[text] ? (parent.translateKey = text) : (parent.translateKey || (parent.translateKey = text));
+      element.textContent = translate(textOrKey);
+    } else if (element.placeholder) {
+      const textOrKey = element.placeholderKey || (element.placeholderKey = element.placeholder);
+      element.placeholder = translate(textOrKey);
+    } else {
+      if (element.tagName == "svg"){return;}
+      element.childNodes.forEach((child) => {
+        translateRecursively(child, result);
+      });
+    }
+    return result;
+  }
+  function translateDom(){
+    queryAll(".studioauth-translate-children").forEach(element => translateRecursively(element));
+  }
+  function langChange(newLangCode){
+    if (langCode == newLangCode){return;}
+
+    // const currentUrl = new URL(window.location.href);
+    // currentUrl.searchParams.set('ui_locales', newLangCode);
+    // if (window.setServerLang){
+    //   window.location.href = currentUrl.toString();
+    // } else {
+    //   window.history.replaceState(null, '', currentUrl.toString());
+    // }
+
+    langCode = newLangCode;
+    localStorage.setItem('langCode', langCode);
+    translateDom();
+  }
+  const localStorageLangCode = localStorage.getItem("langCode");
+  if (localStorageLangCode && localStorageLangCode != langCode){
+    langChange(localStorageLangCode);
+  }
+</script>
+
+
+    <script>
+      //startup
+      divs.form.studio.langSelection.value = langCode;
+      email && baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.parentElement.style.display = "block");
+      translateDom();
+      processTemplates("set");
+      translateDom = ((orig) => () => {orig();templates();})(translateDom);
+    </script>
 </body>
 </html>

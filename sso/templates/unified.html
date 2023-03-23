@@ -334,7 +334,7 @@
           <path d="M661.065 338.369C661.1 345.13 662.098 351.852 664.029 358.332C664.626 360.338 667.76 359.447 667.161 357.435C665.31 351.236 664.355 344.804 664.325 338.335C664.304 337.915 664.121 337.519 663.814 337.23C663.507 336.941 663.101 336.783 662.68 336.787C662.258 336.791 661.855 336.958 661.554 337.253C661.253 337.548 661.078 337.947 661.066 338.368L661.065 338.369Z" fill="black"/>
           </svg>
         <div class="form-wrap">
-            <div class="form-content">
+            <div class="form-content studioauth-translate-children">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276.004" height="48.501" viewBox="0 0 276.004 48.501" class="form-logo">
                   <defs>
                     <clipPath id="clip-path">
@@ -381,6 +381,15 @@
                             <button class="login-button" id="studioauth_login-button" onclick="login()">LOGIN</button>
                         </div>
                     </div>
+                    <div class="mb-4" style="display: none;">
+                      <div>
+                        Language:
+                        <select id="studioauth_langSelection" onchange="langChange(this.value)">
+                          <option value="en">English</option>
+                          <option value="tr">Turkish</option>
+                        </select>
+                      </div>
+                    </div>
                 </form>
                 <div style="margin-top: 50px">
                     <div style="color:#A1A1A1; font-size:18px; text-align: center;">Don't have an account?</div>
@@ -391,36 +400,19 @@
                     </div>
                 </div>
             </div>
-            <div id="api" role="main" style="display: none;">
-            </div>
+            <div id="api" role="main" style="display: none;"></div>
         </div>
      </div>
-     <script>
+     <script lang="javascript">
+      //our events
+      var baseObject = {
+        "studioauth.b2clogin.com": {envName: "local"},
+        "authstudio.b2clogin.com": {envName: "prod"},
+      } [new URL(window.location.href).hostname];
       const get = name => document.getElementById(name);
       const query = query => document.querySelector(query);
       const queryAll = query => document.querySelectorAll(query);
-      const divs = {
-        error: {
-          page: get("studioauth_errorPage"),
-          email: get("studioauth_errorEmail"),
-          pass: get("studioauth_errorPass"),
-        },
-        form: {
-          ms: {
-            password: get("password"),
-            email: get("email"),
-            button: get("next"),
-          },
-          studio: {
-            password: get("studioauth_loginPassword"),
-            email: get("studioauth_email"),
-          }
-        },
-        actionLink: {
-          signUp: get("createAccount"),
-          forgotPassword: get("forgotPassword"),
-        }
-      }
+
       function passwordVisible (elementId, event) {
         if(document.getElementById(elementId).type == "password") {
           document.getElementById(elementId).type = "text";
@@ -437,6 +429,47 @@
           event.srcElement.classList.add("mdi-eye");
         }
       }
+      function forgotPassword(){
+        divs.actionLink.forgotPassword.click()
+      }
+      function login(){
+        divs.form.ms.email.value = divs.form.studio.email.value;
+        divs.form.ms.password.value = divs.form.studio.password.value;
+        divs.form.ms.button.click();
+      }
+      function signUp(){
+        divs.actionLink.signUp.click();
+      }
+     </script>
+
+     
+
+     <script>
+      //observers
+      const divs = {
+        error: {
+          page: get("studioauth_errorPage"),
+          email: get("studioauth_errorEmail"),
+          pass: get("studioauth_errorPass"),
+        },
+        form: {
+          ms: {
+            password: get("password"),
+            email: get("email"),
+            button: get("next"),
+          },
+          studio: {
+            password: get("studioauth_loginPassword"),
+            email: get("studioauth_email"),
+            langSelection: get("studioauth_langSelection"),
+          }
+        },
+        actionLink: {
+          signUp: get("createAccount"),
+          forgotPassword: get("forgotPassword"),
+        }
+      }
+
       function init(){
         const errorObserver = new MutationObserver((mutations) => {
           mutations.forEach(mutationRecord => {
@@ -456,23 +489,100 @@
             }
             console.log(mutationRecord);
           });
+          translateDom();
         });
-        
+
         errorObserver.observe(query(".error.pageLevel"), {attributes:true, attributeFilter: ["style"]});
         queryAll(".error.itemLevel").forEach(item => errorObserver.observe(item, {attributes:true, attributeFilter: ["style"]}));
       }
-      function forgotPassword(){
-        get("forgotPassword").click();
-      }
-      function login(){
-        divs.form.ms.email.value = divs.form.studio.email.value;
-        divs.form.ms.password.value = divs.form.studio.password.value;
-        divs.form.ms.button.click();
-      }
-      function signUp(){
-        divs.actionLink.signUp.click();
-      }
-      init();
      </script>
+
+
+    <script>
+      //translations
+      let translations = {
+        //html
+        "Login": {tr: "Giriş", en: undefined,},
+        "Welcome to Plateau Studio": {tr: "Plateau Studio'ya hoş geldiniz"},
+        "Forgot Password?": {tr: "Şifrenizi mi unuttunuz?"},
+        "LOGIN": {tr: "GİRİŞ YAP"},
+        "Language:": {tr: "Dil seçimi"},
+        "English": {tr: "İngilizce"},
+        "Turkish": {tr: "Türkçe"},
+        "Don't have an account?": {tr: "Hesabınız mı yok?"},
+        "CREATE NEW ACCOUNT": {tr: "YENİ BİR HESAP YARATIN"},
+        "E-Mail": {tr: "E-Posta"},
+        "Password": {tr: "Şifre"},
+        //server
+        "Please enter your Email Address": {tr: "Lütfen E-posta Adresinizi yazınız", maps: ["Lütfen E-posta Adresi bilgilerinizi girin"]},
+        "Please enter your password": {tr: "Lütfen şifrenizi yazınız", maps: ["Lütfen parolanızı girin"]},
+        "Please enter a valid email address.": {tr: "Lütfen geçerli bir e-posta adresi yazınız", maps: ["Lütfen geçerli bir e-posta adresi girin"]},
+      };
+      </script>
+    <script>
+      // TÜM TEMPLATELER İÇİN AYNI BLOK
+      //language
+      Object.keys(translations).forEach(key => {
+        const curItem = translations[key];
+        curItem["en"] = curItem["en"] || key;
+        if (!curItem.maps){return;}
+        curItem.maps.forEach(map => translations[map] = curItem);
+      });
+      let langCode = window.SETTINGS.locale.lang;
+      const originalLangCode = langCode;
+      const translate = (textOrKey) => {
+        const record = translations[textOrKey];
+        if (!record) { console.log(`missing translation: ${textOrKey}`); return textOrKey; }
+        const translation = record[langCode];
+        return translation ? translation : textOrKey;
+      }
+      function translateRecursively(element, result = []) {
+        if (element.nodeType === Node.TEXT_NODE && element.textContent.trim()) {
+          const parent = element.parentElement;
+          // if (parent.id == "studioauth_errorEmail"){debugger;}
+          let text = element.textContent.trim();
+          const textOrKey = translations[text] ? (parent.translateKey = text) : (parent.translateKey || (parent.translateKey = text));
+          element.textContent = translate(textOrKey);
+        } else if (element.placeholder) {
+          const textOrKey = element.placeholderKey || (element.placeholderKey = element.placeholder);
+          element.placeholder = translate(textOrKey);
+        } else {
+          if (element.tagName == "svg"){return;}
+          element.childNodes.forEach((child) => {
+            translateRecursively(child, result);
+          });
+        }
+        return result;
+      }
+      function translateDom(){
+        queryAll(".studioauth-translate-children").forEach(element => translateRecursively(element));
+      }
+      function langChange(newLangCode){
+        if (langCode == newLangCode){return;}
+
+        // const currentUrl = new URL(window.location.href);
+        // currentUrl.searchParams.set('ui_locales', newLangCode);
+        // if (window.setServerLang){
+        //   window.location.href = currentUrl.toString();
+        // } else {
+        //   window.history.replaceState(null, '', currentUrl.toString());
+        // }
+
+        langCode = newLangCode;
+        localStorage.setItem('langCode', langCode);
+        translateDom();
+      }
+      const localStorageLangCode = localStorage.getItem("langCode");
+      if (localStorageLangCode && localStorageLangCode != langCode){
+        langChange(localStorageLangCode);
+      }
+    </script>
+    <script>
+      divs.form.studio.langSelection.value = langCode;
+      baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.parentElement.style.display = "block");
+
+      init();
+      translateDom();
+    </script>
 </body>
 </html>
