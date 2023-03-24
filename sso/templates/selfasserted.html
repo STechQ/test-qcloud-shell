@@ -212,7 +212,16 @@
             color: #FF6B6B;
             margin-bottom: 10px;
         }
-        
+        .lang-change-btn {
+          border:none;
+          background-color: transparent;
+          color:#151233;
+          padding: 8px 0px;
+          font-size: 16px;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+        }
         @media (max-width: 1100px){
           .login-background {
             display: none;
@@ -394,7 +403,7 @@
                             <div class="step-bar" style="background-color: #D5D5D5;margin: 0 10px"></div>           
                             <div class="step-bar" style="background-color: #D5D5D5"></div>           
                         </div>
-                        <div class="mb-4" style="display: none;">
+                        <!-- <div class="mb-4" style="display: none;">
                           <div>
                             Language:
                             <select id="studioauth_langSelection" onchange="langChange(this.value)">
@@ -402,7 +411,7 @@
                               <option value="tr">Turkish</option>
                             </select>
                           </div>
-                        </div>
+                        </div> -->
                         <div>
                             <button onclick="sendVerificationCode()" class="next-step-button">NEXT</button>
                         </div>
@@ -410,6 +419,14 @@
                     <div class="bottom-content" style="margin-top: 148px">
                         <div class="template-section-text" style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">${section-info-backtologin}</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
+                    </div>
+                    <div class="mt-4" style="display: none;">
+                      <div id="studioauth_langSelection" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                        <button class="lang-change-btn" onclick="langChange(this.value)" style="display: none" value="en" id="en">
+                          <i class="mdi mdi-web" style="font-weight: 400;font-size: 24px; margin-right: 4px;"></i>EN</button>
+                        <button class="lang-change-btn" onclick="langChange(this.value)" value="tr" id="tr">
+                          <i class="mdi mdi-web" style="font-weight: 400;font-size: 24px; margin-right: 4px;"></i>TR</button>
+                      </div>
                     </div>
                 </div>
                 <div id="code-step" style="display: none">
@@ -772,12 +789,14 @@
     "Language:": {tr: "Dil seçimi"},
     "English": {tr: "İngilizce"},
     "Turkish": {tr: "Türkçe"},
+    "EN": {tr: "EN"},
+    "TR": {tr: "TR"},
     "NEXT": {tr: "DEVAM"},
-    "Already have an account?": {tr: "Zaten bir hesabınız mı var?"},
-    "Back to Login Page": {tr: "Giriş Sayfasına geri dön"},
-    "Confirm your email by entering the 6-digit code we sent to ${mail}": {tr: "${mail} E-Posta adresinize gönderilen 6 haneli kodu yazınız."},
+    "Already have an account?": {tr: "Zaten bir hesabınız var mı?"},
+    "Back to Login Page": {tr: "Giriş Sayfasına Geri Dön"},
+    "Confirm your email by entering the 6-digit code we sent to ${mail}": {tr: "${mail} E-Posta adresinize gönderilen 6 haneli kodu yazın."},
     "PREVIOUS": {tr: "ÖNCEKİ"},
-    "Confirm your password": {tr: "Şifrenizi teyit ediniz"},
+    "Confirm your password": {tr: "Şifrenizi doğrulayın"},
     "Password": {tr: "Şifre"},
     "Password again": {tr: "Tekrar Şifre"},
     "FINISH": {tr: "BİTİR"},
@@ -785,21 +804,21 @@
     "${section-info-text-email}": {tr: "${section-info-text-email}"},
     "${section-info-backtologin}": {tr: "${section-info-backtologin}"},
     "Create New Account": {tr: "Yeni hesap yaratma"},
-    "Enter your e-mail to create new account.": {tr: "Lütfen E-Posta adresinizi yazınız."},
+    "Enter your e-mail to create new account.": {tr: "Lütfen E-Posta adresinizi yazın."},
 
 
     "Forgot Password": {tr: "Şifremi unuttum"},
-    "Enter your e-mail to create new password.": {tr: "Yeni bir şifre belirlemek için lütfen E-Posta adresinizi yazınız"},
-    "Remember your password?": {tr: "Şifrenizi hazırladınız mı?"},
+    "Enter your e-mail to create new password.": {tr: "Yeni bir şifre belirlemek için lütfen E-Posta adresinizi yazın"},
+    "Remember your password?": {tr: "Şifrenizi hatırladınız mı?"},
     
     //server
     "email is required.": {tr: "Lütfen E-Posta adresinizi yazınız"},
-    "Please enter a valid email address.": {tr: "Lütfen geçerli bir E-Posta adresinizi yazınız"},
+    "Please enter a valid email address.": {tr: "Lütfen geçerli bir E-Posta adresi yazın"},
     "text is required.": {tr: "Giriş yapmanız gerekmektedir."},
     "That code is incorrect. Please try again.": {tr: "Hatalı bir kod girdiniz. Lütfen tekrar deneyin."},
     "The verification has failed, please try again.": {tr: "Doğrulama hatalı. Lütfen tekrar deneyin."},
-    "password is required.": {tr: "Lütfen şifrenizi giriniz."},
-    "The password entry fields do not match. Please enter the same password in both fields and try again.": {tr: "Girdiğiniz şifreler birbirinden farklıdır. Lütfen girdiğiniz şifreyi kontrol ediniz."},
+    "password is required.": {tr: "Lütfen şifrenizi girin."},
+    "The password entry fields do not match. Please enter the same password in both fields and try again.": {tr: "Girdiğiniz şifreler birbirinden farklıdır. Lütfen girdiğiniz şifreyi kontrol edin."},
     "The password must be between 8 and 64 characters.": {tr: "Şifre 8 ile 64 karakter uzunluğunda olmalıdır."},
     "The password must have at least 3 of the following:": {tr: "Şifrenizde aşağıdakilerden en az 3 tanesi olmalıdır."},
     "Your password must have at least 3 of the following:": {tr: "Şifrenizde aşağıdakilerden en az 3 tanesi olmalıdır."},
@@ -809,7 +828,7 @@
     "- a number": {tr: nbsp(2) + "- bir rakam"},
     "- a symbol": {tr: nbsp(2) + "- bir sembol"},
     "A user with the specified credential could not be found.": {tr: "Verdiğiniz bilgiler ile bir kullanıcı bulunamadı."},
-    "A user with the specified ID already exists. Please choose a different one.": {tr: "Belirttiğiniz kullanıcı zaten mevcut. Lütfen farklı bir kullanıcı ile deneyiniz."}
+    "A user with the specified ID already exists. Please choose a different one.": {tr: "Belirttiğiniz kullanıcı zaten mevcut. Lütfen farklı bir kullanıcı ile deneyin."}
 
   };
   </script>
@@ -866,6 +885,16 @@
     langCode = newLangCode;
     localStorage.setItem('langCode', langCode);
     translateDom();
+    let tr = document.getElementById("tr");
+    let en = document.getElementById("en");
+    if(newLangCode == "tr") {
+        tr.style.display = "none"; 
+        en.style.display = "flex"
+    }
+    else if(newLangCode == "en") {
+        en.style.display = "none";
+        tr.style.display = "flex"
+    }
   }
   const localStorageLangCode = localStorage.getItem("langCode");
   if (localStorageLangCode && localStorageLangCode != langCode){
@@ -877,7 +906,7 @@
     <script>
       //startup
       divs.form.studio.langSelection.value = langCode;
-      email && baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.parentElement.style.display = "block");
+      email && baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
       translateDom();
       processTemplates("set");
       translateDom = ((orig) => () => {orig();templates();})(translateDom);
