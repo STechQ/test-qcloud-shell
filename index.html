@@ -38,7 +38,7 @@
           "studio.onplateau.com": { basePath: "/", envName: "prod" },
         };
         const host = new URL(window.location.href).hostname;
-        return Object.keys(obj).find(key => host.endsWith(key));
+        return obj[Object.keys(obj).find(key => host.endsWith(key))];
     })();
 
     var includeJS = (path) => {
