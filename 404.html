@@ -25,12 +25,17 @@
   <div id="app"></div>
   <script>
     //this is 404 page
-    var baseObject = {
-      "localhost": { basePath: "/", envName: "local" },
-      "127.0.0.1": { basePath: "/", envName: "local" },
-      "stechq.github.io": { basePath: "/test-qcloud-shell/", envName: "cloud" },
-      "studio.onplateau.com": { basePath: "/", envName: "prod" },
-    }[new URL(window.location.href).hostname];
+    var baseObject = (() => {
+        const obj = {
+          "localhost": { basePath: "/", envName: "local" },
+          "127.0.0.1": { basePath: "/", envName: "local" },
+          "github.io": { basePath: "/test-qcloud-shell/", envName: "cloud" },
+          "azurestaticapps.net": { basePath: "/", envName: "cloud" },
+          "studio.onplateau.com": { basePath: "/", envName: "prod" },
+        };
+        const host = new URL(window.location.href).hostname;
+        return Object.keys(obj).find(key => host.endsWith(key));
+    })();
 
     var includeJS = (path) => {
       var script = document.createElement("script");
