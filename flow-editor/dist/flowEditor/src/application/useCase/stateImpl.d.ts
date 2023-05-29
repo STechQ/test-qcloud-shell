@@ -1,6 +1,6 @@
 import { IFlowEditorState } from "../../../../flowInterfaces/editor/IFlowEditorState";
+import { IModifiedStatus } from "../../../../flowInterfaces/editor/common/IModifiedStatus";
 import { DependencyContainer } from "../../domain/core/diContainer";
-import { IModifiedStatus } from "../../domain/core/IStartUp";
 import { IDrawArea } from "../../domain/infrastructure/IDrawArea";
 import { IHistory } from "../../domain/useCase/IHistory";
 import { IState } from "../../domain/useCase/IState";

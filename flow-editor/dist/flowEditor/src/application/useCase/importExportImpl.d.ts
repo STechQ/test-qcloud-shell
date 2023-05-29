@@ -1,9 +1,10 @@
 import { IFlowCopyModel, IFlowDesignModel } from "../../../../flowInterfaces/editor/IFlowDesignModel";
+import { IExportTypeMap } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { DependencyContainer } from "../../domain/core/diContainer";
 import { IDrawArea } from "../../domain/infrastructure/IDrawArea";
 import { IFlow } from "../../domain/useCase/IFlow";
 import { IHistory } from "../../domain/useCase/IHistory";
-import { IExportTypeMap, IImportExport, IImportOptions } from "../../domain/useCase/IImportExport";
+import { IImportExport, IImportOptions } from "../../domain/useCase/IImportExport";
 import { ISelection } from "../../domain/useCase/ISelection";
 import { IStepRepo } from "../../domain/useCase/IStepRepo";
 import { IViewModel } from "../../domain/viewModel/IViewModel";
@@ -24,6 +25,5 @@ export declare class ImportExportImpl implements IImportExport {
     private exportEditorModel;
     private exportDesignModel;
     private exportRuntimeModel;
-    private deproxify;
 }
 //# sourceMappingURL=importExportImpl.d.ts.map
