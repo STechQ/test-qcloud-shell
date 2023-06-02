@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { IExpressionData } from "../runtime/IExpression";
 import { IPropObject } from "../runtime/IStepModel";
-import { IEntity, IEntityInfo } from "../runtime/IEntity";
+import { IEntity } from "../runtime/IEntity";
 export interface IExpressionInputOptions {
     width?: string;
 }
@@ -24,16 +24,14 @@ export interface IUIPageInfo {
     name: string;
 }
 export declare type ListUIPagesCb = () => Promise<Array<IUIPageInfo>>;
-export declare type GetEntityList = () => Promise<Array<IEntityInfo>> | Array<IEntityInfo>;
-export declare type GetEntity = (entityPath: string) => Promise<IEntity> | IEntity;
 export interface IEditSectionInput<PropType = IPropObject> {
     propValues: PropType;
     callbacks: {
         setProp: <TName extends keyof PropType & string>(name: TName, value: PropType[TName]) => void;
         setOutputs: (outputs: Array<string>) => void;
         entity?: {
-            getList: GetEntityList;
-            get: GetEntity;
+            getList: () => Promise<Array<string>> | Array<string>;
+            get: (name: string) => Promise<IEntity> | IEntity;
         };
         ui?: {
             listUIPages: ListUIPagesCb;

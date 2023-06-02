@@ -2,8 +2,8 @@ import { IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
 import { DependencyContainer } from "../../domain/core/diContainer";
 import { IStepRepo } from "../../domain/useCase/IStepRepo";
 import { IViewModel } from "../../domain/viewModel/IViewModel";
+import { IStepRequireInfo } from "../../domain/core/IStartUp";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
-import { IStepRequireInfo } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 export declare class StepRepoImpl implements IStepRepo {
     private readonly viewModel;
     constructor(container: DependencyContainer, viewModel?: IViewModel);

@@ -1,9 +1,7 @@
-import { EntityRetriever } from "./EntityRetriever";
 import { ExpressionGetter, ExpressionSetter, IExpressionData, ISetExpressionData } from "./IExpression";
 import { IPropObject } from "./IStepModel";
 import { IPlatformClientAdaptor } from "./platform/IPlatformClientAdaptor";
 import { IPlatformServerAdaptor } from "./platform/IPlatformServerAdaptor";
-import { Omit2 } from "./platform/tsHelperTypes";
 export declare type RuntimeMessage = Record<string, any>;
 export declare type StateValues = Record<string, any>;
 export interface ICommonState<T> {
@@ -12,9 +10,6 @@ export interface ICommonState<T> {
 }
 export interface IStateBaseType {
     destruct: () => void;
-}
-export interface IServerAdaptor extends Omit2<IPlatformServerAdaptor, "getEnvVar"> {
-    getEnvVar(key: string): string | undefined;
 }
 export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, StateType = StateValues> {
     entryInfo: {
@@ -38,16 +33,13 @@ export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, S
         stop: () => void;
         evalGet: (expression: IExpressionData, getter: ExpressionGetter) => ReturnType<ExpressionGetter>;
         evalSet: (expression: ISetExpressionData, value: any, setter: ExpressionSetter) => void;
-        getServer: () => IServerAdaptor | undefined;
+        getServer: () => IPlatformServerAdaptor | undefined;
         getClient: () => IPlatformClientAdaptor | undefined;
         getCommonState: <CommonStateType extends IStateBaseType = IStateBaseType>() => ICommonState<CommonStateType>;
     };
     state: {
         readonly values: StateType;
         clear: () => void;
-    };
-    entity: {
-        retriever: EntityRetriever;
     };
 }
 export declare type StepRuntime<PropType = IPropObject, OutputOptions = string, StateType = StateValues> = (param: IRuntimeParam<PropType, OutputOptions, StateType>) => void;

@@ -1,5 +1,11 @@
 import { IFlowCopyModel, IFlowDesignModel } from "../../../../flowInterfaces/editor/IFlowDesignModel";
-import { IExportTypeMap } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
+import { IFlowEditorModel } from "../../../../flowInterfaces/editor/IFlowEditorModel";
+import { IFlowModel } from "../../../../flowInterfaces/runtime/IFlowModel";
+export interface IExportTypeMap {
+    "both": IFlowEditorModel;
+    "design": IFlowDesignModel;
+    "runtime": IFlowModel;
+}
 export interface IImportOptions {
     resetPanAndZoom?: boolean;
 }

@@ -10,8 +10,5 @@ export interface IPlatformServerAdaptor {
         body: unknown;
         headers?: Record<string, string>;
     }): void;
-    getEnvVar(key: string, options: {
-        requestingStepName?: string;
-    }): string | undefined;
 }
 //# sourceMappingURL=IPlatformServerAdaptor.d.ts.map

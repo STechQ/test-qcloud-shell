@@ -24,10 +24,10 @@ export interface IPropertyStringBase extends IPropertyBase {
      * @see https://www.rfc-editor.org/rfc/rfc3339.
      * @param regex defined by @type IPropertyStringRegex
      */
-    format?: "base64" | "binary" | "email" | "date" | "dateTime" | "regex";
+    format?: "base64" | "binary" | "email" | "dateTime" | "regex";
 }
 export interface IPropertyString extends IPropertyStringBase {
-    format?: "base64" | "binary" | "email" | "date" | "dateTime";
+    format?: "base64" | "binary" | "email" | "dateTime";
 }
 export interface IPropertyStringRegex extends IPropertyStringBase {
     format: "regex";
@@ -43,10 +43,6 @@ export interface IPropertyNumber extends IPropertyBase {
     unique?: boolean;
 }
 export declare type Property = IPropertyObject | PropertyString | IPropertyBoolean | IPropertyNumber;
-export interface IEntityInfo {
-    path: string;
-    name: string;
-}
 export interface IEntity {
     name: string;
     properties: Array<Property>;
