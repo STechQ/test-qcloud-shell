@@ -1,6 +1,6 @@
 import { IInputInfo, IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
+import { IStepRequireInfo } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
-import { IStepRequireInfo } from "../core/IStartUp";
 export interface IStepRepo {
     isAutoStart(stepName: string, version: string): boolean;
     registerStep(step: IStepOptions | string, isDefault: boolean): void;

@@ -1,5 +1,5 @@
 import { IFlowEditorState } from "../../../../flowInterfaces/editor/IFlowEditorState";
-import { IModifiedStatus } from "../core/IStartUp";
+import { IModifiedStatus } from "../../../../flowInterfaces/editor/common/IModifiedStatus";
 export interface IState {
     getState(): IFlowEditorState;
     setState(state?: IFlowEditorState): void;

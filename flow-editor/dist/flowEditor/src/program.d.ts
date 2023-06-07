@@ -3,13 +3,13 @@ import { IPresentation } from "./domain/presentation/IPresentation";
 import { IStepRepo } from "./domain/useCase/IStepRepo";
 import { IStepOptions } from "../../flowInterfaces/editor/IStepOptions";
 import { DependencyContainer } from "./domain/core/diContainer";
-import { IExportTypeMap, IImportExport } from "./domain/useCase/IImportExport";
-import { IInitOptions } from "./domain/core/IStartUp";
+import { IImportExport } from "./domain/useCase/IImportExport";
 import { IHistory } from "./domain/useCase/IHistory";
 import { IFlowCopyModel, IFlowDesignModel } from "../../flowInterfaces/editor/IFlowDesignModel";
 import { IFlowEditorState } from "../../flowInterfaces/editor/IFlowEditorState";
 import { IState } from "./domain/useCase/IState";
-export declare class Program {
+import { IExportTypeMap, IFlowEditorProgram, IInitOptions } from "../../flowInterfaces/editor/editors/IFlowEditorProgram";
+export declare class Program implements IFlowEditorProgram {
     private readonly container;
     private readonly state;
     private readonly presentation;

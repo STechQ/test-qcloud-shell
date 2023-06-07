@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { IVMHistory } from "../../../../flowInterfaces/editor/IFlowEditorState";
 import { IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
+import { IInitOptions } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
-import { IInitOptions } from "../core/IStartUp";
 export interface IConnectionFrom {
     step: string;
     output: string;
