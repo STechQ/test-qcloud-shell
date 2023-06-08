@@ -209,6 +209,157 @@
             }
         } 
     </style>
+    <style> /*Cookie Style*/
+        .cookie-text {
+            font-size: 15px;
+            line-height: 24px;
+            color: #151233;
+        }
+        .accept-button {
+            font-size: 16px;
+            color: #151233;
+            border: 1px solid #151233;
+            border-radius: 4px;
+            width: 180px;
+            height: 40px;
+            font-weight: 500;
+        }
+        .reject-button {
+            font-size: 16px;
+            color: #151233;
+            border: 1px solid #151233;
+            border-radius: 4px;
+            width: 180px;
+            height: 40px;
+            font-weight: 500;
+            margin-right: 12px;
+        }
+        .cookie-div {
+          z-index: 2; 
+          position: absolute;
+          display: flex;
+          align-items: center;
+          padding: 28px 32px;
+          background: #F5F5F5;
+          border-radius: 10px;
+          left: 0.62%;
+          right: 0.62%;
+          bottom: 1.11%;
+        }
+        .cookie-button-div {
+          display: flex;
+          position: absolute;
+          right: 48px
+        }
+        .cookie-settings-dialog {
+          width: 100%; 
+          background: rgb(0,0,0,0.5);
+          height: 100%; 
+          z-index: 1; 
+          position: absolute;
+          align-items: center;
+          display: flex;
+          top: 0;
+          justify-content: center;
+        }
+        .cookie-switch-div {
+
+          align-items: center;
+        }
+        .cookie-type-div {
+            margin-bottom: 20px
+        }
+        .cookie-type {
+            display: flex;
+            align-items: center;
+        }
+        .cookie-type-name {
+            font-size: 16px;
+            line-height: 19px;
+            color: #212121;
+            margin-bottom: -3px;
+        }
+        .cookie-switch {
+            position: relative;
+            cursor: pointer;
+            top: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            margin-right: 13px;
+        }
+        .cookie-switch:after {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            background-color: white;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        .cookie-switch:disabled:after {
+            background-color: #757575;
+        } 
+        .cookie-switch:checked {
+            background-color: #151233;
+        }
+        input[type=checkbox] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+        }
+        .cookie-switch:checked:after {
+            transform: translatex(16px);
+        }
+        .cookie-switch.round::after {
+            left: 3px;
+            border-radius: 50%;
+        }
+        .cookie-switch.round {
+            width: 36px;
+            height: 20px;
+            border-radius: 34px;
+            padding: 3px;
+        }
+        .open-cookie-dialog-button {
+            display: none;
+            background: #D9D9D9;
+            filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+        .cookie-tooltip {
+            display: none;
+            padding: 8px;
+            height: 30px;
+            background: #757575;
+            color: #FFFFFF;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            border-radius: 4px;
+            z-index: 1;
+            position: absolute;
+            width: 90px;
+            left: 60px;
+            bottom: 13px;
+            box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .open-cookie-dialog-button:hover .cookie-tooltip {
+          display: block;
+        }
+    </style>
 </head>
 <body>
      <div class="login-container container-fluid p-0 m-0">
@@ -412,10 +563,46 @@
             <div id="api" role="main" style="display: none;"></div>
         </div>
      </div>
+     <!-- Cookie Dialog -->
+     <!-- <div onclick="openCookieDialog()" id="open-cookie-dialog-button" class="open-cookie-dialog-button">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.375 21.3117C11.1361 21.3117 10.125 22.3221 10.125 23.4984C10.125 24.6748 11.1361 25.6852 12.375 25.6852C13.6139 25.6852 14.625 24.6748 14.625 23.4984C14.625 22.3221 13.6125 21.3117 12.375 21.3117ZM14.625 10.125C13.3861 10.125 12.375 11.1354 12.375 12.3117C12.375 13.488 13.3861 14.4984 14.625 14.4984C15.8639 14.4984 16.875 13.488 16.875 12.3117C16.875 11.1354 15.8625 10.125 14.625 10.125ZM25.875 19.0617C24.6361 19.0617 23.625 20.0721 23.625 21.2484C23.625 22.4248 24.6361 23.4352 25.875 23.4352C27.1139 23.4352 28.125 22.4248 28.125 21.2484C28.125 20.0721 27.1125 19.0617 25.875 19.0617Z" fill="#D0D1E9"/>
+        <path d="M34.7762 17.993C30.1616 17.9353 26.4371 14.1863 26.4371 9.56253C21.8148 9.56253 18.0629 5.83807 18.0137 1.22346C16.2094 0.951566 14.3715 1.23996 12.7564 2.07214L8.20507 4.38823C6.56327 5.22847 5.22803 6.5637 4.3878 8.2055L2.08085 12.7407C1.24061 14.3888 0.943894 16.2507 1.23218 18.0802L2.03163 23.1061C2.32005 24.9272 3.17702 26.6077 4.47921 27.9099L8.09046 31.5232C9.39335 32.8289 11.0598 33.6797 12.8808 33.968L17.9321 34.7674C19.7532 35.0558 21.6073 34.7592 23.247 33.9272L27.804 31.6034C29.4437 30.7709 30.7789 29.4364 31.6107 27.7967L33.9261 23.2566C34.7551 21.6352 35.0504 19.786 34.7762 17.993ZM12.3746 25.8117C11.1357 25.8117 10.1246 24.8014 10.1246 23.625C10.1246 22.4487 11.1357 21.4383 12.3746 21.4383C13.6135 21.4383 14.6246 22.4487 14.6246 23.625C14.6246 24.8014 13.6121 25.8117 12.3746 25.8117ZM14.6246 14.625C13.3857 14.625 12.3746 13.6146 12.3746 12.4383C12.3746 11.262 13.3857 10.2516 14.6246 10.2516C15.8635 10.2516 16.8746 11.262 16.8746 12.4383C16.8746 13.6146 15.8621 14.625 14.6246 14.625ZM25.8746 23.5617C24.6357 23.5617 23.6246 22.5514 23.6246 21.375C23.6246 20.1987 24.6357 19.1883 25.8746 19.1883C27.1135 19.1883 28.1246 20.1987 28.1246 21.375C28.1246 22.5514 27.1121 23.5617 25.8746 23.5617Z" fill="#4F537B"/>
+        </svg>
+        <span class="cookie-tooltip">Çerez Ayarları</span>        
+     </div> -->
+     <div class="cookie-settings-dialog" id="cookie-settings-dialog">
+        <div class="cookie-div" id="cookie-div">
+          <div>
+            <div style="margin-bottom: 16px;">
+              <p class="cookie-text">Plateau Studio, deneyiminizi iyileştirmek için çerezleri kullanmaktadır. Kullanılan çerezler ve teknolojiler hakkında detaylı bilgi almak için 
+                <span onclick="openDocument('cerez-aydinlatma-metni.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer;">Çerez Aydınlatma Metni</span>’ni inceleyin.
+              </p>
+              <p class="cookie-text">Çerez Aydınlatma Metni’ni okudum, anladım. Aydınlatma metni kapsamında zorunlu çerezler vasıtasıyla işlenen kişisel verilerimin yurtdışına aktarılmasına rıza vermekteyim.</p>
+            </div>
+            <!-- <div class="cookie-switch-div">
+              <div class="cookie-type" style="margin-right: 24px;">
+                <input disabled="true" checked="true" class="cookie-switch round" type="checkbox"/>
+                <span class="cookie-type-name">Zorunlu Çerezler</span>
+              </div>
+              <div class="cookie-type">
+                <input class="cookie-switch round" type="checkbox"/>
+                <span class="cookie-type-name">Performans ve Analitik Çerezleri</span>
+              </div>
+            </div> -->
+          </div>
+          <div class="cookie-button-div">
+            <button class="reject-button" onclick="rejectCookies()">REDDET</button>
+              <button class="accept-button" onclick="acceptCookies()">ONAYLA</button>
+          </div>
+        </div>
+     </div>
+    
+     <!-- END Cookie Dialog -->
      <script lang="javascript">
       //our events
       var baseObject = {
-        "studioauth.b2clogin.com": {envName: "local"},
+        "studioauth.b2clogin.com": {envName: "cloud"},
         "authstudio.b2clogin.com": {envName: "prod"},
       } [new URL(window.location.href).hostname];
       const get = name => document.getElementById(name);
@@ -448,6 +635,33 @@
       }
       function signUp(){
         divs.actionLink.signUp.click();
+      }
+      //cookie events
+      function acceptCookies() {
+        localStorage.setItem("acceptCookies", "true");
+        document.getElementById("cookie-settings-dialog").style.display = "none";
+        // document.getElementById("open-cookie-dialog-button").style.display = "flex";
+      }
+      function rejectCookies() {
+        document.getElementById("studioauth_login-button").disabled = true;
+        document.getElementById("cookie-settings-dialog").style.display = "none";
+      }
+      function openCookieDialog() {
+        document.getElementById("cookie-settings-dialog").style.display = "flex";
+        // document.getElementById("open-cookie-dialog-button").style.display = "none";
+      }
+      if(localStorage.getItem("acceptCookies") == "true") {
+        document.getElementById("cookie-settings-dialog").style.display = "none";
+        // document.getElementById("open-cookie-dialog-button").style.display = "flex";
+      }
+      function openDocument (documentName) {
+          if(baseObject.envName == "prod") {
+            window.open("https://studio.onplateau.com/contents/" + documentName, "_blank");
+          }
+          else {
+            window.open("https://red-hill-08da97603.2.azurestaticapps.net/contents/" + documentName, "_blank");
+            // window.open("https://localhost:5005/contents/" + documentName, "_blank");
+          }
       }
      </script>
 

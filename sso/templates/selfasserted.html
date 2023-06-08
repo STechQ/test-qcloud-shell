@@ -121,8 +121,11 @@
             border-radius: 10px;
             padding: 15px;
         }
-        .next-step-button:hover {
+        .next-step-button:not(:disabled):hover {
             background: #2F3160;
+        }
+        .next-step-button:disabled {
+          opacity: 0.5;
         }
         .previous-step-button {
             width: 100%;
@@ -221,6 +224,80 @@
           font-weight: 500;
           display: flex;
           align-items: center;
+        }
+        .privacy-policies {
+          margin-top: 32px;
+          color: #212121;
+          font-size: 14px;
+          line-height: 20px;
+        }
+        .policy-checkbox {
+          margin-right: 10px;
+        }
+        .container-switch {
+          display: block;
+          position: relative;
+          padding-left: 28px;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container-switch input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 18px;
+          width: 18px;
+          background: #CBCBCB;
+          border-radius: 4px;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container-switch:hover input ~ .checkmark {
+          background-color: #BCBCBC;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container-switch input:checked ~ .checkmark {
+          background-color: #151233;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container-switch input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container-switch .checkmark:after {
+          left: 7px;
+          top: 2px;
+          width: 5px;
+          height: 12px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
         }
         @media (max-width: 1100px){
           .login-background {
@@ -403,15 +480,6 @@
                             <div class="step-bar" style="background-color: #D5D5D5;margin: 0 10px"></div>           
                             <div class="step-bar" style="background-color: #D5D5D5"></div>           
                         </div>
-                        <!-- <div class="mb-4" style="display: none;">
-                          <div>
-                            Language:
-                            <select id="studioauth_langSelection" onchange="langChange(this.value)">
-                              <option value="en">English</option>
-                              <option value="tr">Turkish</option>
-                            </select>
-                          </div>
-                        </div> -->
                         <div>
                             <button onclick="sendVerificationCode()" class="next-step-button">NEXT</button>
                         </div>
@@ -482,7 +550,30 @@
                             <div class="input-style eyeButton" style="color: #757575; cursor: pointer;"><i class="mdi mdi-eye mdi-24px eye" onclick="passwordVisible('studioauth_loginPassword2',event)"></i></div>
                           </div>
                         </div>
-                        
+                        <div class="privacy-policies" id="privacy-policies">
+                          <label class="container-switch" style="margin-bottom: 16px;">
+                            <label>I have read and approved the <span onclick="openDocument('user-agremeent.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-left: 5px">User Agreement.</span></label>
+                            <input onclick="isSignUpDisabled('user-agreement')" type="checkbox" class="policy-checkbox"/>
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="container-switch">
+                            <label>I have read and understood the <span onclick="openDocument('information-notice.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-left: 5px"> Information Notice</span></label> 
+                            <input onclick="isSignUpDisabled('information-notice')" type="checkbox" class="policy-checkbox"/>
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div class="privacy-policies" id="gizlilik-politikaları" style="display: none;">
+                          <label class="container-switch" style="margin-bottom: 16px;">
+                            <label><span onclick="openDocument('kullanıcı-sozlesmesi.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Kullanıcı Sözleşmesi'ni </span> okudum, onaylıyorum.</label>
+                            <input onclick="isSignUpDisabled('user-agreement')" type="checkbox" class="policy-checkbox"/>
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="container-switch">
+                            <label><span onclick="openDocument('aydınlatma-metni.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Aydınlatma Metni'ni </span> okudum, anladım.</label> 
+                            <input onclick="isSignUpDisabled('information-notice')" type="checkbox" class="policy-checkbox"/>
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
                         <div class="step-bars">
                             <div class="step-bar"></div>           
                             <div class="step-bar" style="margin: 0 10px"></div>           
@@ -490,7 +581,7 @@
                         </div>
                         <div style="display:flex">
                             <div onclick="goStep(0)" class="previous-step-button" style="width: 48%;margin-right: 19px;">PREVIOUS</div>
-                            <button onclick="finish()" class="next-step-button" style="width: 48%;">FINISH</button>
+                            <button onclick="finish()" class="next-step-button" style="width: 48%;" id="sign-up-btn">SIGN UP</button>
                         </div>
                     </form> 
                     <div class="bottom-content" style="margin-top: 54px">
@@ -533,6 +624,16 @@
         const get = name => document.getElementById(name);
         const query = query => document.querySelector(query);
         const queryAll = query => document.querySelectorAll(query);
+        let userAgreement = false;
+        let informationNotice = false;
+        function openDocument (documentName) {
+          if(baseObject.envName == "prod") {
+            window.open("https://studio.onplateau.com/contents/" + documentName, "_blank");
+          }
+          else {
+            window.open("https://red-hill-08da97603.2.azurestaticapps.net/contents/" + documentName, "_blank");
+          }
+      }
         function goStep(step) {
             if (currentStep == step){return;}
             templates();
@@ -614,8 +715,22 @@
             event.srcElement.classList.add("mdi-eye");
           }
         }
-
-
+        function isSignUpDisabled (text) {
+          let signUpBtn = document.getElementById("sign-up-btn");
+          if(text == "user-agreement") {
+            userAgreement = !userAgreement;
+          }
+          else if(text == "information-notice") {
+            informationNotice = !informationNotice;
+          }
+          if(!userAgreement || !informationNotice) {
+            signUpBtn.disabled = true;
+          }
+          else {
+            signUpBtn.disabled = false;
+          }
+        }
+        isSignUpDisabled();
 
         function sendVerificationCode(){
           divs.form.ms.text_email.value = divs.form.studio.text_email.value;
@@ -752,7 +867,6 @@
               }
               console.log(mutationRecord);
             });
-            debugger;
             translateDom();
           });
           queryAll(".error.itemLevel").forEach(item => errorObserver.observe(item, {childList: true, characterData: true, subtree: true}));
@@ -797,15 +911,17 @@
     "Password": {tr: "Şifre"},
     "Password again": {tr: "Tekrar Şifre"},
     "FINISH": {tr: "BİTİR"},
+    "SIGN UP": {tr: "ÜYE OL"},
     "${section-text}": {tr: "${section-text}"},
     "${section-info-text-email}": {tr: "${section-info-text-email}"},
     "${section-info-backtologin}": {tr: "${section-info-backtologin}"},
     "Create New Account": {tr: "Yeni hesap yaratma"},
-    "Enter your e-mail to create new account.": {tr: "Lütfen E-Posta adresinizi yazın."}, 
+    "Enter your e-mail to create new account.": {tr: "Lütfen E-Posta adresinizi yazın."},
+
 
     "Forgot Password": {tr: "Şifremi unuttum"},
     "Enter your e-mail to create new password.": {tr: "Yeni bir şifre belirlemek için lütfen E-Posta adresinizi yazın."},
-    "Remember your password?": {tr: "Şifrenizi hazırladınız mı?"},
+    "Remember your password?": {tr: "Şifrenizi hatırladınız mı?"},
    
     //server
     "email is required.": {tr: "Lütfen E-Posta adresinizi yazın."},
@@ -882,13 +998,19 @@
     translateDom();
     let tr = document.getElementById("tr");
     let en = document.getElementById("en");
+    let politikalar = document.getElementById("gizlilik-politikaları");
+    let policies = document.getElementById("privacy-policies");
     if(newLangCode == "tr") {
         tr.style.display = "none"; 
         en.style.display = "flex"
+        politikalar.style.display = "block"; 
+        policies.style.display = "none"
     }
     else if(newLangCode == "en") {
         en.style.display = "none";
         tr.style.display = "flex"
+        policies.style.display = "block";
+        politikalar.style.display = "none"
     }
   }
   const localStorageLangCode = localStorage.getItem("langCode");
@@ -901,7 +1023,7 @@
     <script>
       //startup
       divs.form.studio.langSelection.value = langCode;
-      email && baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
+      baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
       translateDom();
       processTemplates("set");
       translateDom = ((orig) => () => {orig();templates();})(translateDom);
