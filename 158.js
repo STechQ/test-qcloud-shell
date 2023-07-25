@@ -1,0 +1,2 @@
+"use strict";(this.webpackChunkqcloud_shell=this.webpackChunkqcloud_shell||[]).push([[158],{70158:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var l=t(71093),r=t(73843),u=t(5627),a=t(32130);const n=(0,l.aZ)({__name:"modelSelectionWizard",props:{msItems:{}},setup(e){const s=e,t=(0,r.iH)(),n=u.nC.resolve(a.J);return(0,l.bv)((async()=>{n.setup(t.value),n.addItem(s.msItems)})),(0,l.Ah)((()=>{n.reset()})),(e,s)=>((0,l.wg)(),(0,l.iD)("div",{ref_key:"rootDiv",ref:t},null,512))}})}}]);
+//# sourceMappingURL=158.js.map
