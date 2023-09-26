@@ -72,8 +72,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../../command/CommandInterceptor */
 
-/*! ../../../common/shrimp/helpers/frameCommunicator */
-
 /*! ../../../factory/EntryFactory */
 
 /*! ../../../helper/CategoryHelper */
@@ -133,8 +131,6 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../../helper/EventDefinitionHelper */
 
 /*! ../../helper/ImplementationTypeHelper */
-
-/*! ../../interfaces/IPromiseData */
 
 /*! ../../label-editing/LabelUtil */
 
@@ -232,8 +228,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../create */
 
-/*! ../cryptoHelper */
-
 /*! ../di-ordering */
 
 /*! ../di-ordering/BpmnDiOrdering */
@@ -243,8 +237,6 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../draw */
 
 /*! ../element-notifications */
-
-/*! ../eventBus */
 
 /*! ../features/label-editing/LabelUtil */
 
@@ -259,8 +251,6 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../import */
 
 /*! ../interaction-events */
-
-/*! ../interfaces/ComponentInterfaces/ILogger */
 
 /*! ../keyboard */
 
@@ -1198,17 +1188,11 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./appliesToExtended */
 
-/*! ./arrayHelper */
-
 /*! ./base */
 
 /*! ./behavior */
 
 /*! ./behaviors */
-
-/*! ./bulkManager */
-
-/*! ./catcher */
 
 /*! ./cmd */
 
@@ -1384,8 +1368,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./helper/MoveHelper */
 
-/*! ./hook */
-
 /*! ./i18n/customTranslate */
 
 /*! ./i18n/tokenSimulationTranslation */
@@ -1492,8 +1474,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./lib/refs */
 
-/*! ./logger */
-
 /*! ./memoize */
 
 /*! ./noop */
@@ -1568,10 +1548,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./simulator */
 
-/*! ./singularizer */
-
-/*! ./stringHelper */
-
 /*! ./stubArray */
 
 /*! ./stubFalse */
@@ -1609,10 +1585,6 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ./util/TypeUtil */
 
 /*! ./util/handleLegacyScopes */
-
-/*! ./webSocket/structuredSocket */
-
-/*! ./windowHelper */
 
 /*! ./wrapperLodash */
 
@@ -2101,10 +2073,6 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!******************************!*\
   !*** ./src/util/Lightbox.js ***!
   \******************************/
-
-/*!*********************************!*\
-  !*** ./src/PlateauMessaging.ts ***!
-  \*********************************/
 
 /*!*********************************!*\
   !*** ./src/helper/CmdHelper.js ***!
@@ -3766,10 +3734,6 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./src/provider/plateauAccelerator/parts/RestApiCallProps.js ***!
   \*******************************************************************/
 
-/*!*******************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/hook.ts ***!
-  \*******************************************************************/
-
 /*!********************************************************************!*\
   !*** ./node_modules/bpmn-js/lib/features/copy-paste/ModdleCopy.js ***!
   \********************************************************************/
@@ -3832,10 +3796,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!*********************************************************************!*\
   !*** ./node_modules/diagram-js/lib/features/selection/Selection.js ***!
-  \*********************************************************************/
-
-/*!*********************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/logger.ts ***!
   \*********************************************************************/
 
 /*!**********************************************************************!*\
@@ -3934,10 +3894,6 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./src/provider/plateauAccelerator/PlateauPropertiesProvider.js ***!
   \**********************************************************************/
 
-/*!**********************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/catcher.ts ***!
-  \**********************************************************************/
-
 /*!***********************************************************************!*\
   !*** ./node_modules/bpmn-js-properties-panel/lib/helper/CmdHelper.js ***!
   \***********************************************************************/
@@ -3984,10 +3940,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!***********************************************************************!*\
   !*** ./node_modules/diagram-js/lib/navigation/zoomscroll/ZoomUtil.js ***!
-  \***********************************************************************/
-
-/*!***********************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/eventBus.ts ***!
   \***********************************************************************/
 
 /*!************************************************************************!*\
@@ -4106,14 +4058,6 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/diagram-js/lib/features/tool-manager/ToolManager.js ***!
   \**************************************************************************/
 
-/*!**************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/arrayHelper.ts ***!
-  \**************************************************************************/
-
-/*!**************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/bulkManager.ts ***!
-  \**************************************************************************/
-
 /*!***************************************************************************!*\
   !*** ./node_modules/@bpmn-io/extract-process-variables/dist/index.esm.js ***!
   \***************************************************************************/
@@ -4156,22 +4100,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!***************************************************************************!*\
   !*** ./node_modules/diagram-js/lib/features/ordering/OrderingProvider.js ***!
-  \***************************************************************************/
-
-/*!***************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/cryptoHelper.ts ***!
-  \***************************************************************************/
-
-/*!***************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/singularizer.ts ***!
-  \***************************************************************************/
-
-/*!***************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/stringHelper.ts ***!
-  \***************************************************************************/
-
-/*!***************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/windowHelper.ts ***!
   \***************************************************************************/
 
 /*!****************************************************************************!*\
@@ -4294,10 +4222,6 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/diagram-js/lib/navigation/keyboard-move/KeyboardMove.js ***!
   \******************************************************************************/
 
-/*!******************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/interfaces/IPromiseData.ts ***!
-  \******************************************************************************/
-
 /*!*******************************************************************************!*\
   !*** ./node_modules/bpmn-js-properties-panel/lib/factory/LinkEntryFactory.js ***!
   \*******************************************************************************/
@@ -4380,10 +4304,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!********************************************************************************!*\
   !*** ./node_modules/diagram-js/lib/features/preview-support/PreviewSupport.js ***!
-  \********************************************************************************/
-
-/*!********************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/frameCommunicator.ts ***!
   \********************************************************************************/
 
 /*!*********************************************************************************!*\
@@ -4814,10 +4734,6 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/diagram-js/lib/features/modeling/cmd/ToggleShapeCollapseHandler.js ***!
   \*****************************************************************************************/
 
-/*!*****************************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/helpers/webSocket/structuredSocket.ts ***!
-  \*****************************************************************************************/
-
 /*!******************************************************************************************!*\
   !*** ./node_modules/bpmn-js-properties-panel/lib/cmd/CreateBusinessObjectListHandler.js ***!
   \******************************************************************************************/
@@ -4936,10 +4852,6 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!*********************************************************************************************!*\
   !*** ./node_modules/bpmn-js/lib/features/modeling/behavior/SubProcessStartEventBehavior.js ***!
-  \*********************************************************************************************/
-
-/*!*********************************************************************************************!*\
-  !*** /home/runner/work/quick/quick/common/shrimp/interfaces/ComponentInterfaces/ILogger.ts ***!
   \*********************************************************************************************/
 
 /*!**********************************************************************************************!*\
