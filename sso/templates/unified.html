@@ -561,7 +561,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="mt-4" style="display: none;">
+                <div class="mt-4" style="display: block;">
                   <div id="studioauth_langSelection" style="display: flex; align-items: center; justify-content: center; width: 100%;">
                     <button class="lang-change-btn" onclick="langChange(this.value)" style="display: none" value="en" id="en">
                       <i class="mdi mdi-web" style="font-weight: 400;font-size: 24px; margin-right: 4px;"></i>EN</button>
@@ -821,7 +821,7 @@
     </script>
     <script>
       divs.form.studio.langSelection.value = langCode;
-      baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
+      // baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
 
       init();
       translateDom();

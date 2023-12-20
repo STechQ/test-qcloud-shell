@@ -488,7 +488,7 @@
                         <div class="template-section-text" style="color:#A1A1A1; font-size:18px; text-align: center;margin-bottom: 35px;">${section-info-backtologin}</div>
                         <div class="back-to-login"><span onclick="backToLogin()">Back to Login Page</span></div>
                     </div>
-                    <div class="mt-4" style="display: none;">
+                    <div class="mt-4" style="display: block;">
                       <div id="studioauth_langSelection" style="display: flex; align-items: center; justify-content: center; width: 100%;">
                         <button class="lang-change-btn" onclick="langChange(this.value)" style="display: none" value="en" id="en">
                           <i class="mdi mdi-web" style="font-weight: 400;font-size: 24px; margin-right: 4px;"></i>EN</button>
@@ -564,12 +564,12 @@
                         </div>
                         <div class="privacy-policies" id="gizlilik-politikaları" style="display: none;">
                           <label class="container-switch" style="margin-bottom: 16px;">
-                            <label><span onclick="openDocument('kullanıcı-sozlesmesi.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Kullanıcı Sözleşmesi'ni </span> okudum, onaylıyorum.</label>
+                            <label><span onclick="openDocument('kullanici-sozlesmesi.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Kullanıcı Sözleşmesi'ni </span> okudum, onaylıyorum.</label>
                             <input onclick="isSignUpDisabled('user-agreement')" type="checkbox" class="policy-checkbox"/>
                             <span class="checkmark"></span>
                           </label>
                           <label class="container-switch">
-                            <label><span onclick="openDocument('aydınlatma-metni.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Aydınlatma Metni'ni </span> okudum, anladım.</label> 
+                            <label><span onclick="openDocument('aydinlatma-metni.html')" style="font-weight: 500; text-decoration: underline; cursor: pointer; margin-right: 5px">Aydınlatma Metni'ni </span> okudum, anladım.</label> 
                             <input onclick="isSignUpDisabled('information-notice')" type="checkbox" class="policy-checkbox"/>
                             <span class="checkmark"></span>
                           </label>
@@ -1023,7 +1023,7 @@
     <script>
       //startup
       divs.form.studio.langSelection.value = langCode;
-      baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
+      // baseObject.envName != "prod" && (divs.form.studio.langSelection.parentElement.style.display = "block");
       translateDom();
       processTemplates("set");
       translateDom = ((orig) => () => {orig();templates();})(translateDom);
