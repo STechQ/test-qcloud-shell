@@ -1,11 +1,16 @@
-import { EntityRetriever } from "./EntityRetriever";
+import { ModelRetriever } from "./ModelRetriever";
 import { ExpressionGetter, ExpressionSetter, IExpressionData, ISetExpressionData } from "./IExpression";
 import { IPropObject } from "./IStepModel";
 import { IPlatformClientAdaptor } from "./platform/IPlatformClientAdaptor";
 import { IPlatformServerAdaptor } from "./platform/IPlatformServerAdaptor";
 import { Omit2 } from "./platform/tsHelperTypes";
-export declare type RuntimeMessage = Record<string, any>;
-export declare type StateValues = Record<string, any>;
+import { IPlatformWorkflowAdaptor } from "./platform/IPlatformWorkflowAdaptor";
+export type RuntimeMessage = {
+    input: any;
+    vars: any;
+    output?: any;
+};
+export type StateValues = Record<string, any>;
 export interface ICommonState<T> {
     set(key: string, value: T, secret: string): void;
     get(key: string, secret: string): T | undefined;
@@ -40,15 +45,16 @@ export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, S
         evalSet: (expression: ISetExpressionData, value: any, setter: ExpressionSetter) => void;
         getServer: () => IServerAdaptor | undefined;
         getClient: () => IPlatformClientAdaptor | undefined;
+        getWorkflow: () => IPlatformWorkflowAdaptor | undefined;
         getCommonState: <CommonStateType extends IStateBaseType = IStateBaseType>() => ICommonState<CommonStateType>;
     };
     state: {
         readonly values: StateType;
         clear: () => void;
     };
-    entity: {
-        retriever: EntityRetriever;
+    model: {
+        retriever: ModelRetriever;
     };
 }
-export declare type StepRuntime<PropType = IPropObject, OutputOptions = string, StateType = StateValues> = (param: IRuntimeParam<PropType, OutputOptions, StateType>) => void;
+export type StepRuntime<PropType = IPropObject, OutputOptions = string, StateType = StateValues> = (param: IRuntimeParam<PropType, OutputOptions, StateType>) => void;
 //# sourceMappingURL=StepRuntime.d.ts.map

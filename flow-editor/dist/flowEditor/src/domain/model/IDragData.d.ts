@@ -7,6 +7,6 @@ interface IDragDataMove {
     dragType: "move";
     stepId: string;
 }
-export declare type DragData = IDragDataNew | IDragDataMove;
+export type DragData = IDragDataNew | IDragDataMove;
 export {};
 //# sourceMappingURL=IDragData.d.ts.map

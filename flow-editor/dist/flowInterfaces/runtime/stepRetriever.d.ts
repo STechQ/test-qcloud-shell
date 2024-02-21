@@ -1,3 +1,3 @@
 import { StepRuntime } from "./StepRuntime";
-export declare type StepRetriever = (stepName: string, version: string) => Promise<StepRuntime>;
+export type StepRetriever = (stepName: string, version: string) => Promise<StepRuntime>;
 //# sourceMappingURL=stepRetriever.d.ts.map
