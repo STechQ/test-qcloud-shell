@@ -1,4 +1,4 @@
-export type ResizeCB = (rect: DOMRect) => void;
+export declare type ResizeCB = (rect: DOMRect) => void;
 export interface IResizeTracker {
     DomElement: HTMLElement | undefined;
     attach(element: HTMLElement, cb: ResizeCB): void;

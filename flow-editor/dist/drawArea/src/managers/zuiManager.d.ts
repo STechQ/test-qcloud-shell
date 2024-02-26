@@ -4,8 +4,8 @@ import { IRect } from "../../../flowInterfaces/editor/shape/IRect";
 import { SelectionManager } from "./selectionManager";
 import { IFlowState } from "../../../flowInterfaces/editor/IFlowEditorState";
 import { Context } from "../core/context";
-export type StageType = "connection" | "step" | "selection";
-export type ResizeSubscriber = (rect: IRect) => void;
+export declare type StageType = "connection" | "step" | "selection";
+export declare type ResizeSubscriber = (rect: IRect) => void;
 export declare class ZuiManager {
     private readonly selectionManager;
     private readonly eventHelper;

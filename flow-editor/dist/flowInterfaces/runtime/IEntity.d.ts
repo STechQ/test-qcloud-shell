@@ -1,4 +1,3 @@
-import { IModelBase } from "./IModel";
 export interface IPropertyBase {
     name: string;
     description?: string;
@@ -10,7 +9,7 @@ export interface IPropertyObject extends IPropertyBase {
     type: "object";
     item: IEntity;
 }
-export type PropertyString = IPropertyString | IPropertyStringRegex;
+export declare type PropertyString = IPropertyString | IPropertyStringRegex;
 export interface IPropertyStringBase extends IPropertyBase {
     type: "string";
     minLength?: number;
@@ -43,14 +42,13 @@ export interface IPropertyNumber extends IPropertyBase {
     max?: number;
     unique?: boolean;
 }
-export type Property = IPropertyObject | PropertyString | IPropertyBoolean | IPropertyNumber;
+export declare type Property = IPropertyObject | PropertyString | IPropertyBoolean | IPropertyNumber;
 export interface IEntityInfo {
     path: string;
     name: string;
 }
-export interface IEntity extends IModelBase {
+export interface IEntity {
     name: string;
     properties: Array<Property>;
-    type: 'entity';
 }
 //# sourceMappingURL=IEntity.d.ts.map

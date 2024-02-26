@@ -1,6 +1,5 @@
 import { IEntity } from "../../runtime/IEntity";
 import { IFlowEntityEditorState } from "../IFlowEntityEditorState";
-import { GetEntity, GetEntityList } from "../IStepOptions";
 import { IModifiedStatus } from "../common/IModifiedStatus";
 export interface IInitOptions {
     onHistoryStatus?: (status: {
@@ -8,10 +7,6 @@ export interface IInitOptions {
         redo: boolean;
     }) => void;
     onModifiedStatus?: (status: IModifiedStatus) => void;
-    entity?: {
-        onListRequire: GetEntityList;
-        onRequire: GetEntity;
-    };
 }
 export interface IEntityEditorProgram {
     init(options: IInitOptions): Promise<void>;

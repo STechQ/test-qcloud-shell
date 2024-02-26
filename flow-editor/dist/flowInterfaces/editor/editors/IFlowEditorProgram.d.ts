@@ -2,7 +2,7 @@ import { IFlowModel } from "../../runtime/IFlowModel";
 import { IFlowCopyModel, IFlowDesignModel } from "../IFlowDesignModel";
 import { IFlowEditorModel } from "../IFlowEditorModel";
 import { IFlowEditorState } from "../IFlowEditorState";
-import { GetEntity, GetEntityList, GetFlowModelBody, GetObjectModel, IStepOptions, ListFuncFlowPagesCb, ListUIPagesCb } from "../IStepOptions";
+import { GetEntity, GetEntityList, IStepOptions, ListUIPagesCb } from "../IStepOptions";
 import { IModifiedStatus } from "../common/IModifiedStatus";
 export interface IExportTypeMap {
     "both": IFlowEditorModel;
@@ -29,10 +29,7 @@ export interface IInitOptions {
         onRequire: GetEntity;
     };
     ui?: {
-        onUIPageListRequire?: ListUIPagesCb;
-        onFuncFlowListRequire?: ListFuncFlowPagesCb;
-        onFlowModelBodyRequire?: GetFlowModelBody;
-        onObjectModelRequire?: GetObjectModel;
+        onUIPageListRequire: ListUIPagesCb;
     };
 }
 export interface IFlowEditorProgram {

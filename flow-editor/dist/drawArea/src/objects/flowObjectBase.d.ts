@@ -10,7 +10,7 @@ interface IFlowObjectData {
     type: FlowObjectBase["type"];
     id: string;
 }
-export type MouseDownReturn = {
+export declare type MouseDownReturn = {
     handled: false;
 } | {
     handled: true;

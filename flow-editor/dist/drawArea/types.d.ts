@@ -45,7 +45,7 @@ export interface IConnectEventInfo {
         input: string;
     };
 }
-export type FlowEvents = {
+export declare type FlowEvents = {
     onSelect(selecteds: Array<IFlowStepEventInfo>): void;
     onDelete(deleteds: Array<IFlowStepEventInfo>): void;
     onConnect(connection: IConnectEventInfo): void;

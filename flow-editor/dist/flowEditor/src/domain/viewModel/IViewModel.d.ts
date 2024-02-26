@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { IVMHistory } from "../../../../flowInterfaces/editor/IFlowEditorState";
-import { IObjectEntry, IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
+import { IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
 import { IInitOptions } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
 export interface IConnectionFrom {
@@ -19,7 +19,7 @@ export interface IStepInstance {
     options: IStepOptions;
     propValues: IStepModel["P"];
 }
-export type ReactComponent<TProps = Record<string, any>> = (props: TProps) => JSX.Element;
+export declare type ReactComponent<TProps = Record<string, any>> = (props: TProps) => JSX.Element;
 export interface IViewModel {
     stepRepo: Record<string, Record<string, IStepOptions> | undefined>;
     steps: Record<string, IStepInstance | undefined>;
@@ -29,8 +29,6 @@ export interface IViewModel {
     componentMap: Map<symbol, ReactComponent>;
     history: IVMHistory;
     readonly: boolean;
-    flowInputs: Array<IObjectEntry>;
-    flowOutputs: Array<IObjectEntry>;
     resetHistory: () => IVMHistory;
 }
 export declare const IViewModel: unique symbol;

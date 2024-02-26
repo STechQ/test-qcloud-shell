@@ -11,8 +11,8 @@ export interface IStepTo {
 export interface IPropObject {
     [key: string]: PropValue;
 }
-export type IPropArray = Array<PropValue>;
-export type PropValue = IExpressionData | IPropObject | IPropArray | string | number | boolean | undefined;
+export declare type IPropArray = Array<PropValue>;
+export declare type PropValue = IExpressionData | IPropObject | IPropArray | string | number | boolean | undefined;
 export interface IStepModel {
     N: string;
     V: string;
