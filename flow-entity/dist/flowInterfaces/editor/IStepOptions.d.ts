@@ -19,13 +19,35 @@ export interface IExpressionOptions {
     onChange?: (value: IExpressionData, iValid: boolean) => void;
     inputOptions?: IExpressionInputOptions;
 }
+export interface IObjectEntry {
+    name: string;
+    type: "string" | "number" | "boolean" | "object" | "datetime" | "enum";
+    selectedObject?: IModelInfoForFlow;
+}
+export interface IObjectMappingProps {
+    values: Array<IObjectEntry>;
+    objectOptions: Array<IModelInfoForFlow>;
+    onChange: (newValues: Array<IObjectEntry>) => void;
+}
 export interface IUIPageInfo {
     qjsonPath: string;
     name: string;
 }
-export declare type ListUIPagesCb = () => Promise<Array<IUIPageInfo>>;
-export declare type GetEntityList = () => Promise<Array<IEntityInfo>> | Array<IEntityInfo>;
-export declare type GetEntity = (entityPath: string) => Promise<IEntity> | IEntity;
+export interface IModelInfoForFlow {
+    id: string;
+    name: string;
+    version: string;
+}
+export interface IFlowModelBodyIO {
+    inputs: Array<IObjectEntry>;
+    outputs: Array<IObjectEntry>;
+}
+export type ListUIPagesCb = () => Promise<Array<IUIPageInfo>>;
+export type ListFuncFlowPagesCb = () => Promise<Array<IModelInfoForFlow>>;
+export type GetFlowModelBody = (id: string, version: string) => Promise<IFlowModelBodyIO>;
+export type GetObjectModel = () => Promise<Array<IModelInfoForFlow>>;
+export type GetEntityList = () => Promise<Array<IEntityInfo>> | Array<IEntityInfo>;
+export type GetEntity = (entityPath: string) => Promise<IEntity> | IEntity;
 export interface IEditSectionInput<PropType = IPropObject> {
     propValues: PropType;
     callbacks: {
@@ -36,7 +58,10 @@ export interface IEditSectionInput<PropType = IPropObject> {
             get: GetEntity;
         };
         ui?: {
-            listUIPages: ListUIPagesCb;
+            listUIPages?: ListUIPagesCb;
+            listFuncFlowPages?: ListFuncFlowPagesCb;
+            getFlowModelBody?: GetFlowModelBody;
+            getObjectModel?: GetObjectModel;
         };
         loading: (show: boolean) => void;
     };
@@ -46,6 +71,7 @@ export interface IEditSectionInput<PropType = IPropObject> {
             DescDiv: React.ReactDOM["div"];
         };
         ExpressionComp: (options: IExpressionOptions) => JSX.Element;
+        ObjectMap: (props: IObjectMappingProps) => JSX.Element;
     };
 }
 export interface IStepStyle {
@@ -58,7 +84,7 @@ export interface IStepStyle {
      */
     stroke?: string;
 }
-export declare type ReactEditSection = () => JSX.Element;
+export type ReactEditSection = () => JSX.Element;
 export interface IInputInfo {
     name: string;
     color?: string;

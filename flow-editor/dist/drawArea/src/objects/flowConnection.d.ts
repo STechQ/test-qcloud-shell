@@ -7,7 +7,7 @@ import { Vector } from "two.js/src/vector";
 import { StageType, ZuiManager } from "../managers/zuiManager";
 import { FlowEvents } from "../../types";
 import { EventHelper } from "../helper/eventHelper";
-export declare type FlowConnectionTo = {
+export type FlowConnectionTo = {
     type: "step";
     step: FlowStep;
     input: string;
@@ -15,7 +15,7 @@ export declare type FlowConnectionTo = {
     type: "point";
     surfacePoint: IPoint;
 };
-export declare type FlowConnectionFrom = {
+export type FlowConnectionFrom = {
     step: FlowStep;
     output: string;
 };

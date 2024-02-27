@@ -4,6 +4,7 @@ export interface IPlatformServerAdaptor {
     getBody(): unknown;
     getCookieString(): string | undefined;
     getHeaders(): Record<string, Array<string> | string | undefined>;
+    getQueryParameters(): Record<string, string | Array<string>>;
     setHeaders(headers: Record<string, string>): void;
     writeResponse(resp: {
         statusCode: number;

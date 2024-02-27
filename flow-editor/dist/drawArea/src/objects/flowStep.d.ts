@@ -7,7 +7,7 @@ import { StageType, ZuiManager } from "../managers/zuiManager";
 import { FlowEvents, IFlowStepOptions } from "../../types";
 import { FlowConnection } from "./flowConnection";
 import { EventHelper } from "../helper/eventHelper";
-declare type GetPositionOptions = {
+type GetPositionOptions = {
     type: "self";
 } | {
     type: "input" | "output";

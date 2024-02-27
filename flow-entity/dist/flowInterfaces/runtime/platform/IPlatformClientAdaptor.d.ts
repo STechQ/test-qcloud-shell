@@ -15,10 +15,15 @@ export interface IAlertOptions {
     text?: string;
     category?: "info" | "warning" | "error" | "success";
 }
+export interface IStore {
+    get: (key: any) => Record<string, any>;
+    set: (obj: any) => void;
+}
 export interface IPlatformClientAdaptor {
     getFormData(): Record<string, any>;
     request: (request: IPlatformClientRequest) => Promise<IPlatformClientResponse>;
     go: (qjsonPath: string) => void;
     alert: (options: IAlertOptions) => void;
+    store: IStore;
 }
 //# sourceMappingURL=IPlatformClientAdaptor.d.ts.map

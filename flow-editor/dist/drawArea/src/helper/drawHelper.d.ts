@@ -7,7 +7,7 @@ export interface ITwoGroup extends Group {
 export interface ITwoRenderer {
     elem?: SVGElement;
 }
-export declare type DeleteCircleHandle = {
+export type DeleteCircleHandle = {
     root: Group;
     onMouseDown: () => void;
 };
