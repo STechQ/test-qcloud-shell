@@ -1,0 +1,455 @@
+.App {
+  padding: 20px;
+  width: 1556px;
+  font-family: 'Roboto';
+}
+
+.App-header {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+  padding: 50px;
+}
+
+.object-editor {
+  padding: 20px;
+  width: 1556px;
+  font-family: 'Roboto';
+}
+
+.editor-header {
+  height: 90px;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.editor-header-title {
+  height: 23px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 20px;
+  color: #151233;
+}
+
+.editor-header-desc {
+  height: 19px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  color: #616161;
+  margin-top: 10px;
+}
+
+.definition-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.definition-input-label {
+  
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+  color: #151233;
+}
+
+.definition-input {
+  height: 40px;
+  border-radius: 4px 4px 4px 4px;
+  border: 1px solid #BCBCBC;
+  padding: 0px 8px 0px 8px;
+}
+
+.content-tabs {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.tabs {
+  height: 36px;
+  border-bottom: 1px solid #E3E3E3;
+  display: flex;
+}
+
+.tab-item {
+  width: 160px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #151233;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.41px;
+  cursor: pointer;
+}
+
+.tab-item.active {
+  border-bottom: 2px solid #151233;
+}
+
+.table-definition-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+}
+
+
+.table-definition-container-other {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Roboto;
+  color: #151233;
+}
+
+.table {
+  border-radius: 10px;
+  border: 1px solid #E3E3E3;
+  margin-top: 10px;
+  width: 100%;
+  height: 350px;
+  overflow: auto;
+}
+
+.table-header {
+  border-bottom: 1px solid #E3E3E3;
+  height: 52px;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.41px;
+  color: #616161;
+  display: flex;
+  background-color: #E3E3E3;
+  border-radius: 10px 10px 0px 0px;
+  padding: 0px 10px 0px 10px;
+}
+
+.empty-table-body {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 197px;
+  color: #BCBCBC;
+}
+
+.header-row {
+  display: flex;
+  padding: 7px 10px 7px 10px;
+  gap: 20px;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.table-row {
+  display: flex;
+  padding: 7px 10px 7px 10px;
+  gap: 20px;
+  border-bottom: 1px solid #E3E3E3;
+  display: flex;
+  align-items: center;
+}
+
+.table-row:active {
+  cursor: grabbing;
+}
+
+.info-section {
+  display: flex;
+  padding: 12px;
+  gap: 10px;
+  border-radius: 4px;
+  background: #F5F5FA;
+  margin-top: 10px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17.58px;
+  color: #212121;
+}
+
+.mock-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.mock-list {
+  width: 400px;
+}
+
+.mock-list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mock-table {
+  width: 400px;
+  height: 224px;
+  border: 1px solid #E3E3E3;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.mock-table-row {
+  display: flex;
+  height: 57px;
+  position: relative;
+}
+
+.mock-table-row.active {
+  background: #E0E0E0;
+}
+
+.mock-table-row-text {
+  color: #212121;
+  width: 320px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: Roboto;
+  font-size: 14px;
+  cursor: pointer;
+  position: absolute;
+  left: 18px;
+  top: 18px;
+}
+
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 5px;
+  color: #757575;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox input {
+  height: 18px;
+  width: 18px;
+  margin-left: 15px;
+  border-radius: 4px;
+  accent-color: #151233;
+  cursor: pointer;
+}
+
+.checkbox label {
+  margin-left: 10px;
+}
+
+.add-new-button {
+  height: 32px;
+  width: 94px;
+  border-radius: 4px;
+  border: 1px solid #151233;
+  color: #151233;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+.host-key-expression {
+  display: flex;
+  margin-top: 3px;
+  gap: 5px;
+}
+
+.header-expression {
+  display: flex;
+  gap: 5px;
+}
+
+.input-flow label {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.input-flow input {
+  height: 40px;
+  width: 250px;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 12px;
+}
+
+.header-expression input {
+  height: 40px;
+  width: 575px;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 12px;
+}
+
+.input-flow input::-webkit-input-placeholder {
+  color: #BCBCBC;
+}
+
+
+.select-flow label {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.select-flow input,
+.select-flow .input-block {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.multiselect .multiselect-block {
+  margin-top: 3px;
+  width: 345px;
+  height: 40px;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.select-flow .input {
+  position: relative;
+  width: 250px;
+}
+
+.multiselect .input {
+  position: relative;
+}
+
+.select-flow .input input,
+.select-flow .input .input-block {
+  pointer-events: none;
+  width: 235px;
+}
+
+.select-flow .input .mdi-chevron-down {
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  font-size: 20px;
+}
+
+.multiselect .input .mdi-chevron-down {
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  font-size: 20px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.select-flow .options {
+  position: absolute;
+  top: 40px;
+  background-color: #FFF;
+  z-index: 1;
+  border: 1px solid rgb(213, 213, 213);
+  background-color: #FFF;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+  border-radius: 4px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.multiselect .options {
+  position: absolute;
+  top: 200px;
+  background-color: #FFF;
+  z-index: 1;
+  border: 1px solid rgb(213, 213, 213);
+  background-color: #FFF;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+  border-radius: 4px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 120px;
+}
+
+.multiselect .options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.select-flow .options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.select-flow .options ul li {
+  padding: 5px 15px;
+}
+
+.multiselect .options ul li {
+  padding: 5px 15px;
+}
+
+.select-flow .options ul li:hover {
+  background-color: #E2E2E2;
+}
+
+.multiselect .options ul li:hover {
+  background-color: #E2E2E2;
+}
+
+.content-type-select input,
+.options {
+  width: 250px !important;
+  margin-top: 3px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #757575;
+  cursor: pointer;
+}
+
+.pencil-icon {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+}
+
+.delete-mock-icon {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+}
+
+
+.select-group .child-component{
+  padding: 5px;
+
+}
+

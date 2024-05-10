@@ -1,0 +1,1 @@
+{"version":3,"file":"mimeImpls.d.ts","sourceRoot":"","sources":["../../../../../common/clean/infrastructure/mimeImpls.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,KAAK,EAAE,MAAM,gCAAgC,CAAC;AAEvD,qBAAa,QAAS,YAAW,KAAK;IAC3B,cAAc,CAAC,SAAS,EAAE,MAAM;IAGhC,0BAA0B,CAAC,QAAQ,EAAE,MAAM;IAG3C,gBAAgB,CAAC,QAAQ,EAAE,MAAM;CAG3C"}

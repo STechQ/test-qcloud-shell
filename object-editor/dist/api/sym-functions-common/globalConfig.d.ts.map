@@ -1,0 +1,1 @@
+{"version":3,"file":"globalConfig.d.ts","sourceRoot":"","sources":["../../../../api/sym-functions-common/globalConfig.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,sBAAsB,CAAC;AAEvD,qBAAa,YAAY;IACrB,OAAO,CAAC,MAAM,CAAC,MAAM,CAA4B;WACnC,eAAe,CAAC,MAAM,EAAE,eAAe,CAAC,QAAQ,CAAC;WAGjD,QAAQ,CAAC,GAAG,EAAE,MAAM;CAGrC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"IFlowEditorModel.d.ts","sourceRoot":"","sources":["../../../../../../flowInterfaces/editor/IFlowEditorModel.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,yDAAyD,CAAC;AACpF,OAAO,EAAE,UAAU,EAAE,MAAM,uBAAuB,CAAC;AACnD,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AAEtD,MAAM,WAAW,gBAAgB;IAC7B,OAAO,EAAE,UAAU,GAAG,SAAS,CAAC;IAChC,MAAM,EAAE,gBAAgB,CAAC;CAC5B"}

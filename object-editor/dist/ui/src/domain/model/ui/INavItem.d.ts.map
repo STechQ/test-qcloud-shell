@@ -1,0 +1,1 @@
+{"version":3,"file":"INavItem.d.ts","sourceRoot":"","sources":["../../../../../../../ui/src/domain/model/ui/INavItem.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,QAAQ;IACrB,IAAI,EAAE,MAAM,CAAC;IACb,QAAQ,CAAC,EAAE,OAAO,CAAC;IACnB,QAAQ,CAAC,EAAE,MAAM,IAAI,GAAG,OAAO,CAAC,IAAI,CAAC,CAAC;IACtC;;OAEG;IACH,gBAAgB,CAAC,EAAE,MAAM,CAAC;CAC7B"}

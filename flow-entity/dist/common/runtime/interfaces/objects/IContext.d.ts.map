@@ -1,0 +1,1 @@
+{"version":3,"file":"IContext.d.ts","sourceRoot":"","sources":["../../../../../../../../common/runtime/interfaces/objects/IContext.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,gBAAgB,EAAE,MAAM,kCAAkC,CAAA;AACnE,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,MAAM,WAAW,QAAQ;IACrB,MAAM,EAAE,cAAc,CAAC;IACvB,IAAI,EAAE,MAAM,CAAC,MAAM,EAAE,GAAG,CAAC,CAAC;IAC1B,eAAe,EAAE,gBAAgB,CAAC;CACrC"}
