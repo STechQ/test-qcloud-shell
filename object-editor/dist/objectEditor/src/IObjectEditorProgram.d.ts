@@ -24,6 +24,7 @@ export interface IInitOptions {
 export type GetObjectListModel = () => Promise<Array<IObjectInfoItem>>;
 export interface IObjectInfoItem {
     name: string;
+    _name?: string;
     objectID: string;
     objectVersion: string;
     attributes: Array<string>;

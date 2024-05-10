@@ -1,6 +1,7 @@
+import { IObject } from "../../../../../common/runtime/interfaces/objects/IObject";
 type Props = {
-    serviceName: string;
-    description: string;
+    model: IObject;
+    setModel: (model: IObject) => void;
 };
 declare const ObjectEditorHeader: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default ObjectEditorHeader;
