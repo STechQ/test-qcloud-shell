@@ -1,1 +1,0 @@
-{"version":3,"file":"LabelContainer.d.ts","sourceRoot":"","sources":["../../../../../src/components/Container/LabelContainer.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,uDAAuD,CAAA;AAM/E,KAAK,KAAK,GAAG;IACT,KAAK,EAAE,OAAO,CAAC;IACf,QAAQ,EAAE,CAAC,KAAK,EAAE,OAAO,KAAK,IAAI,CAAC;CACtC,CAAA;AAED,eAAO,MAAM,cAAc,UAAW,KAAK,4CAqC1C,CAAA"}

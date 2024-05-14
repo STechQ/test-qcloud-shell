@@ -1,1 +1,0 @@
-{"version":3,"file":"IEnum.d.ts","sourceRoot":"","sources":["../../../../../../../../common/runtime/interfaces/objects/IEnum.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,WAAW,CAAC;AAEvC,MAAM,WAAW,KAAM,SAAQ,UAAU;IACrC,IAAI,EAAE,MAAM,CAAC;IACb,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,EAAE,MAAM,CAAC;IACpB,MAAM,EAAE,MAAM,CAAC,MAAM,GAAG,MAAM,EAAE,MAAM,CAAC,CAAC;CAC3C"}
