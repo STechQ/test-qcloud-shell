@@ -1,0 +1,30 @@
+
+.content-tabs {
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.tabs {
+	height: 36px;
+	border-bottom: 1px solid #E3E3E3;
+	display: flex;
+}
+
+.tab-item {
+	width: 160px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #151233;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16.41px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.tab-item.active {
+	border-bottom: 2px solid #151233;
+}

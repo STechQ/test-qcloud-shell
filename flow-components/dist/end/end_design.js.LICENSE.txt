@@ -1,0 +1,1 @@
+/*! For license information please see end_design.js.LICENSE.txt */

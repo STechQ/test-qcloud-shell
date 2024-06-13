@@ -1,0 +1,1 @@
+{"version":3,"file":"TabItem.d.ts","sourceRoot":"","sources":["../../../../../../common/ui/components/comps/TabItem.tsx"],"names":[],"mappings":"AAAA,KAAK,KAAK,GAAG;IACT,QAAQ,EAAE,KAAK,CAAC,MAAM,CAAC,CAAC;IACxB,WAAW,EAAE,MAAM,CAAC;IACpB,OAAO,EAAE,CAAC,KAAK,EAAE,MAAM,KAAK,IAAI,CAAC;CACpC,CAAA;AAED,eAAO,MAAM,OAAO,UAAW,KAAK,4CAYnC,CAAA"}

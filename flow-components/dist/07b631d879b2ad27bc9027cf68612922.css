@@ -1,0 +1,29 @@
+
+.table thead tr th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.table thead tr th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.table thead tr th {
+    background-color: #F5F5F5;
+    color: #616161;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 18px;
+}
+
+.table tr .over{
+    background-color: white;
+}
+
+.table tr.under *  {
+    background-color: #E3E3E3;
+    color: #E3E3E3;
+}
+
+.table tr.under div {
+    opacity: 0%;
+}

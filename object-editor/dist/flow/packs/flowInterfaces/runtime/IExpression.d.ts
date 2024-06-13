@@ -1,0 +1,2 @@
+export { IExpressionData, ISetExpressionData, ExpressionGetter, ExpressionSetter, IExpressionDataTypeSelection } from "../../../../common/everything/object/runtimemodels/IExpression";
+//# sourceMappingURL=IExpression.d.ts.map
