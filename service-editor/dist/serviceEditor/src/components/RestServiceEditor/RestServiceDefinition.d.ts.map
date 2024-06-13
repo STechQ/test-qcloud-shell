@@ -1,1 +1,0 @@
-{"version":3,"file":"RestServiceDefinition.d.ts","sourceRoot":"","sources":["../../../../../src/components/RestServiceEditor/RestServiceDefinition.tsx"],"names":[],"mappings":"AAEA,OAAO,EAAE,kBAAkB,EAAE,MAAM,yEAAyE,CAAC;AAK7G,KAAK,KAAK,GAAG;IACT,KAAK,EAAE,kBAAkB,CAAC;IAC1B,WAAW,EAAE,CAAC,KAAK,EAAE,kBAAkB,KAAK,IAAI,CAAC;CACpD,CAAA;AACD,eAAO,MAAM,qBAAqB,UAAW,KAAK,4CAiEjD,CAAA"}
