@@ -16,6 +16,7 @@ import { IExcel, IExcelList } from "../quick/IExcel";
 import { IDomElement } from "../RenderingInterfaces/IDomElement";
 import { INavigationOptions } from "../quick/INavigationManager";
 import { IPermanentStoreObject, Plateau_UI_PermanentStore_Name } from "../RenderingInterfaces/Operators/IPermanentStoreOperator";
+import { IDecryptDataRequest, IDecryptDataResponse, IEncryptDataRequest, IEncryptDataResponse, IHashDataRequest, IHashDataResponse } from "../../helpers/cryptoHelper";
 export interface IGlobals_Request {
     /**
      * Sends a network request.
@@ -1475,15 +1476,9 @@ export interface IGlobalsQS extends IGlobalsBase {
     Url: IGlobals_Url;
 }
 export interface IGlobals_cryptography {
-    generateKeyPair: () => Record<string, string> | undefined;
-    store(keyPair: Record<string, string>): void;
-    hash: {
-        sha512(value: string): string | undefined;
-    };
-    sign(value: string, privateKey: string, options?: {
-        digestAlgorithm: string | "sha512";
-        padding: string | "pkcs15";
-    }): string | undefined;
+    hash(data: IHashDataRequest): Promise<IHashDataResponse | undefined>;
+    encrypt(data: IEncryptDataRequest): Promise<IEncryptDataResponse | undefined>;
+    decrypt(data: IDecryptDataRequest): Promise<IDecryptDataResponse | undefined>;
 }
 export interface IGlobals_Bignumber {
     absoluteValue?: () => IGlobals_Bignumber;
