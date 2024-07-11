@@ -17,8 +17,9 @@
           align-items: center;
           justify-content: space-around;
           width: 100%;
+          height: 100vh;
           background-color: #F5F5FA;
-          padding: 32px;
+          padding: 20px;
         }
         .form-wrap{
           display: grid;
@@ -37,7 +38,7 @@
         }
         .login-text-container {
             width: 300px;
-            margin-bottom: 16.5px;
+            margin-bottom: 10px;
             opacity: 1;
         }
         .login-text {
@@ -47,6 +48,7 @@
             color: #151233;
             opacity: 1;
             font-weight: 500;
+            height: 54px;
         }
         .content {
             text-align: left;
@@ -54,7 +56,7 @@
             letter-spacing: 0px;
             color: #757575;
             opacity: 1;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
         input[type="text"],
         input[type="password"] {
@@ -117,7 +119,7 @@
         .forgot-password {
             width: 100%;
             text-align: right;
-            margin: 26px 0px 42px -15px;
+            margin: 16px 0px 24px -15px;
         }
         .forgot-password-text {
             font-size: 16px;
@@ -389,6 +391,7 @@
           border-radius: 10px;
           height: 100%;
           width: 351px;
+          padding: 20px;
          
         }
         .login-images{
@@ -396,14 +399,14 @@
           justify-content: start;
         }
         .login-frame {
-          width: 1330px;
-          height: 832px;
+          width: 1360px;
           display: flex;
           justify-content: space-between;
           background-color: #fff;
           border-radius: 16px;
-          gap: 20px;
-          padding: 42px;
+          padding: 20px;
+          height: 100%;
+          box-shadow: 2px 4px 20px 0 rgba(21, 18, 51, 0.08);
         }
     </style>
 </head>
@@ -414,14 +417,14 @@
         <div id="svg1">
           <div class="svg">
             <img src="https://stechq.github.io/cdn/documentation/studio/plateau_logo-title.png" alt="login_background"/>
-            <img src="https://stechq.github.io/cdn/documentation/studio/login_phone.png" alt="login_background"/>
+            <img src="https://stechq.github.io/cdn/documentation/studio/logo_phone.png" alt="login_background"/>
             <img src="https://stechq.github.io/cdn/documentation/studio/plateau_logo-title2.png" alt="login_background"/>
           </div>
         </div>
        <div id="svg2">
         <div class="svg">
           <img src="https://stechq.github.io/cdn/documentation/studio/plateau_logo-title.png" alt="login_background">
-          <img src="https://stechq.github.io/cdn/documentation/studio/login_computer.png" alt="login_background">
+          <img src="https://stechq.github.io/cdn/documentation/studio/logo_computer.png" alt="login_background">
           <img src="https://stechq.github.io/cdn/documentation/studio/plateau_logo-title2.png" alt="login_background">
         </div>
        </div>
@@ -451,13 +454,13 @@
             <div class="forgot-password">
               <a class="forgot-password-text" href="#" onclick="forgotPassword()">Forgot Password?</a>
             </div>
-            <div class="mb-4">
+            <div>
               <div>
                 <button class="login-button" id="studioauth_login-button" onclick="login()">LOGIN</button>
               </div>
             </div>
           </form>
-          <div style="margin-top: 50px">
+          <div style="margin-top: 22px">
             <div style="color:#A1A1A1; font-size:18px; text-align: center;">Don't have an account?</div>
             <div style="margin: 20px 0">
               <div>

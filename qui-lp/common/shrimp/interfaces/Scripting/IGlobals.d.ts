@@ -1458,7 +1458,15 @@ export interface IGlobalsBase {
     currentPage: IGlobals_currentPage;
     cryptography: IGlobals_cryptography;
     encoding: IGlobals_Encoding;
+    integrations: IScripts;
     webScripts: {};
+}
+export interface IScripts {
+    dataroid: {
+        clearUserProfile: () => void;
+        setUserProfile: (cid: string, email: string) => void;
+        track: (eventName: string, params: Record<string, null | undefined | string | number | Date | boolean | Array<string> | Array<number>>) => void;
+    };
 }
 export interface IGlobalsTS extends IGlobalsBase {
     devex?: IGlobals_devex;
