@@ -333,10 +333,11 @@ export interface IRelaseModuleRequest {
 export interface IAppendOuterOrg {
     outerOrgId?: string;
 }
-export interface IAddOrgGroupModuleRequest extends IAppendOuterOrg {
-    outerOrgId: NonNullable<IAppendOuterOrg["outerOrgId"]>;
-    ID: ObjectID;
-    version: string;
+export interface IAttachModuleToAppRequest extends IAppendOuterOrg {
+    applicationID: string;
+    moduleID: ObjectID;
+    outerOrgId?: NonNullable<IAppendOuterOrg["outerOrgId"]>;
+    version?: string;
 }
 export interface ICheckExistenceOfModuleVersionResponse {
     majorExist: boolean;
