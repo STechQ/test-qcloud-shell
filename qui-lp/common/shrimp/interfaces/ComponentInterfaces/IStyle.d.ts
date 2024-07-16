@@ -39,6 +39,7 @@ export declare const COMPONENT_STYLE_TYPE: {
     border: string;
     "break-point-picker": string;
     "layout-input": string;
+    display: string;
 };
 export interface IComponentDefinition {
     componentStyleList: IComponentStyleInlineInterface;
@@ -47,6 +48,7 @@ export interface IComponentDefinition {
     propRemoveList?: Array<string>;
     extendedDefaulStyleList?: Record<string, string>;
     hideStyledCompField?: boolean;
+    parentListToBlockStyle?: Array<string>;
 }
 export declare type IAssetList = Record<string, Record<string, StyleValue>>;
 //# sourceMappingURL=IStyle.d.ts.map
