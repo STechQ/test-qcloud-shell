@@ -16,7 +16,6 @@ import { IExcel, IExcelList } from "../quick/IExcel";
 import { IDomElement } from "../RenderingInterfaces/IDomElement";
 import { INavigationOptions } from "../quick/INavigationManager";
 import { IPermanentStoreObject, Plateau_UI_PermanentStore_Name } from "../RenderingInterfaces/Operators/IPermanentStoreOperator";
-import { IDecryptDataRequest, IDecryptDataResponse, IEncryptDataRequest, IEncryptDataResponse, IHashDataRequest, IHashDataResponse } from "../../helpers/cryptoHelper";
 export interface IGlobals_Request {
     /**
      * Sends a network request.
@@ -1458,14 +1457,12 @@ export interface IGlobalsBase {
     currentPage: IGlobals_currentPage;
     cryptography: IGlobals_cryptography;
     encoding: IGlobals_Encoding;
-    integrations: IScripts;
     webScripts: {};
+    workflowStore?: IWorkflowStore;
 }
-export interface IScripts {
-    dataroid: {
-        clearUserProfile: () => void;
-        setUserProfile: (cid: string, email: string) => void;
-        track: (eventName: string, params: Record<string, null | undefined | string | number | Date | boolean | Array<string> | Array<number>>) => void;
+export interface IWorkflowStore {
+    context: {
+        dataInstance: unknown;
     };
 }
 export interface IGlobalsTS extends IGlobalsBase {
@@ -1484,9 +1481,15 @@ export interface IGlobalsQS extends IGlobalsBase {
     Url: IGlobals_Url;
 }
 export interface IGlobals_cryptography {
-    hash(data: IHashDataRequest): Promise<IHashDataResponse | undefined>;
-    encrypt(data: IEncryptDataRequest): Promise<IEncryptDataResponse | undefined>;
-    decrypt(data: IDecryptDataRequest): Promise<IDecryptDataResponse | undefined>;
+    generateKeyPair: () => Record<string, string> | undefined;
+    store(keyPair: Record<string, string>): void;
+    hash: {
+        sha512(value: string): string | undefined;
+    };
+    sign(value: string, privateKey: string, options?: {
+        digestAlgorithm: string | "sha512";
+        padding: string | "pkcs15";
+    }): string | undefined;
 }
 export interface IGlobals_Bignumber {
     absoluteValue?: () => IGlobals_Bignumber;

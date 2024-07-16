@@ -1,0 +1,1 @@
+{"version":3,"file":"Tabs.d.ts","sourceRoot":"","sources":["../../../../../../common/ui/components/comps/Tabs.tsx"],"names":[],"mappings":"AACA,OAAO,mCAAmC,CAAC;AAE3C,KAAK,KAAK,GAAG;IACT,QAAQ,EAAE,KAAK,CAAC,MAAM,CAAC,CAAC;IACxB,OAAO,EAAE,CAAC,KAAK,EAAE,MAAM,KAAK,IAAI,CAAC;IACjC,WAAW,EAAE,MAAM,CAAC;CACvB,CAAA;AACD,eAAO,MAAM,IAAI,UAAW,KAAK,4CAQhC,CAAA"}
