@@ -1,2 +1,2 @@
 "use strict";(this.webpackChunkqcloud_shell=this.webpackChunkqcloud_shell||[]).push([[6397],{70985:(o,l,s)=>{s.d(l,{w:()=>c});const c=Symbol.for("ILocalization")},91886:(o,l,s)=>{s.d(l,{r:()=>c});const c=Symbol.for("ITableMethods")}}]);
-//# sourceMappingURL=6397.js.map?ver=0.0.326_1721134696756
+//# sourceMappingURL=6397.js.map?ver=0.0.326_1721151255564
