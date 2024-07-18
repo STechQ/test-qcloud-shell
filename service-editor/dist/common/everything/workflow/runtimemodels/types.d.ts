@@ -16,7 +16,7 @@ export type CustomType = string;
 export declare const UnboundActions: Array<ActionType>;
 export declare const Created = "Created";
 export declare const Updated = "Updated";
-export declare const TaskCompleted = "Task Completed";
+export declare const TaskCompleted = "Task-Completed";
 export declare const Finished = "Finished";
 export type NotificationEventTypes = typeof Created | typeof Updated | typeof TaskCompleted | typeof Finished;
 //# sourceMappingURL=types.d.ts.map
