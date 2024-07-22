@@ -32,8 +32,8 @@
     //placeholder: index.html
     var baseObject = (() => {
       const obj = {
-        "localhost": { basePath: "/", envName: "local" },
-        "127.0.0.1": { basePath: "/", envName: "local" },
+        "localhost": { basePath: "/", envName: "local" }, 
+        "127.0.0.1": { basePath: "/", envName: "local" }, 
         "github.io": { basePath: "/test-qcloud-shell/", envName: "cloud" },
         "azurestaticapps.net": { basePath: "/", envName: "cloud" },
         "studio.onplateau.com": { basePath: "/", envName: "prod" },
@@ -49,7 +49,7 @@
       document.body.appendChild(script);
     };
     var includeSso = () => includeJS(baseObject.basePath + "sso.js");
-    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=0.0.327");
+    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=0.0.322");
     var getBaseUrl = () => window.location.origin + baseObject.basePath;
     var getBasePath = () => baseObject.basePath;
     var getBaseEnv = () => baseObject.envName;

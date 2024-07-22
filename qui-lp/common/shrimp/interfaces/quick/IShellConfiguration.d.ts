@@ -24,7 +24,7 @@ import { IStorageAccess } from "./IStore";
 import { IUrlOptions } from "./IUrl";
 import { IExcel, IExcelList } from "./IExcel";
 import { INavigationOptions } from "./INavigationManager";
-import { IDoryJr } from "../RenderingInterfaces/IDoryJr";
+import { IDecryptDataRequest, IDecryptDataResponse, IEncryptDataRequest, IEncryptDataResponse, IHashDataRequest, IHashDataResponse } from "../../helpers/cryptoHelper";
 export interface IShellConfiguration {
     network: INetwork;
     lridHelper?: (label: string, params: Object) => string;
@@ -80,7 +80,6 @@ export interface IShellConfiguration {
     getCurrentRegion?: () => string | undefined;
     getFormattingDefinitionByCurrentRegion?: () => IFormattingDefinition | undefined;
     setVisibility(compCollection: IComponentCollection, compVisibility: boolean): void;
-    setDisable(compCollection: IComponentCollection, compDisable: boolean): void;
     getComponentValue(compCollection: IComponentCollection): any;
     setComponentValue(compCollection: IComponentCollection, value: string): void;
     getComponentStyle(comp: IComponent): any;
@@ -111,13 +110,9 @@ export interface IShellConfiguration {
     copyToClipboard?: (value: string) => void;
     setFavicon?: (favicon: string) => void;
     getYamlLogType?: () => LogType;
-    cryptoGenerateKeyPair?: () => Record<string, string>;
-    cryptoStore?: (keyPair: Record<string, string>) => void;
-    cryptoSha512?: (value: string) => string;
-    cryptoSign?: (value: string, privateKey: string, options?: {
-        digestAlgorithm: string | "sha512";
-        padding: string | "pkcs15";
-    }) => string;
+    hash?: (data: IHashDataRequest) => Promise<IHashDataResponse>;
+    encrypt?: (data: IEncryptDataRequest) => Promise<IEncryptDataResponse>;
+    decrypt?: (data: IDecryptDataRequest) => Promise<IDecryptDataResponse>;
     getMinEngineLogType?: () => LogType | undefined;
     downloadHandler?: (responseFile: {
         data: string;
@@ -152,19 +147,14 @@ export declare type CreateComponentDelegate = ({ componentName, props, events, a
     directives?: Array<IDirectiveElement>;
     styles?: StyleValue;
 }) => ICreatedComponent;
-export interface IQJsonCollectionResult {
-    qjson: IQJSon;
-    changedPath?: string;
-}
 export declare type ComponentHasPropDelegate = ({ componentName, propName }: {
     componentName: string;
     propName: string;
 }) => boolean;
 export declare type ComponentDomLocator = (compInst: IComponent, childIndex: number) => IDomElement | null;
-export declare type RetrieveCjsonDelegate = (options: {
+export declare type RetrieveCjsonDelegate = ({ qjsonPath, }: {
     qjsonPath: string;
-    doryJr?: IDoryJr;
-}) => Promise<IQJsonCollectionResult | undefined>;
+}) => Promise<IQJSon | undefined>;
 export declare type CreateContainerViewDelegate = (compUID: string) => unknown;
 export declare type UpdateContainerViewDelegate = ({ givenObject, elements, pageShift }: {
     givenObject: unknown;
