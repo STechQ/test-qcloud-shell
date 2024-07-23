@@ -26,7 +26,6 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     rotate(): void;
     goToPage(pageNumber: number): void;
     downloadPdf(): void;
-    printPdf(): void;
     getType(): any;
     onFrameScrollBottom(): void;
     handleScroll({ target: { scrollTop, clientHeight, scrollHeight, lastChild: { offsetHeight }, }, }: {
@@ -55,7 +54,6 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     loadingContent: string;
     displayOnScroll: boolean;
     fileDescription: string;
-    showPrint: boolean;
     _renderingProps: any;
 }>;
 export default _default;
