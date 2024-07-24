@@ -1,4 +1,3 @@
-import { IDecryptDataRequest, IDecryptDataResponse, IEncryptDataRequest, IEncryptDataResponse, IHashDataRequest, IHashDataResponse } from "../../../shrimp/helpers/cryptoHelper";
 import { IMessage, LogType } from "../../../shrimp/helpers/logger";
 import { ElementLocation } from "../../../shrimp/interfaces/ComponentInterfaces/ElementLocation";
 import { IComponent, IComponentClassEngine } from "../../../shrimp/interfaces/ComponentInterfaces/IComponent";
@@ -76,6 +75,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
         options?: IUrlOptions;
     }): void;
     setVisibility: (compCollection: IComponentCollection, compVisibility: boolean) => void;
+    setDisable: (compCollection: IComponentCollection, compDisable: boolean) => void;
     getComponentValue: (compCollection: IComponentCollection) => any;
     setComponentValue: (compCollection: IComponentCollection, value: string) => void;
     getComponentStyle: (comp: IComponent) => any;
@@ -106,9 +106,13 @@ export declare class ShellConfiguration implements IShellConfiguration {
     copyToClipboard: (value: string) => void;
     setFavicon: (icon: string) => void;
     getYamlLogType?: () => LogType;
-    hash?: (data: IHashDataRequest) => Promise<IHashDataResponse>;
-    encrypt?: (data: IEncryptDataRequest) => Promise<IEncryptDataResponse>;
-    decrypt?: (data: IDecryptDataRequest) => Promise<IDecryptDataResponse>;
+    cryptoGenerateKeyPair?: () => Record<string, string>;
+    cryptoStore?: (keyPair: Record<string, string>) => void;
+    cryptoSha512?: (value: string) => string;
+    cryptoSign?: (value: string, privateKey: string, options?: {
+        digestAlgorithm: string | "sha512";
+        padding: string | "pkcs15";
+    }) => string;
     getMinEngineLogType?: () => LogType | undefined;
     downloadHandler?: (responseFile: {
         data: string;

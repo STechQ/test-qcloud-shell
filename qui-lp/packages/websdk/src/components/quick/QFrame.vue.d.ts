@@ -11,7 +11,6 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
 }, {
     style: string;
 }, {
-    allow: string;
     url: string;
     width: string;
     height: string;
