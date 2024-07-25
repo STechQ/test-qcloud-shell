@@ -46,6 +46,7 @@ export interface ISetModelBodyOptions {
     time?: Date | "skip";
     overrideOriginal?: boolean;
 }
+declare const modelProtection = "i promise, i will call this function via IModelUseCase, not directly";
 export declare class Model implements IModel, IStudioUIModelBase {
     objectType: "model";
     ID: IModel["ID"];
@@ -78,18 +79,12 @@ export declare class Model implements IModel, IStudioUIModelBase {
     private _modelBodyOriginal?;
     get modelBodyOriginal(): IModelBodyObject[] | undefined;
     private _cacheInfo?;
-    get cacheInfo(): {
-        type: "resolved";
-        time: Date;
-    } | {
-        type: "resolving";
-        promData: IPromiseData<IModel>;
-    } | undefined;
+    get cacheInfo(): IModelCacheInfoResolved | IModelCacheInfoResolving | undefined;
     private _modelBody?;
     get modelBody(): IModel["modelBody"];
-    setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions): void;
+    setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions, protection: typeof modelProtection): void;
     notModifiableByOthers(): boolean;
-    revertModelBody(): void;
+    revertModelBody(protection: typeof modelProtection): void;
     onBeforeModelBodyRetrieve(): void;
     onFailModelBodyRetrieve(err: Error): void;
 }
@@ -100,24 +95,26 @@ export interface IFolder {
     path: string;
     owner: IApplication | IModule;
 }
+export interface IModelCacheInfoResolved {
+    type: "resolved";
+    time: Date;
+}
+export interface IModelCacheInfoResolving {
+    type: "resolving";
+    promData: IPromiseData<IModel>;
+}
 export interface IModel extends IObject, IStudioUIModelBase {
-    revertModelBody(): void;
+    revertModelBody(protection: typeof modelProtection): void;
     onBeforeModelBodyRetrieve(): void;
     onFailModelBodyRetrieve(err: Error): void;
-    setModelBody(value: NonNullable<IModel["modelBody"]>, options: ISetModelBodyOptions): void;
+    setModelBody(value: NonNullable<IModel["modelBody"]>, options: ISetModelBodyOptions, protection: typeof modelProtection): void;
     copyFrom(model: IModel): void;
     notModifiableByOthers(): boolean;
     objectType: "model";
     owner: IApplication | IModule;
     readonly modelBody?: Array<IModelBodyObject>;
     readonly modelBodyOriginal?: Array<IModelBodyObject>;
-    readonly cacheInfo?: {
-        type: "resolved";
-        time: Date;
-    } | {
-        type: "resolving";
-        promData: IPromiseData<IModel>;
-    };
+    readonly cacheInfo?: IModelCacheInfoResolved | IModelCacheInfoResolving;
     extension?: ExtensionType;
     usageType?: ITreeviewItem["usageType"];
     additionals?: ModelAdditionals;

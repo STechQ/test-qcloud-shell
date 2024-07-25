@@ -210,6 +210,7 @@ export interface IUpdateModelRequest {
     isUnmodifiable?: boolean;
     path?: string;
     convertToBlock?: boolean;
+    undoCheckOut?: boolean;
 }
 export interface IUpdateModelResponse {
     ID: string;

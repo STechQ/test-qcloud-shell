@@ -1,0 +1,11 @@
+<svg id="plateau_logo-navy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="16" viewBox="0 0 50 36">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3619" data-name="Rectangle 3619" width="50" height="36" fill="#151233"/>
+    </clipPath>
+  </defs>
+  <g id="Group_2390" data-name="Group 2390" clip-path="url(#clip-path)">
+    <path id="Path_9327" data-name="Path 9327" d="M34.332,0c-6,0-5.407.046-11.4.046V13.484H36.2v13.3C52.961,25.06,52.325,0,34.332,0" transform="translate(-13.659 0)" fill="#151233"/>
+    <path id="Path_9328" data-name="Path 9328" d="M0,33.377V55.9H22.536V46.68H9.269v-13.3Z" transform="translate(0 -19.895)" fill="#151233"/>
+  </g>
+</svg>

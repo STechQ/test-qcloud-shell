@@ -9,6 +9,7 @@ export { ObjectID };
 export type AuthenticationType = "QCLOUDAUTH" | "ADFS";
 export type ModelHistoryType = "update" | "delete" | "checkin" | "publish" | "ownerItemDelete";
 export type DomainObjectType = "domain";
+export type OrgGroupObjectType = "orgGroup";
 export type ApplicationObjectType = "application";
 export type ModuleObjectType = "module";
 export type FolderObjectType = "folder";
@@ -269,10 +270,14 @@ export interface ITenantDefinitions extends ICloudObject {
     value: any;
     isActive: boolean;
     objectType?: AppSettingsObjectType | "deploySettings" | "appTemplate";
-    targetObjectType?: ApplicationObjectType | DomainObjectType;
+    targetObjectType?: ApplicationObjectType | DomainObjectType | OrgGroupObjectType;
+    targetObjectIds?: Array<string>;
     contentType?: ContentType;
     description?: string;
     key?: AppSettingsModelKeys;
+    additionals?: {
+        logo?: string;
+    };
 }
 export type ItemLimitActionType = "deleteOldest" | "stopAdding";
 export interface IItemLimitationDetail {
@@ -317,6 +322,7 @@ export interface ITreeviewItem {
     priority: number;
     type: ITreeviewItemType;
     createDate: Date;
+    updateDate?: Date;
     path: string;
     shortName?: string;
     modelAdditionals?: IQJsonAdditionals | IProcessWizardAdditionals | IBpmnAdditionals | IEntityDesignerAddtionals;
