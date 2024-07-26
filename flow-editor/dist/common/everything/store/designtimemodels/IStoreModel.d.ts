@@ -1,3 +1,4 @@
+import { IVariable } from "../../dataType/runtimemodels/IVariable";
 import { IStoreModelForService as IStoreModelForServiceRuntime, IStoreContextForService as IStoreContextForServiceRuntime, IStoreModelForWorkflow as IStoreModelForWorkflowRuntime, IStoreContextForWorkflow as IStoreContextForWorkflowRuntime, IStoreModelForFlow as IStoreModelForFlowRuntime, IStoreContextForFlow as IStoreContextForFlowRuntime, IStoreModelForUI as IStoreModelForUIRuntime, IStoreContextForUI as IStoreContextForUIRuntime } from "../runtimemodels/IStoreModel";
 export type Store = IStoreModelForService | IStoreModelForWorkflow | IStoreModelForFlow | IStoreModelForUI;
 type IStoreModelPropsAddition = {
@@ -15,5 +16,8 @@ export type IStoreContextForUI = IStoreContextForUIRuntime & {};
 export type IStoreProps = {
     insert: Array<string>;
 };
+export interface INestedStore {
+    [key: string]: IVariable | INestedStore;
+}
 export {};
 //# sourceMappingURL=IStoreModel.d.ts.map

@@ -4,7 +4,7 @@ import { ISelectedSwitchCase, IStepOptions } from "../../../../flowInterfaces/ed
 import { IInitOptions } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
 import { IExpressionData } from "@stechquick/flow-interfaces/runtime";
-import { Store } from "../../../../../../common/everything/store/designtimemodels/IStoreModel";
+import { INestedStore, Store } from "../../../../../../common/everything/store/designtimemodels/IStoreModel";
 import { ISLA } from "../../../../../../common/everything/workflow/runtimemodels/ISLA";
 export interface IConnectionFrom {
     step: string;
@@ -41,6 +41,7 @@ export interface IViewModel {
     componentMap: Map<symbol, ReactComponent>;
     history: IVMHistory;
     store: Store;
+    nestedStore: INestedStore;
     readonly: boolean;
     isWorkFlow?: boolean;
     roles: Array<IExpressionData>;

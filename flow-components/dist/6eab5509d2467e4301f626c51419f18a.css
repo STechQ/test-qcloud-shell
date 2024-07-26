@@ -1,7 +1,7 @@
 @import "../index.css";
 
 .dialog {
-    width: 460px;
+    width: 400px;
     background-color: #FFF;
     border-radius: 4px;
     box-shadow: 2px 2px 15px 0px #00000033;

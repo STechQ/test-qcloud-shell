@@ -2,7 +2,7 @@ import { IFlowModel } from "../../runtime/IFlowModel";
 import { IFlowCopyModel, IFlowDesignModel } from "../IFlowDesignModel";
 import { IFlowEditorModel } from "../IFlowEditorModel";
 import { IFlowEditorState } from "../IFlowEditorState";
-import { GetModelBodyIO, GetModelListCb, IStepOptions, SetStoreSchema } from "../IStepOptions";
+import { GetModelBody, GetModelListCb, IStepOptions, SetStoreSchema } from "../IStepOptions";
 import { IModifiedStatus } from "../common/IModifiedStatus";
 import { IWorkflowModel } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IStoreModelForFlow } from "../../../../../common/everything/store/designtimemodels/IStoreModel";
@@ -27,7 +27,7 @@ export interface IInitOptions {
     }) => void;
     onModifiedStatus?: (status: IModifiedStatus) => void;
     ui?: {
-        onModelBodyIORequire?: GetModelBodyIO;
+        onModelBodyRequire?: GetModelBody;
         onStoreSchemaRequire?: SetStoreSchema;
         onModelListRequire?: GetModelListCb;
         basePath?: string;

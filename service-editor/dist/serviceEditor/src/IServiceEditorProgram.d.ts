@@ -9,20 +9,21 @@ export interface IServiceEditorInitOptions {
 export declare function getDefaultModel(): IRestServiceDesign;
 export interface IServiceEditorData {
     mainModel: IRestServiceDesign;
-    dataTypeInfo: Array<{
-        name: string;
-        value: string;
-    }>;
     constantInfo: Array<{
         name: string;
         value: string;
+    }>;
+    dataTypes: Array<{
+        ID: string;
+        name: string;
+        modelBody: string;
     }>;
 }
 export interface IServiceModelImport {
     mainModel: IServiceEditorData["mainModel"];
     options: {
-        dataTypeInfo: IServiceEditorData["dataTypeInfo"];
         constantInfo: IServiceEditorData["constantInfo"];
+        dataTypes: IServiceEditorData["dataTypes"];
     };
 }
 export interface IServiceEditorProgram {

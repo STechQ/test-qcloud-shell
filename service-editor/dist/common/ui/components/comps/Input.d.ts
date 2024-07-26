@@ -7,7 +7,7 @@ interface IInputProps {
     disabled?: boolean;
     isDigit?: boolean;
     value: string;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: string) => void;
     onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export declare const Input: FC<IInputProps>;

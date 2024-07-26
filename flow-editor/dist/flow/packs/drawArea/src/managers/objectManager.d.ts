@@ -17,6 +17,7 @@ export declare class ObjectManager {
     constructor(zuiManager: ZuiManager, selectionManager: SelectionManager, eventHelper: EventHelper<FlowEvents>);
     private addSwitchCase;
     private counterSwitchCaseChild;
+    returnLeftorRightCaseName(case_: ISwitchCaseExp, direction: "Left" | "Right"): string | undefined;
     addAllSwitchCases(switchCases: ISwitchCaseExp): void;
     private addOperator;
     updateSwimlanes(steps: Array<IFlowStepSwimlane>, swimlanes: Array<ISwimlaneExport>): void;

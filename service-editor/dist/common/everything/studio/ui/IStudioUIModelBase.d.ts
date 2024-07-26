@@ -1,7 +1,6 @@
 import { WorkflowModelType } from "../../workflow/runtimemodels/types";
 import { FlowModelType } from "../../flow/runtimeModels/types";
-import { RestServiceModelType } from "../../restService/runtimeModels/types";
-import { SoapServiceModelType } from "../../soapService/runtimeModels/types";
+import { RestServiceModelType, SoapServiceModelType } from "../../restService/runtimeModels/types";
 import { EnumModelType } from "../../enum/runtimeModels/types";
 import { DataTypeModelType } from "../../dataType/runtimemodels/types";
 import { IStudioUIObjectBase } from "./IStudioUIObjectBase";

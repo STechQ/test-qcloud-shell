@@ -22,7 +22,7 @@
     width: 0;
     height: 0;
 }
-.slider {
+.switch  .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -62,11 +62,11 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-.slider.round {
+.switch .slider.round {
     width: 36px;
     border-radius: 34px;
 }
 
-.slider.round:before {
+.switch .slider.round:before {
     border-radius: 50%;
 }
