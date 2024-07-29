@@ -106,7 +106,10 @@ export interface IExportJobData extends IJobData {
 }
 export interface IWorkflowExportJobData {
     type?: undefined;
-    appID: string;
+    app: {
+        ID: string;
+        name: string;
+    };
     items: Array<IWorkflowExportItem>;
 }
 export interface IPackJobData extends IExportJobData {
