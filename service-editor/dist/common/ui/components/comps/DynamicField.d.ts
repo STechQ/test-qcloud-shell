@@ -20,6 +20,7 @@ interface IDynamicFieldProps<T extends keyof T extends any ? Record<string, any>
 }
 export interface IDialogElements<T extends keyof T extends any ? Record<string, any> : never> {
     component: any;
+    componentName: string;
     props: Record<string, any>;
     key: NestedUnionKeyof<T>;
     children?: ReactNode;
