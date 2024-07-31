@@ -10,6 +10,8 @@ export interface IFlowDesignModel extends IFlowCopyModel {
 export interface IFlowCopyModel {
     name?: string;
     _name?: string;
+    label: IExpressionData;
+    description: string;
     steps: Array<IStepDesignModel>;
     connections: Array<IConnectionDesignModel>;
     swimlanes?: Record<string, ISwimlaneDesignModel>;
@@ -17,5 +19,6 @@ export interface IFlowCopyModel {
     store: Store;
     sla?: ISLA;
     priority?: number;
+    applicationId: string;
 }
 //# sourceMappingURL=IFlowDesignModel.d.ts.map

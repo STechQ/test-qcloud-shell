@@ -51,6 +51,9 @@ export interface IViewModel {
     schema: Store;
     priority: number;
     sla: ISLA;
+    label: IExpressionData;
+    description: string;
+    applicationId: string;
     resetHistory: () => IVMHistory;
 }
 export declare const IViewModel: unique symbol;

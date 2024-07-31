@@ -1465,7 +1465,7 @@ export interface IGlobalsBase {
 }
 export interface IWorkflowStore {
     context: {
-        dataInstance: unknown;
+        dataInstance: any;
     };
 }
 export interface IScripts {

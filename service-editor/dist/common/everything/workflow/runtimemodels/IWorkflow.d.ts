@@ -1,5 +1,5 @@
 import { IAction } from "../runtimeObjects/IAction";
-import { IFlowModel, IPropObject, IStepFrom, IStepModel, IStepTo } from "@stechquick/flow-interfaces/runtime";
+import { IFlowModel, IPropObject, ISetExpressionData, IStepFrom, IStepModel, IStepTo } from "@stechquick/flow-interfaces/runtime";
 import { IStoreMapping } from "../../store/runtimemodels/IStoreMapping";
 import { IStoreModelForWorkflow } from "../../store/runtimemodels/IStoreModel";
 import { ISwitchProps } from "../../flow/runtimeModels/ISwitch";
@@ -14,6 +14,9 @@ export declare const NamedFunctions: {
 export type IWorkflowModelNamedFunctions = Record<keyof typeof NamedFunctions, string>;
 export interface IWorkflowModel extends IFlowModelBase {
     type: "workflow";
+    label: IExpressionData;
+    description: string;
+    applicationId: string;
     namedFunctions?: IWorkflowModelNamedFunctions;
     name: string;
     _name: string;
@@ -65,4 +68,11 @@ export type IForm = {
     roles: Array<string>;
     readonly?: boolean;
 };
+export interface ICounterPropType {
+    label: IExpressionData;
+    description: string;
+    reset: "never" | "daily" | "monthly" | "yearly";
+    key: IExpressionData;
+    assignTo: ISetExpressionData;
+}
 //# sourceMappingURL=IWorkflow.d.ts.map
