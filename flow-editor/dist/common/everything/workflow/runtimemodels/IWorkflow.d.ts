@@ -16,7 +16,6 @@ export interface IWorkflowModel extends IFlowModelBase {
     type: "workflow";
     label: IExpressionData;
     description: string;
-    applicationId: string;
     namedFunctions?: IWorkflowModelNamedFunctions;
     name: string;
     _name: string;
@@ -28,6 +27,7 @@ export interface IWorkflowModel extends IFlowModelBase {
     steps: Record<string, IWFStepModel>;
     startSteps: Array<IWFStepTo>;
     store: IStoreModelForWorkflow;
+    businessKeyGenerationFunction?: IExecuteFlowByMapping;
 }
 export interface IWFStepTo extends IStepTo {
 }

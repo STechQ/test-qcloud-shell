@@ -6,6 +6,7 @@ import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
 import { IExpressionData } from "@stechquick/flow-interfaces/runtime";
 import { INestedStore, Store } from "../../../../../../common/everything/store/designtimemodels/IStoreModel";
 import { ISLA } from "../../../../../../common/everything/workflow/runtimemodels/ISLA";
+import { IExecuteFlowByMapping } from "../../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 export interface IConnectionFrom {
     step: string;
     output: string;
@@ -51,9 +52,9 @@ export interface IViewModel {
     schema: Store;
     priority: number;
     sla: ISLA;
-    label: IExpressionData;
-    description: string;
-    applicationId: string;
+    label?: IExpressionData;
+    description?: string;
+    businessKeyGenerationFunction?: IExecuteFlowByMapping;
     resetHistory: () => IVMHistory;
 }
 export declare const IViewModel: unique symbol;

@@ -1,5 +1,6 @@
 import { Store } from "../../../../common/everything/store/designtimemodels/IStoreModel";
 import { ISLA } from "../../../../common/everything/workflow/runtimemodels/ISLA";
+import { IExecuteFlowByMapping } from "../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IExpressionData } from "../runtime";
 import { IConnectionDesignModel } from "./IConnectionDesignModel";
 import { IStepDesignModel } from "./IStepDesignModel";
@@ -10,8 +11,8 @@ export interface IFlowDesignModel extends IFlowCopyModel {
 export interface IFlowCopyModel {
     name?: string;
     _name?: string;
-    label: IExpressionData;
-    description: string;
+    label?: IExpressionData;
+    description?: string;
     steps: Array<IStepDesignModel>;
     connections: Array<IConnectionDesignModel>;
     swimlanes?: Record<string, ISwimlaneDesignModel>;
@@ -19,6 +20,6 @@ export interface IFlowCopyModel {
     store: Store;
     sla?: ISLA;
     priority?: number;
-    applicationId: string;
+    businessKeyGenerationFunction?: IExecuteFlowByMapping;
 }
 //# sourceMappingURL=IFlowDesignModel.d.ts.map
