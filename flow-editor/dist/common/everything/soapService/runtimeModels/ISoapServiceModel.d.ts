@@ -8,6 +8,7 @@ export interface ISoapServiceModel extends IModelBaseFields {
     _name: string;
     desc: string;
     hostKey: IExpressionData;
+    hostKeyExtension?: Array<ISoapExtension>;
     methodName: IExpressionData;
     requestHeader?: Record<string, IExpressionData>;
     requestBody: Array<{
@@ -26,6 +27,9 @@ export interface ISoapServiceModel extends IModelBaseFields {
     security?: ISoapSecurityInfo;
     mock?: Array<ISoapMock>;
     store: Store;
+}
+export interface ISoapExtension {
+    value: IExpressionData;
 }
 export interface ISoapSecurityInfo {
     username: IExpressionData;
