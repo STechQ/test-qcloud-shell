@@ -13,7 +13,6 @@ export declare class DrawArea implements IDrawArea {
     addAllSwitchCases(switchCases: ISwitchCaseExp): void;
     addFlowStep(stepName: string, clientPoint: IPoint, options: IFlowStepOptions, props: IFlowStepProps): string;
     deleteFlowSteps(stepIDs: Array<string>): void;
-    deleteAllFlowSteps(): void;
     panBy(dx: number, dy: number): void;
     resetPanAndZoom(): void;
     subscribe<K extends keyof FlowEvents>(eventName: K, cb: FlowEvents[K]): void;

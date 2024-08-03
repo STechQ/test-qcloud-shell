@@ -33,6 +33,7 @@ export declare class ZuiManager {
     panBy(dx: number, dy: number): void;
     clearStage(stage: "selection"): void;
     zoomBy(dy: number, clientPoint: IPoint): void;
+    zoomSet(scale: number, clientX: number, clientY: number): void;
     reset(): void;
     getSelectionRect(): IRect;
     subscribeToResize(subscriber: ResizeSubscriber): void;

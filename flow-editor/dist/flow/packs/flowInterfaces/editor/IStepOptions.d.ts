@@ -45,7 +45,7 @@ export interface ISwimlaneProp {
     name: IExpressionData;
 }
 export interface ISelectedSwitchCase {
-    id?: string;
+    stepId?: string;
     case?: ISwitchCaseExp;
     caseId?: string;
 }

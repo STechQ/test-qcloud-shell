@@ -12,6 +12,7 @@ export declare class ObjectManager {
     private readonly selectionManager;
     private readonly eventHelper;
     private readonly idCreator;
+    private readonly switchIdCreator;
     private pasteOffset;
     private objects;
     constructor(zuiManager: ZuiManager, selectionManager: SelectionManager, eventHelper: EventHelper<FlowEvents>);

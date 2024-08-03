@@ -1,12 +1,13 @@
 /// <reference types="react" />
 import { IVMHistory } from "../../../../flowInterfaces/editor/IFlowEditorState";
-import { ISelectedSwitchCase, IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
+import { IStepOptions } from "../../../../flowInterfaces/editor/IStepOptions";
 import { IInitOptions } from "../../../../flowInterfaces/editor/editors/IFlowEditorProgram";
 import { IStepModel } from "../../../../flowInterfaces/runtime/IStepModel";
 import { IExpressionData } from "@stechquick/flow-interfaces/runtime";
 import { INestedStore, Store } from "../../../../../../common/everything/store/designtimemodels/IStoreModel";
 import { ISLA } from "../../../../../../common/everything/workflow/runtimemodels/ISLA";
 import { IExecuteFlowByMapping } from "../../../../../../common/everything/workflow/runtimemodels/IWorkflow";
+import { ISwitchCaseExp } from "../../../../../../common/everything/flow/runtimeModels/ISwitch";
 export interface IConnectionFrom {
     step: string;
     output: string;
@@ -48,7 +49,11 @@ export interface IViewModel {
     roles: Array<IExpressionData>;
     name?: string;
     _name?: string;
-    selectedSwitchCase?: ISelectedSwitchCase;
+    selectedSwitchStepId?: string;
+    selectedSwitchCase?: {
+        caseId: string;
+        case: ISwitchCaseExp;
+    };
     schema: Store;
     priority: number;
     sla: ISLA;
