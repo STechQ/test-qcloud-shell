@@ -29,7 +29,7 @@ export interface IModelBodyIO {
     otherProps?: Record<string, any>;
 }
 export type GetModelBody = (id: string, bodyKey: string) => Promise<IWFModels>;
-export type GetRoles = () => Array<IExpressionData>;
+export type GetRoles = () => Array<IRoleProp>;
 export type GetSwimlanes = () => Array<ISwimlaneProp>;
 export type SetStoreSchema = (id: string, schema: IStoreModelForFlow) => IStoreModelForFlow;
 export type GetModelListCb = (type: ModelType) => Promise<Array<IStudioUIModelBase>>;
@@ -39,6 +39,10 @@ export interface ISwitchPropCase {
     expression: IExpressionData;
     output: number;
     id: number;
+}
+export interface IRoleProp {
+    id: string;
+    name: IExpressionData;
 }
 export interface ISwimlaneProp {
     id: string;

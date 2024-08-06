@@ -32,11 +32,16 @@ export interface ISwimlaneInstance {
     id: string;
     name: IExpressionData;
 }
+export interface IRoleInstance {
+    id: string;
+    name: IExpressionData;
+}
 export type ReactComponent<TProps = Record<string, any>> = (props: TProps) => JSX.Element;
 export interface IViewModel {
     stepRepo: Record<string, Record<string, IStepOptions> | undefined>;
     steps: Record<string, IStepInstance | undefined>;
     swimlanes: Record<string, ISwimlaneInstance>;
+    roles: Record<string, IRoleInstance>;
     connections: Record<string, IConnectionInstance | undefined>;
     selecteds: Array<string>;
     initOptions: IInitOptions;
@@ -46,7 +51,6 @@ export interface IViewModel {
     nestedStore: INestedStore;
     readonly: boolean;
     isWorkFlow?: boolean;
-    roles: Array<IExpressionData>;
     name?: string;
     _name?: string;
     selectedSwitchStepId?: string;

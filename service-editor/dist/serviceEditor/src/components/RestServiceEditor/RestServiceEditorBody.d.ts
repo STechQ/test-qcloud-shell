@@ -9,7 +9,7 @@ type Props = {
     updateModel: (model: IRestServiceDesign) => void;
     dataTypes: IServiceEditorData["dataTypes"];
 };
-export type TabNames = "Request" | "Response" | "Mock";
+export type TabNames = "Request" | "Response" | "Mock Response";
 export declare const RestServiceEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=RestServiceEditorBody.d.ts.map

@@ -64,5 +64,5 @@ export interface IRuntimeParam<PropType = IPropObject, OutputOptions = string, S
         retriever: ModelRetriever;
     };
 }
-export type StepRuntime<PropType = IPropObject, OutputOptions = string, StateType = StateValues> = (param: IRuntimeParam<PropType, OutputOptions, StateType>) => void;
+export type StepRuntime<PropType = IPropObject, OutputOptions = string, StateType = StateValues> = (param: IRuntimeParam<PropType, OutputOptions, StateType>) => void | Promise<void>;
 //# sourceMappingURL=StepRuntime.d.ts.map

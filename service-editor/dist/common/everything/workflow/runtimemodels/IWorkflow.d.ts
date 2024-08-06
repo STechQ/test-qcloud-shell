@@ -63,9 +63,8 @@ export type IWFStepProps = {
     priority?: number;
     sla?: ISLA;
 };
-export type IForm = {
+export type IForm = ObjectWithRoles & {
     id: string;
-    roles: Array<string>;
     readonly?: boolean;
 };
 export interface ICounterPropType {
@@ -74,5 +73,8 @@ export interface ICounterPropType {
     reset: "never" | "daily" | "monthly" | "yearly";
     key: IExpressionData;
     assignTo: ISetExpressionData;
+}
+export interface ObjectWithRoles {
+    roles: Array<string>;
 }
 //# sourceMappingURL=IWorkflow.d.ts.map

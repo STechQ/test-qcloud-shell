@@ -1,14 +1,13 @@
 import { ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
-import { IPlatformClientAdaptor } from "./IPlatformClientAdaptor";
+import { MongoClient } from "mongodb";
 export interface IPlatformWorkflowAdaptor {
-    client?: IPlatformClientAdaptor;
-    server?: IPlatformWorkflowServerAdaptor;
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     soapServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     keyExecutor: (prop: ICounterPropType) => Promise<any>;
-}
-export interface IPlatformWorkflowServerAdaptor {
+    db: () => {
+        mongo: (url: string) => Promise<MongoClient>;
+    };
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;

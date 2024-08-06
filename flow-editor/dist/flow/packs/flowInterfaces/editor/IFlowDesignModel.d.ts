@@ -3,6 +3,7 @@ import { ISLA } from "../../../../common/everything/workflow/runtimemodels/ISLA"
 import { IExecuteFlowByMapping } from "../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IExpressionData } from "../runtime";
 import { IConnectionDesignModel } from "./IConnectionDesignModel";
+import { IRoleDesignModel } from "./IRoleDesignModel";
 import { IStepDesignModel } from "./IStepDesignModel";
 import { ISwimlaneDesignModel } from "./ISwimlaneDesignModel";
 export interface IFlowDesignModel extends IFlowCopyModel {
@@ -16,7 +17,7 @@ export interface IFlowCopyModel {
     steps: Array<IStepDesignModel>;
     connections: Array<IConnectionDesignModel>;
     swimlanes?: Record<string, ISwimlaneDesignModel>;
-    roles?: Array<IExpressionData>;
+    roles?: Record<string, IRoleDesignModel>;
     store: Store;
     sla?: ISLA;
     priority?: number;
