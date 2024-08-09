@@ -4,6 +4,7 @@ interface ISLAProps {
     priority?: number;
     onChangePriority: (priority: number) => void;
     sla?: ISLA;
+    readOnly?: boolean;
     onChangeSLA: (sla: ISLA) => void;
 }
 export declare const Sla: FC<ISLAProps>;

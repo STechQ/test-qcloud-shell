@@ -4,6 +4,7 @@ import { IExpressionData, ISetExpressionData } from "../../../../common/everythi
 interface IBodyProps {
     body: Array<IBody>;
     typeOptions: Array<IOption>;
+    readOnly: boolean;
     updateBody: (model: Array<IBody>) => void;
 }
 interface IBody {

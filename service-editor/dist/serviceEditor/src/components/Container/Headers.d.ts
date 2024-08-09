@@ -5,6 +5,7 @@ interface IHeadersProps {
     headers: Record<string, IExpressionData | ISetExpressionData>;
     updateHeaders: (headers: Record<string, IExpressionData | ISetExpressionData>) => void;
     typeOptions: Array<IOption>;
+    readOnly: boolean;
 }
 export declare const Headers: FC<IHeadersProps>;
 export {};

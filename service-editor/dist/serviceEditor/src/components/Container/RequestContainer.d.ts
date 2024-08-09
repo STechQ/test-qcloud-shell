@@ -5,6 +5,7 @@ type Props = {
         name: string;
         value: string;
     }>;
+    readOnly: boolean;
     updateModel: (model: IRestServiceDesign) => void;
 };
 export declare const RequestContainer: (props: Props) => import("react/jsx-runtime").JSX.Element;

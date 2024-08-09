@@ -2,6 +2,7 @@ import { IRestServiceDesign } from "../../../../common/everything/restService/de
 type Props = {
     mainModel: IRestServiceDesign;
     updateModel: (model: IRestServiceDesign) => void;
+    readOnly: boolean;
 };
 export declare const ResponseContainer: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

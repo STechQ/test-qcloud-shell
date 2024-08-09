@@ -8,7 +8,9 @@ interface Props {
     options: IDataTypeEditorInitOptions;
     updateMainModel: (model: IDataTypeModel) => void;
     data: IDataTypeEditorData;
+    readOnly: boolean;
     triggerSetter: (trigger: Program["trigger"]) => void;
+    triggerSetterReadOnly: (triggerReadOnly: Program["triggerReadOnly"]) => void;
 }
 declare function App(props: Props): import("react/jsx-runtime").JSX.Element;
 export default App;

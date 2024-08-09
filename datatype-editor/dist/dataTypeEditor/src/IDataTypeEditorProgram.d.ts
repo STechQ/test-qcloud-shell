@@ -20,6 +20,7 @@ export interface IDataTypeEditorProgram {
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;
     }): Promise<void>;
+    setReadOnly(readonly: boolean): void;
 }
 export interface IInitOptions {
     ui?: {

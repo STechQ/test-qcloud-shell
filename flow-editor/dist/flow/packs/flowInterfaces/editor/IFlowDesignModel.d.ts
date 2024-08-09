@@ -22,5 +22,6 @@ export interface IFlowCopyModel {
     sla?: ISLA;
     priority?: number;
     businessKeyGenerationFunction?: IExecuteFlowByMapping;
+    fileUploadFunction?: IExecuteFlowByMapping;
 }
 //# sourceMappingURL=IFlowDesignModel.d.ts.map

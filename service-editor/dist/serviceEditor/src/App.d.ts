@@ -8,7 +8,9 @@ type Props = {
     data: IServiceEditorData;
     updateMainModel: (model: IRestServiceDesign) => void;
     options: IServiceEditorInitOptions;
+    readOnly: boolean;
     triggerSetter: (trigger: Program["trigger"]) => void;
+    triggerSetterReadOnly: (triggerReadOnly: Program["triggerReadOnly"]) => void;
 };
 export declare const App: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default App;

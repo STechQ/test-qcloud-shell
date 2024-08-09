@@ -1,4 +1,3 @@
-import { IAction } from "../runtimeObjects/IAction";
 import { IFlowModel, IPropObject, ISetExpressionData, IStepFrom, IStepModel, IStepTo } from "@stechquick/flow-interfaces/runtime";
 import { IStoreMapping } from "../../store/runtimemodels/IStoreMapping";
 import { IStoreModelForWorkflow } from "../../store/runtimemodels/IStoreModel";
@@ -6,11 +5,23 @@ import { ISwitchProps } from "../../flow/runtimeModels/ISwitch";
 import { IExpressionData } from "../../dataType/runtimemodels/IExpression";
 import { IFlowModelBase } from "@stechquick/flow-interfaces/runtime/IFlowModel";
 import { ISLA } from "./ISLA";
+import { IAction } from "../runtimeObjects/IAction";
 export type WorkflowStepName = "start" | "humantask" | "subFlow" | "flow" | "switch" | "end";
 export declare const NamedFunctions: {
     getUser: string;
     notify: string;
 };
+export declare const StatusTypes: {
+    "": string;
+    inProgress: string;
+    waitForApproval: string;
+    completed: string;
+    new: string;
+    returned: string;
+    cancelled: string;
+    waitForControl: string;
+};
+export type StatusType = keyof typeof StatusTypes;
 export type IWorkflowModelNamedFunctions = Record<keyof typeof NamedFunctions, string>;
 export interface IWorkflowModel extends IFlowModelBase {
     type: "workflow";
@@ -28,6 +39,7 @@ export interface IWorkflowModel extends IFlowModelBase {
     startSteps: Array<IWFStepTo>;
     store: IStoreModelForWorkflow;
     businessKeyGenerationFunction?: IExecuteFlowByMapping;
+    fileUploadFunction?: IExecuteFlowByMapping;
 }
 export interface IWFStepTo extends IStepTo {
 }
@@ -58,6 +70,11 @@ export type IExecuteFlowByMapping = {
 export type IWFStepProps = {
     type: "humanStartEnd";
     label?: IExpressionData;
+    taskName?: IExpressionData;
+    procesStatus: StatusType;
+    taskStatus?: string;
+    sendTo?: "swimlane" | "user";
+    user?: string;
     forms: Array<IForm>;
     actions: Array<IAction>;
     priority?: number;

@@ -17,6 +17,7 @@ interface IDynamicFieldProps<T extends keyof T extends any ? Record<string, any>
     onChange: (fields: Array<T>) => void;
     validate?: (item: T) => string;
     maxItemLen?: number;
+    disabled?: boolean;
 }
 export interface IDialogElements<T extends keyof T extends any ? Record<string, any> : never> {
     component: any;
@@ -28,6 +29,6 @@ export interface IDialogElements<T extends keyof T extends any ? Record<string, 
 }
 export declare const DynamicField: <T extends keyof T extends any ? {
     [key: string]: any;
-} : never>({ collapsibleLabel, fields, disabledFields, fieldLabel, dialogElements, emptyValues: defaultValues, isAddible, isDeletable, isCollabsible, createItemLabel, dialogTitle, maxItemLen, onChange, validate, getFieldLabel, }: IDynamicFieldProps<T>) => import("react/jsx-runtime").JSX.Element;
+} : never>({ collapsibleLabel, fields, disabledFields, fieldLabel, dialogElements, emptyValues: defaultValues, isAddible, isDeletable, isCollabsible, createItemLabel, dialogTitle, maxItemLen, disabled, onChange, validate, getFieldLabel, }: IDynamicFieldProps<T>) => import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=DynamicField.d.ts.map

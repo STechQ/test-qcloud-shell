@@ -8,6 +8,7 @@ type Props = {
     }>;
     updateModel: (model: IRestServiceDesign) => void;
     dataTypes: IServiceEditorData["dataTypes"];
+    readOnly: boolean;
 };
 export type TabNames = "Request" | "Response" | "Mock Response";
 export declare const RestServiceEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;

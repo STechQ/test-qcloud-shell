@@ -79,6 +79,7 @@ export interface IEditSectionInput<PropType = IPropObject> {
         selectedSwitchCase?: (cb: (param?: ISelectedSwitchCase) => void) => ISelectedSwitchCase | undefined;
         store?: Store;
         nestedStore: INestedStore;
+        readOnly: boolean;
     };
     react: {
         prop: {

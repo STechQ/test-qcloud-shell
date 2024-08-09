@@ -1,4 +1,5 @@
 import { FC } from "react";
+import "../assets/css/components/tag.css";
 interface ISelectProps {
     id: string | number;
     label?: string;

@@ -3,6 +3,7 @@ import { IDataTypeModel } from "../../../../../common/everything/dataType/runtim
 type Props = {
     options: IDataTypeEditorInitOptions;
     data: IDataTypeEditorData;
+    readOnly: boolean;
     setModel: (model: IDataTypeModel) => void;
 };
 declare const DataTypeEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;

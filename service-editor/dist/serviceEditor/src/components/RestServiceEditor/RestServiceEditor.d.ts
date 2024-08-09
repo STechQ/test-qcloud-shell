@@ -3,6 +3,7 @@ import { IServiceEditorData, IServiceEditorInitOptions } from "../../IServiceEdi
 type Props = {
     updateMainModel: (model: IRestServiceDesign) => void;
     data: IServiceEditorData;
+    readOnly: boolean;
     options: IServiceEditorInitOptions;
 };
 declare const RestServiceEditor: (props: Props) => import("react/jsx-runtime").JSX.Element;

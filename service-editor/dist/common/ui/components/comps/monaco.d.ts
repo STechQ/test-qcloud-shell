@@ -6,6 +6,7 @@ interface CodeEditorProps {
     codeValue: string;
     language?: string;
     intelliInterfaces?: Store;
+    readOnly?: boolean;
     onCodeValuechange: (code: string) => void;
 }
 export declare const MonacoComp: FC<CodeEditorProps>;

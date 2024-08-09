@@ -8,6 +8,9 @@ export interface IPlatformWorkflowAdaptor {
     db: () => {
         mongo: (url: string) => Promise<MongoClient>;
     };
+    request: () => {
+        headers: Record<string, string>;
+    };
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;

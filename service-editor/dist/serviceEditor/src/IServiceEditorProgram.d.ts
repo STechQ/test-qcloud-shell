@@ -33,5 +33,6 @@ export interface IServiceEditorProgram {
     unmount(): void;
     exportModel(): IRestServiceDesign;
     importModel(data: IServiceModelImport): Promise<void>;
+    setReadOnly(readonly: boolean): void;
 }
 //# sourceMappingURL=IServiceEditorProgram.d.ts.map

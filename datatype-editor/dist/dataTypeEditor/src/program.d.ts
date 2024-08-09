@@ -4,7 +4,9 @@ export declare class Program implements IDataTypeEditorProgram {
     private initted;
     private options?;
     private data;
+    private isReadOnly;
     private trigger?;
+    private triggerReadOnly?;
     updateMainModel: (model: IDataTypeModel) => void;
     init(options: IDataTypeEditorInitOptions): Promise<void>;
     destroy(): Promise<void>;
@@ -14,5 +16,6 @@ export declare class Program implements IDataTypeEditorProgram {
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;
     }): Promise<void>;
+    setReadOnly(readonly: boolean): void;
 }
 //# sourceMappingURL=program.d.ts.map

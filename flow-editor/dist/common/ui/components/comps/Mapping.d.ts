@@ -5,6 +5,7 @@ interface IMappingProps {
     mapping: IStoreMapping;
     mappingSchema: IStoreMapping;
     outerStore: INestedStore;
+    readOnly?: boolean;
     onChangeInParamMapping: (inParamMapping: IStoreInParameterMapping[]) => void;
     onChangeOutParamMapping: (outParamMapping: IStoreOutParameterMapping[]) => void;
 }
