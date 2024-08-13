@@ -5,6 +5,7 @@ export declare const ActionTypes: {
     start: string;
     complete: string;
     claim: string;
+    unclaim: string;
     assignToUser: string;
     assignToUnit: string;
     save: string;

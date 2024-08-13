@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { Store } from '../../../../common/everything/store/designtimemodels/IStoreModel';
 interface CodeEditorProps {
     width?: string | number;
     height?: string | number;
     codeValue: string;
     language?: string;
-    intelliInterfaces?: Store;
+    intelliInterfaces?: string;
     readOnly?: boolean;
     onCodeValuechange: (code: string) => void;
 }

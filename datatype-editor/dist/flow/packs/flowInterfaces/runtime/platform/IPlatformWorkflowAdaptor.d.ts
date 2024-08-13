@@ -1,13 +1,17 @@
 import { ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
-import { MongoClient } from "mongodb";
+import { IWorkflowContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowContext";
 export interface IPlatformWorkflowAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     soapServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     keyExecutor: (prop: ICounterPropType) => Promise<any>;
-    db: () => {
-        mongo: (url: string) => Promise<MongoClient>;
+    workflowDb: () => {
+        permanentStore: {
+            get: (key: string) => Promise<any>;
+            set: (key: string, value: any) => Promise<any>;
+        };
     };
+    context: () => IWorkflowContext | undefined;
     request: () => {
         headers: Record<string, string>;
     };

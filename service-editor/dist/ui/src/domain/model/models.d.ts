@@ -41,6 +41,7 @@ interface IModelCtorInitials {
     overridden?: IModel['overridden'];
     overriddenModel?: IModel['overriddenModel'];
     history?: IModel["history"];
+    selectedHistoryVersion?: IModel["selectedHistoryVersion"];
 }
 export interface ISetModelBodyOptions {
     time?: Date | "skip";
@@ -73,6 +74,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     overridden?: IModel["overridden"];
     overriddenModel: IModel["overriddenModel"];
     history?: IModel["history"];
+    selectedHistoryVersion?: IModel["selectedHistoryVersion"];
     constructor(initials: IModelCtorInitials);
     copyFrom(model: IModel): void;
     private ctor;
@@ -130,6 +132,7 @@ export interface IModel extends IObject, IStudioUIModelBase {
     overridden?: boolean;
     overriddenModel: IModelInfo["overriddenModel"];
     history?: ITreeviewItem["history"];
+    selectedHistoryVersion?: string;
 }
 export interface IModelLink {
     model: IModel;

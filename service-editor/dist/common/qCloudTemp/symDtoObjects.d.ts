@@ -206,7 +206,6 @@ export interface IUpdateModelRequest {
     release?: boolean;
     shortComment?: string;
     comment?: string;
-    version?: string;
     isUnmodifiable?: boolean;
     path?: string;
     convertToBlock?: boolean;
