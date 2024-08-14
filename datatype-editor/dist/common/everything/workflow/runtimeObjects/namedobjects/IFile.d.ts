@@ -3,9 +3,10 @@ import { INamedObjectBase } from "./INamedObjectBase";
 import { IUser } from "./IUser";
 export interface IFile extends INamedObjectBase {
     id: string;
-    user: IUser;
+    user?: IUser;
     label?: string;
-    url?: string;
+    storageHandle?: string;
+    fileType?: "file";
     created?: DateTime;
     body?: string;
 }

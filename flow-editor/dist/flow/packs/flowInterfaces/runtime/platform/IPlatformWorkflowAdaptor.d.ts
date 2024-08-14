@@ -12,7 +12,7 @@ export interface IPlatformWorkflowAdaptor {
         };
     };
     context: () => IWorkflowContext | undefined;
-    request: () => {
+    getIncomingRequest: () => {
         headers: Record<string, string>;
     };
 }

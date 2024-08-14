@@ -23,6 +23,7 @@ export interface IProcessInstance extends INamedObjectBase {
     priority: number;
     lastUpdate: DateTime;
     lastUpdateUser: IUser;
+    lastUpdateDescriptionCode?: string;
     lastUpdateDescription?: string;
     status: string;
     contributorUsers: Array<IUser>;

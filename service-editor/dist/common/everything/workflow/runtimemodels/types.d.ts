@@ -1,6 +1,19 @@
 export declare const WorkflowModelTypeTag = "workflow";
 export type WorkflowModelType = typeof WorkflowModelTypeTag;
 export type DateTime = string;
+export declare const DescriptionCodes: {
+    start: string;
+    complete: string;
+    finish: string;
+    update: string;
+    claim: string;
+    unclaim: string;
+    assignToUser: string;
+    save: string;
+    addNote: string;
+    deleteNote: string;
+};
+export type DescriptionTypeCode = keyof typeof DescriptionCodes;
 export declare const ActionTypes: {
     start: string;
     complete: string;
