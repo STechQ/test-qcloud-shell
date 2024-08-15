@@ -4,6 +4,8 @@ export type DateTime = string;
 export declare const DescriptionCodes: {
     start: string;
     complete: string;
+    cancel: string;
+    reject: string;
     finish: string;
     update: string;
     claim: string;
@@ -12,11 +14,14 @@ export declare const DescriptionCodes: {
     save: string;
     addNote: string;
     deleteNote: string;
+    function: string;
 };
 export type DescriptionTypeCode = keyof typeof DescriptionCodes;
 export declare const ActionTypes: {
     start: string;
     complete: string;
+    cancel: string;
+    reject: string;
     claim: string;
     unclaim: string;
     assignToUser: string;

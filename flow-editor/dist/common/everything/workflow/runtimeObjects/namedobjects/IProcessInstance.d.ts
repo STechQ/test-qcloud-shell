@@ -1,3 +1,4 @@
+import { StatusType } from "../../runtimemodels/IWorkflow";
 import { DateTime } from "../../runtimemodels/types";
 import { ITask } from "../ITask";
 import { IFile } from "./IFile";
@@ -25,7 +26,8 @@ export interface IProcessInstance extends INamedObjectBase {
     lastUpdateUser: IUser;
     lastUpdateDescriptionCode?: string;
     lastUpdateDescription?: string;
-    status: string;
+    status: StatusType;
+    statusDescription: string;
     contributorUsers: Array<IUser>;
     followerUsers: Array<IUser>;
     tasks: Array<ITask>;

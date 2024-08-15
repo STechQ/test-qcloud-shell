@@ -72,7 +72,7 @@ export type IWFStepProps = {
     label?: IExpressionData;
     taskName?: IExpressionData;
     procesStatus: StatusType;
-    taskStatus?: string;
+    taskStatus?: StatusType;
     sendTo?: "swimlane" | "user";
     user?: string;
     forms: Array<IForm>;

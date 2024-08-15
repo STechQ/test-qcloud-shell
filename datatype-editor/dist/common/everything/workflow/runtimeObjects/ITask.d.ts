@@ -1,3 +1,4 @@
+import { StatusType } from "../runtimemodels/IWorkflow";
 import { DateTime } from "../runtimemodels/types";
 import { IAction } from "./IAction";
 import { INamedObjectBase } from "./namedobjects/INamedObjectBase";
@@ -6,7 +7,8 @@ export interface ITask extends INamedObjectBase {
     taskId: string;
     taskDefinitionKey: string;
     taskName: string;
-    status: string;
+    status: StatusType;
+    statusDescription: string;
     taskGroupId: string;
     userId?: string;
     unitId?: string;
