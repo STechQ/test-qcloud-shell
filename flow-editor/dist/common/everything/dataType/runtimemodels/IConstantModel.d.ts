@@ -4,6 +4,7 @@ import { IModelBaseFields } from "../../workflow/runtimemodels/IModel";
 export declare const ConstTypeValues: {
     string: string;
     flow: string;
+    env: string;
 };
 export type ConstantType = keyof typeof ConstTypeValues;
 export interface IConstantModel extends IModelBaseFields, IConstantPropBase {

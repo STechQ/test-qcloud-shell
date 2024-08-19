@@ -4,7 +4,7 @@ export interface ICollapsibleProps {
     label?: string;
     children?: ReactNode;
     isKeepOpen?: boolean;
-    onAddButton?: () => void;
+    onAddButton?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 export declare const Collapsible: FC<ICollapsibleProps>;
 //# sourceMappingURL=Collapsible.d.ts.map
