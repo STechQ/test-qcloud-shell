@@ -76,7 +76,6 @@ export declare class ShellConfiguration implements IShellConfiguration {
         options?: IUrlOptions;
     }): void;
     setVisibility: (compCollection: IComponentCollection, compVisibility: boolean) => void;
-    setDisable: (compCollection: IComponentCollection, compDisable: boolean) => void;
     getComponentValue: (compCollection: IComponentCollection) => any;
     setComponentValue: (compCollection: IComponentCollection, value: string) => void;
     getComponentStyle: (comp: IComponent) => any;
@@ -119,6 +118,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
         compID: string;
     }) => IDomElement;
     getNetworkConnection?: () => boolean;
+    getLogBulkSize?: () => number | undefined;
     constructor();
 }
 //# sourceMappingURL=ShellConfiguration.d.ts.map

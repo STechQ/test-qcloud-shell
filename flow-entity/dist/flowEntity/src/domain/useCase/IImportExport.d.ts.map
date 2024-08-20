@@ -1,0 +1,1 @@
+{"version":3,"file":"IImportExport.d.ts","sourceRoot":"","sources":["../../../../../src/domain/useCase/IImportExport.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,4CAA4C,CAAC;AAErE,MAAM,WAAW,aAAa;IAC1B,WAAW,CAAC,MAAM,EAAE,OAAO,GAAG,IAAI,CAAC;IACnC,WAAW,IAAI,OAAO,CAAC;CAC1B;AACD,eAAO,MAAM,aAAa,eAAwB,CAAC"}
