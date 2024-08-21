@@ -85,6 +85,5 @@ export declare class GlobalMethodsImpl implements IGlobalMethods {
     getComponent({ compID }: {
         compID: string;
     }): IDomElement;
-    getLogBulkSize(): number | undefined;
 }
 //# sourceMappingURL=GlobalMethodsImpl.d.ts.map
