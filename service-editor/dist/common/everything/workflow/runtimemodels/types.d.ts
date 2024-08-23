@@ -8,7 +8,7 @@ export declare const ActionTypes: {
     start: string;
     complete: string;
     cancel: string;
-    reject: string;
+    return: string;
     claim: string;
     unclaim: string;
     assignToUser: string;
