@@ -1,6 +1,6 @@
-import { Store } from "../../store/designtimemodels/IStoreModel";
+import { IStoreModelForService } from "../../store/designtimemodels/IStoreModel";
 import { IRestServiceModel } from "../runtimeModels/IRestServiceModel";
 export interface IRestServiceDesign extends IRestServiceModel {
-    store: Store;
+    store: IStoreModelForService;
 }
 //# sourceMappingURL=IRestService.d.ts.map

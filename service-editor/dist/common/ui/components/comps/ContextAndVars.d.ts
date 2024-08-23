@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Store } from "../../../everything/store/designtimemodels/IStoreModel";
-type IStoreContext = Store["context"];
-interface IContextProps {
+interface IContextAndVarsProps {
     dataTypes: Array<{
         ID: string;
         name: string;
@@ -10,11 +9,11 @@ interface IContextProps {
         ID: string;
         name: string;
     }>;
-    context: IStoreContext;
+    store: Store;
     schema: Store;
     readonly?: boolean;
-    onChange: (context: IStoreContext) => void;
+    onChange: (store: Store) => void;
 }
-export declare const Context: FC<IContextProps>;
+export declare const ContextAndVars: FC<IContextAndVarsProps>;
 export {};
-//# sourceMappingURL=Context.d.ts.map
+//# sourceMappingURL=ContextAndVars.d.ts.map

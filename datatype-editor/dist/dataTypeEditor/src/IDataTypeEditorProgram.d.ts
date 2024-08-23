@@ -1,4 +1,5 @@
 import { IDataTypeModel } from "../../common/everything/dataType/runtimemodels/IDataTypeModel";
+import { ModelValidatorResult } from "./helper/ModelValidator";
 export interface IDataTypeEditorModifiedStatus {
     state?: boolean;
     model?: boolean;
@@ -16,6 +17,7 @@ export interface IDataTypeEditorProgram {
     destroy(): Promise<void>;
     mount(element: HTMLElement | HTMLIFrameElement): void;
     unmount(): void;
+    validateAndFixModel(): ModelValidatorResult;
     exportModel(): IDataTypeModel;
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;

@@ -6,19 +6,11 @@ import { IPlatformServerAdaptor } from "./platform/IPlatformServerAdaptor";
 import { Omit2 } from "./platform/tsHelperTypes";
 import { IPlatformWorkflowAdaptor } from "./platform/IPlatformWorkflowAdaptor";
 import { IFlowInfo } from "./IFlowInfo";
-export interface IRuntimeMessageContext {
-    vars: any;
-    currentUser?: any;
-    dataInstance?: any;
-    processInstance?: any;
-}
 export type RuntimeMessage = {
     input: any;
-    context: IRuntimeMessageContext;
+    vars: Record<string, any>;
     output?: any;
     infoList?: Array<IFlowInfo>;
-    constants?: Record<string, any>;
-    constantsWId?: Record<string, any>;
 };
 export type StateValues = Record<string, any>;
 export interface ICommonState<T> {

@@ -1,8 +1,10 @@
 import { INamedObjectBase } from "./INamedObjectBase";
 import { IUnit } from "./IUnit";
 export interface IUser extends INamedObjectBase {
-    id: string;
-    name: string;
+    userId: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
     unit: IUnit;
     roles: Array<string>;
     email?: string;

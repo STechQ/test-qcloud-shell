@@ -1,5 +1,6 @@
 import { IDataTypeEditorInitOptions, IDataTypeEditorProgram, IDataTypeInfoItem } from "./IDataTypeEditorProgram";
 import { IDataTypeModel } from "../../common/everything/dataType/runtimemodels/IDataTypeModel";
+import { ModelValidatorResult } from "./helper/ModelValidator";
 export declare class Program implements IDataTypeEditorProgram {
     private initted;
     private options?;
@@ -13,6 +14,7 @@ export declare class Program implements IDataTypeEditorProgram {
     mount(element: HTMLElement | HTMLIFrameElement): void;
     unmount(): void;
     exportModel(): IDataTypeModel;
+    validateAndFixModel(): ModelValidatorResult;
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;
     }): Promise<void>;

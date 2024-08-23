@@ -15,6 +15,7 @@ export interface IPlatformWorkflowAdaptor {
     getIncomingRequest: () => {
         headers: Record<string, string>;
     };
+    constantsWId: Record<string, any>;
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;
