@@ -7,8 +7,18 @@
     margin-right: 3px;
     display: flex;
     align-items: baseline;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 5px;
 }
 
 .tag label {
     font-weight: 500 !important;
+    display: inline-block;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

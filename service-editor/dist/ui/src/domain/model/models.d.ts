@@ -81,14 +81,18 @@ export declare class Model implements IModel, IStudioUIModelBase {
     private _modelBodyOriginal?;
     get modelBodyOriginal(): IModelBodyObject[] | undefined;
     private _cacheInfo?;
-    get cacheInfo(): IModelCacheInfoResolved | IModelCacheInfoResolving | IModelCacheInfoPreparing | undefined;
+    get cacheInfo(): IModelCacheInfoResolved | IModelCacheInfoResolving | undefined;
+    private _queueInfo?;
+    get isQueued(): boolean;
     private _modelBody?;
     get modelBody(): IModel["modelBody"];
     setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions, protection: typeof modelProtection): void;
     notModifiableByOthers(): boolean;
     revertModelBody(protection: typeof modelProtection): void;
-    onPreparingModelBodyRetrieve(): void;
+    onPrepareModelBodyRetrieve(): void;
+    onDiscardModelBodyRetrieve(): void;
     onBeforeModelBodyRetrieve(): void;
+    onAfterModelBodyRetrieve(): void;
     onFailModelBodyRetrieve(err: Error): void;
 }
 export interface IFolder {
@@ -106,13 +110,11 @@ export interface IModelCacheInfoResolving {
     type: "resolving";
     promData: IPromiseData<IModel>;
 }
-export interface IModelCacheInfoPreparing {
-    type: "waiting";
-    time: Date;
-}
 export interface IModel extends IObject, IStudioUIModelBase {
     revertModelBody(protection: typeof modelProtection): void;
-    onPreparingModelBodyRetrieve(): void;
+    onPrepareModelBodyRetrieve(): void;
+    onDiscardModelBodyRetrieve(): void;
+    onAfterModelBodyRetrieve(): void;
     onBeforeModelBodyRetrieve(): void;
     onFailModelBodyRetrieve(err: Error): void;
     setModelBody(value: NonNullable<IModel["modelBody"]>, options: ISetModelBodyOptions, protection: typeof modelProtection): void;
@@ -122,7 +124,8 @@ export interface IModel extends IObject, IStudioUIModelBase {
     owner: IApplication | IModule;
     readonly modelBody?: Array<IModelBodyObject>;
     readonly modelBodyOriginal?: Array<IModelBodyObject>;
-    readonly cacheInfo?: IModelCacheInfoResolved | IModelCacheInfoResolving | IModelCacheInfoPreparing;
+    readonly cacheInfo?: IModelCacheInfoResolved | IModelCacheInfoResolving;
+    readonly isQueued: boolean;
     extension?: ExtensionType;
     usageType?: ITreeviewItem["usageType"];
     additionals?: ModelAdditionals;

@@ -13,6 +13,8 @@
     padding-left: 12px;
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 .select-flow .input {
