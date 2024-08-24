@@ -7,19 +7,29 @@ import { IFlowModelBase } from "@stechquick/flow-interfaces/runtime/IFlowModel";
 import { ISLA } from "./ISLA";
 import { IAction } from "../runtimeObjects/IAction";
 export type WorkflowStepName = "start" | "humantask" | "subFlow" | "flow" | "switch" | "end";
-export declare const NamedFunctions: {
-    getUser: string;
-    notify: string;
+export declare const NamedModels: {
+    getUser: {
+        name: string;
+        type: "flow";
+    };
+    notify: {
+        name: string;
+        type: "flow";
+    };
+    preForm: {
+        name: string;
+        type: "qjson";
+    };
 };
 export declare const StatusTypes_EN: Record<StatusType, string>;
 export declare const StatusTypes_TR: Record<StatusType, string>;
 export type StatusType = "" | "inProgress" | "waitForApproval" | "completed" | "new" | "returned" | "cancelled" | "waitForControl";
-export type IWorkflowModelNamedFunctions = Record<keyof typeof NamedFunctions, string>;
+export type IWorkflowModelNamedModels = Record<keyof typeof NamedModels, string>;
 export interface IWorkflowModel extends IFlowModelBase {
     type: "workflow";
     label: IExpressionData;
     description: string;
-    namedFunctions?: IWorkflowModelNamedFunctions;
+    namedModels?: IWorkflowModelNamedModels;
     name: string;
     _name: string;
     desc: string;

@@ -124,6 +124,7 @@ export interface IShellConfiguration {
         compID: string;
     }) => IDomElement;
     getNetworkConnection?: () => boolean;
+    getLogBulkSize?: () => number | undefined;
 }
 export interface IHistoryBasedShellConfiguration {
     isEditor: boolean;
