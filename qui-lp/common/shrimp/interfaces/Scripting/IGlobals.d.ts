@@ -1530,6 +1530,11 @@ export interface IGlobalsBase {
 export interface IWorkflowStore {
     context: {
         dataInstance: any;
+        processInstance: any;
+    };
+    formContext: {
+        task: any;
+        form: any;
     };
 }
 export interface IScripts {
