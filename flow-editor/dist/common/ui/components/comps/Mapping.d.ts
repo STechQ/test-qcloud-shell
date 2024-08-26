@@ -5,7 +5,7 @@ interface IMappingProps {
     mapping: IStoreMapping;
     mappingSchema: IStoreMapping;
     outerStore: INestedStore;
-    constantsOptions?: Array<{
+    constantsOptions: Array<{
         name: string;
         value: string;
     }>;

@@ -12,7 +12,7 @@ export declare class ComponentManagerImpl implements IComponentManager {
     contextName: string;
     parentInstance: any;
     constructor(contextName: string, parentInstance: any);
-    componentHasProp(componentName: string, propName: string): boolean;
+    componentHasProp(componentName: string, compInstance: IComponent | undefined, propName: string): boolean;
     private compPropModifier;
     createComponent({ componentName, props, events, asChildType, asChildName, slots, scopedSlots, compClass, text, attrs, componentCollection, directives }: {
         componentName: string;

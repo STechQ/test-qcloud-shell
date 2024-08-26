@@ -154,8 +154,9 @@ export interface IQJsonCollectionResult {
     qjson: IQJSon;
     changedPath?: string;
 }
-export declare type ComponentHasPropDelegate = ({ componentName, propName }: {
+export declare type ComponentHasPropDelegate = (options: {
     componentName: string;
+    compInstance: IComponent | undefined;
     propName: string;
 }) => boolean;
 export declare type ComponentDomLocator = (compInst: IComponent, childIndex: number) => IDomElement | null;
