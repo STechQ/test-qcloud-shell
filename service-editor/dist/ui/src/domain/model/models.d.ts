@@ -4,7 +4,7 @@ import { IUserMainInfo, IUser_SUSI } from "../../../../common/qCloudTemp/authent
 import { IRole } from "../../../../common/qCloudTemp/authorization";
 import { IArtifactInfoDBItem, IArtifactMinioDetails, IQcloudJob } from "../../../../common/qCloudTemp/exporter";
 import { IOrganization } from "../../../../common/qCloudTemp/membership";
-import { ExtensionType, IApplicationLogoInfo, IEntityDesignerAddtionals, IModelBodyObject, IModelInfo, IModuleRelatedApplicationItem, IModuleRelatedModelItem, IProcessWizardAdditionals, IQJsonAdditionals, ITreeviewItem, ModelAdditionals, ModuleShareType, ObjectID, UsageType } from "../../../../common/qCloudTemp/quickCloud";
+import { ExtensionType, IApplicationLogoInfo, IEntityDesignerAddtionals, IModelBodyObject, IModelInfo, IModuleOwnerOrgInfo, IModuleRelatedApplicationItem, IModuleRelatedModelItem, IProcessWizardAdditionals, IQJsonAdditionals, ITreeviewItem, ModelAdditionals, ModuleShareType, ObjectID, UsageType } from "../../../../common/qCloudTemp/quickCloud";
 import { IGetOrganizaionGroupDetailsByUserTypeResponse, IListInvitationsResponseItem, ISignInResponse, IUpdateMobileUsage } from "../../../../common/qCloudTemp/symDtoObjects";
 import { IUserPreferences } from "../../../../common/qCloudTemp/userPreference";
 import { ICloudObject, IObject } from "./IObject";
@@ -163,11 +163,7 @@ export interface IModule extends IObject {
     currentVersion?: string;
     relatedModelHistories?: IModuleVersion["relatedModelHistories"];
     lastReleasedVersion?: string;
-    ownerOrg?: {
-        orgName: string;
-        dbName: string;
-        orgId: string;
-    };
+    ownerOrg?: IModuleOwnerOrgInfo;
 }
 export interface IGetModuleResponse extends IModule {
     versionID?: IModuleVersion["ID"];
