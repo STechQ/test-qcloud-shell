@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "../assets/css/components/select.css";
+import "../assets/css/components/multiselect.css";
 interface IMultiSelectProps {
     label?: string;
     className?: string;
