@@ -20,6 +20,9 @@
 .select-flow .input {
     position: relative;
 }
+.select-flow .input input {
+    padding-right: 25px;
+}
 
 .select-flow .input input, .select-flow .input .input-block {
     pointer-events: none;

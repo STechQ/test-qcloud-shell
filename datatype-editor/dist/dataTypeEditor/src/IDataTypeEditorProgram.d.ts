@@ -1,4 +1,5 @@
 import { IDataTypeModel } from "../../common/everything/dataType/runtimemodels/IDataTypeModel";
+import { IVariable } from "../../common/everything/dataType/runtimemodels/IVariable";
 import { ModelValidatorResult } from "./helper/ModelValidator";
 export interface IDataTypeEditorModifiedStatus {
     state?: boolean;
@@ -34,6 +35,6 @@ export interface IDataTypeInfoItem {
     name: string;
     _name?: string;
     objectID: string;
-    attributes: Array<string>;
+    attributes: Record<string, IVariable>;
 }
 //# sourceMappingURL=IDataTypeEditorProgram.d.ts.map
