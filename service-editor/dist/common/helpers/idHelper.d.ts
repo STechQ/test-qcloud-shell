@@ -6,5 +6,10 @@ export declare class IdHelper {
         id: string;
     } | undefined;
     static embedIdType(id: string, type: ModelType): string;
+    static embedIdTypeWithAppId(appId: string, modelId: string, type: ModelType): string;
+    static extractIdTypeWithAppId(str: string): {
+        appId: string | undefined;
+        id: string;
+    };
 }
 //# sourceMappingURL=idHelper.d.ts.map
