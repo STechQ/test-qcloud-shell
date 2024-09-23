@@ -7,7 +7,11 @@ export declare class MongoConnectionManager {
     private logged;
     private log;
     private isOn;
-    getConnection(url: string, platformSwitch: IPlatformSwitch): Promise<MongoClient>;
+    getConnection(url: string, platformSwitch: IPlatformSwitch, options?: {
+        maxPoolSize?: number;
+    }): Promise<MongoClient>;
+    handleProcessClose(): void;
+    closeAll(): Promise<void>;
     closeConnection(client: MongoClient): Promise<void>;
 }
 export {};
