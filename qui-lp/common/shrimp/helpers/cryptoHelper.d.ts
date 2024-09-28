@@ -2,11 +2,7 @@ export declare enum HashAlgorithm {
     SHA1 = "SHA-1",
     SHA256 = "SHA-256",
     SHA384 = "SHA-384",
-    SHA512 = "SHA-512",
-    HMACSHA1 = "SHA-1",
-    HMACSHA256 = "SHA-256",
-    HMACSHA384 = "SHA-384",
-    HMACSHA512 = "SHA-512"
+    SHA512 = "SHA-512"
 }
 export declare enum EncryptionAlgorithm {
     RSAOAEP = "RSA-OAEP",
@@ -19,7 +15,6 @@ export interface IHashDataResponse {
 }
 export interface IHashDataRequest {
     data: string;
-    key?: string;
     algorithm: HashAlgorithm;
 }
 export interface IEncryptDataResponse {

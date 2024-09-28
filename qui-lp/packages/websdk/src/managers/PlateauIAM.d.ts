@@ -8,12 +8,10 @@ export declare class PlateauIAM implements IPlateauIAM {
     private authOptions;
     keycloak?: Keycloak.KeycloakInstance;
     private iamPlateau;
-    private sessionStorageNamePrefix;
     setOptions({ iam, iamV2 }: {
         iam: ISettingsIAM["iam"];
         iamV2?: ISettingsIAMV2;
     }): void;
-    private getItemFromCookies;
     private configureNewOAuthSettings;
     private getLocale;
     private replaceSubdomain;

@@ -259,7 +259,7 @@ export interface IExportViewItem {
     type: IItemType;
     size?: number;
 }
-export type StatusType = "waiting" | "running" | "success" | "failed";
+export type StatusType = "waiting" | "running" | "success" | "failed" | "skipped";
 export interface IExportJobItem extends IQcloudJob {
     objectType: "exportjobItem";
     status: StatusType;

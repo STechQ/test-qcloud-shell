@@ -8,7 +8,7 @@ import { IApplicationVersion, IApplicationVersionArtifacts } from "./application
 import { IUserPreferences } from "./userPreference";
 import { IMainStatisticInfo } from "../qCloudTemp/backoffice";
 import { IRole } from "./authorization";
-import { IExportJobDbItem } from "./exporter";
+import { IExportJobDbItem, IExportJobStepDbItem } from "./exporter";
 import { IUserRequest } from "./userRequest";
 import { FileSystemModel } from "./modelDatas";
 import { ITemplateInfo } from "./template";
@@ -704,5 +704,6 @@ export interface IListTreeViewItemsRequest {
         appendApp: boolean;
     };
 }
+export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
 export {};
 //# sourceMappingURL=symDtoObjects.d.ts.map
