@@ -88,7 +88,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     get modelBody(): IModel["modelBody"];
     setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions, protection: typeof modelProtection): void;
     notModifiableByOthers(): boolean;
-    revertModelBody(protection: typeof modelProtection): void;
+    revertModelBody(protection: typeof modelProtection): boolean;
     onPrepareModelBodyRetrieve(): void;
     onDiscardModelBodyRetrieve(): void;
     onBeforeModelBodyRetrieve(): void;
@@ -111,7 +111,7 @@ export interface IModelCacheInfoResolving {
     promData: IPromiseData<IModel>;
 }
 export interface IModel extends IObject, IStudioUIModelBase {
-    revertModelBody(protection: typeof modelProtection): void;
+    revertModelBody(protection: typeof modelProtection): boolean;
     onPrepareModelBodyRetrieve(): void;
     onDiscardModelBodyRetrieve(): void;
     onAfterModelBodyRetrieve(): void;

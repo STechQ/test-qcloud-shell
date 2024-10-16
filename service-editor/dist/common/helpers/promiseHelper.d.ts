@@ -3,7 +3,9 @@ export interface IPromiseData<T> {
     resolver: (value: T | PromiseLike<T>) => void;
     reject: (reason?: any) => void;
     startTimer: (timeout: number) => void;
+    startTime: number;
     status: "waiting" | "resolved" | "rejected";
+    duration?: number;
 }
 /**
  * @param timeout timeout time in ms, undefined if infinite
