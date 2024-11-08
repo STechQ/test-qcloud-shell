@@ -6,6 +6,7 @@ export interface ITemplateInfo {
     type: TemplateType;
     priority?: number;
     image?: string;
+    targetObjectIds?: Array<string>;
 }
 export interface IPageTemplate extends ITemplateInfo {
     type: "page";
