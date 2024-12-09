@@ -1,9 +1,8 @@
 import { ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IWorkflowContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowContext";
-import { IRestServiceCallPropType } from "../../../flowComponents/runtime/restServiceCall";
 export interface IPlatformWorkflowAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
-    restServiceExecutor: (prop: IRestServiceCallPropType) => Promise<any>;
+    restServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     soapServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     keyExecutor: (prop: ICounterPropType) => Promise<any>;
     workflowDb: () => {
