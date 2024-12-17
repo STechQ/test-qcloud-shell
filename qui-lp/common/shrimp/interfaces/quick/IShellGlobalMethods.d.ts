@@ -20,7 +20,6 @@ export interface IShellGlobalMethods extends IDictionary<any> {
             response?: INetworkResponse;
         };
     }, parameters: IAlertParameters) => void;
-    closeAlert?: () => void;
     getDeepLinkParams: () => Record<string, string | undefined>;
     goNative?: ({ code, param, transitionStyle }: {
         code: string;

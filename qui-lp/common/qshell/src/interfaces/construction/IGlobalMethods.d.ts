@@ -30,7 +30,6 @@ export interface IGlobalMethods extends IContextItem {
             events?: any;
         };
     }, parameters: IAlertParameters) => void;
-    closeAlert?: () => void;
     performance?: () => number;
     getDeepLinkParams: () => Record<string, string | undefined>;
     dynamicCompHandler: ({ createdComps, compLocater, referenceComp, parentCollection, appendToChild, childName, }: {

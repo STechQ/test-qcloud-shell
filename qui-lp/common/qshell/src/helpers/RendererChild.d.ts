@@ -8,7 +8,6 @@ export declare class RendererChild implements IRendererChild {
     protected doryRenderer: DoryRenderer;
     constructor(renderer: Renderer, compUIDPrefix?: string);
     SetCallbackDisplay(callBackFunc: PartialDisplayHookCb): void;
-    Destroy(): void;
     Render(options: {
         qjson: IQJSon;
         props?: Record<string, any>;

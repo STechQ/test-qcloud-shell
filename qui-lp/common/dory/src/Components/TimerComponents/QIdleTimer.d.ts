@@ -11,7 +11,6 @@ export default class QIdleTimer extends TSComponentBase {
     private idleTime;
     private idleTimer;
     private window;
-    private isTimerActive;
     constructor({ props, events, parent, context }: {
         props: IDictionary<Object>;
         events: IDictionary<Function>;

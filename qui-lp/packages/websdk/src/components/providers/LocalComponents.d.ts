@@ -99,7 +99,11 @@ declare const localComponents: {
     QQRCode: {};
     QDynamicFields: {};
     QPieChart: {};
-    QQrReader: {};
+    QQrReader: {
+        importFunc: () => Promise<void>;
+        loaded: boolean;
+        module: undefined;
+    };
     QMenu: {
         importFunc: () => Promise<void>;
         loaded: boolean;
