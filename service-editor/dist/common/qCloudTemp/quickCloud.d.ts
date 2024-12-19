@@ -31,7 +31,6 @@ export declare const UISettingsType: {
     readonly settings: "Settings File";
     readonly localProxy: "Local Proxy File";
     readonly contSvc: "Container Services File";
-    readonly contSvcIntelli: "Container Services Intellisense";
     readonly css: "Style File";
     readonly compList: "Component List";
     readonly globalLocalization: "Global Localization";

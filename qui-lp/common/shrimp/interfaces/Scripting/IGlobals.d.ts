@@ -530,7 +530,6 @@ export interface IGlobals_Quick {
         place?: ElementLocation;
         placeQID?: string;
         childName?: string;
-        reverseLook?: boolean;
     }) => IComponent | undefined | null;
     /**
      * Finds the desired dynamic component created with a template by giving a child component inside that dynamically created component.
@@ -1389,13 +1388,8 @@ export interface IGlobals_currentPage {
    */
     isRenderCompleted: () => boolean;
 }
-/** To replace extensions interface */
-export interface IGlobals_ContainerServicesExtensions {
-    [key: string]: any;
-}
-/** To replace extensions interface */
 export interface IGlobals_ContainerServices extends IShell {
-    extensions?: Record<string, any>; /** To replace extensions interface */
+    extensions?: Record<string, any>;
 }
 export interface IGlobals_devex {
     /**

@@ -35,6 +35,7 @@ interface IModelCtorInitials {
     version?: IModel["version"];
     size?: IModel["size"];
     isUnmodifiable?: IModel["isUnmodifiable"];
+    isUnmodifiableFileType?: IModel["isUnmodifiableFileType"];
     dependentModels?: IModel["dependentModels"];
     path: IModel["path"];
     modelBody?: IModel["modelBody"];
@@ -70,6 +71,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     version?: IModel["version"];
     size?: IModel["size"];
     isUnmodifiable?: IModel["isUnmodifiable"];
+    isUnmodifiableFileType?: IModel["isUnmodifiableFileType"];
     dependentModels?: IModel["dependentModels"];
     overridden?: IModel["overridden"];
     overriddenModel: IModel["overriddenModel"];
@@ -137,6 +139,7 @@ export interface IModel extends IObject, IStudioUIModelBase {
     version?: string;
     size?: number;
     isUnmodifiable?: boolean;
+    isUnmodifiableFileType?: boolean;
     dependentModels?: IModelInfo["dependentModels"];
     overridden?: boolean;
     overriddenModel: IModelInfo["overriddenModel"];
