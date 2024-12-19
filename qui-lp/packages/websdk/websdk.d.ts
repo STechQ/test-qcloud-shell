@@ -2,13 +2,15 @@ import { IPlateauUIOptions } from "@stechquick/algae/lib/quick/IPlateauUI";
 import { IDomElement } from "../../common/shrimp/interfaces/RenderingInterfaces/IDomElement";
 import { IDoryRenderer } from "../../common/shrimp/interfaces/RenderingInterfaces/IRenderer";
 import { IPlateauIAM } from "../../common/shrimp/interfaces/quick/IPlateauIAM";
+import { IWebSDK } from "../../common/shrimp/interfaces/quick/IWebSDK";
 import { LivePreviewManager } from "./src/managers/LivePreviewManager";
 declare class PlateauUI {
     private container;
     private renderer;
     mountPoint: HTMLElement;
-    constructor(container: WebsdkContainer, renderer: IDoryRenderer, mountPoint: IDomElement);
-    open(qjsonPath?: string, args?: Record<string, any>): void;
+    private sdkInstance;
+    constructor(container: WebsdkContainer, renderer: IDoryRenderer, mountPoint: IDomElement, sdkInstance: IWebSDK);
+    open(qjsonPath?: string, args?: Record<string, any>): Promise<void>;
     show(): void;
     hide(): void;
     close(): void;
@@ -17,6 +19,10 @@ declare class PlateauUI {
         eventName: string;
         parameters: Record<string, any>;
     }): any;
+    getGlobalStore(storeFieldName: string): any;
+}
+export interface IContainerServiceParams {
+    plateauUIRenderer?: PlateauUI;
 }
 declare class WebsdkContainer {
     private enviromentInfo;
@@ -30,6 +36,7 @@ declare class WebsdkContainer {
     private PlateauUIOptions;
     lpManager?: LivePreviewManager;
     private initCompleted;
+    private containerServicesParameter;
     constructor();
     init({ PlateauUIOptions, environmentInfo }: {
         PlateauUIOptions?: IPlateauUIOptions;
@@ -38,6 +45,7 @@ declare class WebsdkContainer {
     createRenderer({ mountPoint }: {
         mountPoint: HTMLElement;
     }): Promise<PlateauUI>;
+    destroy(): void;
     private initLoadingComponent;
     open({ renderer, qjsonPath, args }: {
         renderer: IDoryRenderer;
@@ -59,5 +67,6 @@ declare function init(PlateauUIOptions?: IPlateauUIOptions, environmentInfo?: st
 declare function createRenderer({ mountPoint }: {
     mountPoint: IDomElement;
 }): Promise<PlateauUI>;
-export { createRenderer, init };
+declare function destroy(): void;
+export { createRenderer, init, destroy };
 //# sourceMappingURL=websdk.d.ts.map

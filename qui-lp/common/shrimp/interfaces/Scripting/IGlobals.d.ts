@@ -9,7 +9,7 @@ import { IDownloadRequest, IRequest } from "../NetworkInterfaces/IRequest";
 import { ICookieValue } from "../quick/ICookieAccess";
 import { IEditorInstance } from "../quick/IEditorInstance";
 import { INetworkResponse } from "../quick/INetworkResponse";
-import { PlatformType } from "../quick/IPlatform";
+import { IClientInfo, PlatformType } from "../quick/IPlatform";
 import { IShell } from "../quick/IShell";
 import { IUrlOptions } from "../quick/IUrl";
 import { IExcel, IExcelList } from "../quick/IExcel";
@@ -530,6 +530,7 @@ export interface IGlobals_Quick {
         place?: ElementLocation;
         placeQID?: string;
         childName?: string;
+        reverseLook?: boolean;
     }) => IComponent | undefined | null;
     /**
      * Finds the desired dynamic component created with a template by giving a child component inside that dynamically created component.
@@ -849,6 +850,7 @@ export interface IGlobals_Quick {
             events?: any;
         } | undefined;
     }) => void;
+    closeAlert?: () => void;
     host: {
         trigger: (functionName: string, params: Record<string, any>) => Promise<IHostResponseData> | undefined;
     };
@@ -1280,6 +1282,7 @@ export interface IGlobals_platform {
      * const deviceId = quick.Quick.platform.getDeviceId();
    */
     getDeviceId: () => string | undefined;
+    getClientInfo: () => IClientInfo | undefined;
 }
 export interface IGlobals_Date {
     parse: (value: string | number, month: number | null) => Date;
@@ -1386,8 +1389,13 @@ export interface IGlobals_currentPage {
    */
     isRenderCompleted: () => boolean;
 }
+/** To replace extensions interface */
+export interface IGlobals_ContainerServicesExtensions {
+    [key: string]: any;
+}
+/** To replace extensions interface */
 export interface IGlobals_ContainerServices extends IShell {
-    extensions?: Record<string, any>;
+    extensions?: Record<string, any>; /** To replace extensions interface */
 }
 export interface IGlobals_devex {
     /**
