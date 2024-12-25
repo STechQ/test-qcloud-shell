@@ -86,7 +86,6 @@ export declare class Model implements IModel, IStudioUIModelBase {
     get cacheInfo(): IModelCacheInfoResolved | IModelCacheInfoResolving | undefined;
     private _queueInfo?;
     get isQueued(): boolean;
-    get isUnmodifiableTotal(): boolean | undefined;
     private _modelBody?;
     get modelBody(): IModel["modelBody"];
     setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions, protection: typeof modelProtection): void;
@@ -141,7 +140,6 @@ export interface IModel extends IObject, IStudioUIModelBase {
     size?: number;
     isUnmodifiable?: boolean;
     isUnmodifiableFileType?: boolean;
-    isUnmodifiableTotal?: boolean;
     dependentModels?: IModelInfo["dependentModels"];
     overridden?: boolean;
     overriddenModel: IModelInfo["overriddenModel"];
