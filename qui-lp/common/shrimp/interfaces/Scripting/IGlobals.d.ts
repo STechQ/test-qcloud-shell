@@ -530,6 +530,7 @@ export interface IGlobals_Quick {
         place?: ElementLocation;
         placeQID?: string;
         childName?: string;
+        reverseLook?: boolean;
     }) => IComponent | undefined | null;
     /**
      * Finds the desired dynamic component created with a template by giving a child component inside that dynamically created component.
@@ -1534,6 +1535,17 @@ export interface IGlobalsBase {
     integrations: IScripts;
     webScripts: {};
     workflowStore?: IWorkflowStore;
+    workflow?: IGlobals_Workflow; /** !!! DON'T CHANGE */
+}
+export interface IGlobals_Workflow {
+    RunFunction: ({ flowId, input, dataInstance }: {
+        flowId: string;
+        input?: Record<string, any>;
+        dataInstance?: Record<string, any>;
+    }) => Promise<{
+        output: Record<string, any>;
+    }>;
+    Commit: () => void;
 }
 export interface IWorkflowStore {
     context: {
