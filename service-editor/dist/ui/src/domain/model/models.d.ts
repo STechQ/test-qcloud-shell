@@ -9,6 +9,7 @@ import { IGetOrganizaionGroupDetailsByUserTypeResponse, IListInvitationsResponse
 import { IUserPreferences } from "../../../../common/qCloudTemp/userPreference";
 import { ICloudObject, IObject } from "./IObject";
 import { IStudioUIModelBase, ModelType } from "../../../../common/everything/studio/ui/IStudioUIModelBase";
+import { ITagValue } from "../../../../common/qCloudTemp/tags";
 export type QJsonType = "qjson" | "template" | "pageTemplate" | "quickComponent";
 export type IItemType = ModelType | IModule["objectType"] | IApplication["objectType"];
 export interface IModelModifyInfo {
@@ -203,6 +204,7 @@ export interface IApplication extends IObject {
     modifyDate?: Date;
     firstPublishDate?: Date;
     lastPublishDate?: Date;
+    tags?: Array<ITagValue>;
 }
 export interface IApplicationExtended extends IApplication {
     uiPageCount: number;

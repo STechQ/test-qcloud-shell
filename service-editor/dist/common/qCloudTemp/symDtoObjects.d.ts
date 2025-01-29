@@ -20,6 +20,7 @@ import { IExternalToken } from "./externalToken";
 import { IAppCloud } from "./application";
 import { AzureBlobContentType } from "./azureTypes";
 import { ModelType } from "../everything/studio/ui/IStudioUIModelBase";
+import { ITagDefinition, ITagValue, TagType } from "./tags";
 export type VersionIncType = 'Minor' | 'Major' | 'Fix';
 export interface IPageable {
     skip: number;
@@ -412,6 +413,7 @@ export interface IGetOrganizaionGroupDetailsByUserTypeResponse {
     organizations: Array<IOrganization>;
     users?: Array<IUser_SUSI>;
     organizationApplications?: Array<IOrganizationGroupDetailsOrganizationApplications>;
+    tagDefinitions?: Array<ITagDefinition>;
 }
 export interface IOrganizationGroupExtended extends ISignInOrganization {
     licensed?: 'LICENSED' | 'Demo Org' | 'Free';
@@ -703,6 +705,55 @@ export interface IListTreeViewItemsRequest {
         modules: Array<string>;
         appendApp: boolean;
     };
+}
+export interface ICreateTagDefinitionRequest {
+    mainOrganizationId: ObjectID;
+    tag: {
+        targets: {
+            apps: {
+                isRequired: boolean;
+            };
+        };
+        type: TagType;
+        name: string;
+        description: string;
+        createdBy: string;
+        ownerUser: ObjectID;
+    };
+}
+export interface ICreateTagDefinitionResponse {
+    tagDefinition: ITagDefinition;
+}
+export interface IDeleteTagDefinitionRequest {
+    mainOrganizationId: ObjectID;
+    tagDefId: ObjectID;
+}
+export interface IDeleteTagDefinitionResponse {
+    deletedTagId: ObjectID;
+}
+export interface IUpdateTagDefinitionRequest {
+    mainOrganizationId: ObjectID;
+    ID: ObjectID;
+    tag: {
+        targets: {
+            apps: {
+                isRequired: boolean;
+            };
+        };
+        type: TagType;
+        name: string;
+        description: string;
+    };
+}
+export interface IUpdateTagDefinitionResponse {
+    tagDefinition: ITagDefinition;
+}
+export interface ISaveTagValuesRequest {
+    appID: ObjectID;
+    mainOrganizationID: ObjectID;
+    updatedTags: ITagValue[];
+}
+export interface ISaveTagValuesResponse {
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
 export {};
