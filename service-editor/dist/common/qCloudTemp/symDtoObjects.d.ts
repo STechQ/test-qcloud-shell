@@ -481,6 +481,7 @@ export interface IAddModelFromTemplateResponse {
     createdModel: IModelInfo;
 }
 export interface IAddModelRequest {
+    ID?: string;
     name: string;
     ownerItem: ObjectID;
     ownerType: IModelInfo["ownerType"];
@@ -495,6 +496,7 @@ export interface IAddModelRequest {
     appID?: ObjectID;
     version?: string;
     overriddenModel?: IModelInfo['overriddenModel'];
+    dependentModels?: IDependentModel[];
 }
 interface IAddModelResponseNewModel extends IModelInfo {
     path: NonNullable<IModelInfo["path"]>;
