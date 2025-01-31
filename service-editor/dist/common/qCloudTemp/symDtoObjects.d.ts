@@ -211,6 +211,7 @@ export interface IUpdateModelRequest {
     path?: string;
     convertToBlock?: boolean;
     undoCheckOut?: boolean;
+    modelType?: ModelType;
 }
 export interface IUpdateModelResponse {
     ID: string;
