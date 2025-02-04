@@ -744,7 +744,6 @@ export interface IUpdateTagDefinitionRequest {
             };
         };
         type: TagType;
-        name: string;
         description: string;
     };
 }
