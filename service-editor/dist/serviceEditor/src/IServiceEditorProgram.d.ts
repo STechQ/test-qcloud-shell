@@ -12,12 +12,10 @@ export interface IServiceEditorData {
     constantInfo: Array<{
         name: string;
         value: string;
-        overridden?: boolean;
     }>;
     dataTypes: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
     }>;
 }

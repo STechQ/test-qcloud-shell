@@ -2,7 +2,10 @@ import { IRestServiceDesign } from "../../../../common/everything/restService/de
 import { IServiceEditorData } from "../../IServiceEditorProgram";
 type Props = {
     mainModel: IRestServiceDesign;
-    constantInfo: IServiceEditorData['constantInfo'];
+    constantInfo: Array<{
+        name: string;
+        value: string;
+    }>;
     updateModel: (model: IRestServiceDesign) => void;
     dataTypes: IServiceEditorData["dataTypes"];
     readOnly: boolean;
