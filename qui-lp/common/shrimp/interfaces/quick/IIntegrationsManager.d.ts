@@ -1,5 +1,5 @@
 import { ICustomIntegrationItem } from "@stechquick/algae/lib/quick/IntegrationSettings";
-import { IContextItem } from "../../../../shrimp/context";
+import { IContextItem } from "../../context";
 export declare const IntegrationsManagerContextName: string;
 export interface IIntegrationsManager extends IContextItem {
     customIntegrationEventTrigger(name: string, params: any[]): void;
