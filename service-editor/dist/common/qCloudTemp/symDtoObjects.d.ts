@@ -21,6 +21,7 @@ import { IAppCloud } from "./application";
 import { AzureBlobContentType } from "./azureTypes";
 import { ModelType } from "../everything/studio/ui/IStudioUIModelBase";
 import { ITagDefinition, ITagValue, TagType } from "./tags";
+import { IAllOrgGroupApplicationData } from "./organizationGroupApplication";
 export type VersionIncType = 'Minor' | 'Major' | 'Fix';
 export interface IPageable {
     skip: number;
@@ -262,6 +263,9 @@ export interface IListOrganizationsResponse {
     users?: Array<IUser_SUSI>;
     tags?: Array<ITags>;
 }
+export interface IListOrganizationGroupsResponse {
+    organizationGroups: Array<IOrganizationGroup>;
+}
 export interface IListApplicationsResponse {
     applications: Array<IApplication>;
 }
@@ -379,6 +383,7 @@ export interface IAddOrganizationGroupRequest {
     description?: string;
     features?: IOrganizationFeatures;
     applications?: IEditorTypes;
+    createMainOrg: boolean;
 }
 export interface IAddOrganizationGroupResponse {
     organizationGroup: IOrganizationGroup;
@@ -756,6 +761,15 @@ export interface ISaveTagValuesRequest {
     updatedTags: ITagValue[];
 }
 export interface ISaveTagValuesResponse {
+}
+export interface IUpsertAllOrgApplicationsRequest {
+    applications: Array<IAllOrgGroupApplicationData>;
+}
+export interface IListAllOrgApplicationsRequest {
+    mainOrganizationID: ObjectID;
+}
+export interface IListAllOrgApplicationsResponse {
+    applications: Array<IAllOrgGroupApplicationData>;
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
 export {};

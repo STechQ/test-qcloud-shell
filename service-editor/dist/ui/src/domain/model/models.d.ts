@@ -207,8 +207,14 @@ export interface IApplication extends IObject {
     tags?: Array<ITagValue>;
 }
 export interface IApplicationExtended extends IApplication {
-    uiPageCount: number;
-    uiPageSize: number;
+    uiPageCalc: {
+        count: number;
+        size: number;
+        noSharedModuleCount?: number;
+        noSharedModuleSize?: number;
+        estimatedTempCount?: number;
+        estimatedTempSize?: number;
+    };
     organizationName?: string;
     licensed?: boolean;
 }
