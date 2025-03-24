@@ -217,6 +217,7 @@ export interface IApplicationExtended extends IApplication {
     };
     organizationName?: string;
     licensed?: boolean;
+    oldTags?: string[];
 }
 export interface ILoggedInUser {
     userId: string;
