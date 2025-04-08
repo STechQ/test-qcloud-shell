@@ -3,6 +3,7 @@ type Props = {
     soapModel: string;
     readOnly: boolean;
     updateMainModel: (model: IRestServiceDesign) => void;
+    setUndoRedoHandlers: (undo: () => void, redo: () => void, canUndo: boolean, canRedo: boolean) => void;
 };
 declare const SoapServiceEditor: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default SoapServiceEditor;

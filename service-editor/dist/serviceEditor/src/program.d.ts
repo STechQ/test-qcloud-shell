@@ -7,6 +7,10 @@ export declare class Program implements IServiceEditorProgram {
     private isReadOnly;
     private trigger?;
     private triggerReadOnly?;
+    private triggerUndo?;
+    private triggerRedo?;
+    private isUndoDisabled?;
+    private isRedoDisabled?;
     updateMainModel: (data: IRestServiceDesign) => void;
     init(options: IServiceEditorInitOptions): Promise<void>;
     destroy(): Promise<void>;
@@ -15,5 +19,11 @@ export declare class Program implements IServiceEditorProgram {
     exportModel(): IRestServiceDesign;
     importModel(data: IServiceModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    undo(): void;
+    redo(): void;
+    getUndoRedoState(): {
+        undoDisabled: boolean | undefined;
+        redoDisabled: boolean | undefined;
+    };
 }
 //# sourceMappingURL=program.d.ts.map

@@ -4,7 +4,7 @@ export interface IServiceEditorModifiedStatus {
     model?: boolean;
 }
 export interface IServiceEditorInitOptions {
-    onModifiedStatus?: (status: IServiceEditorModifiedStatus) => void;
+    onModifiedStatus?: (status: IServiceEditorModifiedStatus, modelBody: IRestServiceDesign) => void;
 }
 export declare function getDefaultModel(): IRestServiceDesign;
 export interface IServiceEditorData {
@@ -36,5 +36,11 @@ export interface IServiceEditorProgram {
     exportModel(): IRestServiceDesign;
     importModel(data: IServiceModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    undo(): void;
+    redo(): void;
+    getUndoRedoState(): {
+        undoDisabled: boolean | undefined;
+        redoDisabled: boolean | undefined;
+    };
 }
 //# sourceMappingURL=IServiceEditorProgram.d.ts.map

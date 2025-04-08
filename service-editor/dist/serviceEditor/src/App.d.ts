@@ -11,6 +11,7 @@ type Props = {
     readOnly: boolean;
     triggerSetter: (trigger: Program["trigger"]) => void;
     triggerSetterReadOnly: (triggerReadOnly: Program["triggerReadOnly"]) => void;
+    setUndoRedoHandlers: (undo: () => void, redo: () => void, canUndo: boolean, canRedo: boolean) => void;
 };
 export declare const App: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default App;
