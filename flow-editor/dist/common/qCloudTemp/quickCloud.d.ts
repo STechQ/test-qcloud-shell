@@ -33,7 +33,7 @@ export declare const UISettingsType: {
     readonly localProxy: "localProxy";
     readonly contSvc: "containerServices";
     readonly contSvcIntelli: "containerServIntelli";
-    readonly css: "Style File";
+    readonly css: "style";
     readonly compList: "componentList";
     readonly globalLocalization: "globalLocalization";
     readonly assetList: "Asset List";
