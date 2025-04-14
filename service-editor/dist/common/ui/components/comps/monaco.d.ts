@@ -6,6 +6,7 @@ interface CodeEditorProps {
     language?: string;
     intelliInterfaces?: string;
     readOnly?: boolean;
+    selectedModel?: string;
     onCodeValuechange: (code: string) => void;
     setUndoRedoHandlers?: (undo: () => void, redo: () => void, canUndo: boolean, canRedo: boolean) => void;
 }

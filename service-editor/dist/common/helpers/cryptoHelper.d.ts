@@ -10,5 +10,6 @@ export declare class CryptoHelper {
     private static createFixedLengthArrayBufferFromString;
     static encodeABToBase64(buffer: ArrayBuffer): string;
     static decodeBase64ToAB(base64: string): ArrayBuffer;
+    static readFileAsArrayBuffer(file: File): Promise<ArrayBuffer>;
 }
 //# sourceMappingURL=cryptoHelper.d.ts.map

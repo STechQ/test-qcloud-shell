@@ -252,6 +252,9 @@ export interface IGetChatBotResponse {
 export interface IGetCodeAssistantResponse {
     response: ICodeAssistantResponse["refactorResponse"] | ICodeAssistantResponse["explainResponse"] | ICodeAssistantResponse["responseError"];
 }
+export interface IGetCreateUIResponse {
+    qjson: string;
+}
 export interface IListUsersResponse {
     users: Array<IUser_SUSI>;
     organizations?: Array<IOrganization>;
