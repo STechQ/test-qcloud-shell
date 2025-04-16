@@ -253,7 +253,12 @@ export interface IGetCodeAssistantResponse {
     response: ICodeAssistantResponse["refactorResponse"] | ICodeAssistantResponse["explainResponse"] | ICodeAssistantResponse["responseError"];
 }
 export interface IGetCreateUIResponse {
-    qjson: string;
+    response: {
+        qjson?: string;
+        error?: {
+            errorMsg: string;
+        };
+    };
 }
 export interface IListUsersResponse {
     users: Array<IUser_SUSI>;
