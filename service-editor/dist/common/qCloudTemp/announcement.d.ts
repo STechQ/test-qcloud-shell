@@ -9,7 +9,6 @@ interface IAnnouncementBaseObj {
     startDate?: Date | string;
     endDate?: Date | string;
     isActive: boolean;
-    isAppAnnouncement?: boolean;
 }
 export interface IAnnouncementDataObj extends IAnnouncementBaseObj {
     createDate: Date;
