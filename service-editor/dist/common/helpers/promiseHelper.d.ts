@@ -12,6 +12,6 @@ export interface IPromiseData<T> {
  */
 export declare function createPromiseData<T>(timeout?: number, opt?: {
     fixSyncResolve?: boolean;
-    operationName?: string;
+    name?: string;
 }): IPromiseData<T>;
 //# sourceMappingURL=promiseHelper.d.ts.map
