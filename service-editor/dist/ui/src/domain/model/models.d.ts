@@ -29,6 +29,7 @@ interface IModelCtorInitials {
     extension?: IModel["extension"];
     usageType?: IModel["usageType"];
     additionals?: IModel["additionals"];
+    key?: IModel["key"];
     modified: IModel["modified"];
     state?: IModel["state"];
     checkedOut?: IModel["checkedOut"];
@@ -79,6 +80,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     overriddenModel: IModel["overriddenModel"];
     history?: IModel["history"];
     selectedHistoryVersion?: IModel["selectedHistoryVersion"];
+    key: IModel["key"];
     constructor(initials: IModelCtorInitials);
     copyFrom(model: IModel): void;
     private ctor;
@@ -136,6 +138,7 @@ export interface IModel extends IObject, IStudioUIModelBase {
     extension?: ExtensionType;
     usageType?: ITreeviewItem["usageType"];
     additionals?: ModelAdditionals;
+    key?: string;
     sourceLink?: IModelLink;
     modified: IModelModifyInfo;
     state?: any;
@@ -266,6 +269,7 @@ export interface IExportViewItem {
     parentId?: string;
     name: string;
     usageType?: UsageType;
+    modelType?: string;
     priority: number;
     shortName?: string;
     modelAdditionals?: IQJsonAdditionals | IProcessWizardAdditionals | IEntityDesignerAddtionals;
@@ -275,6 +279,7 @@ export interface IExportViewItem {
     selectedVersion?: string;
     type: IItemType;
     size?: number;
+    key?: string;
 }
 export type StatusType = "waiting" | "running" | "success" | "failed" | "skipped";
 export interface IExportJobItem extends IQcloudJob {
