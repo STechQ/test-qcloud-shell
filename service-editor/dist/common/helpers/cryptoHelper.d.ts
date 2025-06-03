@@ -5,14 +5,8 @@ export declare class CryptoHelper {
         encryptedData: ArrayBuffer;
         ivString: string;
     }>;
-    static decrypt(encryptedData: ArrayBuffer, ivString: string, key: {
-        type: "key";
-        keyString: string;
-    } | {
-        type: "cryptoHandle";
-        cryptoKey: CryptoKey;
-    }): Promise<string>;
-    static importCryptoKey(keyString: string): Promise<CryptoKey>;
+    static decrypt(encryptedData: ArrayBuffer, ivString: string, keyString: string): Promise<string>;
+    private static generateCryptoKey;
     private static createFixedLengthArrayBufferFromString;
     static encodeABToBase64(buffer: ArrayBuffer): string;
     static decodeBase64ToAB(base64: string): ArrayBuffer;

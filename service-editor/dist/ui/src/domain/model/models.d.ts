@@ -29,7 +29,6 @@ interface IModelCtorInitials {
     extension?: IModel["extension"];
     usageType?: IModel["usageType"];
     additionals?: IModel["additionals"];
-    key?: IModel["key"];
     modified: IModel["modified"];
     state?: IModel["state"];
     checkedOut?: IModel["checkedOut"];
@@ -49,7 +48,6 @@ interface IModelCtorInitials {
 export interface ISetModelBodyOptions {
     time?: Date | "skip";
     overrideOriginal?: boolean;
-    setModelModifyState?: boolean;
 }
 declare const modelProtection = "i promise, i will call this function via IModelUseCase, not directly";
 export declare class Model implements IModel, IStudioUIModelBase {
@@ -80,7 +78,6 @@ export declare class Model implements IModel, IStudioUIModelBase {
     overriddenModel: IModel["overriddenModel"];
     history?: IModel["history"];
     selectedHistoryVersion?: IModel["selectedHistoryVersion"];
-    key: IModel["key"];
     constructor(initials: IModelCtorInitials);
     copyFrom(model: IModel): void;
     private ctor;
@@ -93,8 +90,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     get isUnmodifiableTotal(): boolean | undefined;
     private _modelBody?;
     get modelBody(): IModel["modelBody"];
-    setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal, setModelModifyState }: ISetModelBodyOptions, protection: typeof modelProtection): void;
-    setModelBodyOriginal(value: NonNullable<IModel["modelBody"]>, protection: typeof modelProtection): void;
+    setModelBody(value: NonNullable<IModel["modelBody"]>, { time, overrideOriginal }: ISetModelBodyOptions, protection: typeof modelProtection): void;
     notModifiableByOthers(): boolean;
     revertModelBody(protection: typeof modelProtection): boolean;
     onPrepareModelBodyRetrieve(): void;
@@ -126,7 +122,6 @@ export interface IModel extends IObject, IStudioUIModelBase {
     onBeforeModelBodyRetrieve(): void;
     onFailModelBodyRetrieve(err: Error): void;
     setModelBody(value: NonNullable<IModel["modelBody"]>, options: ISetModelBodyOptions, protection: typeof modelProtection): void;
-    setModelBodyOriginal(value: NonNullable<IModel["modelBody"]>, protection: typeof modelProtection): void;
     copyFrom(model: IModel): void;
     notModifiableByOthers(): boolean;
     objectType: "model";
@@ -138,7 +133,6 @@ export interface IModel extends IObject, IStudioUIModelBase {
     extension?: ExtensionType;
     usageType?: ITreeviewItem["usageType"];
     additionals?: ModelAdditionals;
-    key?: string;
     sourceLink?: IModelLink;
     modified: IModelModifyInfo;
     state?: any;
@@ -269,7 +263,6 @@ export interface IExportViewItem {
     parentId?: string;
     name: string;
     usageType?: UsageType;
-    modelType?: string;
     priority: number;
     shortName?: string;
     modelAdditionals?: IQJsonAdditionals | IProcessWizardAdditionals | IEntityDesignerAddtionals;
@@ -279,7 +272,6 @@ export interface IExportViewItem {
     selectedVersion?: string;
     type: IItemType;
     size?: number;
-    key?: string;
 }
 export type StatusType = "waiting" | "running" | "success" | "failed" | "skipped";
 export interface IExportJobItem extends IQcloudJob {

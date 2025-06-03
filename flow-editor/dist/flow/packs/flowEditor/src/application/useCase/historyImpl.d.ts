@@ -12,7 +12,6 @@ export declare class HistoryImpl implements IHistory {
     constructor(container: DependencyContainer, viewModel?: IViewModel, importExport?: () => IImportExport, state?: () => IState);
     addHistory(options?: {
         consecutivePreventKey?: string;
-        modelModify?: boolean;
     }): void;
     canUndo(): boolean;
     canRedo(): boolean;

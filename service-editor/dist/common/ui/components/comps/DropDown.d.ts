@@ -7,7 +7,6 @@ interface IDropDownProps {
 }
 interface IOption {
     name: string;
-    iconClass?: string;
     onClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 }
 export declare const DropDown: FC<IDropDownProps>;

@@ -24,8 +24,6 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
         dial_code: string;
     }[];
     phoneNumber: string | undefined;
-    inputKey: number;
-    isProgrammaticChange: boolean;
     phoneData: {
         countryPhoneNumber: string;
         phoneNumber: string;
@@ -50,8 +48,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     getCountryDialCode(countryAlpha2Code: any): string | null;
     phoneNumberInput(): void;
     reset(): void;
-    validate(): any;
-    resetValidation(): void;
+    validate(checkValid: any): boolean;
 }, {
     getPhoneMask: string;
 }, {

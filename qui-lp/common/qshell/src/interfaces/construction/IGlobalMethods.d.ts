@@ -7,8 +7,8 @@ import { IAlertParameters } from "../../../../shrimp/interfaces/quick/IShellGlob
 import { IDomElement } from "../../../../shrimp/interfaces/RenderingInterfaces/IDomElement";
 import { IRenderer } from "../../../../shrimp/interfaces/RenderingInterfaces/IRenderer";
 import { ILocationPosition } from "../../../../shrimp/interfaces/quick/ILocationPosition";
-import { IExcel, IExcelJsonData, IExcelList, IExcelToJsonData } from "../../../../shrimp/interfaces/quick/IExcel";
-import { MobileAnimationType } from "../../../../shrimp/interfaces/quick/INavigationManager";
+import { IExcel, IExcelList } from "../../../../shrimp/interfaces/quick/IExcel";
+import { MobileAnimation } from "../../../../shrimp/interfaces/quick/INavigationManager";
 import { ISharedDataInfo } from "../../../../shrimp/interfaces/quick/IGeneralMethods";
 export declare const GlobalMethodsContextName: string;
 /**
@@ -46,18 +46,15 @@ export interface IGlobalMethods extends IContextItem {
     setPageTitle(value: string): void;
     copyToClipboard(value: string): void;
     getCurrentPosition?: () => Promise<ILocationPosition> | undefined;
-    initializePositioning?: (sourcePicker: string, wrapperClass: string) => void;
-    cleanupPositioning?: (sourcePicker: string) => void;
     getPageTitle?: () => void;
     getFavicon?: () => void;
     exportToXlsxHandler?: (excelFile: IExcel | IExcelList) => void;
-    xlsxToJson?: (excelToJsonData: IExcelToJsonData) => IExcelJsonData[];
     setComponentClass?: (compCollection: IComponentCollection, classes: Array<string>) => void;
     setComponentsProperty?: (compCollection: IComponentCollection, propertyName: string, propertyValue: string) => void;
-    goNative?: ({ code, param, mobileAnimation }: {
+    goNative?: ({ code, param, transitionStyle }: {
         code: string;
         param?: Record<string, any>;
-        mobileAnimation?: MobileAnimationType;
+        transitionStyle?: MobileAnimation;
     }) => void;
     setRenderer?: (renderer: IRenderer) => void;
     clearPageClose?: () => void;

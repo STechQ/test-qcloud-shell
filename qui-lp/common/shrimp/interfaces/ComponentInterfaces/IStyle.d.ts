@@ -1,5 +1,5 @@
 import { IStyleChild } from "./ICompJson";
-export declare type StyleValue = Record<string, string | boolean | undefined | Record<string, string>>;
+export declare type StyleValue = Record<string, string | undefined | Record<string, string>>;
 export interface StyleItem {
     [key: string]: StyleValue | undefined;
     default?: StyleValue;
@@ -11,7 +11,6 @@ export interface IComponentInternalSI {
     groupName?: string;
     groupContent: Array<IGroupContent>;
     showComponent?: boolean;
-    inheritedStyle?: boolean;
 }
 export interface IGroupContent {
     styleKey: Array<IComponentStyleKey>;
@@ -43,9 +42,8 @@ export declare const COMPONENT_STYLE_TYPE: {
     "layout-input": string;
     display: string;
     "content-direction": string;
+    "display-text": string;
     "padding-input": string;
-    "display-text-decoration": string;
-    "display-text-align": string;
 };
 export interface IComponentDefinition {
     componentStyleList: IComponentStyleInlineInterface;
