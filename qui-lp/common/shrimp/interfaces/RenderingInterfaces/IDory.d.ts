@@ -18,13 +18,14 @@ import { ScriptLang } from "../Scripting/scriptLang";
 import { IDoryJr } from "./IDoryJr";
 import { IHistoryItem } from "./IHistoryItem";
 import { IPageCompletedCb, IPageRenderStartedCb } from "./ILifeCycleCb";
-import { IRenderer, ISettingsQJsonContext } from "./IRenderer";
+import { IRenderer, ISettingModelsContext } from "./IRenderer";
 import { IRendererOperatorCollection } from "./Operators/IRendererOperatorCollection";
 import { IStore } from "../quick/IStore";
 import { IAssetList } from "../ComponentInterfaces/IStyle";
 import { IConfig } from "../quick/IConfig";
 import { ITheme } from "@stechquick/algae/lib/quick/ITheme";
 import { ILogParams } from "../../helpers/logger";
+import { INavigationOptions } from "../quick/INavigationManager";
 export interface IDisplayCallbackHistory {
     new: IHistoryItem;
     /**
@@ -32,8 +33,8 @@ export interface IDisplayCallbackHistory {
      */
     old: Array<IHistoryItem>;
 }
-export declare type PartialDisplayHookCb = (elements: Array<IDomElement>, history: IDisplayCallbackHistory, pageId?: string, pageName?: string, navigationDirection?: INavigationDemandType, override?: boolean, doryJr?: IDoryJr | undefined) => void;
-export declare type DisplayHookCb = (elements: IDomElement[], history: IDisplayCallbackHistory, pageId?: string, pageName?: string, navigationDirection?: INavigationDemandType, noHistory?: boolean) => void;
+export declare type PartialDisplayHookCb = (elements: Array<IDomElement>, history: IDisplayCallbackHistory, pageId?: string, pageName?: string, navigationDirection?: INavigationDemandType, override?: boolean, doryJr?: IDoryJr | undefined, additioanls?: any | undefined) => void;
+export declare type DisplayHookCb = (elements: IDomElement[], history: IDisplayCallbackHistory, pageId?: string, pageName?: string, navigationDirection?: INavigationDemandType, noHistory?: boolean, options?: INavigationOptions) => void;
 export interface IGoHistoryOptions {
     navigationDemand?: INavigationDemand;
 }
@@ -44,9 +45,9 @@ export interface IDory extends IContextItem {
     readonly network: INetwork;
     PageCompletedHook: Hook<IPageCompletedCb>;
     PageRenderStartedHook: Hook<IPageRenderStartedCb>;
-    SettingsQJsonContext: ISettingsQJsonContext;
+    SettingModelsContext: ISettingModelsContext;
     platformType: PlatformType;
-    Render({ qjson, compParentInst, storeItems, pageId, pageName, theme }: {
+    Render({ qjson, compParentInst, storeItems, pageId, pageName, theme, options }: {
         qjson: IQJSon;
         compParentInst?: any;
         storeItems?: IDictionary<any>;
@@ -56,6 +57,7 @@ export interface IDory extends IContextItem {
             name: string;
             isLight: boolean;
         };
+        options?: INavigationOptions;
     }): Promise<void>;
     SetDisplayCallBack({ callBackFunc }: {
         callBackFunc: DisplayHookCb;
@@ -134,7 +136,7 @@ export interface IDory extends IContextItem {
     Trigger(eventName: string, parameters: Record<string, any>): any;
     SetOperatorCollection(operatorCollection: IRendererOperatorCollection): void;
     GetComponentCollectionByUID(compUID: string): IComponentCollection | undefined;
-    GetSettingsQJsonContext(): ISettingsQJsonContext;
+    GetSettingModelsContext(): ISettingModelsContext;
     GetShellConfiguration(): IShellConfiguration;
     SetAssetValues(assetValues?: IAssetList): void;
     GetAssetValues(): IAssetList | undefined;

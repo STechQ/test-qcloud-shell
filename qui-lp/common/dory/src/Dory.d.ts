@@ -20,13 +20,14 @@ import { IDomElement } from "../../shrimp/interfaces/RenderingInterfaces/IDomEle
 import { DisplayHookCb, IDory, IGoHistoryOptions, PartialDisplayHookCb } from "../../shrimp/interfaces/RenderingInterfaces/IDory";
 import { IDoryJr } from "../../shrimp/interfaces/RenderingInterfaces/IDoryJr";
 import { IPageCompletedCb, IPageRenderStartedCb } from "../../shrimp/interfaces/RenderingInterfaces/ILifeCycleCb";
-import { ISettingsQJsonContext } from "../../shrimp/interfaces/RenderingInterfaces/IRenderer";
+import { ISettingModelsContext } from "../../shrimp/interfaces/RenderingInterfaces/IRenderer";
 import { IRendererOperatorCollection } from "../../shrimp/interfaces/RenderingInterfaces/Operators/IRendererOperatorCollection";
 import { IGlobalsQS } from "../../shrimp/interfaces/Scripting/IGlobals";
 import { ScriptLang } from "../../shrimp/interfaces/Scripting/scriptLang";
 import { ShellConfiguration } from "./Config/ShellConfiguration";
 import { SharedStoreContext } from "./Context/Store/SharedStoreContext";
 import { HistoryItem } from "./Model/History/HistoryItem";
+import { INavigationOptions } from "../../shrimp/interfaces/quick/INavigationManager";
 export declare class Dory implements IDory {
     static ContextName: string;
     contextName: string;
@@ -46,7 +47,7 @@ export declare class Dory implements IDory {
     isEditorInEditState: boolean;
     callBackComponentTarget: Function;
     editor: IEditorInstance | undefined;
-    SettingsQJsonContext: ISettingsQJsonContext;
+    SettingModelsContext: ISettingModelsContext;
     private operatorCollection?;
     private _isRenderCompleted;
     get PartialDisplayHook(): Hook<PartialDisplayHookCb>;
@@ -69,7 +70,7 @@ export declare class Dory implements IDory {
     SetConfigValues(configValues?: IConfig[]): void;
     GetConfigValues(key: string): IConfig | undefined;
     SetGlobalLRDict(GlobalLRDict?: ILRID): void;
-    Render({ qjson, compParentInst, storeItems, pageId, pageName, theme }: {
+    Render({ qjson, compParentInst, storeItems, pageId, pageName, theme, options }: {
         qjson: IQJSon;
         compParentInst?: any;
         storeItems?: IDictionary<any>;
@@ -79,6 +80,7 @@ export declare class Dory implements IDory {
             name: string;
             isLight: boolean;
         };
+        options?: INavigationOptions;
     }): Promise<void>;
     GetCurrentHistoryItem(): HistoryItem | null | undefined;
     private PageCompleted;
@@ -100,7 +102,7 @@ export declare class Dory implements IDory {
     }): void;
     SubscribeComponentVisibility(subscribeFunc: () => void): void;
     RetrieveQJsonforDesignSide(qjsonPath: string): Promise<IQJSon | undefined>;
-    GetSettingsQJsonContext(): ISettingsQJsonContext;
+    GetSettingModelsContext(): ISettingModelsContext;
     get network(): import("../../shrimp/interfaces/quick/IContainerServices").INetwork;
     GetComponentList(): IComponentCollection[] | undefined;
     getComponentCollectionByIdProperty({ id, deep }: {
@@ -132,7 +134,7 @@ export declare class Dory implements IDory {
     getRenderer(): import("../../shrimp/interfaces/RenderingInterfaces/IRenderer").IRenderer;
     GetShellConfiguration(): ShellConfiguration;
     Clear(): void;
-    CallRender(historyItem: HistoryItem, olds: Array<HistoryItem>, navigationDirection?: INavigationDemandType, noHistory?: boolean): void;
+    CallRender(historyItem: HistoryItem, olds: Array<HistoryItem>, navigationDirection?: INavigationDemandType, noHistory?: boolean, options?: INavigationOptions): void;
     hasHistory(pageId: string, checkExternalRouter?: {
         currPageId: string;
     }): INavigationDemand | null;

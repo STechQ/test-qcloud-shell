@@ -10,7 +10,7 @@ import { IHostResponseData } from "../../../shrimp/interfaces/IHostResponseData"
 import { IDomElement } from "../../../shrimp/interfaces/RenderingInterfaces/IDomElement";
 import { INetwork } from "../../../shrimp/interfaces/quick/IContainerServices";
 import { ICookieAccess } from "../../../shrimp/interfaces/quick/ICookieAccess";
-import { IExcel, IExcelList } from "../../../shrimp/interfaces/quick/IExcel";
+import { IExcel, IExcelJsonData, IExcelList, IExcelToJsonData } from "../../../shrimp/interfaces/quick/IExcel";
 import { IFormatConfiguration } from "../../../shrimp/interfaces/quick/IFormatConfiguration";
 import { IFormattingDefinition } from "../../../shrimp/interfaces/quick/IFormattingDefinition";
 import { ILocationPosition } from "../../../shrimp/interfaces/quick/ILocationPosition";
@@ -68,6 +68,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
         noQueryString?: boolean;
     }): string | undefined;
     exportToXlsxHandler?: (excelFile: IExcel | IExcelList) => void;
+    xlsxToJson?: (excelToJsonData: IExcelToJsonData) => IExcelJsonData[];
     setComponentClass?: (compCollection: IComponentCollection, classes: Array<string>) => void;
     setTheme?: (newTheme: string) => void;
     getThemeList?: () => Array<string> | undefined;
@@ -95,6 +96,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
     }) => void;
     createComponentQValue?: (compCOllection: IComponentCollection) => void;
     hostTrigger?: (functionName: string, params: Record<string, any>, pageNameArray: Array<string>) => Promise<IHostResponseData>;
+    container?: (functionName: string, params: Record<string, any>) => Promise<IHostResponseData>;
     setDarkTheme?: (compCollection: IComponentCollection, isDark: boolean) => void;
     clearPageClose?: () => void;
     setPageClose?: () => void;
@@ -107,6 +109,8 @@ export declare class ShellConfiguration implements IShellConfiguration {
     getFavicon?: () => void;
     setPageTitle: (value: string) => void;
     copyToClipboard: (value: string) => void;
+    initializePositioning: (sourcePicker: string, wrapperClass: string) => void;
+    cleanupPositioning: (sourcePicker: string) => void;
     setFavicon: (icon: string) => void;
     hash?: (data: IHashDataRequest) => Promise<IHashDataResponse>;
     encrypt?: (data: IEncryptDataRequest) => Promise<IEncryptDataResponse>;
