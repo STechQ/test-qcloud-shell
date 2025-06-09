@@ -1,15 +1,22 @@
 import { ModelType } from "../everything/studio/ui/IStudioUIModelBase";
 import { ModelAdditionals, ModuleObjectType } from "./quickCloud";
+interface IEditorConst {
+    modelKeys: IModelKeys;
+}
+type IModelKeys = {
+    single: string;
+} | {
+    design: string;
+    runtime: string;
+};
 type ValueOf<Type> = Type extends any ? Type[keyof Type] : never;
 type FieldValueOf<Type extends typeof typeSafety, Field extends keyof Type[keyof Type]> = Type[keyof Type][Field];
 export type EditorModelTypes = ValueOf<FieldValueOf<typeof EditorConsts, "modelKeys">>;
-declare let typeSafety: Record<string, {
-    modelKeys: Record<string, string>;
-}>;
+declare let typeSafety: Record<string, IEditorConst>;
 export declare const EditorConsts: {
     readonly quick: {
         readonly modelKeys: {
-            readonly self: "qjson";
+            readonly single: "qjson";
         };
     };
     readonly container: {
@@ -62,6 +69,7 @@ interface ModelVisualInfo {
 }
 export declare class ModelContants {
     static getModelVisualInfo(modelType: ModelType | ModuleObjectType | "folder", modelAdditionals: ModelAdditionals | undefined): ModelVisualInfo;
+    static getModelBodyKeys(modelType: ModelType): string | string[] | undefined;
 }
 export {};
 //# sourceMappingURL=modelContants.d.ts.map

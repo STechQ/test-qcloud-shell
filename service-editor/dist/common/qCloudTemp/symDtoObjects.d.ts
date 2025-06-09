@@ -780,5 +780,19 @@ export interface IListAllOrgApplicationsResponse {
     applications: Array<IAllOrgGroupApplicationData>;
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
+export interface ILegacyRequests {
+    cloneOrgRequest: {
+        organizationId?: string;
+        legacyVersion?: number;
+    };
+    cloneOrgResponse: {
+        orgModelPaths: Array<string>;
+        cloneMessages: Array<string>;
+    };
+    listOrganizationsRequest: {};
+    listOrganizationsResponse: {
+        organizations: Array<IOrganization>;
+    };
+}
 export {};
 //# sourceMappingURL=symDtoObjects.d.ts.map
