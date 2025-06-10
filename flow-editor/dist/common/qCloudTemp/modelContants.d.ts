@@ -3,11 +3,13 @@ import { ModelAdditionals, ModuleObjectType } from "./quickCloud";
 interface IEditorConst {
     modelKeys: IModelKeys;
 }
-type IModelKeys = {
+type IModelKeys = ({
     single: string;
 } | {
     design: string;
     runtime: string;
+}) & {
+    view?: string;
 };
 type ValueOf<Type> = Type extends any ? Type[keyof Type] : never;
 type FieldValueOf<Type extends typeof typeSafety, Field extends keyof Type[keyof Type]> = Type[keyof Type][Field];
@@ -60,6 +62,18 @@ export declare const EditorConsts: {
     readonly constantEditor: {
         readonly modelKeys: {
             readonly single: "constant";
+        };
+    };
+    readonly namedComponent: {
+        readonly modelKeys: {
+            readonly design: "pim";
+            readonly runtime: "files";
+            readonly view: "qjson";
+        };
+    };
+    readonly appAssetList: {
+        readonly modelKeys: {
+            readonly single: "yaml";
         };
     };
 };
