@@ -7,15 +7,5 @@
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, OPTIONS"
-  },
-  "routes": [
-    {
-      "route": "/alper",
-      "methods": [
-        "get"
-      ],
-      "redirect": "https://gray-tree-062ffbe03.6.azurestaticapps.net/",
-      "statusCode": 302
-    }
-  ]
+  }
 }
