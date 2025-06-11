@@ -786,12 +786,16 @@ export interface ICloneOrgResponseModelInfo {
 }
 export interface ILegacyRequests {
     cloneOrgRequest: {
-        organizationId?: string;
-        legacyVersion?: number;
+        organizationId: string;
+        legacyVersion: string;
+        legacyDeleteVersion?: string;
     };
     cloneOrgResponse: {
         orgModelPaths: Array<ICloneOrgResponseModelInfo>;
-        cloneMessages: Array<string>;
+        cloneMessages: Array<{
+            msg: string;
+            level: "log" | "warning";
+        }>;
     };
     listOrganizationsRequest: {};
     listOrganizationsResponse: {
