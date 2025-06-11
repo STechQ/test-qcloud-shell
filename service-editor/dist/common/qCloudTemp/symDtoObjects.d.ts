@@ -780,13 +780,17 @@ export interface IListAllOrgApplicationsResponse {
     applications: Array<IAllOrgGroupApplicationData>;
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
+export interface ICloneOrgResponseModelInfo {
+    path: string;
+    modelType: IModelInfo["modelType"];
+}
 export interface ILegacyRequests {
     cloneOrgRequest: {
         organizationId?: string;
         legacyVersion?: number;
     };
     cloneOrgResponse: {
-        orgModelPaths: Array<string>;
+        orgModelPaths: Array<ICloneOrgResponseModelInfo>;
         cloneMessages: Array<string>;
     };
     listOrganizationsRequest: {};

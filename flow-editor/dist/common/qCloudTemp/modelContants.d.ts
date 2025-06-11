@@ -74,6 +74,7 @@ export declare const EditorConsts: {
     readonly appAssetList: {
         readonly modelKeys: {
             readonly single: "yaml";
+            readonly view: "qjson";
         };
     };
 };
