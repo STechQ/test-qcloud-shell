@@ -15,7 +15,7 @@
         "get"
       ],
       "redirect": "https://gray-tree-062ffbe03.6.azurestaticapps.net/",
-      "statusCode": 307
+      "statusCode": 302
     }
   ]
 }
