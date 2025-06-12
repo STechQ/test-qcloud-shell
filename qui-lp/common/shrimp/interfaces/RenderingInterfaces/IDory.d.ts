@@ -18,12 +18,12 @@ import { ScriptLang } from "../Scripting/scriptLang";
 import { IDoryJr } from "./IDoryJr";
 import { IHistoryItem } from "./IHistoryItem";
 import { IPageCompletedCb, IPageRenderStartedCb } from "./ILifeCycleCb";
-import { IRenderer, ISettingModelsContext } from "./IRenderer";
+import { IRenderer, ISettingsQJsonContext } from "./IRenderer";
 import { IRendererOperatorCollection } from "./Operators/IRendererOperatorCollection";
 import { IStore } from "../quick/IStore";
 import { IAssetList } from "../ComponentInterfaces/IStyle";
 import { IConfig } from "../quick/IConfig";
-import { ITheme } from "@stechquick/algae/lib/quick/IThemeV2";
+import { ITheme } from "@stechquick/algae/lib/quick/ITheme";
 import { ILogParams } from "../../helpers/logger";
 import { INavigationOptions } from "../quick/INavigationManager";
 export interface IDisplayCallbackHistory {
@@ -45,7 +45,7 @@ export interface IDory extends IContextItem {
     readonly network: INetwork;
     PageCompletedHook: Hook<IPageCompletedCb>;
     PageRenderStartedHook: Hook<IPageRenderStartedCb>;
-    SettingModelsContext: ISettingModelsContext;
+    SettingsQJsonContext: ISettingsQJsonContext;
     platformType: PlatformType;
     Render({ qjson, compParentInst, storeItems, pageId, pageName, theme, options }: {
         qjson: IQJSon;
@@ -121,7 +121,7 @@ export interface IDory extends IContextItem {
     SetLRType(LRType?: string, LRTypeRTL?: boolean): void;
     SetConfigValues(configValues?: IConfig[]): void;
     GetLRType(): string;
-    CallHibernate(passHibernate?: boolean, historyItem?: boolean): void;
+    CallHibernate(passHibernate?: boolean): void;
     resurrect(): void;
     SetGlobalLRDict(GlobalLRDict?: ILRID): void;
     SetSiteSettings(siteSettings?: ISiteSettings): void;
@@ -136,7 +136,7 @@ export interface IDory extends IContextItem {
     Trigger(eventName: string, parameters: Record<string, any>): any;
     SetOperatorCollection(operatorCollection: IRendererOperatorCollection): void;
     GetComponentCollectionByUID(compUID: string): IComponentCollection | undefined;
-    GetSettingModelsContext(): ISettingModelsContext;
+    GetSettingsQJsonContext(): ISettingsQJsonContext;
     GetShellConfiguration(): IShellConfiguration;
     SetAssetValues(assetValues?: IAssetList): void;
     GetAssetValues(): IAssetList | undefined;

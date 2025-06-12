@@ -21,12 +21,6 @@ export declare const EditorConsts: {
             readonly single: "qjson";
         };
     };
-    readonly container: {
-        readonly modelKeys: {
-            readonly design: "container-design";
-            readonly runtime: "container-runtime";
-        };
-    };
     readonly flow: {
         readonly modelKeys: {
             readonly design: "flow-design";

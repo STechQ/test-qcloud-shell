@@ -2,42 +2,77 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Plateau Studio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css" />
+  <!-- <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap' /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+  <link rel="icon" href="images/iconplateau.png" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0px;
+      overflow: hidden;
+    }
+
+    #app {
+      height: 100vh;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
- selam selam, 
-<br>
-<br>
-salmon.island adresindeki test ortamına studio yeni major versiyonu kurulacak. (muhtemelen yarın) <br>
-Bundan dolayı mevcut testler için gray.tree adında 2. bir test ortamı ayağa kaldırıldı. Tüm modeller salmon island’dan kopyalandı. <br>
-iki ortam aynı db’lere bakıyor, organizasyon tabloları(modeller/vs..) izole vaziyette. <br>
-UI/jobs/API/FM/WM/PM sunucuları ayrıca kuruldu. (quick şimdilik aynı, ileride ayırabiliriz) <br>
-<br>
-<br>
-major version test adresi (3.1*): salmon.island <br>
-<br>
-<br>
-yeni test adresi (3.0.* için): <a href="https://gray-tree-062ffbe03.6.azurestaticapps.net/">https://gray-tree-062ffbe03.6.azurestaticapps.net/</a> <br>
+  <div id="app"></div>
+  <script>
+    //placeholder: index.html
+    var baseObject = (() => {
+      const obj = {
+        "localhost": { basePath: "/", envName: "local" }, 
+        "127.0.0.1": { basePath: "/", envName: "local" }, 
+        "cloudapp.azure.com": { basePath: "/", envName: "cloud" },
+        "github.io": { basePath: "/test-qcloud-shell/", envName: "cloud" },
+        "azurestaticapps.net": { basePath: "/", envName: "cloud" },
+        "studio.onplateau.com": { basePath: "/", envName: "prod" },
+      };
+      const host = new URL(window.location.href).hostname;
+      return obj[Object.keys(obj).find(key => host.endsWith(key))];
+    })();
 
-<br>
-<br>
-gray tree kurulum github action: STUDIO TEST LEGACY - Deploy <br>
+    var includeJS = (path) => {
+      if (Array.from(document.querySelectorAll("body > script")).find(script => script.src.endsWith(path))) { return; }
+      var script = document.createElement("script");
+      script.src = path;
+      document.body.appendChild(script);
+    };
+    var includeSso = () => includeJS(baseObject.basePath + "sso.js");
+    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=0.0.330");
+    var getBaseUrl = () => window.location.origin + baseObject.basePath;
+    var getBasePath = () => baseObject.basePath;
+    var getBaseEnv = () => baseObject.envName;
 
-<br>
-<br>
-local’den test kullananlar<br>
-api:  https://app-studioapi-legacytest-westeu-bda4ccebbfbadwce.westeurope-01.azurewebsites.net/ <br>
-jobs: https://app-studiojobs-legacytest-westeu-chaeezehafhyd8ff.westeurope-01.azurewebsites.net/ <br>
-<br>
-<br>
+    (() => {
+      includeSso();
+    })();
+  </script>
+  <!-- Hotjar Tracking Code for Local -->
+  <script>
+    var hjidDict = { "local": 3513135, "cloud": 3541376, "prod": 3541375 };
+    var hjid = hjidDict[getBaseEnv()];
 
-local’den grey tree tablolarını kullanmak isteyenler “legacyversion” environmental variable’ına 3 setlemeli. (gray.tree version ->3) <br>
-terminallerde(her yeni terminal için) veya package.json’da start script başında: <br>
-mac: export legacyversion=3 <br>
-windows: set legacyversion=3 <br>
-<br>
-<br>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:hjid,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 import { IContextItem } from "../../../../shrimp/context";
 import { IComponent, IComponentClassEngine } from "../../../../shrimp/interfaces/ComponentInterfaces/IComponent";
 import { IComponentCollection } from "../../../../shrimp/interfaces/ComponentInterfaces/IComponentCollection";
+import { IVnode } from "../../../../shrimp/interfaces/ComponentInterfaces/IVnode";
 import { CreateComponentDelegate } from "../../../../shrimp/interfaces/quick/IShellConfiguration";
 export declare const ComponentManagerContextName: string;
 export interface IComponentManager extends IContextItem {
@@ -20,10 +21,10 @@ export interface IComponentManager extends IContextItem {
     setComponentValue(compCollection: IComponentCollection, value: string): void;
     getComponentStyle(comp: IComponent): any;
     setComponentStyle(compCollection: IComponentCollection, prop?: string, value?: string): void;
-    onComponentDestroy?: (options: {
-        parentComponent?: IComponent;
-        compColl: IComponentCollection;
-        childKey?: string;
+    onComponentDestroy?: ({ parentComponent, childVDomElement, childKey, }: {
+        parentComponent: IComponent;
+        childVDomElement: IVnode;
+        childKey: string;
     }) => void;
     createComponentQValue(compCollection: IComponentCollection): any;
 }
