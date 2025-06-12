@@ -16,20 +16,14 @@ export interface IConstantPropBase {
     desc: string;
     constants: Record<string, IConstantValue>;
 }
-export type IConstantValue = IConstantString | IConstantFunction | IConstantEnv;
+export type IConstantValue = IConstantString | IConstantFunction;
 export interface IConstantValueBase {
     constantType: ConstantType;
 }
 export interface IConstantString extends IConstantValueBase {
-    constantType: "string";
-    value: string;
-}
-export interface IConstantEnv extends IConstantValueBase {
-    constantType: "env";
     value: string;
 }
 export interface IConstantFunction extends IConstantValueBase {
-    constantType: "flow";
     value: StepFlowModelPropType;
     ttlSeconds: number;
 }
