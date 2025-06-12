@@ -4,13 +4,8 @@ export declare class ValidationManager {
     private dory;
     private historyItemBasedLRManager?;
     constructor(currentContext: ContextManager);
-    validate(compId: string, displayAlertBox: boolean, options: {
-        skipInvisible?: boolean;
-    }): true | undefined;
-    validateAll(displayAlertBox: boolean, options: {
-        skipInvisible?: boolean;
-    }): true | undefined;
-    private getComponentParentVisible;
+    validate(compId: string, displayAlertBox: boolean, displayError?: boolean): true | undefined;
+    validateAll(displayAlertBox: boolean, displayError?: boolean): true | undefined;
     resetValidation(compId: string): void;
     reset(compId: string): void;
     /**
@@ -24,7 +19,7 @@ export declare class ValidationManager {
      * This method returns control dictionary with subs.
      * @returns controlDict
      */
-    private getAllControlDict;
+    private getControlDict;
     /**
      * @description This method returns DoryJr child components.
      * @param compId
