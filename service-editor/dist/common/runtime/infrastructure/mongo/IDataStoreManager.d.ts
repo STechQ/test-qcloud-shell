@@ -88,6 +88,7 @@ export type AggregateType<T> = {
     $limit?: number;
     $addFields?: AddFieldType<T>;
     $group?: GroupFieldType<T>;
+    $out?: string;
 };
 export type DeepKeys<T> = T extends object ? {
     [K in keyof T & (string | number)]: K | `${K}.${DeepKeys<T[K]>}`;
