@@ -16,13 +16,4 @@ export interface IMainStatisticInfo {
         activeCount: number;
     };
 }
-export type DBConfigKeyTypes = {
-    legacyDeletableVersions: Array<string>;
-    abc: number;
-};
-export type DBConfigKeysType = keyof DBConfigKeyTypes;
-export interface IDBConfig<T extends keyof DBConfigKeyTypes> {
-    key: T;
-    value?: DBConfigKeyTypes[T];
-}
 //# sourceMappingURL=backoffice.d.ts.map

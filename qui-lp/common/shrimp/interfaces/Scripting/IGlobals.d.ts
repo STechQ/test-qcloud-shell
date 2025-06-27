@@ -1573,7 +1573,6 @@ export interface IGlobalsBase {
     webScripts: {};
     workflowStore?: IWorkflowStore;
     workflow?: IGlobals_Workflow; /** !!! DON'T CHANGE */
-    container: {};
 }
 export interface IGlobals_Workflow {
     RunFunction: ({ flowId, input, dataInstance }: {
