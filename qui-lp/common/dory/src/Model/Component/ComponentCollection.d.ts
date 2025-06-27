@@ -50,7 +50,6 @@ export declare class ComponentCollection implements IComponentCollection {
     directiveFields: IDirectiveCollection;
     compStyleValues?: StyleValue;
     qjsonInfo: qjsonCollectionInfo;
-    private destroySubs;
     constructor({ compJson, context, asChildType, asChildName, asChildIndex, parentCompCollection, compareComponent, dynamicCompIdSuffix, qjsonVersion }: {
         compJson?: ICompJson;
         context: ContextManager;
@@ -98,7 +97,5 @@ export declare class ComponentCollection implements IComponentCollection {
      * @returns void
      */
     watchStyledComponent(compCollection: IComponentCollection): void;
-    subscribeOnDestroy(cb: () => void): void;
-    onDestroy(): void;
 }
 //# sourceMappingURL=ComponentCollection.d.ts.map
