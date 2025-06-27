@@ -506,6 +506,7 @@ export interface IAddModelRequest {
     extension?: ExtensionType;
     usageType?: UsageType;
     key?: AppSettingsModelKeys;
+    migrated?: boolean;
     path: string;
     appID?: ObjectID;
     version?: string;

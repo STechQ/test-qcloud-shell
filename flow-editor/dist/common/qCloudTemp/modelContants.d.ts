@@ -21,6 +21,17 @@ export declare const EditorConsts: {
             readonly single: "qjson";
         };
     };
+    readonly container: {
+        readonly modelKeys: {
+            readonly design: "container-design";
+            readonly runtime: "container-runtime";
+        };
+    };
+    readonly theme: {
+        readonly modelKeys: {
+            readonly single: "theme";
+        };
+    };
     readonly flow: {
         readonly modelKeys: {
             readonly design: "flow-design";
@@ -31,6 +42,11 @@ export declare const EditorConsts: {
         readonly modelKeys: {
             readonly design: "workflow-design";
             readonly runtime: "workflow-runtime";
+        };
+    };
+    readonly certificate: {
+        readonly modelKeys: {
+            readonly single: "certificate";
         };
     };
     readonly dataTypeEditor: {

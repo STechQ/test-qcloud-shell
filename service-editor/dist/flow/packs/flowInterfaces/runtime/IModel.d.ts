@@ -4,5 +4,5 @@ import { IFlowModel } from "./IFlowModel";
 export interface IModelBase {
     type: 'restService' | 'soapService' | 'flow' | 'workflow';
 }
-export type IModel = IRestServiceModel | ISoapServiceModel | IFlowModel;
+export type IModel = /*IEntity |*/ IRestServiceModel | ISoapServiceModel | IFlowModel;
 //# sourceMappingURL=IModel.d.ts.map

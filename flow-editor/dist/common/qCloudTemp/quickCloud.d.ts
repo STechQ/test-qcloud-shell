@@ -23,22 +23,24 @@ export type CreateUIType = "createUI";
 export type UsageType = AppSettingsObjectType | AppAssetObjectType;
 export type ModuleType = "basic";
 export type AllCreateObjectTypes = ModelType | FolderObjectType | ModuleObjectType | CreateUIType;
-export type AppSettingsModelKeys = "settings" | "componentList" | "containerServices" | "pipeline" | "alert" | "loading" | "globalLocalization" | "localProxy" | "style" | "rootqjson" | "asset" | "appSettings";
+export type AppSettingsModelKeys = "settings" | "componentList" | "containerServices" | "pipeline" | "alert" | "loading" | "globalLocalization" | "localProxy" | "style" | "rootqjson" | "asset" | "appSettings" | "containerServIntelli" | "container" | "theme";
 export type ExtensionType = "png" | "jpg" | "jpeg" | "svg" | "gif" | "json" | "woff" | "woff2" | "ttf" | "otf";
 export type ModuleShareType = 'reference' | 'version';
 export declare const UISettingsType: {
-    readonly alert: "Alert Component";
-    readonly pipeline: "Pipeline";
-    readonly loading: "Loading Component";
-    readonly settings: "Settings File";
-    readonly localProxy: "Local Proxy File";
-    readonly contSvc: "Container Services File";
-    readonly contSvcIntelli: "Container Services Intellisense";
-    readonly css: "Style File";
-    readonly compList: "Component List";
-    readonly globalLocalization: "Global Localization";
+    readonly alert: "alert";
+    readonly pipeline: "pipeline";
+    readonly loading: "loading";
+    readonly settings: "settings";
+    readonly localProxy: "localProxy";
+    readonly contSvc: "containerServices";
+    readonly contSvcIntelli: "containerServIntelli";
+    readonly css: "style";
+    readonly compList: "componentList";
+    readonly globalLocalization: "globalLocalization";
     readonly assetList: "Asset List";
+    readonly container: "container";
     readonly appSettings: "App Settings";
+    readonly theme: "theme";
 };
 export type UISettingsType = typeof UISettingsType[keyof typeof UISettingsType];
 export interface ICloudObject {
@@ -155,6 +157,7 @@ export interface IModelInfo extends ICloudObject {
     extension?: ExtensionType;
     modelAdditionals: AllModelAdditionalTypes;
     key?: AppSettingsModelKeys;
+    migrated?: boolean;
     checkouts?: Array<IModelCheckout>;
     usageType?: UsageType;
     copyFromInfo?: IModelCopyInfo;
@@ -190,6 +193,7 @@ export interface IDependentModel {
 }
 export interface IModelBodyObject {
     key: string;
+    migrated?: boolean;
     model: any;
 }
 export interface IModelBody extends IModelBodyObject {
@@ -353,6 +357,8 @@ export interface ITreeviewItem {
         ID: string;
         version?: string;
     };
+    key?: string;
+    migrated?: boolean;
 }
 export interface IScreenItem {
     id: string;
