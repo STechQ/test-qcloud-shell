@@ -1,8 +1,6 @@
 export type ObjectID = string;
 export declare const DataTypeModelTypeTag = "dataType";
 export type DataTypeModelType = typeof DataTypeModelTypeTag;
-export declare const JobSchedulerModelTypeTag = "jobScheduler";
-export type JobSchedulerModelType = typeof JobSchedulerModelTypeTag;
 export declare const ConstantModelTypeTag = "constant";
 export type ConstantModelType = typeof ConstantModelTypeTag;
 export declare const LivePreviewTag = "livepreview";

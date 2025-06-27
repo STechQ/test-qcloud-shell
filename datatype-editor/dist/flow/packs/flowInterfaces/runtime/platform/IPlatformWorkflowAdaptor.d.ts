@@ -1,9 +1,7 @@
 import { IAddActivityProp, ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IWorkflowContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowContext";
-import { IWorkflowIncomingRequest } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowIncomingRequest";
 import { IRestServiceCallPropType } from "../../../flowComponents/runtime/restServiceCall";
-import { MongoDBManager } from "../../../../../common/runtime/infrastructure/mongo/mongoDBManager.js";
-export interface IPlatformWFFAdaptor {
+export interface IPlatformWorkflowAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: IRestServiceCallPropType) => Promise<any>;
     soapServiceExecutor: (prop: StepFlowModelPropType) => Promise<any>;
@@ -15,11 +13,15 @@ export interface IPlatformWFFAdaptor {
         };
     };
     context: () => IWorkflowContext | undefined;
-    getIncomingRequest: () => IWorkflowIncomingRequest;
+    getIncomingRequest: () => {
+        headers: Record<string, string>;
+        body: {
+            additionalInfo: Record<string, any>;
+        };
+    };
     constantsWId: Record<string, any>;
     userId: string | undefined;
     addActivity: (prop: IAddActivityProp) => Promise<void>;
-    getOngoingSession: () => Promise<MongoDBManager>;
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;
