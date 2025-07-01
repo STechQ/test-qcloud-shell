@@ -35,19 +35,13 @@ export interface IWFEDBProcessInst {
     customStatus: IProcessInstance["status"];
     wfInput?: Record<string, any>;
     stepStates?: IStepStates;
+    dataInstance: {
+        [key: string]: any;
+    };
 }
 export interface IWFEDBProcessInstHistory extends OmitTyped<IWFEDBProcessInst, "stepStates"> {
     status: "completed";
     endDate: DBDateEPOC;
-}
-export declare const IWFEDBDataInstPK = "__WF__processInstanceId";
-export declare const IWFEDBDataInstSK = "__WF__businessKey";
-export interface IWFEDBDataInst {
-    [IWFEDBDataInstPK]: string;
-    [IWFEDBDataInstSK]: string;
-    [key: string]: any;
-}
-export interface IWFEDBDataInstHistory extends IWFEDBDataInst {
 }
 export declare const flowThreadIdField: "flowThreadId";
 export interface IWFEDBTask {

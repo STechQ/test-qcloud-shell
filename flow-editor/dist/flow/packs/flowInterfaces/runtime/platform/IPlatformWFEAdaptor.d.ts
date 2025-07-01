@@ -1,6 +1,6 @@
 import { IWorkflowModel, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IWorkflowExecutionContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowExecutionContext";
-import { IWFEDBDataInst, IWFEDBTask, IWFEDBProcessInst, IWFEDBProcessInstHistory, IWFEDBSLA, IWFEDBNotes, IWFEDBFiles, IWFEDBActivity, IWFEDBActivityHistory, IWFEDBTaskHistory } from "../../../../../common/everything/workflow/runtimeObjects/IWFEDB";
+import { IWFEDBTask, IWFEDBProcessInst, IWFEDBProcessInstHistory, IWFEDBSLA, IWFEDBNotes, IWFEDBFiles, IWFEDBActivity, IWFEDBActivityHistory, IWFEDBTaskHistory } from "../../../../../common/everything/workflow/runtimeObjects/IWFEDB";
 import { DataInstance } from "../../../../../common/everything/workflow/runtimeObjects/DataInstance";
 import { IProcessInstance } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IProcessInstance";
 import { ITask } from "../../../../../common/everything/workflow/runtimeObjects/ITask";
@@ -41,12 +41,14 @@ export interface IPlatformWFEAdaptor {
         resolveUser: (userId: string) => Promise<IUser>;
     };
     converters: {
-        convertFromIDataInstance: (dataInstance: DataInstance, processInstanceId: string, businessKey: string) => IWFEDBDataInst;
-        convertToIProcessInstance: (pi: IWFEDBProcessInst | IWFEDBProcessInstHistory) => Promise<IProcessInstance>;
+        convertToIProcessInstAndIDataInst: (pi: IWFEDBProcessInst | IWFEDBProcessInstHistory) => Promise<{
+            processInstance: IProcessInstance;
+            dataInstance: DataInstance;
+        }>;
         convertToITask: (tasks: IWFEDBTask, workflowModel: IWorkflowModel) => ITask;
         convertToIActivities: (dbActivities: Array<IWFEDBActivity | IWFEDBActivityHistory>) => Array<IActivity>;
-        convertFromIProcessInstance: (pi: IProcessInstance, options: IConvertFromIProcessInstanceOptions) => IWFEDBProcessInst;
-        convertFromIProcessInstanceHistory: (pi: IProcessInstance, options: IConvertFromIProcessInstanceOptions) => IWFEDBProcessInstHistory;
+        convertFromIProcessInstAndIDataInst: (pi: IProcessInstance, di: DataInstance, options: IConvertFromIProcessInstanceOptions) => IWFEDBProcessInst;
+        convertFromIProcessInstanceHistory: (pi: IProcessInstance, di: DataInstance, options: IConvertFromIProcessInstanceOptions) => IWFEDBProcessInstHistory;
         convertFromINote: (notes: Array<INote>, processInstanceId: string, businessKey: string) => Array<IWFEDBNotes>;
         convertFromIFiles(files: Array<IFile>, processInstanceId: string, businessKey: string): Array<IWFEDBFiles>;
     };

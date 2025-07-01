@@ -3,6 +3,7 @@ import { IWorkflowContext } from "../../../../../common/everything/workflow/runt
 import { IWorkflowIncomingRequest } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowIncomingRequest";
 import { IRestServiceCallPropType } from "../../../flowComponents/runtime/restServiceCall";
 import { MongoDBManager } from "../../../../../common/runtime/infrastructure/mongo/mongoDBManager.js";
+import { IMongoDBTransactionQueue } from "../../../../../common/runtime/infrastructure/mongo/IDataStoreManager";
 export interface IPlatformWFFAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: IRestServiceCallPropType) => Promise<any>;
@@ -19,7 +20,12 @@ export interface IPlatformWFFAdaptor {
     constantsWId: Record<string, any>;
     userId: string | undefined;
     addActivity: (prop: IAddActivityProp) => Promise<void>;
-    getOngoingSession: () => Promise<MongoDBManager>;
+    privateOps: {
+        getDb: () => Promise<{
+            trxQueue: IMongoDBTransactionQueue | undefined;
+            dsManager: MongoDBManager;
+        }>;
+    };
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;
