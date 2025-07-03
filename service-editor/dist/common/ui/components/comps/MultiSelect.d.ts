@@ -8,10 +8,13 @@ interface IMultiSelectProps {
     values: Array<IOption['value']>;
     onChange: (value: Array<IOption['value']>) => void;
     options: Array<IOption>;
+    searchable?: boolean;
+    selectAll?: boolean;
 }
-interface IOption {
+export interface IOption {
     name: string;
     value: string | number;
+    tooltip?: string;
 }
 export declare const MultiSelect: FC<IMultiSelectProps>;
 export {};

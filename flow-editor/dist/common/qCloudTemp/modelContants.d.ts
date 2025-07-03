@@ -71,11 +71,6 @@ export declare const EditorConsts: {
             readonly view: "qjson";
         };
     };
-    readonly jobSchedulerEditor: {
-        readonly modelKeys: {
-            readonly single: "jobScheduler";
-        };
-    };
 };
 interface ModelVisualInfo {
     icon: string;
