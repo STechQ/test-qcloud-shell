@@ -71,6 +71,16 @@ export declare const EditorConsts: {
             readonly view: "qjson";
         };
     };
+    readonly jobSchedulerEditor: {
+        readonly modelKeys: {
+            readonly single: "jobScheduler";
+        };
+    };
+    readonly soapEditorV2: {
+        readonly modelKeys: {
+            readonly single: "soapServiceV2";
+        };
+    };
 };
 interface ModelVisualInfo {
     icon: string;
