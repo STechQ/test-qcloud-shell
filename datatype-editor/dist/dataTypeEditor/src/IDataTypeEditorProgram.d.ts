@@ -7,7 +7,6 @@ export interface IDataTypeEditorModifiedStatus {
 }
 export interface IDataTypeEditorInitOptions {
     onModifiedStatus?: (status: IDataTypeEditorModifiedStatus, modelBody: IDataTypeModel) => void;
-    ownerId?: string;
 }
 export declare function getDefaultModel(): IDataTypeModel;
 export interface IDataTypeEditorData {
@@ -37,5 +36,6 @@ export interface IDataTypeInfoItem {
     _name?: string;
     objectID: string;
     attributes: Record<string, IVariable>;
+    path?: string;
 }
 //# sourceMappingURL=IDataTypeEditorProgram.d.ts.map

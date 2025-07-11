@@ -1,1 +1,0 @@
-{"version":3,"file":"MockContainer.d.ts","sourceRoot":"","sources":["../../../../../src/components/Container/MockContainer.tsx"],"names":[],"mappings":"AAKA,OAAO,EAAE,oBAAoB,EAAE,MAAM,2EAA2E,CAAC;AACjH,KAAK,KAAK,GAAG;IACT,SAAS,EAAE,oBAAoB,CAAC;IAChC,QAAQ,EAAE,OAAO,CAAC;IAClB,WAAW,EAAE,CAAC,KAAK,EAAE,oBAAoB,KAAK,IAAI,CAAA;CACrD,CAAA;AAKD,eAAO,MAAM,aAAa,UAAY,KAAK,4CAoHzC,CAAA"}
