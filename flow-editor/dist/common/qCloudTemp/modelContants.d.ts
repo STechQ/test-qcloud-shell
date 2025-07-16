@@ -33,11 +33,6 @@ export declare const EditorConsts: {
             readonly runtime: "workflow-runtime";
         };
     };
-    readonly certificate: {
-        readonly modelKeys: {
-            readonly single: "certificate";
-        };
-    };
     readonly dataTypeEditor: {
         readonly modelKeys: {
             readonly single: "dataType";
@@ -51,6 +46,11 @@ export declare const EditorConsts: {
     readonly soapEditor: {
         readonly modelKeys: {
             readonly single: "soapService";
+        };
+    };
+    readonly themeEditor: {
+        readonly modelKeys: {
+            readonly single: "theme";
         };
     };
     readonly enum: {
@@ -74,6 +74,16 @@ export declare const EditorConsts: {
         readonly modelKeys: {
             readonly single: "yaml";
             readonly view: "qjson";
+        };
+    };
+    readonly soapEditorV2: {
+        readonly modelKeys: {
+            readonly single: "soapServiceV2";
+        };
+    };
+    readonly jobSchedulerEditor: {
+        readonly modelKeys: {
+            readonly single: "jobScheduler";
         };
     };
 };
