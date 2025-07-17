@@ -1,3 +1,4 @@
+import { FileUrlCreationRuleName } from "../../jobs/src/application/shared/fileUrlCreator";
 import { IModel, IModule, IWorkflowExportItem } from "../../ui/src/domain/model/models";
 import { IOrganization, IOrganizationCloud } from "./membership";
 import { IApplication, IModelBodyObject, IOrganizationActions, UsageType } from "./quickCloud";
@@ -62,7 +63,7 @@ export interface IGetExportModelsResponse {
 export interface IExportItem {
     id: string;
     ver: string;
-    type: "settings_yaml" | "alert_qjson" | "pipeline_qjson" | "localProxy_yaml" | "globalLocalization_qjson" | "theme_theme" | "loading_qjson" | "componentList_js" | "namedComps" | "qjsons" | "css" | "containerServices_js" | "containerServIntelli_ts" | "theme_theme" | "bpmn" | "process" | "entityDesigner" | "flow" | "assetList_js" | /*"flowEntity" //FLOW ENTITY IS GOING BYE BYE (perhaps 🤔) |*/ "lottie" | "appSettings" | "png" | "jpg" | "jpeg" | "svg" | "gif" | "woff" | "woff2" | "ttf" | "otf";
+    type: "settings_yaml" | "alert_qjson" | "pipeline_qjson" | "localProxy_yaml" | "globalLocalization_qjson" | "loading_qjson" | "componentList_js" | "namedComps" | "qjsons" | "css" | "containerServices_js" | "bpmn" | "process" | "entityDesigner" | "flow" | "assetList_js" | /*"flowEntity" //FLOW ENTITY IS GOING BYE BYE (perhaps 🤔) |*/ "lottie" | "appSettings" | "png" | "jpg" | "jpeg" | "svg" | "gif" | "woff" | "woff2" | "ttf" | "otf" | "certificate" | "containerServIntelli_ts" | "theme_theme";
     size?: number;
     path: string;
     name: string;
@@ -101,7 +102,7 @@ export interface IExportJobData extends IJobData {
         version?: string;
         versionId?: string;
     };
-    modelPathSchema?: string;
+    fileUrlCreatorRuleName?: FileUrlCreationRuleName;
     modelFileNameSchema?: string;
 }
 export interface IWorkflowExportJobData {

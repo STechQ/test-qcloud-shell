@@ -1,4 +1,5 @@
 export declare class LegacyHelper {
+    static readonly LegacyVersionDeleteOnly = "deleteOnly";
     static getLegacyCollectionName(collectionName: string, legacyVersion: string): string;
     static checkAndGetLegacyCollectionName(collectionName: string, legacyVersion: string): string | undefined;
     static getLegacySuffixDB(legacyVersion: string): string;

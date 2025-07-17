@@ -3,7 +3,7 @@ import { IApplication, IFolder, IModel, IWorkflowExportItem } from "../../ui/src
 import { IUserMainInfo, IUser_SUSI } from "./authentication";
 import { IFeedbackAttachment, IUserFeedback } from "./feedback";
 import { IEditorTypes, IOrganization, IOrganizationCalculatedInfo, IOrganizationFeatures } from "./membership";
-import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelCheckout } from "./quickCloud";
+import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo, IModelCheckout } from "./quickCloud";
 import { IApplicationVersion, IApplicationVersionArtifacts } from "./applicationVersion";
 import { IUserPreferences } from "./userPreference";
 import { IMainStatisticInfo } from "../qCloudTemp/backoffice";
@@ -782,10 +782,19 @@ export interface IListAllOrgApplicationsResponse {
     applications: Array<IAllOrgGroupApplicationData>;
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
-export interface ICloneOrgResponseModelInfo {
-    path: string;
+export interface ICloneOrgResponseModelInfoBase {
+    path: NonNullable<IModelInfo["path"]>;
     modelType: IModelInfo["modelType"];
 }
+export interface ICloneOrgResponseModelHistoryInfo extends ICloneOrgResponseModelInfoBase {
+    type: "hist";
+    modelID: IModelHistoryInfo["modelID"];
+    historyType: IModelHistoryInfo["historyType"];
+}
+export interface ICloneOrgResponseModelInfoNorm extends ICloneOrgResponseModelInfoBase {
+    type: "norm";
+}
+export type ICloneOrgResponseModelInfo = ICloneOrgResponseModelHistoryInfo | ICloneOrgResponseModelInfoNorm;
 export interface ILegacyRequests {
     cloneOrgRequest: {
         organizationId: string;
@@ -793,7 +802,8 @@ export interface ILegacyRequests {
         legacyDeleteVersion?: string;
     };
     cloneOrgResponse: {
-        orgModelPaths: Array<ICloneOrgResponseModelInfo>;
+        orgModelPaths: Array<ICloneOrgResponseModelInfoNorm>;
+        orgModelHistoryPaths: Array<ICloneOrgResponseModelHistoryInfo>;
         cloneMessages: Array<{
             msg: string;
             level: "log" | "warning";

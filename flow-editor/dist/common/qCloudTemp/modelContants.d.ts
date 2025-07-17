@@ -33,6 +33,11 @@ export declare const EditorConsts: {
             readonly runtime: "workflow-runtime";
         };
     };
+    readonly certificate: {
+        readonly modelKeys: {
+            readonly single: "certificate";
+        };
+    };
     readonly dataTypeEditor: {
         readonly modelKeys: {
             readonly single: "dataType";
