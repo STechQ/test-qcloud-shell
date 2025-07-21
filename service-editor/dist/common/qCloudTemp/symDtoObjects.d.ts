@@ -3,7 +3,7 @@ import { IApplication, IFolder, IModel, IWorkflowExportItem } from "../../ui/src
 import { IUserMainInfo, IUser_SUSI } from "./authentication";
 import { IFeedbackAttachment, IUserFeedback } from "./feedback";
 import { IEditorTypes, IOrganization, IOrganizationCalculatedInfo, IOrganizationFeatures } from "./membership";
-import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo, IModelCheckout } from "./quickCloud";
+import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo } from "./quickCloud";
 import { IApplicationVersion, IApplicationVersionArtifacts } from "./applicationVersion";
 import { IUserPreferences } from "./userPreference";
 import { IMainStatisticInfo } from "../qCloudTemp/backoffice";
@@ -253,12 +253,19 @@ export interface IGetCodeAssistantResponse {
     response: ICodeAssistantResponse["refactorResponse"] | ICodeAssistantResponse["explainResponse"] | ICodeAssistantResponse["responseError"];
 }
 export interface IGetCreateUIResponse {
-    response: {
-        qjson?: string;
-        error?: {
-            errorMsg: string;
-        };
+    jobId: string;
+}
+export interface IGetCreateUIJobResponse {
+    qjson?: string;
+    error?: {
+        errorMsg: string;
     };
+}
+export interface IGetAIJobResponse {
+    requestedJob: string;
+    status: 'InProgress' | 'Completed' | 'Failed';
+    response?: IGetCreateUIJobResponse;
+    error?: string;
 }
 export interface IListUsersResponse {
     users: Array<IUser_SUSI>;
@@ -506,10 +513,8 @@ export interface IAddModelRequest {
     extension?: ExtensionType;
     usageType?: UsageType;
     key?: AppSettingsModelKeys;
-    migrated?: boolean;
     path: string;
     appID?: ObjectID;
-    checkouts?: Array<IModelCheckout>;
     version?: string;
     overriddenModel?: IModelInfo['overriddenModel'];
     dependentModels?: IDependentModel[];

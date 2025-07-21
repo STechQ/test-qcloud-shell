@@ -5,7 +5,6 @@ interface Prop {
     data: IDataTypeEditorData;
     readOnly: boolean;
     updateMainModel: (model: IDataTypeModel) => void;
-    selectedQueryIndex: (index: number) => void;
 }
 declare const DataTypeEditorView: (props: Prop) => import("react/jsx-runtime").JSX.Element;
 export default DataTypeEditorView;
