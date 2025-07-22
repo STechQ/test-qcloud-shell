@@ -5,6 +5,7 @@ type Props = {
     data: IDataTypeEditorData;
     readOnly: boolean;
     setModel: (model: IDataTypeModel) => void;
+    selectedQueryIndex: (index: number) => void;
 };
 declare const DataTypeEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default DataTypeEditorBody;

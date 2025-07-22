@@ -53,6 +53,7 @@ export interface IOrganizationFeatures {
     codeAssistant?: boolean;
     appVersion?: boolean;
     externalIntegration?: boolean;
+    copyApp?: boolean;
 }
 export interface IOrganizationCalculatedInfo {
     appCount: number;

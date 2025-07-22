@@ -53,6 +53,11 @@ export declare const EditorConsts: {
             readonly single: "soapService";
         };
     };
+    readonly themeEditor: {
+        readonly modelKeys: {
+            readonly single: "theme";
+        };
+    };
     readonly enum: {
         readonly modelKeys: {
             readonly single: "enum";
@@ -74,6 +79,16 @@ export declare const EditorConsts: {
         readonly modelKeys: {
             readonly single: "yaml";
             readonly view: "qjson";
+        };
+    };
+    readonly soapEditorV2: {
+        readonly modelKeys: {
+            readonly single: "soapServiceV2";
+        };
+    };
+    readonly jobSchedulerEditor: {
+        readonly modelKeys: {
+            readonly single: "jobScheduler";
         };
     };
 };
