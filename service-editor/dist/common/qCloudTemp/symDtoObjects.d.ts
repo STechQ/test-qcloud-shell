@@ -253,12 +253,19 @@ export interface IGetCodeAssistantResponse {
     response: ICodeAssistantResponse["refactorResponse"] | ICodeAssistantResponse["explainResponse"] | ICodeAssistantResponse["responseError"];
 }
 export interface IGetCreateUIResponse {
-    response: {
-        qjson?: string;
-        error?: {
-            errorMsg: string;
-        };
+    jobId: string;
+}
+export interface IGetCreateUIJobResponse {
+    qjson?: string;
+    error?: {
+        errorMsg: string;
     };
+}
+export interface IGetAIJobResponse {
+    requestedJob: string;
+    status: 'InProgress' | 'Completed' | 'Failed';
+    response?: IGetCreateUIJobResponse;
+    error?: string;
 }
 export interface IListUsersResponse {
     users: Array<IUser_SUSI>;
