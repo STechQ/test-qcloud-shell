@@ -23,6 +23,7 @@ export interface IPlatformWFFAdaptor {
     constantsWId: Record<string, any>;
     userId: string | undefined;
     addActivity: (prop: IAddActivityProp) => Promise<void>;
+    getConstant: (constantId: string) => Promise<string | undefined>;
     privateOps: {
         getDb: () => Promise<{
             trxQueue: IMongoDBTransactionQueue | undefined;

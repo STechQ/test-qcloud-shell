@@ -7,7 +7,7 @@ import { CertificateModelType, DataTypeModelType } from "../../dataType/runtimem
 import { IStudioUIObjectBase } from "./IStudioUIObjectBase";
 import { ConstantModelType } from "../../dataType/runtimemodels/types";
 export type ContentType = "qjson" | "js" | "ts" | "yaml" | "css" | "png" | "jpg" | "jpeg" | "svg" | "gif" | "lottie" | "woff" | "woff2" | "ttf" | "otf" | "json" | "wsdl" | "xsd" | "theme";
-export type ModelType = ContentType | "bpmn" | "process" | "entityDesigner" | "namedComponent" | FlowModelType | WorkflowModelType | RestServiceModelType | SoapServiceModelType | SoapServiceV2ModelType | "step" | /*"flowEntity" //FLOW ENTITY IS GOING BYE BYE (perhaps 🤔) |*/ "appSettings" | DataTypeModelType | EnumModelType | ConstantModelType | CertificateModelType | "erronous" | "theme" | JobSchedulerModelType;
+export type ModelType = ContentType | "bpmn" | "process" | "entityDesigner" | "namedComponent" | FlowModelType | WorkflowModelType | RestServiceModelType | SoapServiceModelType | SoapServiceV2ModelType | "step" | /*"flowEntity" //FLOW ENTITY IS GOING BYE BYE (perhaps 🤔) |*/ "appSettings" | DataTypeModelType | EnumModelType | ConstantModelType | CertificateModelType | "erronous" | "theme" | JobSchedulerModelType | "container";
 export interface IStudioUIModelBase extends IStudioUIObjectBase {
     modelType: ModelType;
     path: string;
