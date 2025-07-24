@@ -8,14 +8,4 @@ export interface IWorkflowContext {
     processInstance?: IProcessInstance;
     action?: IActionData;
 }
-export default interface IWorkflowEnvironment {
-    constants: Record<string, any>;
-    constantsWId: Record<string, any>;
-    constantInfo: Record<string, {
-        lastModelUpdate: number;
-        lastRefresh?: Date;
-    }>;
-    environment: string;
-    isLocal: boolean;
-}
 //# sourceMappingURL=IWorkflowContext.d.ts.map

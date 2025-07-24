@@ -1,6 +1,5 @@
-import { ITabItem } from "./Tabs";
 type Props = {
-    tabNames: Array<string | ITabItem>;
+    tabNames: Array<string>;
     selectedTab: string;
     onClick: (index: number) => void;
 };

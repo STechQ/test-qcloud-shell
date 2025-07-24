@@ -63,9 +63,6 @@ export declare class MongoDBManager implements IDataStoreManager {
     Delete<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options: {
         trxQueue?: TTrx;
     }): Promise<GetReturnType<TTrx, number>>;
-    DeleteOne<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options?: {
-        trxQueue?: TTrx;
-    }): Promise<GetReturnType<TTrx, number>>;
     Count<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter?: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options?: {
         trxQueue?: TTrx;
     }): Promise<number>;

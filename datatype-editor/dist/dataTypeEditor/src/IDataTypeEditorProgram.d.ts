@@ -7,7 +7,6 @@ export interface IDataTypeEditorModifiedStatus {
 }
 export interface IDataTypeEditorInitOptions {
     onModifiedStatus?: (status: IDataTypeEditorModifiedStatus, modelBody: IDataTypeModel) => void;
-    ownerId?: string;
 }
 export declare function getDefaultModel(): IDataTypeModel;
 export interface IDataTypeEditorData {

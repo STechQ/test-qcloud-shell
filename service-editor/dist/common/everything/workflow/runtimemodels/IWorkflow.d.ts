@@ -126,15 +126,5 @@ export interface IAddActivityProp {
     descriptionCode: string;
     description: string;
 }
-export interface IWorkflowEnvironment {
-    constValueWithName: Record<string, any>;
-    constValueWithID: Record<string, any>;
-    constInfoWithID: Record<string, {
-        lastModelUpdate: number;
-        expireTime: number;
-    }>;
-    environment: string;
-    isLocal: boolean;
-}
 export {};
 //# sourceMappingURL=IWorkflow.d.ts.map
