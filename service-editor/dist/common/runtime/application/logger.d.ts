@@ -34,6 +34,8 @@ export declare const LogCodes: {
     readonly e3009: "e-3009";
     readonly e3010: "e-3010";
     readonly e3011: "e-3011";
+    readonly e3012: "e-3012";
+    readonly e3013: "e-3013";
     readonly e3015: "e-3015";
     readonly e3016: "e-3016";
     readonly e3017: "e-3017";
@@ -60,6 +62,7 @@ export declare const LogCodes: {
     readonly l2103: "l-2103";
     readonly l2104: "l-2104";
     readonly l2105: "l-2105";
+    readonly l2016: "l-2016";
     readonly w100: "w-100";
     readonly w103: "w-103";
     readonly w110: "w-110";
@@ -111,12 +114,18 @@ export declare const LogCodes: {
     readonly wm2200: "wm-2200";
     readonly wm2201: "wm-2201";
     readonly wm2202: "wm-2202";
+    readonly wm2203: "wm-2203";
     readonly wfe001: "wfe-001";
     readonly wfe002: "wfe-002";
     readonly wfe003: "wfe-003";
     readonly wfe004: "wfe-004";
     readonly wfe005: "wfe-005";
     readonly wfe006: "wfe-006";
+    readonly js2000: "js-2000";
+    readonly js2001: "js-2001";
+    readonly js2002: "js-2002";
+    readonly js2003: "js-2003";
+    readonly js2004: "js-2004";
 };
 export declare const LogCodesSpecial: {
     readonly IP: "IP";

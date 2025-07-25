@@ -6,9 +6,6 @@ export declare class MongoDBConnectionManager implements IMongoDBConnectionManag
     getConnection(url: string, options: {
         maxPoolSize: number;
     }): Promise<MongoClient>;
-    private events;
-    private clearEvents;
-    private handleProcessClose;
     private closeAll;
 }
 //# sourceMappingURL=mongoDBConnectionManager.d.ts.map
