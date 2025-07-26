@@ -22,9 +22,6 @@ export interface IConvertFromIProcessInstanceOptions {
     stepStates: IWFEDBProcessInst["stepStates"];
     wfInput: IWFEDBProcessInst["wfInput"];
 }
-export interface IWFExecutionParams {
-    initiatorUserId: string | undefined;
-}
 export interface IPlatformWFEAdaptor {
     runFunctionWithProps: (props: StepFlowModelPropType) => Promise<any>;
     getConstant: (modelId: string) => Promise<any> | any;
@@ -36,7 +33,6 @@ export interface IPlatformWFEAdaptor {
         canUserPerformActionOnTask: (user: IUser, task: IWFEDBTask, taskAction: IAction, activityList: Array<IActivity>, processInstance: IProcessInstance) => Promise<IWFEAuthzResult>;
     };
     system: {
-        getParam<K extends keyof IWFExecutionParams>(key: K): IWFExecutionParams[K];
         gracefulEnd: () => void;
         createDataInstance: () => Promise<DataInstance>;
         generateBusinessKeyWFE: () => Promise<string>;

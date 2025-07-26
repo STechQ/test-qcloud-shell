@@ -26,7 +26,7 @@ export declare class SettingsQJsonsContext implements ISettingsQJsonContext, ICo
     SetLoadingQjson(qjson: IQJSon): void;
     GetLoadingQjson(): IQJSon | undefined;
     SetGlobalLocalizationQjson(qJson: IQJSon): void;
-    TriggerPipeline(methodName: string, methodArgs: Record<string, any>): Promise<any> | undefined;
+    TriggerPipeline(methodName: string, methodArgs: Record<string, any>): Promise<any> | any;
     RerenderPipelineQjson(): Promise<void> | undefined;
 }
 //# sourceMappingURL=SettingsQJsonsContext.d.ts.map

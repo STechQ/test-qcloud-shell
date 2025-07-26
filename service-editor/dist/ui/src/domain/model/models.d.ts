@@ -29,8 +29,6 @@ interface IModelCtorInitials {
     extension?: IModel["extension"];
     usageType?: IModel["usageType"];
     additionals?: IModel["additionals"];
-    key?: IModel["key"];
-    migrated?: IModel["migrated"];
     modified: IModel["modified"];
     state?: IModel["state"];
     checkedOut?: IModel["checkedOut"];
@@ -81,8 +79,6 @@ export declare class Model implements IModel, IStudioUIModelBase {
     overriddenModel: IModel["overriddenModel"];
     history?: IModel["history"];
     selectedHistoryVersion?: IModel["selectedHistoryVersion"];
-    key: IModel["key"];
-    migrated?: IModel["migrated"];
     constructor(initials: IModelCtorInitials);
     copyFrom(model: IModel): void;
     private ctor;
@@ -140,8 +136,6 @@ export interface IModel extends IObject, IStudioUIModelBase {
     extension?: ExtensionType;
     usageType?: ITreeviewItem["usageType"];
     additionals?: ModelAdditionals;
-    key?: string;
-    migrated?: boolean;
     sourceLink?: IModelLink;
     modified: IModelModifyInfo;
     state?: any;
@@ -199,10 +193,6 @@ export interface IApplicationDetails {
     templateCount: number;
     processCount: number;
     entityCount: number;
-}
-export interface IUploadedFile {
-    name: string;
-    content: string;
 }
 export interface IApplication extends IObject {
     objectType: "application";
@@ -276,7 +266,6 @@ export interface IExportViewItem {
     parentId?: string;
     name: string;
     usageType?: UsageType;
-    modelType?: string;
     priority: number;
     shortName?: string;
     modelAdditionals?: IQJsonAdditionals | IProcessWizardAdditionals | IEntityDesignerAddtionals;
@@ -286,7 +275,6 @@ export interface IExportViewItem {
     selectedVersion?: string;
     type: IItemType;
     size?: number;
-    key?: string;
 }
 export type StatusType = "waiting" | "running" | "success" | "failed" | "skipped";
 export interface IExportJobItem extends IQcloudJob {
