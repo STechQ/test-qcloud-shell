@@ -1,7 +1,7 @@
 import { Hook } from "@stechquick/algae/lib/helpers/hook";
 import { UpdateFilter, ClientSession } from "mongodb";
 import { AtLeastOne } from "../../../../common/helpers/typeHelper";
-export type CollectionName = "FM_Users" | "Notifies" | "FM_Models" | "Counters" | "DeploymentLogs" | "PermanentStore" | "ServiceCaches" | "BatchJobs" | "Locks" | "WFE_ProcessInst" | "WFE_ProcessInstHistory" | "WFE_Task" | "WFE_TaskHistory" | "WFE_Activity" | "WFE_ActivityHistory" | "WFE_ThreadState" | "WFE_ThreadStateHistory" | "WFE_Notes" | "WFE_NotesHistory" | "WFE_Files" | "WFE_FilesHistory";
+export type CollectionName = "FM_Users" | "Notifies" | "FM_Models" | "Counters" | "DeploymentLogs" | "PermanentStore" | "ServiceCaches" | "BatchJobs" | "Locks" | "JobExecution" | "Holidays" | "JobExecutionHistory" | "WFE_ProcessInst" | "WFE_ProcessInstHistory" | "WFE_Task" | "WFE_TaskHistory" | "WFE_Activity" | "WFE_ActivityHistory" | "WFE_ThreadState" | "WFE_ThreadStateHistory" | "WFE_Notes" | "WFE_NotesHistory" | "WFE_Files" | "WFE_FilesHistory";
 export type IndexDefinition<T> = {
     name: string;
     keys: AtLeastOne<Record<keyof T, "asc" | "desc">>;
@@ -126,6 +126,7 @@ export declare const trxFuncDict: {
     Update: "Update";
     UpdateAsNative: "UpdateAsNative";
     Delete: "Delete";
+    DeleteOne: "DeleteOne";
 };
 export declare const queryFuncDict: {
     List: "List";
@@ -208,6 +209,9 @@ export interface IDataStoreManager {
         trxQueue?: TTrx;
     }): Promise<T | undefined>;
     CreateIndexes<T>(collectionName: CollectionName, indexDefinitions: IndexDefinitions<T>): Promise<void>;
+    DeleteOne<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options?: {
+        trxQueue?: TTrx;
+    }): Promise<GetReturnType<TTrx, number>>;
 }
 export {};
 //# sourceMappingURL=IDataStoreManager.d.ts.map

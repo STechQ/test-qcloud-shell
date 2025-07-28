@@ -1,8 +1,7 @@
 import { CollectionName } from './mongo/IDataStoreManager';
 export interface IExecutionContextStore {
     tuid: string;
-    userId?: string;
-    clientId?: string;
+    userId: string | undefined;
 }
 export declare abstract class ExecutionContext<TStore extends IExecutionContextStore> {
     private static _currentContext;

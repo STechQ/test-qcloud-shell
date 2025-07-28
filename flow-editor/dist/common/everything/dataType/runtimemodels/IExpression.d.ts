@@ -7,6 +7,7 @@ export type ISetExpressionData = IExpressionData & {
 export type IExpressionData = {
     type: ExpressionDataTypes;
     value: string;
+    description?: string;
 };
 export type IExpressionDataFiltered<TFilter extends IExpressionData["type"]> = {
     type: IExpressionDataTypeSelection<TFilter>;
