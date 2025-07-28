@@ -1,1 +1,0 @@
-{"version":3,"file":"timespanHelper.d.ts","sourceRoot":"","sources":["../../../../common/helpers/timespanHelper.ts"],"names":[],"mappings":"AAAA,QAAA,MAAM,aAAa;;yBAEM,MAAM;2BACJ,MAAM,QAAQ,MAAM;0BACrB,MAAM,SAAS,MAAM;;;yBAGtB,MAAM;2BACJ,MAAM,QAAQ,MAAM;0BACrB,MAAM,SAAS,MAAM;;CAE9C,CAAC;AACF,qBAAa,cAAc;WACT,cAAc,CAAC,UAAU,EAAE,MAAM,EAAE,IAAI,EAAE,MAAM,OAAO,aAAa;CAYpF"}
