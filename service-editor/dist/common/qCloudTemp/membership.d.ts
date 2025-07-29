@@ -45,6 +45,7 @@ export interface IEditorTypes {
     lottie?: boolean;
     store?: boolean;
     certificate?: boolean;
+    container?: boolean;
 }
 export interface IOrganizationFeatures {
     multipleCss?: boolean;
@@ -53,6 +54,7 @@ export interface IOrganizationFeatures {
     codeAssistant?: boolean;
     appVersion?: boolean;
     externalIntegration?: boolean;
+    copyApp?: boolean;
 }
 export interface IOrganizationCalculatedInfo {
     appCount: number;

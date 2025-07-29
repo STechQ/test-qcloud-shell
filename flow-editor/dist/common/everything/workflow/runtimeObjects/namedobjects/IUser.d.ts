@@ -1,6 +1,5 @@
-import { INamedObjectBase } from "./INamedObjectBase";
 import { IUnit } from "./IUnit";
-export interface IUser extends INamedObjectBase {
+export interface IUser {
     userId: string;
     firstName: string;
     lastName: string;
@@ -9,6 +8,7 @@ export interface IUser extends INamedObjectBase {
     roles: Array<string>;
     email?: string;
     swimlanes?: Array<Swimlane>;
+    isSystemUser?: boolean | false;
 }
 export type Swimlane = Array<string>;
 //# sourceMappingURL=IUser.d.ts.map
