@@ -126,6 +126,7 @@ export declare const LogCodes: {
     readonly js2002: "js-2002";
     readonly js2003: "js-2003";
     readonly js2004: "js-2004";
+    readonly js2005: "js-2005";
     readonly sla2000: "sla-2000";
     readonly sla2001: "sla-2001";
     readonly sla2002: "sla-2002";
