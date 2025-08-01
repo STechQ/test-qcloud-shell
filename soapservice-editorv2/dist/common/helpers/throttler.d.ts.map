@@ -1,0 +1,1 @@
+{"version":3,"file":"throttler.d.ts","sourceRoot":"","sources":["../../../../common/helpers/throttler.ts"],"names":[],"mappings":"AACA,MAAM,WAAW,gBAAgB;IAC7B,IAAI,EAAE,MAAM,CAAC;IACb,eAAe,CAAC,EAAE,OAAO,CAAC;CAC7B;AACD,qBAAa,SAAS;WACJ,QAAQ,CAAC,KAAK,SAAS,QAAQ,EAAE,EAAE,EAAE,KAAK,EAAE,EAAE,IAAI,EAAE,eAAe,EAAE,EAAE,gBAAgB,GAAG,KAAK;CAahH"}
