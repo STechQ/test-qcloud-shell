@@ -3,7 +3,7 @@ import { IApplication, IFolder, IModel, IWorkflowExportItem } from "../../ui/src
 import { IUserMainInfo, IUser_SUSI } from "./authentication";
 import { IFeedbackAttachment, IUserFeedback } from "./feedback";
 import { IEditorTypes, IOrganization, IOrganizationCalculatedInfo, IOrganizationFeatures } from "./membership";
-import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo, IModelCheckout } from "./quickCloud";
+import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo } from "./quickCloud";
 import { IApplicationVersion, IApplicationVersionArtifacts } from "./applicationVersion";
 import { IUserPreferences } from "./userPreference";
 import { IMainStatisticInfo } from "../qCloudTemp/backoffice";
@@ -513,10 +513,8 @@ export interface IAddModelRequest {
     extension?: ExtensionType;
     usageType?: UsageType;
     key?: AppSettingsModelKeys;
-    migrated?: boolean;
     path: string;
     appID?: ObjectID;
-    checkouts?: Array<IModelCheckout>;
     version?: string;
     overriddenModel?: IModelInfo['overriddenModel'];
     dependentModels?: IDependentModel[];
@@ -790,15 +788,8 @@ export interface IListAllOrgApplicationsResponse {
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
 export interface ICloneOrgResponseModelInfoBase {
-    /**
-     * <<modelId/modelBodyKey>> veya <<path/fullName>>
-     */
     path: NonNullable<IModelInfo["path"]>;
     modelType: IModelInfo["modelType"];
-    /**
-     * Bu 02.08.2025'de henüz geçerli değil (api prod çıkmadı daha)
-     */
-    modelName: IModelInfo["name"];
 }
 export interface ICloneOrgResponseModelHistoryInfo extends ICloneOrgResponseModelInfoBase {
     type: "hist";

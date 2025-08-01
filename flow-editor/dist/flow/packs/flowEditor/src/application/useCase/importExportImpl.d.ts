@@ -17,29 +17,27 @@ export declare class ImportExportImpl implements IImportExport {
     private readonly history;
     private readonly selection;
     constructor(container: DependencyContainer, viewModel?: IViewModel, stepRepo?: IStepRepo, drawArea?: IDrawArea, flow?: IFlow, history?: () => IHistory, selection?: () => ISelection);
-    importModel(model: IFlowDesignModel, options?: IImportOptions): Promise<void>;
+    importModel(model: IFlowDesignModel, options?: IImportOptions, undoRedo?: boolean): Promise<void>;
     paste(copyModel: IFlowCopyModel): Promise<void>;
     private _import;
     exportModel<KType extends keyof IExportTypeMap>(type: KType): Promise<IExportTypeMap[KType]>;
     copy(): IFlowCopyModel;
     setStepPropDict(step: IStepInstance): void;
-    compileCode(label: string, propValue: PropValue, data?: Record<string, string>, compiledValues?: {
+    compileCode(label: PropValue, propValue: PropValue, data?: Record<string, string>, compiledValues?: {
         compiledCode: string;
         errors: Array<string>;
     }): Promise<{
         compiledCode: string;
         errors: string[];
     }>;
-    deleteObjects(): void;
     private getCopyModel;
     private exportEditorModel;
     private exportDesignModel;
+    private exportWFFuncFlowProps;
     private updateRuntimeObject;
     private generateFlowIntellisense;
     private exportRuntimeFlowModel;
     private exportRuntimeWorkFlowModel;
-    private exportDesignWorkflowModel;
     private exportRuntimeModel;
-    private exportDesigntimeModel;
 }
 //# sourceMappingURL=importExportImpl.d.ts.map

@@ -1,13 +1,13 @@
 import { StatusType } from "../../runtimemodels/IWorkflow";
 import { DateTime } from "../../runtimemodels/types";
 import { ITask } from "../ITask";
-import { IWFEDBProcessInst } from "../IWFEDB";
 import { IFile } from "./IFile";
+import { INamedObjectBase } from "./INamedObjectBase";
 import { INote } from "./INote";
 import { ISLA } from "./ISLA";
 import { IUnit } from "./IUnit";
 import { IUser } from "./IUser";
-export interface IProcessInstance {
+export interface IProcessInstance extends INamedObjectBase {
     processInstanceId: string;
     processId: string;
     processVersion: string;
@@ -22,7 +22,7 @@ export interface IProcessInstance {
     processStart: DateTime;
     processEnd: DateTime;
     sla: ISLA;
-    priority?: number;
+    priority: number;
     lastUpdate: DateTime;
     lastUpdateUser: IUser;
     lastUpdateDescriptionCode?: string;
@@ -30,12 +30,11 @@ export interface IProcessInstance {
     status: StatusType;
     statusDescription: string;
     contributorUsers: Array<IUser>;
+    followerUsers: Array<IUser>;
     tasks: Array<ITask>;
     notes: Array<INote>;
     files?: Array<IFile>;
     appId: string;
     instanceStatus: "none" | "alive" | "finished";
-    updatedAt: IWFEDBProcessInst["updatedAt"];
-    startDate: IWFEDBProcessInst["startDate"];
 }
 //# sourceMappingURL=IProcessInstance.d.ts.map

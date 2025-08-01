@@ -1,10 +1,6 @@
 import "../assets/css/components/tabs.css";
-export interface ITabItem {
-    name: string;
-    disabled: boolean;
-}
 type Props = {
-    tabNames: Array<string | ITabItem>;
+    tabNames: Array<string>;
     onClick: (index: number) => void;
     selectedTab: string;
 };
