@@ -24,6 +24,7 @@ export interface IRuntimeOptions {
     events?: IFlowEvents;
     stepStates?: IStepStates;
     stepRepo?: StepRepo;
+    isKnownError?: (error: Error, detail: string) => boolean;
 }
 export interface IFlowExecutionResult {
     executedType: FlowExecutionType;

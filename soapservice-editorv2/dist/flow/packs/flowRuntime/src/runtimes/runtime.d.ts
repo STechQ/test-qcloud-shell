@@ -1,6 +1,6 @@
 import { RuntimeContext } from "../manager/runtimeContext";
 import { Thread } from "../manager/thread";
-import { FlowError } from "../../../flowInterfaces/runtime/flowError";
+import { FlowError, WrappedFlowError } from "../../../flowInterfaces/runtime/flowError";
 export interface IRuntimeConstructor {
     new (ctx: RuntimeContext): Runtime;
 }
@@ -15,7 +15,7 @@ export declare class Runtime implements IRuntime {
     start(): void;
     registerThreads(threadList: Array<Thread>): void;
     removeThread(thread: Thread, options: {
-        error?: FlowError;
+        error?: FlowError | WrappedFlowError;
     }): void;
     protected handleError(error: Error): void;
     mainLoop(options?: {

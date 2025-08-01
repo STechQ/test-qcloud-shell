@@ -11,7 +11,6 @@ import { CommonState } from "./commonState";
 import { ReturnValue } from "./returnValue";
 import { StepRepo } from "./stepRepo";
 import { StepStates } from "./stepStates";
-import { FlowError } from "@stechquick/flow-interfaces/runtime/flowError";
 import { IFlowExecutionResult } from "../flow";
 import { IFlowLogger } from "@stechquick/flow-interfaces/runtime/IFlowLogger";
 import { IPlatformWFEAdaptor } from "@stechquick/flow-interfaces/runtime/platform/IPlatformWFEAdaptor";
@@ -27,6 +26,7 @@ export declare class RuntimeContext {
     private readonly modelRetriever;
     readonly environment: IEnvironment;
     readonly logger: IFlowLogger["log"];
+    readonly isKnownError: (error: Error, detail: string) => boolean;
     private static stepRepo?;
     private static modelRepo;
     readonly returnValue: ReturnValue;
@@ -36,7 +36,7 @@ export declare class RuntimeContext {
     readonly runtime: Runtime;
     readonly events?: IFlowEvents;
     private readonly stepRepo;
-    constructor(flow: IFlowModelBase, msg: RuntimeMessage, runtimeCtor: IRuntimeConstructor, stepRepo: StepRepo | undefined, _onEnd: (returnValue: IFlowExecutionResult) => void, _onFail: (err: FlowError) => void, origStepRetriever: StepRetriever, modelRetriever: ModelRetriever, environment: IEnvironment, logger: IFlowLogger["log"], events?: IFlowEvents, stepStates?: IStepStates);
+    constructor(flow: IFlowModelBase, msg: RuntimeMessage, runtimeCtor: IRuntimeConstructor, stepRepo: StepRepo | undefined, _onEnd: (returnValue: IFlowExecutionResult) => void, _onFail: (err: Error) => void, origStepRetriever: StepRetriever, modelRetriever: ModelRetriever, environment: IEnvironment, logger: IFlowLogger["log"], isKnownError: (error: Error, detail: string) => boolean, events?: IFlowEvents, stepStates?: IStepStates);
     getStepFromRepo(stepName: string, version: string): Promise<import("../../../flowInterfaces/runtime/StepRuntime").StepRuntime<import("@stechquick/flow-interfaces/runtime").IPropObject, string, import("../../../flowInterfaces/runtime/StepRuntime").StateValues>>;
     getModelFromRepo(entityPath: string): Promise<IModel>;
     private startGatherStepRuntimes;
@@ -46,6 +46,6 @@ export declare class RuntimeContext {
     createWFE(): IPlatformWFEAdaptor | undefined;
     createCommonState<T extends IStateBaseType>(): ICommonState<T>;
     onEnd(returnValue: IFlowExecutionResult): void;
-    onFail(err: FlowError): void;
+    onFail(err: Error): void;
 }
 //# sourceMappingURL=runtimeContext.d.ts.map

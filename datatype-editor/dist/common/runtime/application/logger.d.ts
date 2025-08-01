@@ -134,6 +134,11 @@ export declare const LogCodes: {
     readonly sla2004: "sla-2004";
     readonly sla2005: "sla-2005";
     readonly sla2006: "sla-2006";
+    readonly sla2007: "sla-2007";
+    readonly sla2008: "sla-2008";
+    readonly sla2009: "sla-2009";
+    readonly sla2010: "sla-2010";
+    readonly sla2011: "sla-2011";
 };
 export declare const LogCodesSpecial: {
     readonly IP: "IP";
