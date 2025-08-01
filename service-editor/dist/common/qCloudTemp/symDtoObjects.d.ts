@@ -790,8 +790,15 @@ export interface IListAllOrgApplicationsResponse {
 }
 export type IListExportJobStepsResponse = Array<IExportJobStepDbItem>;
 export interface ICloneOrgResponseModelInfoBase {
+    /**
+     * <<modelId/modelBodyKey>> veya <<path/fullName>>
+     */
     path: NonNullable<IModelInfo["path"]>;
     modelType: IModelInfo["modelType"];
+    /**
+     * Bu 02.08.2025'de henüz geçerli değil (api prod çıkmadı daha)
+     */
+    modelName: IModelInfo["name"];
 }
 export interface ICloneOrgResponseModelHistoryInfo extends ICloneOrgResponseModelInfoBase {
     type: "hist";
