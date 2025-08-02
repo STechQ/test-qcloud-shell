@@ -1,3 +1,4 @@
+import { ILegacySLA } from "../../../../common/everything/workflow/runtimemodels/ISLA";
 import { IExpressionData } from "./IExpression";
 export type IStepFrom = {
     ID: string;
@@ -52,6 +53,7 @@ export interface IOldCamundaFields {
     oldLookUpKeyBS: string;
     user: string;
     sendTo: string;
+    sla?: ILegacySLA;
 }
 export declare let stepPropDict: Record<string, Array<string>>;
 //# sourceMappingURL=IStepModel.d.ts.map
