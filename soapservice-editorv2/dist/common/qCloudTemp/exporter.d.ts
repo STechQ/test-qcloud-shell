@@ -336,5 +336,9 @@ export interface ITableData {
     ownerType?: IModule["objectType"] | IApplication['objectType'];
     path?: string;
     overridden?: boolean;
+    nextVersionPreview?: string;
+    isUnmodifiableTotal?: boolean;
+    isCheckedOut?: boolean;
+    isModified?: boolean;
 }
 //# sourceMappingURL=exporter.d.ts.map

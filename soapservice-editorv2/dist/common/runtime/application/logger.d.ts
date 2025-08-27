@@ -63,6 +63,8 @@ export declare const LogCodes: {
     readonly l2104: "l-2104";
     readonly l2105: "l-2105";
     readonly l2016: "l-2016";
+    readonly l2106: "l-2106";
+    readonly l2107: "l-2107";
     readonly w100: "w-100";
     readonly w103: "w-103";
     readonly w110: "w-110";
