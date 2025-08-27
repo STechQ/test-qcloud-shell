@@ -1,6 +1,7 @@
 import { IDataTypeModel } from "../../common/everything/dataType/runtimemodels/IDataTypeModel";
 import { IVariable } from "../../common/everything/dataType/runtimemodels/IVariable";
 import { ModelValidatorResult } from "./helper/ModelValidator";
+import { IDataTypeLocationDetail } from "../../common/helpers/modelSearch/dataTypeModelSearch";
 export interface IDataTypeEditorModifiedStatus {
     state?: boolean;
     model?: boolean;
@@ -25,6 +26,7 @@ export interface IDataTypeEditorProgram {
         dataTypeModels: Array<IDataTypeInfoItem>;
     }): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    referenceSearchResult(result: IDataTypeLocationDetail): Promise<void>;
 }
 export interface IInitOptions {
     ui?: {

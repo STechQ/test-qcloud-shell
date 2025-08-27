@@ -1,4 +1,5 @@
 import { ISLAModel } from "../../common/everything/sla/runtimemodels/ISLAModel";
+import { ISLALocationDetail } from "../../common/helpers/modelSearch/slaModelSearch";
 export interface ISlaEditorModifiedStatus {
     state?: boolean;
     model?: boolean;
@@ -40,6 +41,7 @@ export interface ISlaEditorProgram {
     exportModel(): ISLAModel;
     importModel(data: ISLAModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    referenceSearchResult(result: ISLALocationDetail): Promise<void>;
 }
 export declare function getDefaultModel(): ISLAModel;
 //# sourceMappingURL=ISlaEditorProgram.d.ts.map

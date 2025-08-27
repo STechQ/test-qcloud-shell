@@ -1,4 +1,5 @@
 import { IRestServiceDesign } from "../../common/everything/restService/designtimeModels/IRestService";
+import { IServiceLocationDetail } from "../../common/helpers/modelSearch/serviceModelSearch";
 export interface IServiceEditorModifiedStatus {
     state?: boolean;
     model?: boolean;
@@ -44,5 +45,6 @@ export interface IServiceEditorProgram {
         undoDisabled: boolean | undefined;
         redoDisabled: boolean | undefined;
     };
+    referenceSearchResult(result: IServiceLocationDetail): Promise<void>;
 }
 //# sourceMappingURL=IServiceEditorProgram.d.ts.map

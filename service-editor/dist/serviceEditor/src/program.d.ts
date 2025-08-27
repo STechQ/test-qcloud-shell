@@ -1,5 +1,6 @@
 import { IServiceEditorInitOptions, IServiceEditorProgram, IServiceModelImport } from "./IServiceEditorProgram";
 import { IRestServiceDesign } from "../../common/everything/restService/designtimeModels/IRestService";
+import { IServiceLocationDetail } from "../../common/helpers/modelSearch/serviceModelSearch";
 export declare class Program implements IServiceEditorProgram {
     private initted;
     private options?;
@@ -25,5 +26,6 @@ export declare class Program implements IServiceEditorProgram {
         undoDisabled: boolean | undefined;
         redoDisabled: boolean | undefined;
     };
+    referenceSearchResult(result: IServiceLocationDetail): Promise<void>;
 }
 //# sourceMappingURL=program.d.ts.map

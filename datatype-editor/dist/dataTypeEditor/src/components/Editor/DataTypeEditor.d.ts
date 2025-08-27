@@ -4,6 +4,8 @@ interface Prop {
     options: IDataTypeEditorInitOptions;
     data: IDataTypeEditorData;
     readOnly: boolean;
+    selectedTab: string;
+    setSelectedTab: (tabName: string) => void;
     updateMainModel: (model: IDataTypeModel) => void;
     selectedQueryIndex: (index: number) => void;
 }

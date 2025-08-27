@@ -4,6 +4,8 @@ type Props = {
     options: IDataTypeEditorInitOptions;
     data: IDataTypeEditorData;
     readOnly: boolean;
+    selectedTab: string;
+    setSelectedTab: (tabName: string) => void;
     setModel: (model: IDataTypeModel) => void;
     selectedQueryIndex: (index: number) => void;
 };

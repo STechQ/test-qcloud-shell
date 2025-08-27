@@ -1,5 +1,6 @@
 import { ISoapServiceEditorV2InitOptions, ISoapServiceEditorV2Program, ISoapServiceV2ModelImport } from "./ISoapServiceEditorV2Program";
 import { ISoapServiceV2Design } from "../../common/everything/soapService/designtimeModels/ISoapServiceV2";
+import { ISoapServiceV2LocationDetail } from "../../common/helpers/modelSearch/soapServiceV2ModelSearch";
 export declare class Program implements ISoapServiceEditorV2Program {
     private initted;
     private options?;
@@ -15,5 +16,6 @@ export declare class Program implements ISoapServiceEditorV2Program {
     exportModel(): ISoapServiceV2Design;
     importModel(data: ISoapServiceV2ModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    referenceSearchResult(result: ISoapServiceV2LocationDetail): Promise<void>;
 }
 //# sourceMappingURL=program.d.ts.map

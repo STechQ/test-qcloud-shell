@@ -1,4 +1,5 @@
 import { ISLAModel } from "../../common/everything/sla/runtimemodels/ISLAModel";
+import { ISLALocationDetail } from "../../common/helpers/modelSearch/slaModelSearch";
 import { ISlaEditorInitOptions, ISlaEditorProgram, ISLAModelImport } from "./ISlaEditorProgram";
 export declare class Program implements ISlaEditorProgram {
     private initted;
@@ -15,5 +16,6 @@ export declare class Program implements ISlaEditorProgram {
     exportModel(): ISLAModel;
     importModel(data: ISLAModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    referenceSearchResult(result: ISLALocationDetail): Promise<void>;
 }
 //# sourceMappingURL=program.d.ts.map

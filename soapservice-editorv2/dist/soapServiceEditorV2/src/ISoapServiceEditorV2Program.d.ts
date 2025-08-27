@@ -1,4 +1,5 @@
 import { ISoapServiceV2Design } from "../../common/everything/soapService/designtimeModels/ISoapServiceV2";
+import { ISoapServiceV2LocationDetail } from "../../common/helpers/modelSearch/soapServiceV2ModelSearch";
 export interface ISoapServiceEditorV2Program {
     init(options: ISoapServiceEditorV2InitOptions): Promise<void>;
     destroy(): Promise<void>;
@@ -7,6 +8,7 @@ export interface ISoapServiceEditorV2Program {
     exportModel(): ISoapServiceV2Design;
     importModel(data: ISoapServiceV2ModelImport): Promise<void>;
     setReadOnly(readonly: boolean): void;
+    referenceSearchResult(result: ISoapServiceV2LocationDetail): Promise<void>;
 }
 export interface ISoapServiceEditorV2ModifiedStatus {
     state?: boolean;
