@@ -54,6 +54,7 @@ export declare const LogCodes: {
     readonly l2009: "l-2009";
     readonly l2013: "l-2013";
     readonly l2014: "l-2014";
+    readonly l2015: "l-2015";
     readonly l2017: "l-2017";
     readonly l2018: "l-2018";
     readonly l2100: "l-2100";
@@ -125,6 +126,7 @@ export declare const LogCodes: {
     readonly wfe004: "wfe-004";
     readonly wfe005: "wfe-005";
     readonly wfe006: "wfe-006";
+    readonly wfe007: "wfe-007";
     readonly js2000: "js-2000";
     readonly js2001: "js-2001";
     readonly js2002: "js-2002";

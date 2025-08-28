@@ -93,17 +93,23 @@ type UnwindType = string | {
     includeArrayIndex?: string;
     preserveNullAndEmptyArrays?: boolean;
 };
+type UnionType = {
+    coll: string;
+};
 export type AggregateType<T> = {
     $match?: FilterTypeNullable<T> | FilterTypeOrAnd<T>;
     $sort?: ModifyType<T, 1 | -1> | {
         [K: string]: 1 | -1;
     };
     $limit?: number;
+    $skip?: number;
     $addFields?: AddFieldType<T>;
     $group?: GroupFieldType<T>;
     $lookup?: LookupType | LookupType[];
     $unwind?: UnwindType | UnwindType[];
     $out?: string;
+    $unionWith?: UnionType;
+    $project?: any;
 };
 export type DeepKeys<T> = T extends object ? {
     [K in keyof T & (string | number)]: K | `${K}.${DeepKeys<T[K]>}`;
