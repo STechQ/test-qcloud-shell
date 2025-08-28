@@ -5,11 +5,12 @@ import { IRole } from "../../../../common/qCloudTemp/authorization";
 import { IArtifactInfoDBItem, IArtifactMinioDetails, IQcloudJob } from "../../../../common/qCloudTemp/exporter";
 import { IOrganization } from "../../../../common/qCloudTemp/membership";
 import { ExtensionType, IApplicationLogoInfo, IEntityDesignerAddtionals, IModelBodyObject, IModelInfo, IModuleOwnerOrgInfo, IModuleRelatedApplicationItem, IModuleRelatedModelItem, IProcessWizardAdditionals, IQJsonAdditionals, ITreeviewItem, ModelAdditionals, ModuleShareType, ObjectID, UsageType } from "../../../../common/qCloudTemp/quickCloud";
-import { IGetOrganizaionGroupDetailsByUserTypeResponse, IListInvitationsResponseItem, ISignInResponse, IUpdateMobileUsage } from "../../../../common/qCloudTemp/symDtoObjects";
+import { ICopyApp, IGetOrganizaionGroupDetailsByUserTypeResponse, IListInvitationsResponseItem, ISignInResponse, IUpdateMobileUsage } from "../../../../common/qCloudTemp/symDtoObjects";
 import { IUserPreferences } from "../../../../common/qCloudTemp/userPreference";
 import { ICloudObject, IObject } from "./IObject";
 import { IStudioUIModelBase, ModelType } from "../../../../common/everything/studio/ui/IStudioUIModelBase";
 import { ITagValue } from "../../../../common/qCloudTemp/tags";
+import { IModelOrigInfo, IModuleOrigInfo } from "../../../../common/qCloudTemp/applicationCopy";
 export type QJsonType = "qjson" | "template" | "pageTemplate" | "quickComponent";
 export type IItemType = ModelType | IModule["objectType"] | IApplication["objectType"];
 export interface IModelModifyInfo {
@@ -46,6 +47,7 @@ interface IModelCtorInitials {
     overriddenModel?: IModel['overriddenModel'];
     history?: IModel["history"];
     selectedHistoryVersion?: IModel["selectedHistoryVersion"];
+    origInfo?: IModel["origInfo"];
 }
 export interface ISetModelBodyOptions {
     time?: Date | "skip";
@@ -83,6 +85,7 @@ export declare class Model implements IModel, IStudioUIModelBase {
     selectedHistoryVersion?: IModel["selectedHistoryVersion"];
     key: IModel["key"];
     migrated?: IModel["migrated"];
+    origInfo?: IModel["origInfo"];
     constructor(initials: IModelCtorInitials);
     copyFrom(model: IModel): void;
     private ctor;
@@ -157,6 +160,7 @@ export interface IModel extends IObject, IStudioUIModelBase {
     overriddenModel: IModelInfo["overriddenModel"];
     history?: ITreeviewItem["history"];
     selectedHistoryVersion?: string;
+    origInfo?: IModelOrigInfo;
 }
 export interface IModelLink {
     model: IModel;
@@ -179,6 +183,7 @@ export interface IModule extends IObject {
     relatedModelHistories?: IModuleVersion["relatedModelHistories"];
     lastReleasedVersion?: string;
     ownerOrg?: IModuleOwnerOrgInfo;
+    origInfo?: IModuleOrigInfo;
 }
 export interface IGetModuleResponse extends IModule {
     versionID?: IModuleVersion["ID"];
@@ -218,6 +223,7 @@ export interface IApplication extends IObject {
     firstPublishDate?: Date;
     lastPublishDate?: Date;
     tags?: Array<ITagValue>;
+    copyApp?: ICopyApp;
 }
 export interface IApplicationExtended extends IApplication {
     uiPageCalc: {

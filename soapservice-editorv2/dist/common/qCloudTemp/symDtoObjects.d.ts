@@ -22,6 +22,7 @@ import { AzureBlobContentType } from "./azureTypes";
 import { ModelType } from "../everything/studio/ui/IStudioUIModelBase";
 import { ITagDefinition, ITagValue, TagType } from "./tags";
 import { IAllOrgGroupApplicationData } from "./organizationGroupApplication";
+import { IModelOrigInfo } from "./applicationCopy";
 export type VersionIncType = 'Minor' | 'Major' | 'Fix';
 export interface IPageable {
     skip: number;
@@ -192,6 +193,19 @@ export interface IUpdateApplicationRequest {
     updateReason?: "userUpdate" | "appPublish" | "backofficeUpdate" | "appVerCreated";
     mobileUsage?: IUpdateMobileUsage;
     lastReleasedVersion?: string;
+    copyApp?: ICopyApp;
+}
+export interface ICopyApp {
+    missingModules?: IMissingModule[];
+    orginalPath?: Record<string, {
+        path: string;
+        name: string;
+    }>;
+}
+export interface IMissingModule {
+    name: string;
+    currentVersion: string;
+    lastReleasedVersion: string;
 }
 export interface IUpdateModelRequest {
     ID: string;
@@ -213,6 +227,10 @@ export interface IUpdateModelRequest {
     convertToBlock?: boolean;
     undoCheckOut?: boolean;
     modelType?: ModelType;
+    overriddenModel?: {
+        ID: string;
+        version?: string;
+    };
 }
 export interface IUpdateModelResponse {
     ID: string;
@@ -514,6 +532,7 @@ export interface IAddModelRequest {
     usageType?: UsageType;
     key?: AppSettingsModelKeys;
     migrated?: boolean;
+    origInfo?: IModelOrigInfo;
     path: string;
     appID?: ObjectID;
     checkouts?: Array<IModelCheckout>;
