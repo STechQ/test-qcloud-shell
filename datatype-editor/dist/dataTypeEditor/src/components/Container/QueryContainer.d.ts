@@ -6,7 +6,7 @@ type Props = {
     studioObjects: Array<IDataTypeInfoItem>;
     readOnly: boolean;
     setModel: (model: IQuery) => void;
-    fields: Field[];
+    filterOptions: Field[];
     goBack: () => void;
     name: string;
 };
