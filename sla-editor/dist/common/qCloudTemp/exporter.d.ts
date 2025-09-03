@@ -51,7 +51,7 @@ export interface IGetExportModelsRequest {
         id: IExportItem["id"];
         ver: IExportItem["ver"];
     }>;
-    modelKey?: "container-runtime";
+    modelKey?: "container-runtime" | "files";
 }
 export interface IModelBodyResponse extends IModelBodyObject {
     id: IExportItem["id"];
