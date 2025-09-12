@@ -4,6 +4,7 @@ import { MongoDBTransactionQueue } from "./mongoDBTransactionQueue";
 export declare const MongoDBErrorCodes: {
     duplicateKeyErrorCode: number;
     IndexOptionsConflict: number;
+    IndexKeySpecsConflict: number;
 };
 export declare class MongoDBManager implements IDataStoreManager {
     private url;
@@ -73,7 +74,9 @@ export declare class MongoDBManager implements IDataStoreManager {
     Aggregate<T, RetT = T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, pipeline: Array<AggregateType<T>>, options?: {
         trxQueue?: TTrx;
     }): Promise<Array<RetT>>;
-    CreateIndexes<T>(collectionName: CollectionName, indexDefinitions: IndexDefinitions<T>): Promise<void>;
+    CreateIndexes<T>(collectionName: CollectionName, indexDefinitions: IndexDefinitions<T>, options?: {
+        force?: boolean;
+    }): Promise<void>;
     changeStream<T extends Document>(collectionName: CollectionName, cb: (result: ChangeStreamResult<T>) => Promise<void>, options?: {
         fullDocument?: boolean;
     }): Promise<ChangeStream<T, ChangeStreamDocument<T>>>;

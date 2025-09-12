@@ -162,6 +162,7 @@ export declare const queryFuncDict: {
 export interface IMongoDBConnectionManager {
     getConnection(url: string, options: {
         maxPoolSize: number;
+        serverSelectionTimeoutMS: number;
     }): Promise<object>;
 }
 export type OnCommitCallback = () => void;
@@ -230,7 +231,9 @@ export interface IDataStoreManager {
     GetDistinct<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, key: string, filter?: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options?: {
         trxQueue?: TTrx;
     }): Promise<T | undefined>;
-    CreateIndexes<T>(collectionName: CollectionName, indexDefinitions: IndexDefinitions<T>): Promise<void>;
+    CreateIndexes<T>(collectionName: CollectionName, indexDefinitions: IndexDefinitions<T>, options?: {
+        force?: boolean;
+    }): Promise<void>;
     DeleteOne<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options?: {
         trxQueue?: TTrx;
     }): Promise<GetReturnType<TTrx, number>>;

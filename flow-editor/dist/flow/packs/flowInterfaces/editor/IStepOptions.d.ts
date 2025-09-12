@@ -133,6 +133,6 @@ export interface IStepOptions<PropType extends IPropObject = IPropObject> {
     icon?: string;
     deprecated?: boolean;
     editSection?: (options: IEditSectionInput<PropType>) => (ReactEditSection | HTMLElement);
-    propDefinitons: () => IPropDefiniton<PropType>;
+    propDefinitions: () => IPropDefiniton<PropType>;
 }
 //# sourceMappingURL=IStepOptions.d.ts.map
