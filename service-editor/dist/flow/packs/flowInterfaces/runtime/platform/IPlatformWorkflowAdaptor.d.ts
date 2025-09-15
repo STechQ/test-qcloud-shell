@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { IAddActivityProp, ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IWorkflowContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowContext";
 import { IWorkflowIncomingRequest } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowIncomingRequest";
@@ -8,6 +9,8 @@ import { DataInstance } from "../../../../../common/everything/workflow/runtimeO
 import { IContext } from "../../../../../common/everything/workflow/runtimeObjects/IContext";
 import { IDataSearchParams, IDataSearchResult } from "../../../../../process/workflowManager/helpers/DataSearchEngine.js";
 import { CustomType } from "../../../../../common/everything/workflow/runtimemodels/types";
+import { IFile } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IFile";
+import { IActionData } from "../../../../../common/everything/workflow/runtimeObjects/IAction";
 export interface IPlatformWFFAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: IRestServiceCallPropType) => Promise<any>;
@@ -41,7 +44,12 @@ export interface IPlatformWFFAdaptor {
         dataSearch: {
             searchQuery: (prop: IDataSearchParams) => Promise<IDataSearchResponse>;
         };
+        file: {
+            upload: (fileBody: string | Blob | Uint8Array | Buffer, fileName: string, label: string, action: IActionData) => Promise<IFile>;
+            delete: (storageHandle: string, action: IActionData) => Promise<void>;
+        };
     };
+    log: (message: string, ...optionalParams: Array<any>) => void;
 }
 export type CompleteActionType = "complete" | "cancel" | "return";
 export interface IDataSearchResponse extends IDataSearchResult {
