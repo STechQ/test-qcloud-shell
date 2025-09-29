@@ -6,6 +6,7 @@ export interface ISlaEditorModifiedStatus {
 }
 export interface ISlaEditorInitOptions {
     onModifiedStatus?: (status: ISlaEditorModifiedStatus, modelBody: ISLAModel) => void;
+    openModelInNewTab?: (modelID: string) => void;
 }
 export interface ISlaEditorData {
     mainModel: ISLAModel;

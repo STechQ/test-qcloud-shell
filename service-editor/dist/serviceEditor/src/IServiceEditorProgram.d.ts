@@ -6,6 +6,7 @@ export interface IServiceEditorModifiedStatus {
 }
 export interface IServiceEditorInitOptions {
     onModifiedStatus?: (status: IServiceEditorModifiedStatus, modelBody: IRestServiceDesign) => void;
+    openModelInNewTab?: (modelID: string) => void;
 }
 export declare function getDefaultModel(): IRestServiceDesign;
 export interface IServiceEditorData {

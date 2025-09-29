@@ -5,10 +5,11 @@ type Props = {
     model: IQuery;
     studioObjects: Array<IDataTypeInfoItem>;
     readOnly: boolean;
+    name: string;
     setModel: (model: IQuery) => void;
     filterOptions: Field[];
     goBack: () => void;
-    name: string;
+    openModelInNewTab?: (modelID: string) => void;
 };
 export declare const QueryContainer: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

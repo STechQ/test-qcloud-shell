@@ -16,6 +16,7 @@ export interface ISoapServiceEditorV2ModifiedStatus {
 }
 export interface ISoapServiceEditorV2InitOptions {
     onModifiedStatus?: (status: ISoapServiceEditorV2ModifiedStatus, modelBody: ISoapServiceV2Design) => void;
+    openModelInNewTab?: (modelID: string) => void;
 }
 export interface ISoapServiceEditorV2Data {
     mainModel: ISoapServiceV2Design;

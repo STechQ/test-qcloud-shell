@@ -6,11 +6,12 @@ import './App.css';
 import { ISoapServiceV2Design } from "../../common/everything/soapService/designtimeModels/ISoapServiceV2";
 type Props = {
     data: ISoapServiceEditorV2Data;
-    updateMainModel: (model: ISoapServiceV2Design) => void;
     options: ISoapServiceEditorV2InitOptions;
     readOnly: boolean;
+    updateMainModel: (model: ISoapServiceV2Design) => void;
     triggerSetter: (trigger: Program["trigger"]) => void;
     triggerSetterReadOnly: (triggerReadOnly: Program["triggerReadOnly"]) => void;
+    openModelInNewTab: (modelID: string) => void;
 };
 export declare const App: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default App;

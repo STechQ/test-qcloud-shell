@@ -12,6 +12,7 @@ import { IDataSearchParams, IDataSearchResult } from "../../../../../process/wor
 import { CustomType } from "../../../../../common/everything/workflow/runtimemodels/types";
 import { IFile } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IFile";
 import { IActionData } from "../../../../../common/everything/workflow/runtimeObjects/IAction";
+import { IModelForWorkflow } from "../../../../../common/qCloudTemp/quickCloud";
 export interface IPlatformWFFAdaptor {
     flowExecutor: (prop: StepFlowModelPropType) => Promise<any>;
     restServiceExecutor: (prop: IRestServiceCallPropType) => Promise<any>;
@@ -51,6 +52,7 @@ export interface IPlatformWFFAdaptor {
         };
     };
     log: (message: string, ...optionalParams: Array<any>) => void;
+    getModelbyID: (key: string) => Promise<IModelForWorkflow>;
 }
 export type CompleteActionType = "complete" | "cancel" | "return";
 export interface IDataSearchResponse extends IDataSearchResult {

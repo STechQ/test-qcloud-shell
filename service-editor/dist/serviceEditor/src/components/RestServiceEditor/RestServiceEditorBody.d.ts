@@ -3,9 +3,10 @@ import { IServiceEditorData } from "../../IServiceEditorProgram";
 type Props = {
     mainModel: IRestServiceDesign;
     constantInfo: IServiceEditorData['constantInfo'];
-    updateModel: (model: IRestServiceDesign) => void;
     dataTypes: IServiceEditorData["dataTypes"];
     readOnly: boolean;
+    updateModel: (model: IRestServiceDesign) => void;
+    openModelInNewTab?: (modelID: string) => void;
 };
 export type TabNames = "Request" | "Response" | "Mock Response";
 export declare const RestServiceEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;

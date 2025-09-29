@@ -14,5 +14,6 @@ export declare class DateHelper {
     static fromDefaultTimeStampString(timestamp: string | undefined): Date | undefined;
     static toUTCDate(date?: Date): Date;
     static convertHourToLocal(hour: number, targetTimezone: number): Promise<number>;
+    static toDateInTimezone(date: Date, targetTimezone: number): Date;
 }
 //# sourceMappingURL=dateHelper.d.ts.map

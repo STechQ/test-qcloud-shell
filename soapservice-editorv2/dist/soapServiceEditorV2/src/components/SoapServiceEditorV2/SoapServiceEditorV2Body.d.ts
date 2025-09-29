@@ -3,9 +3,10 @@ import { ISoapServiceV2Design } from "../../../../common/everything/soapService/
 type Props = {
     mainModel: ISoapServiceV2Design;
     constantInfo: ISoapServiceEditorV2Data['constantInfo'];
-    updateModel: (model: ISoapServiceV2Design) => void;
     dataTypes: ISoapServiceEditorV2Data["dataTypes"];
     readOnly: boolean;
+    updateModel: (model: ISoapServiceV2Design) => void;
+    openModelInNewTab: (modelID: string) => void;
 };
 export type TabNames = "Request" | "Response" | "Mock Response";
 export declare const SoapServiceEditorV2Body: (props: Props) => import("react/jsx-runtime").JSX.Element;

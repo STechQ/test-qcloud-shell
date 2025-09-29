@@ -13,6 +13,7 @@ export declare class Program implements IServiceEditorProgram {
     private isUndoDisabled?;
     private isRedoDisabled?;
     updateMainModel: (data: IRestServiceDesign) => void;
+    openModelInNewTab: (modelID: string) => void;
     init(options: IServiceEditorInitOptions): Promise<void>;
     destroy(): Promise<void>;
     mount(element: HTMLElement | HTMLIFrameElement): void;

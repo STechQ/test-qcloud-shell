@@ -6,6 +6,7 @@ type Props = {
     dataTypes: IServiceEditorData["dataTypes"];
     readOnly: boolean;
     updateModel: (model: IRestServiceDesign) => void;
+    openModelInNewTab?: (modelID: string) => void;
 };
 export declare const RestServiceDefinition: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

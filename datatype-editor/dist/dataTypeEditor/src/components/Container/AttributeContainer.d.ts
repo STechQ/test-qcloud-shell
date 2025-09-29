@@ -5,6 +5,7 @@ type Props = {
     studioObjects: Array<IDataTypeInfoItem>;
     readOnly: boolean;
     setModel: (model: IDataTypeModel) => void;
+    openModelInNewTab: (modelID: string) => void;
 };
 export declare const AttributeContainer: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

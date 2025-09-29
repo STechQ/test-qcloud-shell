@@ -88,6 +88,7 @@ export interface IEditSectionInput<PropType extends IPropObject = IPropObject> {
             caseId: string;
         }) => void;
         selectedSwitchCase?: (cb: (param?: ISelectedSwitchCase) => void) => ISelectedSwitchCase | undefined;
+        openModelInNewTab: (modelID: string) => void;
         store?: Store;
         nestedStore: INestedStore;
         readOnly: boolean;

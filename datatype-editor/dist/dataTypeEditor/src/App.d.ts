@@ -12,6 +12,7 @@ interface Props {
     triggerSetter: (trigger: Program["trigger"]) => void;
     triggerSetterReadOnly: (triggerReadOnly: Program["triggerReadOnly"]) => void;
     triggerTabState: (triggerTabState: Program["triggerTabState"]) => void;
+    openModelInNewTab: (modelID: string) => void;
 }
 declare function App(props: Props): import("react/jsx-runtime").JSX.Element;
 export default App;

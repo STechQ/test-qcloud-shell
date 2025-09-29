@@ -8,6 +8,7 @@ interface Prop {
     setSelectedTab: (tabName: string) => void;
     updateMainModel: (model: IDataTypeModel) => void;
     selectedQueryIndex: (index: number) => void;
+    openModelInNewTab: (modelID: string) => void;
 }
 declare const DataTypeEditorView: (props: Prop) => import("react/jsx-runtime").JSX.Element;
 export default DataTypeEditorView;

@@ -9,6 +9,7 @@ export declare class Program implements ISlaEditorProgram {
     private trigger?;
     private triggerReadOnly?;
     updateMainModel: (model: ISLAModel) => void;
+    openModelInNewTab: (modelID: string) => void;
     init(options: ISlaEditorInitOptions): Promise<void>;
     destroy(): Promise<void>;
     mount(_: HTMLElement | HTMLIFrameElement): void;

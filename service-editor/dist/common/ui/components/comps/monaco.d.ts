@@ -15,6 +15,7 @@ interface CodeEditorProps {
     setUndoRedoHandlers?: (undo: () => void, redo: () => void, canUndo: boolean, canRedo: boolean) => void;
     onModelNameHover?: (modelId: string, key: string) => Promise<string>;
     onMounted?: (editor: monaco.editor.IStandaloneCodeEditor, monaco: typeof import('monaco-editor')) => void;
+    onOpenModelInNewTab?: (modelID: string) => void;
 }
 type MonacoRef = {
     insertSelectedModel: (selectedModel: string) => void;

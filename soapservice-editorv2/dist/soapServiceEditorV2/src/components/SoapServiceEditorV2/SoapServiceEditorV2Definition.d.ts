@@ -6,6 +6,7 @@ type Props = {
     dataTypes: ISoapServiceEditorV2Data["dataTypes"];
     readOnly: boolean;
     updateModel: (model: ISoapServiceV2Design) => void;
+    openModelInNewTab: (modelID: string) => void;
 };
 export declare const SoapServiceEditorV2Definition: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

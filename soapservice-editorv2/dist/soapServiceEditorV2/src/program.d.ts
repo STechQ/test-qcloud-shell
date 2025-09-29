@@ -9,6 +9,7 @@ export declare class Program implements ISoapServiceEditorV2Program {
     private trigger?;
     private triggerReadOnly?;
     updateMainModel: (data: ISoapServiceV2Design) => void;
+    openModelInNewTab: (modelID: string) => void;
     init(options: ISoapServiceEditorV2InitOptions): Promise<void>;
     destroy(): Promise<void>;
     mount(element: HTMLElement | HTMLIFrameElement): void;

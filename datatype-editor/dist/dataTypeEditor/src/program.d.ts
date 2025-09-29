@@ -11,6 +11,7 @@ export declare class Program implements IDataTypeEditorProgram {
     private triggerReadOnly?;
     private triggerTabState?;
     updateMainModel: (model: IDataTypeModel) => void;
+    openModelInNewTab: (modelID: string) => void;
     init(options: IDataTypeEditorInitOptions): Promise<void>;
     destroy(): Promise<void>;
     mount(element: HTMLElement | HTMLIFrameElement): void;

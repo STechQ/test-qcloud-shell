@@ -8,6 +8,7 @@ type Props = {
     setSelectedTab: (tabName: string) => void;
     setModel: (model: IDataTypeModel) => void;
     selectedQueryIndex: (index: number) => void;
+    openModelInNewTab: (modelID: string) => void;
 };
 declare const DataTypeEditorBody: (props: Props) => import("react/jsx-runtime").JSX.Element;
 export default DataTypeEditorBody;
