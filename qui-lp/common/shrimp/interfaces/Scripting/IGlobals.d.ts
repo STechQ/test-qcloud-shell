@@ -1588,7 +1588,7 @@ export interface IGlobals_Workflow {
     }) => Promise<{
         output: Record<string, any>;
     }>;
-    Commit: () => Promise<void>;
+    Commit: () => void;
 }
 export interface IWorkflowStore {
     context: {
