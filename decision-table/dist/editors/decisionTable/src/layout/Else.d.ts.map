@@ -1,1 +1,0 @@
-{"version":3,"file":"Else.d.ts","sourceRoot":"","sources":["../../../../../src/layout/Else.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAA6B,MAAM,+EAA+E,CAAC;AAM/I,KAAK,KAAK,GAAG;IACT,IAAI,EAAE,mBAAmB,CAAC;IAC1B,UAAU,EAAE,OAAO,CAAC;IACpB,WAAW,EAAE,CAAC,KAAK,EAAE,mBAAmB,KAAK,IAAI,CAAC;CACrD,CAAA;AACD,eAAO,MAAM,IAAI,UAAW,KAAK,4CA+BhC,CAAA;AAED,eAAe,IAAI,CAAC"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"AddNewRow.d.ts","sourceRoot":"","sources":["../../../../../src/layout/AddNewRow.tsx"],"names":[],"mappings":"AACA,OAAO,EAA6B,mBAAmB,EAA4C,MAAM,+EAA+E,CAAC;AAEzL,KAAK,KAAK,GAAG;IACT,IAAI,EAAE,mBAAmB,CAAC;IAC1B,UAAU,EAAE,OAAO,CAAC;IACpB,WAAW,EAAE,CAAC,KAAK,EAAE,mBAAmB,KAAK,IAAI,CAAC;CACrD,CAAA;AACD,eAAO,MAAM,SAAS,UAAW,KAAK,4CAuCrC,CAAA;AAED,eAAe,SAAS,CAAC"}

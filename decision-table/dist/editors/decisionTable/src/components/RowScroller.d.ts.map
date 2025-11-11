@@ -1,1 +1,0 @@
-{"version":3,"file":"RowScroller.d.ts","sourceRoot":"","sources":["../../../../../src/components/RowScroller.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,EAAE,EAAqB,MAAM,OAAO,CAAC;AAG9C,KAAK,KAAK,GAAG;IACT,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,KAAK,CAAC,EAAE,KAAK,CAAC,aAAa,CAAC;IAC5B,QAAQ,EAAE,KAAK,CAAC,SAAS,CAAA;CAC5B,CAAA;AAED,eAAO,MAAM,WAAW,EAAE,EAAE,CAAC,KAAK,CAoBjC,CAAC"}
