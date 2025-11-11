@@ -1,0 +1,1 @@
+{"version":3,"file":"Body.d.ts","sourceRoot":"","sources":["../../../../../src/layout/Body.tsx"],"names":[],"mappings":"AACA,OAAO,EAAE,mBAAmB,EAAE,MAAM,+EAA+E,CAAC;AASpH,KAAK,KAAK,GAAG;IACT,IAAI,EAAE,mBAAmB,CAAC;IAC1B,UAAU,EAAE,OAAO,CAAC;IACpB,WAAW,EAAE,CAAC,KAAK,EAAE,mBAAmB,KAAK,IAAI,CAAC;CACrD,CAAA;AAED,eAAO,MAAM,IAAI,UAAW,KAAK,4CA4BhC,CAAA;AAED,eAAe,IAAI,CAAC"}

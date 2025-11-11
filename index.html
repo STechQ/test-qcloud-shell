@@ -51,7 +51,7 @@
       document.body.appendChild(script);
     };
     var includeSso = () => includeJS(baseObject.basePath + "sso.js");
-    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=3.1.3-8");
+    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=3.1.3-7");
     var getBaseUrl = () => window.location.origin + baseObject.basePath;
     var getBasePath = () => baseObject.basePath;
     var getBaseEnv = () => baseObject.envName;
@@ -60,7 +60,7 @@
       includeSso();
     })();
   </script>
-  <!-- Hotjar Tracking Code for Local
+  <!-- Hotjar Tracking Code for Local -->
   <script>
     var hjidDict = { "local": 3513135, "cloud": 3541376, "prod": 3541375 };
     var hjid = hjidDict[getBaseEnv()];
@@ -74,7 +74,6 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
   </script>
-   -->
 </body>
 
 </html>
