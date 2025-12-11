@@ -1,7 +1,9 @@
-import { IVariable } from "../../../common/everything/dataType/runtimemodels/IVariable";
 import { Store } from "../../../common/everything/store/designtimemodels/IStoreModel";
-export declare const generateFlowIntellisense: (store: Store, dataTypeModels: Array<{
-    ID: string;
-    name: string;
-}>, findObjectCB: (objectId: string) => Promise<Record<string, IVariable> | undefined>) => Promise<string>;
+import { IStudioUIModelBase } from "../../../common/everything/studio/ui/IStudioUIModelBase";
+type findObjectCBType = (objectId: string) => Promise<any>;
+export declare const generateFlowIntellisense: (store: Store, models: {
+    dataTypeModels?: Array<IStudioUIModelBase>;
+    dataSetModels?: Array<IStudioUIModelBase>;
+}, findObjectCB: findObjectCBType) => Promise<string>;
+export {};
 //# sourceMappingURL=intelliSenseHelper.d.ts.map
