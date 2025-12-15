@@ -1,4 +1,4 @@
-import { IDataSetInfoItem, IDataTypeEditorInitOptions, IDataTypeEditorProgram, IDataTypeInfoItem } from "./IDataTypeEditorProgram";
+import { IDataTypeEditorInitOptions, IDataTypeEditorProgram, IDataTypeInfoItem } from "./IDataTypeEditorProgram";
 import { IDataTypeModel } from "../../common/everything/dataType/runtimemodels/IDataTypeModel";
 import { ModelValidatorResult } from "./helper/ModelValidator";
 import { IDataTypeLocationDetail } from "../../common/helpers/modelSearch/dataTypeModelSearch";
@@ -20,7 +20,6 @@ export declare class Program implements IDataTypeEditorProgram {
     validateAndFixModel(): ModelValidatorResult;
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;
-        dataSetModels: Array<IDataSetInfoItem>;
     }): Promise<void>;
     setReadOnly(readonly: boolean): void;
     referenceSearchResult(result: IDataTypeLocationDetail): Promise<void>;

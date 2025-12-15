@@ -31,19 +31,12 @@ export interface ISoapServiceEditorV2Data {
         overridden?: boolean;
         modelBody: string;
     }>;
-    dataSets: Array<{
-        ID: string;
-        name: string;
-        overridden?: boolean;
-        modelBody: string;
-    }>;
 }
 export interface ISoapServiceV2ModelImport {
     mainModel: ISoapServiceEditorV2Data["mainModel"];
     options?: {
         constantInfo: ISoapServiceEditorV2Data["constantInfo"];
         dataTypes: ISoapServiceEditorV2Data["dataTypes"];
-        dataSets: ISoapServiceEditorV2Data["dataSets"];
     };
 }
 export declare function getDefaultModel(): ISoapServiceV2Design;

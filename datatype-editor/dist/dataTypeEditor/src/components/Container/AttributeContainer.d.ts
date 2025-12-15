@@ -1,11 +1,8 @@
 import { IDataTypeModel } from "../../../../common/everything/dataType/runtimemodels/IDataTypeModel";
-import { IDataSetInfoItem, IDataTypeInfoItem } from "../../IDataTypeEditorProgram";
+import { IDataTypeInfoItem } from "../../IDataTypeEditorProgram";
 type Props = {
     model: IDataTypeModel;
-    studioObjects: {
-        dataTypeModels: Array<IDataTypeInfoItem>;
-        dataSetModels: Array<IDataSetInfoItem>;
-    };
+    studioObjects: Array<IDataTypeInfoItem>;
     readOnly: boolean;
     setModel: (model: IDataTypeModel) => void;
     openModelInNewTab: (modelID: string) => void;

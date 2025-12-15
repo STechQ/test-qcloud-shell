@@ -14,7 +14,6 @@ export interface IDataTypeEditorInitOptions {
 export declare function getDefaultModel(): IDataTypeModel;
 export interface IDataTypeEditorData {
     dataTypeModels: Array<IDataTypeInfoItem>;
-    dataSetModels: Array<IDataSetInfoItem>;
     mainModel: IDataTypeModel;
 }
 export interface IDataTypeEditorProgram {
@@ -26,7 +25,6 @@ export interface IDataTypeEditorProgram {
     exportModel(): IDataTypeModel;
     importModel(model: IDataTypeModel, options: {
         dataTypeModels: Array<IDataTypeInfoItem>;
-        dataSetModels: Array<IDataSetInfoItem>;
     }): Promise<void>;
     setReadOnly(readonly: boolean): void;
     referenceSearchResult(result: IDataTypeLocationDetail): Promise<void>;
@@ -42,13 +40,6 @@ export interface IDataTypeInfoItem {
     _name?: string;
     objectID: string;
     attributes: Record<string, IVariable>;
-    path?: string;
-}
-export interface IDataSetInfoItem {
-    name: string;
-    type: "set";
-    objectID: string;
-    options: Set<string>;
     path?: string;
 }
 //# sourceMappingURL=IDataTypeEditorProgram.d.ts.map

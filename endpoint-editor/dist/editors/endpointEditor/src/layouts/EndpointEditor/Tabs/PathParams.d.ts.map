@@ -1,1 +1,0 @@
-{"version":3,"file":"PathParams.d.ts","sourceRoot":"","sources":["../../../../../../../src/layouts/EndpointEditor/Tabs/PathParams.tsx"],"names":[],"mappings":"AAKA,OAAO,EAAE,cAAc,EAAE,MAAM,2EAA2E,CAAC;AAG3G,KAAK,KAAK,GAAG;IACT,KAAK,EAAE,cAAc,CAAC;IACtB,QAAQ,EAAE,OAAO,CAAC;IAClB,QAAQ,EAAE,CAAC,KAAK,EAAE,cAAc,KAAK,IAAI,CAAC;CAC7C,CAAC;AAOF,eAAO,MAAM,UAAU,UAAW,KAAK,4CAkFtC,CAAA"}

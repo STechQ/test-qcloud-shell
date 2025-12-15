@@ -24,20 +24,12 @@ export interface IServiceEditorData {
         modelBody: string;
         path?: string;
     }>;
-    dataSets: Array<{
-        ID: string;
-        name: string;
-        overridden?: boolean;
-        modelBody: string;
-        path?: string;
-    }>;
 }
 export interface IServiceModelImport {
     mainModel: IServiceEditorData["mainModel"];
     options: {
         constantInfo: IServiceEditorData["constantInfo"];
         dataTypes: IServiceEditorData["dataTypes"];
-        dataSets: IServiceEditorData["dataSets"];
     };
 }
 export interface IServiceEditorProgram {

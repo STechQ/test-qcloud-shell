@@ -1,9 +1,0 @@
-import "../assets/css/components/infoSection.css";
-type Props = {
-    icon?: string;
-    content: string;
-    copyContent?: boolean;
-};
-export declare const InfoSection: (props: Props) => import("react/jsx-runtime").JSX.Element;
-export {};
-//# sourceMappingURL=InfoSection.d.ts.map
