@@ -50,4 +50,21 @@ export interface IMobileLivePreviewInfo {
     clientID?: string;
     firstPage?: string;
 }
+export interface IAppFlags {
+    workflow: boolean;
+    befunc: boolean;
+    endpoint: boolean;
+    ui: boolean;
+}
+export type PreviewOptions = "Endpoint" | "Workflow Dashboard" | "App" | "Mobile Preview";
+export interface IPreviewConfig {
+    previewOptions: PreviewOptions[];
+    deploy: boolean;
+    defaultPreview: PreviewOptions;
+}
+export type LivePreviewOptions = IPreviewConfig | "preview-disabled";
+export type PreviewRules = {
+    cond: IAppFlags;
+    result: IPreviewConfig;
+};
 //# sourceMappingURL=livePreview.d.ts.map
