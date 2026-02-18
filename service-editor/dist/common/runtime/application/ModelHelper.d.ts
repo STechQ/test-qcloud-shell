@@ -12,7 +12,9 @@ export declare class ModelHelper {
         version: string | undefined;
         appId?: string | undefined;
     }): Promise<IModelForWorkflow> | undefined;
-    static upsert(dsManager: IDataStoreManager, model: IModelForWorkflow, live: boolean): Promise<undefined>;
+    static upsert(dsManager: IDataStoreManager, model: IModelForWorkflow, live: boolean, options?: {
+        trxQueue?: any;
+    }): Promise<undefined>;
     static updateCache(model: IModelForWorkflow, live: boolean): Promise<void>;
     private static getCacheKey;
     private static fixDirectDBIntervention;

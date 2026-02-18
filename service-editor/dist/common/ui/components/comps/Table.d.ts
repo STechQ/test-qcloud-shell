@@ -1,8 +1,8 @@
-import { JSXElementConstructor, ReactElement, CSSProperties } from "react";
+import { JSXElementConstructor, ReactElement, CSSProperties, ReactNode } from "react";
 import "../assets/css/components/table.css";
 interface ITableProps<T> {
     columns: Array<{
-        name: string;
+        name: string | ReactNode;
         body?: (row: T, index: number) => ReactElement<any, string | JSXElementConstructor<any>>;
         style?: CSSProperties;
     }>;

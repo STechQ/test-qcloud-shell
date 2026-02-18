@@ -9,6 +9,7 @@ import { FlowObjectContext } from "./contextCreator";
 import { CustomType } from "../../../../common/everything/workflow/runtimemodels/types";
 import { IFile } from "../../../../common/everything/workflow/runtimeObjects/namedobjects/IFile";
 import { IActionData } from "../../../../common/everything/workflow/runtimeObjects/IAction";
+import { IProcessInstance } from "../../../../common/everything/workflow/runtimeObjects/namedobjects/IProcessInstance";
 export interface IWorkflowMethods {
     addActivity(prop: IAddActivityProp): Promise<void>;
     openProcessbyLock(processInstanceId: string): Promise<IContext>;
@@ -20,6 +21,9 @@ export interface IWorkflowMethods {
     file: {
         upload: (fileBody: string | Blob | Uint8Array | Buffer, fileName: string, label: string, action: IActionData) => Promise<IFile>;
         delete: (storageHandle: string, action: IActionData) => Promise<void>;
+    };
+    thread: {
+        retryBrokenThread: (threadId: string, processInstanceId: string) => Promise<IProcessInstance>;
     };
 }
 export declare function createWorkflowCodeStepContext(workflow: IPlatformWFFAdaptor): Extract<FlowObjectContext, {
