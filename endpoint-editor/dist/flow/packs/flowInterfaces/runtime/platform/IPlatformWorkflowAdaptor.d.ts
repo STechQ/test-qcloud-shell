@@ -1,6 +1,6 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { IAddActivityProp, ICounterPropType, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
+import { IAddActivityProp, ICounterPropType, IHandleSlaUpdatesProp, StepFlowModelPropType } from "../../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { IWorkflowContext } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowContext";
 import { IWorkflowIncomingRequest } from "../../../../../common/everything/workflow/runtimeObjects/IWorkflowIncomingRequest";
 import { IMongoDBTransactionQueue } from "../../../../../common/runtime/infrastructure/mongo/IDataStoreManager";
@@ -46,6 +46,7 @@ export interface IPlatformWFFAdaptor {
             retrieveContext: (prop: string) => Promise<IContext>;
             commit: (prop: IResumeProcessRequest) => Promise<boolean>;
             complete: (prop: IResumeProcessRequest) => Promise<boolean>;
+            handleSlaUpdates: (prop: IHandleSlaUpdatesProp) => Promise<void>;
         };
         dataSearch: {
             searchQuery: (prop: IDataSearchParams) => Promise<IDataSearchResponse>;

@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { CompleteActionType, IDataSearchResponse, IPlatformWFFAdaptor } from "@stechquick/flow-interfaces/runtime/platform/IPlatformWorkflowAdaptor";
-import { IAddActivityProp } from "../../../../common/everything/workflow/runtimemodels/IWorkflow";
+import { IAddActivityProp, IHandleSlaUpdatesProp } from "../../../../common/everything/workflow/runtimemodels/IWorkflow";
 import { DataInstance } from "../../../../common/everything/workflow/runtimeObjects/DataInstance";
 import { IContext } from "../../../../common/everything/workflow/runtimeObjects/IContext";
 import { IDataSearchParams } from "../../../../common/everything/workflow/runtimeObjects/IDataSearch";
@@ -15,6 +15,7 @@ export interface IWorkflowMethods {
     openProcessbyLock(processInstanceId: string): Promise<IContext>;
     complete(processInstanceId: string, taskId: string, dataInstance: DataInstance, actionType: CompleteActionType, customType: CustomType): Promise<boolean>;
     commit(processInstanceId: string, taskId: string, dataInstance: DataInstance): Promise<boolean>;
+    handleSlaUpdates(prop: IHandleSlaUpdatesProp): Promise<void>;
     dataSearch: {
         searchQuery: (prop: IDataSearchParams) => Promise<IDataSearchResponse>;
     };

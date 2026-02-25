@@ -24,7 +24,17 @@ export interface ISlaEditorData {
     }>;
     dataTypes: Array<{
         ID: string;
+        name: string;
+        overridden?: boolean;
         modelBody: string;
+        path?: string;
+    }>;
+    dataSets: Array<{
+        ID: string;
+        name: string;
+        overridden?: boolean;
+        modelBody: string;
+        path?: string;
     }>;
 }
 export interface ISLAModelImport {
@@ -32,6 +42,8 @@ export interface ISLAModelImport {
     options: {
         functionModels: ISlaEditorData["functionModels"];
         constantModels: ISlaEditorData["constantModels"];
+        dataTypes: ISlaEditorData["dataTypes"];
+        dataSets: ISlaEditorData["dataSets"];
     };
 }
 export interface ISlaEditorProgram {

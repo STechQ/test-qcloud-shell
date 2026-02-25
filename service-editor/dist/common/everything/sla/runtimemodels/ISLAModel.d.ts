@@ -1,25 +1,27 @@
 import { IExpressionData } from "../../dataType/runtimemodels/IExpression";
+import { IStoreModelSla } from "../../store/designtimemodels/IStoreModel";
 import { IModelBaseFields } from "../../workflow/runtimemodels/IModel";
 export interface ISLAModel extends IModelBaseFields {
     name: string;
     description: string;
     slaInfo: SLABase[];
-    initialPriority?: number;
+    initialPriority?: IExpressionData;
     userId?: IExpressionData;
+    store: IStoreModelSla;
 }
 export interface SLABase {
     escalationFunctionId: string;
     type: SLAType;
     interval: TimeInterval;
     useBusinessDays: boolean;
-    priority?: number;
+    priority?: IExpressionData;
     description: string;
     name: string;
 }
 export interface TimeInterval {
-    days?: number;
-    hours?: number;
-    minutes?: number;
+    days?: IExpressionData;
+    hours?: IExpressionData;
+    minutes?: IExpressionData;
 }
 export declare enum SLAType {
     GOAL = "GOAL",
