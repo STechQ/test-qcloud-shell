@@ -12,13 +12,14 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     loadedPages: number;
     docType: undefined;
     url: any;
+    normalizedSrc: any;
     renderPdfUrl: string;
     pdfLoadToken: number;
     localLanguage: string;
     pageTitle: string;
     pdfKey: number;
     currentMinWidth: number;
-    dataType: "base64" | "url" | "arrayBuffer";
+    dataType: "base64" | "arrayBuffer" | "url";
     tiffBufferData: ArrayBuffer | null;
     tifIfds: any[];
     blocked: boolean;
@@ -28,7 +29,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     scrolledToBottomListener: ((e: MessageEvent) => void) | null;
 }, {
     fetchPdfBytes(src: string): Promise<ArrayBuffer>;
-    scanForJS(content: ArrayBuffer | string, type: 'pdf' | 'html'): boolean;
+    scanForJS(content: ArrayBuffer | string, type: "pdf" | "html"): boolean;
     isTiffBuffer(buffer: ArrayBuffer): boolean;
     loadTiff(dataType: "base64" | "arrayBuffer" | "url"): Promise<void>;
     getTiffBuffer(type: string, src: any): Promise<ArrayBuffer>;
@@ -37,7 +38,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     base64ToArrayBuffer(base64: string): ArrayBuffer;
     createPdf(): Promise<void>;
     downloadTiff(): void;
-    base64ToAB(base64: string): ArrayBufferLike;
+    base64ToAB(base64: string): ArrayBuffer;
     base64ToBlob(base64: string, type?: string): Blob;
     focusSelectedPage(): void;
     zoomIn(): void;
@@ -48,7 +49,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     goToPage(pageNumber: number): void;
     downloadPdf(): void;
     printPdf(): void;
-    detectTypeFromBuffer(buffer: ArrayBuffer): "img" | "tiff" | "pdf" | undefined;
+    getSrcWithMimeType(): any;
     getType(): any;
     onFrameScrollBottom(): void;
     handleScroll({ target: { scrollTop, clientHeight, scrollHeight, lastChild: { offsetHeight }, }, }: {
@@ -79,6 +80,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     fileDescription: string;
     showPrint: boolean;
     _renderingProps: any;
+    enableSecurityScan: boolean;
     securityErrorMessage: string;
     securityErrorMessageIcon: string;
 }>;
