@@ -3,10 +3,8 @@ export interface ILogItem {
     message: string;
     additional?: any;
     error?: unknown;
-    logCode?: string;
 }
 export interface ILogger {
     log(item: ILogItem): void;
 }
-export declare const ILogger: unique symbol;
 //# sourceMappingURL=ILogger.d.ts.map
