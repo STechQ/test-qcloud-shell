@@ -72,10 +72,13 @@ export declare class ParsedSwagger {
     mergedOperation: Array<MergedOperation>;
     paths?: Record<string, PathItem> | any[];
 }
-export type HttpMethod = "GET" | "POST";
+export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export interface PathItem {
     get?: Operation;
     post?: Operation;
+    put?: Operation;
+    delete?: Operation;
+    patch?: Operation;
 }
 export interface ParameterObject {
     name: string;

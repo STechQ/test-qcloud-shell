@@ -1,6 +1,6 @@
-import { IEnvironment, RuntimeMessage } from "@stechquick/flow-interfaces/runtime";
+import { IEnvironment, IExpressionData, RuntimeMessage } from "@stechquick/flow-interfaces/runtime";
 import { IFlowLogger } from "@stechquick/flow-interfaces/runtime/IFlowLogger";
-import { IStoreInParameterMapping, IStoreOutParameterMapping } from "../../store/runtimemodels/IStoreMapping";
+import { IStoreInParameterMapping, IStoreMapping, IStoreOutParameterMapping } from "../../store/runtimemodels/IStoreMapping";
 import { Store } from "../../store/runtimemodels/IStoreModel";
 interface IMapMsgOptions {
     innerMsg: RuntimeMessage;
@@ -15,6 +15,7 @@ export declare class StoreHelper {
     private static initItems;
     static mapOutput(output: any, mapping: Array<IStoreOutParameterMapping>, outerStoreIns: RuntimeMessage, environment: IEnvironment): void;
     static createEmptyMsg(): RuntimeMessage;
+    static createInputExecuteMapping(inputs: Record<string, IExpressionData>): IStoreMapping["inParamMapping"];
 }
 export {};
 //# sourceMappingURL=StoreHelper.d.ts.map

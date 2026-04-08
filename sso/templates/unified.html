@@ -645,20 +645,22 @@
       //translations
       let translations = {
         //html
-        "Login": {tr: "Giriş", en: undefined,},
-        "Welcome to Plateau Studio": {tr: "Plateau Studio'ya hoş geldiniz"},
-        "Forgot Password?": {tr: "Şifrenizi mi unuttunuz?"},
-        "LOGIN": {tr: "GİRİŞ YAP"},
-        "EN": {tr: "EN"},
-        "TR": {tr: "TR"},
-        "Don't have an account?": {tr: "Hesabınız yok mu?"},
-        "CREATE NEW ACCOUNT": {tr: "YENİ BİR HESAP YARATIN"},
-        "E-Mail": {tr: "E-Posta"},
-        "Password": {tr: "Şifre"},
+        "Login": { tr: "Giriş", en: undefined, },
+        "Welcome to Plateau Studio": { tr: "Plateau Studio'ya hoş geldiniz" },
+        "Welcome": { tr: "Hoşgeldiniz" },
+        "Login to Plateau Studio": { tr: "Plateau Studio'ya giriş yapın" },
+        "Forgot Password?": { tr: "Şifrenizi mi unuttunuz?" },
+        "LOGIN": { tr: "GİRİŞ YAP" },
+        "EN": { tr: "EN" },
+        "TR": { tr: "TR" },
+        "Don't have an account?": { tr: "Hesabınız yok mu?" },
+        "CREATE NEW ACCOUNT": { tr: "YENİ BİR HESAP YARATIN" },
+        "E-Mail": { tr: "E-Posta" },
+        "Password": { tr: "Şifre" },
         //server
-        "Please enter your Email Address": {tr: "Lütfen E-posta Adresinizi yazın", maps: ["Lütfen E-posta Adresi bilgilerinizi girin"]},
-        "Please enter your password": {tr: "Lütfen şifrenizi yazın", maps: ["Lütfen parolanızı girin"]},
-        "Please enter a valid email address.": {tr: "Lütfen geçerli bir e-posta adresi yazın", maps: ["Lütfen geçerli bir e-posta adresi girin"]},
+        "Please enter your Email Address": { tr: "Lütfen E-posta Adresinizi yazın", maps: ["Lütfen E-posta Adresi bilgilerinizi girin"] },
+        "Please enter your password": { tr: "Lütfen şifrenizi yazın", maps: ["Lütfen parolanızı girin"] },
+        "Please enter a valid email address.": { tr: "Lütfen geçerli bir e-posta adresi yazın", maps: ["Lütfen geçerli bir e-posta adresi girin"] },
       };
       </script>
     <script>
@@ -701,13 +703,22 @@
           const parent = element.parentElement;
           // if (parent.id == "studioauth_errorEmail"){debugger;}
           let text = element.textContent.trim();
-          const textOrKey = translations[text] ? (parent.translateKey = text) : (parent.translateKey || (parent.translateKey = text));
+          const isKnownKey = !!translations[text];
+          const isErrorArea = parent.closest("#studioauth_errorEmail, #studioauth_errorPass, #studioauth_errorPage, .error") != null;
+          let textOrKey;
+          if (isErrorArea) {
+            parent.translateKey = isKnownKey ? text : text;
+            textOrKey = parent.translateKey;
+          } else {
+            if (isKnownKey) parent.translateKey = text;
+            textOrKey = parent.translateKey || text;
+          }
           element.textContent = translate(textOrKey);
         } else if (element.placeholder) {
           const textOrKey = element.placeholderKey || (element.placeholderKey = element.placeholder);
           element.placeholder = translate(textOrKey);
         } else {
-          if (element.tagName == "svg"){return;}
+          if (element.tagName == "svg") { return; }
           element.childNodes.forEach((child) => {
             translateRecursively(child, result);
           });
@@ -717,34 +728,41 @@
       function translateDom(){
         queryAll(".studioauth-translate-children").forEach(element => translateRecursively(element));
       }
-      function langChange(newLangCode){
-        if (langCode == newLangCode){return;}
+      function updateLangButtonVisibility(currentLangCode) {
+        const trBtn = document.getElementById("tr");
+        const enBtn = document.getElementById("en");
 
-        // const currentUrl = new URL(window.location.href);
-        // currentUrl.searchParams.set('ui_locales', newLangCode);
-        // if (window.setServerLang){
-        //   window.location.href = currentUrl.toString();
-        // } else {
-        //   window.history.replaceState(null, '', currentUrl.toString());
-        // }
+        if (currentLangCode == "tr") {
+          if (trBtn) trBtn.style.display = "none";
+          if (enBtn) enBtn.style.display = "flex";
+        }
+        else {
+          if (enBtn) enBtn.style.display = "none";
+          if (trBtn) trBtn.style.display = "flex";
+        }
+      }
+      function langChange(newLangCode) {
+        if (langCode == newLangCode) {
+          const testUrl = new URL(window.location.href);
+          if (testUrl.searchParams.get('ui_locales') == newLangCode) return;
+        }
 
         langCode = newLangCode;
         localStorage.setItem('langCode', langCode);
-        let tr = document.getElementById("tr");
-        let en = document.getElementById("en");
-        if(newLangCode == "tr") {
-            tr.style.display = "none"; 
-            en.style.display = "flex"
-        }
-        else if(newLangCode == "en") {
-            en.style.display = "none";
-            tr.style.display = "flex"
-        }
-        translateDom();
+
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('ui_locales', newLangCode);
+
+        window.location.href = currentUrl.toString();
+        // updateLangButtonVisibility(langCode);
+        // translateDom();
       }
       const localStorageLangCode = localStorage.getItem("langCode");
       if (localStorageLangCode && localStorageLangCode != langCode){
         langChange(localStorageLangCode);
+      }
+      else {
+        updateLangButtonVisibility(langCode);
       }
     </script>
     <script>
