@@ -21,6 +21,7 @@ export declare class ImportExportImpl implements IImportExport {
     importModel(model: IFlowDesignModel, options?: IImportOptions): Promise<void>;
     paste(coreModel: IFlowCoreModel): Promise<void>;
     private _import;
+    private syncHumanTaskStepIds;
     private resolveFlowDrawComps;
     private registerFlowCoreObjects;
     exportModel<KType extends keyof IExportTypeMap>(type: KType): Promise<IExportTypeMap[KType]>;
