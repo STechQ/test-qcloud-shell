@@ -2,7 +2,7 @@ import { IApplication, IFolder, ILoggedInUser, IModel, IWorkflowExportItem } fro
 import { IUserMainInfo, IUser_SUSI } from "./authentication";
 import { IFeedbackAttachment, IUserFeedback } from "./feedback";
 import { IEditorTypes, IOrganization, IOrganizationCalculatedInfo, IOrganizationFeatures } from "./membership";
-import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo, IModelCheckout, ModuleShareType, ModuleShareScope } from "./quickCloud";
+import { IApplicationDetails, IApplicationExportSettings, IModelBodyObject, IDependentModel, IOrganizationActions, ModelAdditionals, ObjectID, IModuleBackend, IModuleVersion, ITags, IOrganizationGroup, IModelInfo, ExtensionType, UsageType, AppSettingsModelKeys, AllModelAdditionalTypes, IApplication as IApplicationDbModel, IModelHistoryInfo, IModelCheckout, ModuleShareType, ModuleShareScope, ForceUpdatePlatform } from "./quickCloud";
 import { IApplicationVersion, IApplicationVersionArtifacts } from "./applicationVersion";
 import { IUserPreferences } from "./userPreference";
 import { IMainStatisticInfo } from "../qCloudTemp/backoffice";
@@ -868,6 +868,23 @@ export interface ILegacyRequests {
     listOrganizationsResponse: {
         organizations: Array<IOrganization>;
     };
+}
+export interface IUpsertForceUpdateConfigRequest {
+    platform: ForceUpdatePlatform;
+    minVersion: string;
+    latestVersion: string;
+    minOsVersion?: string;
+    updateUrl: string;
+    messageTitle: string;
+    message: string;
+}
+export interface IVersionCheckResponse {
+    minVersion: string;
+    latestVersion: string;
+    minOsVersion?: string;
+    updateUrl: string;
+    title: string;
+    message: string;
 }
 export {};
 //# sourceMappingURL=symDtoObjects.d.ts.map

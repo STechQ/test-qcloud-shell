@@ -448,6 +448,18 @@ export interface IAppToken {
 export interface ITags extends ICloudObject {
     description?: string;
 }
+export type ForceUpdatePlatform = "ios" | "android";
+export interface IForceUpdateConfig {
+    platform: ForceUpdatePlatform;
+    minVersion: string;
+    latestVersion: string;
+    minOsVersion?: string;
+    updateUrl: string;
+    messageTitle: string;
+    message: string;
+    updatedBy: string;
+    updateDate: Date;
+}
 export interface IOrganizationGroupConfigs {
     environments?: Array<string>;
 }
