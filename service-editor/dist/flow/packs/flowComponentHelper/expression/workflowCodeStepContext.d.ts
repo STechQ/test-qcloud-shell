@@ -27,6 +27,12 @@ export interface IWorkflowMethods {
     thread: {
         retryBrokenThread: (threadId: string, processInstanceId: string) => Promise<IProcessInstance>;
     };
+    assignToUser(taskId: string, targetUserId: string): Promise<{
+        isSuccess: boolean;
+    }>;
+    assignToSwimlane(taskId: string, swimlane: string): Promise<{
+        isSuccess: boolean;
+    }>;
 }
 export declare function createWorkflowCodeStepContext(workflow: IPlatformWFFAdaptor): Extract<FlowObjectContext, {
     type: "workflow";
