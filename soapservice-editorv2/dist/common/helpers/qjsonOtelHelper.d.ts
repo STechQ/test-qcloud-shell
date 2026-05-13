@@ -1,20 +1,23 @@
+import { IQJSon } from "@stechquick/shrimp/lib/interfaces/ComponentInterfaces/IQJson";
 /**
  * Shared helper for injecting OpenTelemetry trace strings into QJson files.
  * Used by both studio/ui (uncompiled export) and studio/jobs (compiled export).
  */
 export interface IOtelContext {
     aciCode: string;
+    orgGroupName: string;
     orgName: string;
     appName: string;
+    channel?: string;
 }
 export interface IOtelModelInfo {
     modelName: string;
     modelID: string;
 }
-/** Builds the otel trace string: {aciCode}.{modelName}.{orgName}.{appName}.{modelID} */
+/** Builds the otel trace string: {aciCode}.{modelName}.PlateauUI.{orgGroupName}.{orgName}.{appName}.{modelID} */
 export declare function buildOtelStr(ctx: IOtelContext, model: IOtelModelInfo): string;
 /** Parses a qjson content string (handles `let pjson = ...` and `rally_microUI` wrappers). */
-export declare function parseQJsonContent(jsonString: string): any;
+export declare function parseQJsonContent(jsonString: string): IQJSon;
 /** Re-serializes a parsed qjson object back into its original wrapper format. */
 export declare function serializeQJson(originalContent: string, parsed: any): string;
 /**
