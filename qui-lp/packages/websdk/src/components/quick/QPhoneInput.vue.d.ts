@@ -67,6 +67,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     locale: string;
     _renderingProps: any;
     hideDetails: string | boolean;
+    attach: boolean;
 }>;
 export default _default;
 //# sourceMappingURL=QPhoneInput.vue.d.ts.map
