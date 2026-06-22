@@ -18,5 +18,8 @@ export interface IWMEnvKeyMap extends IEnvKeyMap {
     dbConnectionString?: string;
     dbUser?: string;
     dbPassword?: string;
+    ldapCertificatePath?: string;
+    ldapIdentityCertificatePath?: string;
+    ldapIdentityCertificateKeyPath?: string;
 }
 //# sourceMappingURL=IWMEnvKeyMap.d.ts.map

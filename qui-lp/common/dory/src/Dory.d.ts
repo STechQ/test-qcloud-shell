@@ -189,6 +189,7 @@ export declare class Dory implements IDory {
     }): void;
     SetThemes(themes: Array<ITheme>): void;
     GetThemes(): ITheme[] | undefined;
+    SetRenderCCOnEdit(renderCCOnEdit: boolean): void;
     SetLogParams(logParams: ILogParams): void;
     GetLogParams(): ILogParams | undefined;
     GetCurrentTheme(): {
