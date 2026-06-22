@@ -1,10 +1,16 @@
-import { IModelBodyObject } from "../../qCloudTemp/quickCloud";
-import { ILocationResult, IModelSearch, IModelSearchOptions } from "./IModelSearch";
-import { IFlowLocationDetail } from "./flowModelSearch";
-export type IBackendFunctionLocationDetail = IFlowLocationDetail;
+import { ILocationResult, IModelSearch } from "./IModelSearch";
+export type IBackendFunctionLocationDetail = {
+    stepID: Array<string>;
+    fileName: string;
+    mappingName?: string;
+    code?: {
+        startLine: number;
+        startColumn: number;
+        endLine: number;
+        endColumn: number;
+    };
+};
 export declare class BackendFunctionModelSearch implements IModelSearch<IBackendFunctionLocationDetail> {
-    private readonly baseSearcher;
-    replacer: (modelBody: Array<IModelBodyObject>, searchValue: string, replaceValue: string, result: IBackendFunctionLocationDetail) => Array<IModelBodyObject>;
-    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IBackendFunctionLocationDetail>) => void, searchOptions?: IModelSearchOptions) => void;
+    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IBackendFunctionLocationDetail>) => void) => Promise<void>;
 }
 //# sourceMappingURL=backendFunctionModelSearch.d.ts.map

@@ -8,13 +8,11 @@ import { MongoDBManager } from "../../../../../common/runtime/infrastructure/mon
 import { DataInstance } from "../../../../../common/everything/workflow/runtimeObjects/DataInstance";
 import { IContext } from "../../../../../common/everything/workflow/runtimeObjects/IContext";
 import { IDataSearchParams, IDataSearchResult } from "../../../../../common/everything/workflow/runtimeObjects/IDataSearch";
+import { CustomType } from "../../../../../common/everything/workflow/runtimemodels/types";
 import { IFile } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IFile";
 import { IActionData } from "../../../../../common/everything/workflow/runtimeObjects/IAction";
 import { IProcessInstance } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IProcessInstance";
 import { IWFEDBProcessInst } from "../../../../../common/everything/workflow/runtimeObjects/IWFEDB";
-import { IRuntimePersona } from "../../../../../common/everything/workflow/runtimeObjects/namedobjects/IRuntimePersona";
-import { ISessionResponseWFE } from "../../../../../common/everything/workflow/dtos/session";
-import type ICacheManager from "../../../../../common/runtime/infrastructure/cache/ICacheManager";
 type ConvertToDataSet<T extends string> = {
     [K in T]: K;
 };
@@ -31,7 +29,6 @@ export interface IPlatformWFFAdaptor {
     context: () => IWorkflowContext | undefined;
     getIncomingRequest: () => IWorkflowIncomingRequest;
     getObjectbyCache: <T>(key: String) => Promise<T | undefined>;
-    getCacheManager: () => ICacheManager | undefined;
     constantsWId: Record<string, any>;
     userId: string | undefined;
     addActivity: (prop: IAddActivityProp) => Promise<void>;
@@ -44,9 +41,6 @@ export interface IPlatformWFFAdaptor {
         getTransactionQueue: () => {
             trxQueue: IMongoDBTransactionQueue | undefined;
         };
-    };
-    accessmanager: {
-        getPersona(personaId: string): Promise<IRuntimePersona>;
     };
     wfe: {
         processContext: {
@@ -77,11 +71,6 @@ export interface IPlatformWFFAdaptor {
                 isSuccess: boolean;
             }>;
         };
-        task: {
-            complete: () => Promise<ISessionResponseWFE>;
-            save: () => Promise<ISessionResponseWFE>;
-            executeFunctionAction: (functionId: string) => Promise<ISessionResponseWFE>;
-        };
     };
     log: (message: string, ...optionalParams: Array<any>) => void;
 }
@@ -92,7 +81,8 @@ export interface IResumeProcessRequest {
     processInstanceId: string;
     taskId: string;
     dataInstance: DataInstance;
-    actionId?: string;
+    actionType?: CompleteActionType;
+    customType?: CustomType;
 }
 export interface IPlatformWorkflowServerResponse {
     status: number;

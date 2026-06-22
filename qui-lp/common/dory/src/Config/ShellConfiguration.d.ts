@@ -57,7 +57,6 @@ export declare class ShellConfiguration implements IShellConfiguration {
         childName: string;
     }) => void;
     deleteComponent?: (compCollection: IComponentCollection | IDomElement) => void;
-    flushPendingRenders?: () => void;
     resetTextField?: (componentContext: any) => void;
     roleBaseViewHelper?: (key: string) => boolean;
     redirectTo?({ url }: {
@@ -131,9 +130,6 @@ export declare class ShellConfiguration implements IShellConfiguration {
     getLogBulkSize?: () => number | undefined;
     renderer: IRenderer;
     onLRChange?: (region: string) => void;
-    renderCCOnEdit?: boolean;
-    pageRenderCCOnEditOverride?: boolean;
-    blockComponentNameMap?: Map<string, string>;
     constructor();
 }
 //# sourceMappingURL=ShellConfiguration.d.ts.map

@@ -1,25 +1,8 @@
-import { IModelBodyObject } from "../../qCloudTemp/quickCloud";
-import { ILocationResult, IModelSearch, IModelSearchOptions } from "./IModelSearch";
+import { ILocationResult, IModelSearch } from "./IModelSearch";
 export type IDataTypeLocationDetail = {
-    key: string;
-    index?: number;
-    matchedValue?: string;
-    isReplaceable?: boolean;
+    fileName: string;
 };
 export declare class DataTypeModelSearch implements IModelSearch<IDataTypeLocationDetail> {
-    private readonly pathDictionary;
-    private readonly engine;
-    replacer: (modelBody: Array<IModelBodyObject>, searchValue: string, replaceValue: string, result: IDataTypeLocationDetail) => Array<IModelBodyObject>;
-    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IDataTypeLocationDetail>) => void, searchOptions?: IModelSearchOptions) => void;
-    private applyReplacement;
-    private buildReplacePolicy;
-    private buildPath;
-    private resolvePathByDictionary;
-    private buildPathSignature;
-    private extractIndex;
-    private isAttributeFieldContainer;
-    private isAttributePath;
-    private isQueryFieldPath;
-    private getAttributeBySegments;
+    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IDataTypeLocationDetail>) => void) => Promise<void>;
 }
 //# sourceMappingURL=dataTypeModelSearch.d.ts.map
