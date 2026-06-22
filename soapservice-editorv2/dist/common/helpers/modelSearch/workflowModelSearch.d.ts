@@ -1,6 +1,9 @@
+import { IModelBodyObject } from "../../qCloudTemp/quickCloud";
+import { ILocationResult, IModelSearch, IModelSearchOptions } from "./IModelSearch";
 import { IFlowLocationDetail } from "./flowModelSearch";
-import { ILocationResult, IModelSearch } from "./IModelSearch";
 export declare class WorkflowModelSearch implements IModelSearch<IFlowLocationDetail> {
-    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IFlowLocationDetail>) => void) => Promise<void>;
+    private readonly baseSearcher;
+    replacer: (modelBody: Array<IModelBodyObject>, searchValue: string, replaceValue: string, result: IFlowLocationDetail) => Array<IModelBodyObject>;
+    locationFinder: (modelBody: string, searchValue: string, fileName: string, onMatch: (result: ILocationResult<IFlowLocationDetail>) => void, searchOptions?: IModelSearchOptions) => void;
 }
 //# sourceMappingURL=workflowModelSearch.d.ts.map

@@ -47,6 +47,7 @@ export interface IDory extends IContextItem {
     PageRenderStartedHook: Hook<IPageRenderStartedCb>;
     SettingModelsContext: ISettingModelsContext;
     platformType: PlatformType;
+    shellConfigs: IShellConfiguration;
     Render({ qjson, compParentInst, storeItems, pageId, pageName, theme, options }: {
         qjson: IQJSon;
         compParentInst?: any;
@@ -147,6 +148,7 @@ export interface IDory extends IContextItem {
         name: string;
     }): void;
     SetThemes(themes: Array<ITheme>): void;
+    SetRenderCCOnEdit(renderCCOnEdit: boolean): void;
     GetCurrentTheme(): {
         isLight: boolean;
         name: string;
@@ -157,6 +159,7 @@ export interface IDory extends IContextItem {
     GetContext(): ContextManager;
     RegisterExternalContextItem(item: IContextItem): void;
     RemoveModelDictCache(): void;
+    ReRender(): void;
 }
 export declare const DoryContextName = "Dory";
 //# sourceMappingURL=IDory.d.ts.map
