@@ -1,4 +1,5 @@
 import { IEnvKeyMap } from "./IEnvKeyMap";
+import type { RdbmsType } from "../../../runtime/rdbms/types";
 export interface IWMEnvKeyMap extends IEnvKeyMap {
     wfmDBName?: string;
     pmHostUrl: string;
@@ -8,9 +9,10 @@ export interface IWMEnvKeyMap extends IEnvKeyMap {
     targetTimezone: string;
     maxBatchJobTryCount?: string;
     failedJobRetryDelayMs?: string;
+    queueAlarmDepth?: string;
     nodeType?: string;
     reportMode?: string;
-    dbType?: string;
+    dbType?: RdbmsType;
     dbTechnicalIdKey?: string;
     maxTableNameLen?: string;
     maxConstraintNameLen?: string;
@@ -18,8 +20,5 @@ export interface IWMEnvKeyMap extends IEnvKeyMap {
     dbConnectionString?: string;
     dbUser?: string;
     dbPassword?: string;
-    ldapCertificatePath?: string;
-    ldapIdentityCertificatePath?: string;
-    ldapIdentityCertificateKeyPath?: string;
 }
 //# sourceMappingURL=IWMEnvKeyMap.d.ts.map

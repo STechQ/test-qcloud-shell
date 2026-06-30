@@ -72,6 +72,9 @@ export declare class MongoDBManager implements IDataStoreManager {
         trxQueue?: TTrx;
         upsert?: boolean;
         returnDocument?: ReturnDocument;
+        sort?: {
+            [key: string]: 1 | -1;
+        };
     }): Promise<T | undefined>;
     Delete<T, TTrx extends IMongoDBTransactionQueue | void = IMongoDBTransactionQueue>(collectionName: CollectionName, filter: FilterTypeNullable<T> | FilterTypeOrAnd<T>, options: {
         trxQueue?: TTrx;

@@ -22,6 +22,7 @@ export declare const LogCodes: {
     readonly bj1500: "bj-1500";
     readonly bj1501: "bj-1501";
     readonly bj1502: "bj-1502";
+    readonly bj1505: "bj-1505";
     readonly bj1503: "bj-1503";
     readonly bj1504: "bj-1504";
     readonly e3000: "e-3000";

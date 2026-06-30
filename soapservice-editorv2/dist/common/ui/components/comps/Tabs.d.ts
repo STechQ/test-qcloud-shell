@@ -4,7 +4,7 @@ export interface ITabItem {
     disabled: boolean;
 }
 type Props = {
-    tabNames: ReadonlyArray<string | ITabItem>;
+    tabNames: Array<string | ITabItem>;
     onClick: (index: number) => void;
     selectedTab: string;
 };
