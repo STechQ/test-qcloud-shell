@@ -20,7 +20,13 @@ export default class NetworkManagerImpl implements INetworkManager {
     private getUrl;
     private openLoading;
     private closeLoading;
-    axiosCommon(type: keyof INetwork, url: string, body?: string | object | BinaryType | FormData, axiosConfig?: AxiosRequestConfig, options?: IRequestOptions): Promise<any>;
+    axiosCommon(type: keyof INetwork, url: string, body?: string | object | BinaryType | FormData, axiosConfig?: AxiosRequestConfig, options?: IRequestOptions, kind?: "network" | "qjson"): Promise<any>;
+    /**
+     * Pure network ("wire") duration from the browser's Resource Timing entry — matches the DevTools Network tab.
+     * Falls back to wall-clock around the axios call (which also includes axios interceptor/parse overhead and
+     * main-thread scheduling delay) when no resource entry is available (e.g. served from memory cache).
+     */
+    private measureWireMs;
     getQjson<RetType extends string | object>({ url, urlParams, headers, options }: {
         url: string;
         urlParams?: object;

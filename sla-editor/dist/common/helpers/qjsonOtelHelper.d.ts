@@ -18,7 +18,7 @@ export interface IOtelModelInfo {
 export declare function buildOtelStr(ctx: IOtelContext, model: IOtelModelInfo): string;
 /** Parses a qjson content string (handles `let pjson = ...` and `rally_microUI` wrappers). */
 export declare function parseQJsonContent(jsonString: string): IQJSon;
-/** Re-serializes a parsed qjson object back into its original wrapper format. */
+/** Re-serializes a parsed qjson object back into its original wrapper format, preserving multi-line (tab) formatting. */
 export declare function serializeQJson(originalContent: string, parsed: any): string;
 /**
  * Parses qjson content, injects an OpenTelemetry trace string into opt.otelStr, and re-serializes.

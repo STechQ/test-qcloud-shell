@@ -61,6 +61,7 @@ export interface IShellConfiguration {
         childName: string;
     }) => void;
     deleteComponent?: (compCollection: IComponentCollection | IDomElement) => void;
+    flushPendingRenders?: () => void;
     coreComponentOverrider?(componentName: string): IComponentClassEngine | null;
     roleBaseViewHelper?: (key: string) => boolean;
     resetTextField?: (componentContext: any) => void;
@@ -132,6 +133,9 @@ export interface IShellConfiguration {
     stringToBase64?: (data: string) => string;
     base64ToString?: (data: string) => string;
     renderer: IRenderer;
+    renderCCOnEdit?: boolean;
+    pageRenderCCOnEditOverride?: boolean;
+    blockComponentNameMap?: Map<string, string>;
 }
 export interface IHistoryBasedShellConfiguration {
     isEditor: boolean;

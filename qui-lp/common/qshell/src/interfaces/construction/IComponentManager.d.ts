@@ -25,5 +25,6 @@ export interface IComponentManager extends IContextItem {
         childKey?: string;
     }) => void;
     createComponentQValue(compCollection: IComponentCollection): any;
+    flushPendingRenders?(): void;
 }
 //# sourceMappingURL=IComponentManager.d.ts.map
