@@ -1,0 +1,1 @@
+"use strict";(this.webpackChunkqcloud_shell=this.webpackChunkqcloud_shell||[]).push([[4042],{90458(e,s,t){t.d(s,{XU:()=>o,z$:()=>u});const u=Symbol.for("IRouter");function o(e){}},24042(e,s,t){t.r(s),t.d(s,{default:()=>c});var u=t(20143),o=t(46909),l=t(90458);const c=(0,u.pM)({__name:"settings",setup:e=>(o.kL.resolve(l.z$).getRouteParams(),(e,s)=>" hebe ")})}}]);

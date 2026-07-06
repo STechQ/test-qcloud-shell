@@ -12,6 +12,7 @@ export declare class ModelHelper {
         version: string | undefined;
         appId?: string | undefined;
     }): Promise<IModelForWorkflow> | undefined;
+    static extractSecurityFromModelBody(model: IModelForWorkflow): void;
     static upsert(dsManager: IDataStoreManager, model: IModelForWorkflow, live: boolean, options?: {
         trxQueue?: any;
     }): Promise<undefined>;
@@ -27,5 +28,7 @@ export declare class ModelHelper {
     static listModelsByType(dbManager: IDataStoreManager, { type }: {
         type: ModelType;
     }): Promise<IModelForWorkflow[]>;
+    private static getAppModelsCacheKey;
+    static getAppModels(dsManager: IDataStoreManager, appId: string, types: Array<ModelType>): Promise<Record<ModelType, Array<IModelForWorkflow>>>;
 }
 //# sourceMappingURL=ModelHelper.d.ts.map

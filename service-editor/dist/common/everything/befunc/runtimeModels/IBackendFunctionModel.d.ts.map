@@ -1,1 +1,0 @@
-{"version":3,"file":"IBackendFunctionModel.d.ts","sourceRoot":"","sources":["../../../../../../common/everything/befunc/runtimeModels/IBackendFunctionModel.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,qCAAqC,CAAC;AAEvE,MAAM,WAAW,qBAAsB,SAAQ,gBAAgB;IAC3D,IAAI,EAAE,QAAQ,CAAC;IACf,IAAI,EAAG,MAAM,CAAC;CACjB"}

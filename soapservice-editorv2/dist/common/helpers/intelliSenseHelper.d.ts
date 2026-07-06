@@ -4,7 +4,7 @@ type findObjectCBType = (objectId: string) => Promise<any>;
 export declare const generateFlowIntellisense: (models: {
     dataTypeModels?: Array<IDataModelBase>;
     dataSetModels?: Array<IDataModelBase>;
-}, findObjectCB: findObjectCBType, options: {
+}, findObjectCB: findObjectCBType, personaList: Array<string> | [], options: {
     store?: Store;
 }) => Promise<string>;
 export {};
