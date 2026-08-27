@@ -23,18 +23,15 @@ export interface ISoapServiceEditorV2Data {
     constantInfo: Array<{
         name: string;
         value: string;
-        overridden?: boolean;
     }>;
     dataTypes: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
     }>;
     dataSets: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
     }>;
 }

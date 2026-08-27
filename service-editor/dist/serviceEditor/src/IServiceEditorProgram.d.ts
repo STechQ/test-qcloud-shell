@@ -14,20 +14,17 @@ export interface IServiceEditorData {
     constantInfo: Array<{
         name: string;
         value: string;
-        overridden?: boolean;
         path?: string;
     }>;
     dataTypes: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
         path?: string;
     }>;
     dataSets: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
         path?: string;
     }>;

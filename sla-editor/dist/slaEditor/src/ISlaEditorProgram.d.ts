@@ -13,26 +13,22 @@ export interface ISlaEditorData {
     functionModels: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
     }>;
     constantModels: Array<{
         ID: string;
         name: string;
         value: string;
-        overridden?: boolean;
     }>;
     dataTypes: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
         path?: string;
     }>;
     dataSets: Array<{
         ID: string;
         name: string;
-        overridden?: boolean;
         modelBody: string;
         path?: string;
     }>;
