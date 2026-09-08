@@ -1,3 +1,5 @@
+/// <reference types="node" />
+/// <reference types="node" />
 import { IApplication, IFolder, ILoggedInUser, IModel, IWorkflowExportItem } from "../../ui/src/domain/model/models";
 import { IUserMainInfo, IUser_SUSI } from "./authentication";
 import { IFeedbackAttachment, IUserFeedback } from "./feedback";
@@ -22,6 +24,8 @@ import { ITagDefinition, ITagValue, TagType } from "./tags";
 import { IAllOrgGroupApplicationData } from "./organizationGroupApplication";
 import { IModelOrigInfo } from "./applicationCopy";
 import { OmitTyped } from "../helpers/typeHelper";
+import { IUploadModelsToStorageOptions } from "../clean/domain/useCases/ICloudProviderStorage";
+import { IUploadFilesToBucketResult } from "../clean/useCases/cloudProviderStorageCephImpl";
 export type VersionIncType = 'Minor' | 'Major' | 'Fix';
 export interface IPageable {
     skip: number;
@@ -872,6 +876,41 @@ export interface ILegacyRequests {
             msg: string;
             level: "log" | "warning";
         }>;
+    };
+    listOrganizationsRequest: {};
+    listOrganizationsResponse: {
+        organizations: Array<IOrganization>;
+    };
+}
+export interface IOnPremRequests {
+    cloneOrgRequest: {
+        organizationId: string;
+    };
+    cloneOrgResponse: {
+        modelPaths: Array<string>;
+    };
+    readOrgRequest: {
+        organizationId: string;
+    };
+    readOrgResponse: {
+        orgTableValues: Record<string, Buffer>;
+    };
+    createCollectionsRequest: {
+        organizationId: string;
+        collections: any;
+    };
+    createCollectionsResponse: {
+        messages: Array<{
+            msg: string;
+            level: "log" | "warning" | "error";
+        }>;
+    };
+    createCephModelRequest: {
+        options: IUploadModelsToStorageOptions;
+        files: any;
+    };
+    createCephModelResponse: {
+        result: IUploadFilesToBucketResult | void;
     };
     listOrganizationsRequest: {};
     listOrganizationsResponse: {
