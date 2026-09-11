@@ -21,7 +21,7 @@ export declare class CloudProviderStorageCephImpl implements ICloudProviderStora
     assertOrgStorageConfigured(options: IIsOrgStatorageConfiguredOptions): IOrganizationCloudStorageCeph;
     createOrganization(options: ICreateOrganizationOptions): Promise<void>;
     deleteOrganization(options: IDeleteOrganizationOptions): Promise<void>;
-    uploadModelsToOrganizationStorage(options: IUploadModelsToStorageOptions, files: Array<IUploadableObject>): Promise<void>;
+    uploadModelsToOrganizationStorage(options: IUploadModelsToStorageOptions, files: Array<IUploadableObject>): Promise<IUploadFilesToBucketResult>;
     uploadCdnFilesToOrganizationStorage(options: IUploadCdnFilesToStorageOptions, files: Array<IUploadableObject>): Promise<void>;
     deleteModel(options: IDeleteModelOptions, modelId: string): Promise<IDeleteFolderResult>;
     streamToStorage(options: IStreamToStorageOptions): Promise<void>;

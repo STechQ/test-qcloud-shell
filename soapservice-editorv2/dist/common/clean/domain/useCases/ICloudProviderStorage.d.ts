@@ -4,6 +4,7 @@
 import { Readable } from "stream";
 import { StorageContentType } from "../../../qCloudTemp/storageTypes";
 import { IOrganizationOptions, UpdateOrganizationOnDBCallback } from "./ICloudProvider";
+import { IUploadFilesToBucketResult } from "../../useCases/cloudProviderStorageCephImpl";
 export interface IUploadableObject {
     fullName: string;
     path: string;
@@ -102,7 +103,7 @@ export interface ICloudProviderStorage {
     type: ICloudProviderStorageType;
     createOrganization(options: ICreateOrganizationOptions): Promise<void>;
     deleteOrganization(options: IDeleteOrganizationOptions): Promise<void>;
-    uploadModelsToOrganizationStorage(options: IUploadModelsToStorageOptions, files: Array<IUploadableObject>): Promise<void>;
+    uploadModelsToOrganizationStorage(options: IUploadModelsToStorageOptions, files: Array<IUploadableObject>): Promise<IUploadFilesToBucketResult | void>;
     uploadCdnFilesToOrganizationStorage(options: IUploadCdnFilesToStorageOptions, files: Array<IUploadableObject>): Promise<void>;
     deleteModel(options: IDeleteModelOptions, modelId: string): Promise<IDeleteFolderResult>;
     streamFromWebStorage(options: IStreamFromWebStorageOptions): Promise<IStreamFromWebStorageResponse>;

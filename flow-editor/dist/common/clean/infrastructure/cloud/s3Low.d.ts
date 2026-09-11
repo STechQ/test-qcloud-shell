@@ -61,6 +61,9 @@ export interface IS3LowParams {
     region?: string;
     endpoint?: string;
 }
+export interface IS3FileUploadResult {
+    success: boolean;
+}
 export declare class S3Low {
     private s3Client;
     private readonly logger;
@@ -72,7 +75,9 @@ export declare class S3Low {
     createBucket(params: ICreateBucketParams): Promise<string>;
     deleteBucket(params: IDeleteBucketParams): Promise<void>;
     uploadStream(params: IUploadStreamParams): Promise<void>;
-    uploadFile(params: IFileUploadParams): Promise<void>;
+    uploadFile(params: IFileUploadParams): Promise<{
+        success: boolean;
+    }>;
     private _uploadFile;
     private uploadLargeFile;
     downloadFile(params: IFileLocationParams): Promise<RequireKey<GetObjectCommandOutput, "Body">>;
