@@ -80,12 +80,23 @@ export interface IExportItem {
     updateDate?: Date;
     dependentModels?: Array<IDependentModel>;
 }
-export type JobType = "export" | "deploy" | "pack" | "appmanagement" | "organizationManagement" | "workflowExport" | "workflowModuleExport";
+export type JobType = "export" | "deploy" | "pack" | "appmanagement" | "organizationManagement" | "workflowExport" | "workflowModuleExport" | "rawExport";
 export type JobCauseType = "download" | "publish";
 export type ExportType = "qui" | "sdk" | "model";
 export type DeployType = "module" | "application";
 export type StatusType = "waiting" | "running" | "success" | "failed" | "skipped";
-export type AllJobDataTypes = IExportJobData | IServiceExportJobData | IDeployJobData | IBuildJobData | IDeploymentStartJobData | IAppManagementJobData | IOrganizationManagementJobData | IWorkflowExportJobData;
+export interface IRawExportJobData {
+    /** Union'daki diğer job data'larla uyum için; raw export her zaman tek uygulama içindir. */
+    type: "app";
+    app: {
+        ID: string;
+        name: string;
+    };
+    includeHistory: boolean;
+    /** Export'un istendiği Studio adresinin host'u; manifest'te source.host olarak yazılır. */
+    sourceHost?: string;
+}
+export type AllJobDataTypes = IExportJobData | IServiceExportJobData | IDeployJobData | IBuildJobData | IDeploymentStartJobData | IAppManagementJobData | IOrganizationManagementJobData | IWorkflowExportJobData | IRawExportJobData;
 export interface IQcloudJob {
     jobID: string;
     organizationId: IOrganization["id"];
@@ -312,7 +323,8 @@ export interface IInitJobHistoryRequest {
     ID: string;
     appID: string;
     isMultiStep: boolean;
-    type: "publish" | "download";
+    /** Progress Details sekmesi: publish → "Publish Jobs", download → "Downloads", rawPackage → "Raw Packages". */
+    type: "publish" | "download" | "rawPackage";
     cloudProvider?: ICloudProviderPublishTypeDeployables;
     platform?: IPlatformSelection;
 }
