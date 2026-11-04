@@ -54,7 +54,6 @@ export interface IContextDepTarget {
     instanceHolder: IContextTargetInst;
     field: string;
     depScriptValue: string;
-    evaluationDataItem?: object | null;
 }
 export interface ICompDepTarget {
     ref: IComponentCollection;

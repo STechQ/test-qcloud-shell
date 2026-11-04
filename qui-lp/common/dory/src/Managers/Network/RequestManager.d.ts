@@ -10,12 +10,7 @@ export declare class RequestManager {
      * @returns void
      */
     RequestHandler(requestObject: IRequest, eventName?: string): Promise<INetworkResponse<Record<string, any>>>;
-    /**
-     * Triggers a pipeline lifecycle method after publishing the request-origin page's studio info,
-     * so the pipeline qjson's `quick.studio` reflects the calling page (not the pipeline itself).
-     * Cleared afterwards so non-pipeline evaluations are unaffected.
-     */
-    private triggerPipelineWithOrigin;
+    private FillOtelHeaders;
     /**
      * Merge response to the main response object with returned response
      * @param responseKey Key that will be attached to the response on last history item

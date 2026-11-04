@@ -24,7 +24,7 @@ export declare class PropCalcContext implements IContextItem {
      */
     propContextDepTriggerer({ depTarget, dataItem, self, lang }: {
         depTarget: IContextDepTarget;
-        dataItem?: object | null;
+        dataItem: object;
         self: PropCalcContext;
         lang?: ScriptLang;
     }): void;

@@ -12,7 +12,6 @@ import { ISiteSettings } from "../quick/ISiteSettings";
 import { DisplayHookCb, IDory, PartialDisplayHookCb } from "./IDory";
 import { IDoryJr } from "./IDoryJr";
 import { IHistoryItem } from "./IHistoryItem";
-import { IGlobals_studio } from "../Scripting/IGlobals";
 import { IPageCompletedCb, IPageRenderStartedCb } from "./ILifeCycleCb";
 import { ILogParams } from "../../helpers/logger";
 import { IContainerModel } from "@stechquick/algae/lib/quick/IContainerModel";
@@ -82,7 +81,7 @@ export interface IRenderer {
         name: string;
     }): void;
     SetThemes(themes: Array<ITheme>): void;
-    SetTwoWayBindingEnabled(enabled: boolean): void;
+    SetRenderCCOnEdit(renderCCOnEdit: boolean): void;
     SetThemeMode(isLight: boolean): void;
 }
 export interface ISettingModelsContext extends IContextItem {
@@ -91,8 +90,6 @@ export interface ISettingModelsContext extends IContextItem {
     GetPipelineQjson(): IQJSon | undefined;
     TriggerPipeline(methodName: string, methodArgs: Record<string, any>): Promise<any> | undefined;
     RerenderPipelineQjson(): Promise<void> | undefined;
-    SetPipelineRequestStudio(studio: IGlobals_studio | undefined): void;
-    GetPipelineRequestStudio(): IGlobals_studio | undefined;
     SetAlertQjson(qjson: IQJSon): void;
     GetAlertQjson(): IQJSon | undefined;
     GetLoadingQjson(): IQJSon | undefined;
