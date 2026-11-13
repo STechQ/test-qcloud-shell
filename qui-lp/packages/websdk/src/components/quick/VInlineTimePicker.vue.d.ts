@@ -1,6 +1,7 @@
 import Vue from "vue";
 declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     internalValue: any;
+    stopProgrammaticEvent: boolean;
     menu2: boolean;
     uniqueID: string;
     startTime: any;
@@ -9,6 +10,7 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     displayValue: string;
     range: boolean;
 }, {
+    setProgrammaticValue(value: any): void;
     resurrect(): void;
     onFocus(event: any): void;
     openTimePickers(): void;
@@ -46,7 +48,6 @@ declare const _default: import("vue/types/vue").ExtendedVue<Vue, {
     willAttach: boolean;
     textFieldClass: string;
     _renderingProps: any;
-    hideDetails: string | boolean;
 }>;
 export default _default;
 //# sourceMappingURL=VInlineTimePicker.vue.d.ts.map

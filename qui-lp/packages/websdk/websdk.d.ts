@@ -71,7 +71,7 @@ declare class WebsdkContainer {
     private setSDKConfig;
     private setSettingModels;
     private LoadObject;
-    private LoadSettings;
+    private LoadYamlObject;
     private LoadJS;
     private LoadQjson;
     private configureLivePreview;
