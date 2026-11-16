@@ -15,7 +15,8 @@
         "studio.onplateau.com": { basePath: "/", envName: "prod" },
         "studiolegacy.onplateau.com": { basePath: "/", envName: "prod" },
         "plateaustudio.kube.devisbank": { basePath: "/", envName: "onPrem" },
-        "plateaustudioworkflow.kube.devisbank": { basePath: "/", envName: "onPremWf" }
+        "plateaustudioworkflow.kube.devisbank": { basePath: "/", envName: "onPremWf" },
+        "plateaustudiowf.kube.uatisbank": { basePath: "/", envName: "onPremWfUat" }
       };
       const host = new URL(window.location.href).hostname;
       if(host.includes("yellow-glacier")) {
@@ -64,7 +65,7 @@
       document.body.appendChild(script);
     };
     var includeSso = () => includeJS(baseObject.basePath + "sso.js");
-    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=3.5.2-0");
+    var includeProgram = () => includeJS(baseObject.basePath + "program.js?v=3.5.1-1");
 
     (() => {
       includeSso();
